@@ -1,12 +1,10 @@
 package br.com.luis.api.models.utils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.luis.api.arquivo.Arquivo;
 import br.com.luis.api.models.Filme;
-import br.com.luis.api.models.Idioma;
 import br.com.luis.api.utils.Mapeamento;
 
 public class IdiomaUtils {

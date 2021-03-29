@@ -1,10 +1,15 @@
 package br.com.luis.api.models.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import br.com.luis.api.models.Filme;
 import br.com.luis.api.models.Mes;
+import br.com.luis.api.utils.Mapeamento;
 
 public class MesUtils {
-
+	private static List<Filme> filmes = Mapeamento.converterLinhaEmObjeto();
 
 	private static int definirNumeroDoMes(Filme filme) {
 		String[] data = filme.getData().split("/");
@@ -45,4 +50,19 @@ public class MesUtils {
 	public static Mes definirDadosDoMes(Filme filme) {
 		return new Mes(definirNomeDoMes(filme), definirNumeroDoMes(filme));
 	}
+	
+	public static List<String> listarQuantidadeDeCadaMes() {
+		return filmes.stream()
+				.map(filme -> quantidadeDeCadaMes(filme.getMes()))
+				.distinct()
+				.collect(Collectors.toList());
+	}
+	
+	private static String quantidadeDeCadaMes(Mes mes) {
+		return filmes.stream()
+				.filter(filme -> filme.getMes().getNome().equals(mes.getNome()))
+				.count() + " filmes vistos no mês de " + mes.getNome();
+	}
+	
+	
 }

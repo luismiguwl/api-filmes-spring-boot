@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.luis.api.models.Filme;
 import br.com.luis.api.models.Mes;
 import br.com.luis.api.models.utils.IdiomaUtils;
+import br.com.luis.api.models.utils.MesUtils;
 import br.com.luis.api.utils.Mapeamento;
 
 @RestController
@@ -33,14 +34,14 @@ public class FilmeController {
 	}
 
 	@GetMapping("/month={mes}")
-	public List<Filme> filtrarPorMes(@PathVariable("mes") int mes) {
+	public List<Filme> filtrarPorMes(@PathVariable int mes) {
 		return filmes.stream()
 				.filter(filme -> filme.getMes().getNumeroDoMes() == mes)
 				.collect(Collectors.toList());
 	}
 
 	@GetMapping("/lang={idioma}")
-	public List<Filme> filtrarPorIdioma(@PathVariable("idioma") String idioma) {
+	public List<Filme> filtrarPorIdioma(@PathVariable String idioma) {
 		return filmes.stream().filter(filme -> filme.getIdioma().getAbreviacao().equalsIgnoreCase(idioma))
 				.collect(Collectors.toList());
 	}
@@ -48,6 +49,11 @@ public class FilmeController {
 	@GetMapping("/idiomas")
 	public List<String> listarIdiomasDistintos() {
 		return IdiomaUtils.definirQuantidadeDeFilmesEmDeterminadoIdioma();
+	}
+	
+	@GetMapping("/quantidadepormes")
+	public List<String> listarQuantidadeDeFilmesVistosEmCadaMes() {
+		return MesUtils.listarQuantidadeDeCadaMes();
 	}
 	
 }
