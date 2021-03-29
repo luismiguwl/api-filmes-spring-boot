@@ -21,7 +21,7 @@ public class Mapeamento {
 			String linhaAtual = lista.get(i);
 			String titulo = "";
 			String dataAssistido = "";
-			Idioma idioma = new Idioma();
+			Idioma idioma = null;
 			Diretor diretor = null;
 			int anoLancamento = 0;
 			List<Diretor> diretores = new ArrayList<>();
@@ -78,7 +78,7 @@ public class Mapeamento {
 		for (int i = 0; i < lista.size(); i++) {
 			String linhaAtual = lista.get(i);
 			String titulo = "";
-			Idioma idioma = new Idioma();
+			Idioma idioma = null;
 			Diretor diretor = null;
 			int anoLancamento = 0;
 			List<Diretor> diretores = new ArrayList<>();
