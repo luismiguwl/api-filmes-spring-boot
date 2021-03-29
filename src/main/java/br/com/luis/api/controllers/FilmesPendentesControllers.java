@@ -48,4 +48,9 @@ public class FilmesPendentesControllers extends MetodosPadrao {
 		return filmes.stream().filter(filme -> filme.getMes().getNumeroDoMes() == mes).collect(Collectors.toList());
 	}
 
+	@GetMapping("/last")
+	public Filme ultimo() {
+		return filmes.get(filmes.size() - 1);
+	}
+
 }

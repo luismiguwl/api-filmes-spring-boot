@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
-import org.springframework.context.annotation.Import;
 
 import br.com.luis.api.arquivo.Arquivo;
 import br.com.luis.api.models.Filme;
@@ -16,7 +15,6 @@ public class IdiomaUtils {
 	private static List<Filme> filmes = Mapeamento.getFilmesVistos();
 
 	public static String getAbreviacao(String idioma) {
-		String destino = "C:\\Users\\Luis Miguel\\OneDrive\\Documentos do Eclipse\\api-filmes-spring-boot\\filmes-2021\\Abreviacoes dos idiomas.csv";
 		List<String> listaDeAbreviacoes = Arquivo.lerArquivo(TipoDeConsulta.ABREVIACOES);
 
 		return listaDeAbreviacoes.stream().filter(abreviacao -> abreviacao.split(",")[0].equals(idioma))

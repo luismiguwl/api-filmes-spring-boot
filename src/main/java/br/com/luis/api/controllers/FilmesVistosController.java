@@ -33,9 +33,7 @@ public class FilmesVistosController extends MetodosPadrao {
 
 	@GetMapping("/month={mes}")
 	public List<Filme> filtrarPorMes(@PathVariable int mes) {
-		return filmes.stream()
-				.filter(filme -> filme.getMes().getNumeroDoMes() == mes)
-				.collect(Collectors.toList());
+		return filmes.stream().filter(filme -> filme.getMes().getNumeroDoMes() == mes).collect(Collectors.toList());
 	}
 
 	@GetMapping("/lang={idioma}")
@@ -48,10 +46,15 @@ public class FilmesVistosController extends MetodosPadrao {
 	public List<String> listarQuantidadeDeFilmesEmCadaIdioma() {
 		return IdiomaUtils.definirQuantidadeDeFilmesEmDeterminadoIdioma();
 	}
-	
+
 	@GetMapping("/quantidadepormes")
 	public List<String> listarQuantidadeDeFilmesVistosEmCadaMes() {
 		return MesUtils.listarQuantidadeDeCadaMes();
+	}
+
+	@GetMapping("/last")
+	public Filme ultimo() {
+		return filmes.get(filmes.size() - 1);
 	}
 
 }
