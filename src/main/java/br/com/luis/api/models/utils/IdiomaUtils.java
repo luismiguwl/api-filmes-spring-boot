@@ -24,15 +24,16 @@ public class IdiomaUtils {
 	}
 
 	private static String getQuantidadeDeFilmes(String idioma) {
-		return filmes.stream().filter(filme -> filme.getIdioma().getNome().equalsIgnoreCase(idioma)).count()
-				+ " filmes vistos em " + idioma;
+		int quantidade = (int) filmes.stream().filter(filme -> filme.getIdioma().getNome().equalsIgnoreCase(idioma))
+				.count();
+		if (quantidade == 1) {
+			return quantidade + " filme visto em " + idioma;
+		}
+		return quantidade + " filmes vistos em " + idioma;
 	}
 
 	private static List<String> getIdiomasDistintos() {
-		return filmes.stream()
-				.map(filme -> filme.getIdioma().getNome())
-				.distinct()
-				.collect(Collectors.toList());
+		return filmes.stream().map(filme -> filme.getIdioma().getNome()).distinct().collect(Collectors.toList());
 	}
 
 	public static List<String> definirQuantidadeDeFilmesEmDeterminadoIdioma() {

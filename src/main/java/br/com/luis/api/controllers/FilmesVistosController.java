@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luis.api.models.Filme;
+import br.com.luis.api.models.MetodosPadrao;
 import br.com.luis.api.models.utils.IdiomaUtils;
 import br.com.luis.api.models.utils.MesUtils;
 import br.com.luis.api.utils.Mapeamento;
 
 @RestController
 @RequestMapping("/filmes/vistos")
-public class FilmesVistosController {
+public class FilmesVistosController extends MetodosPadrao {
 	private List<Filme> filmes = Mapeamento.getFilmesVistos();
 
 	@GetMapping("/random")
@@ -26,7 +27,7 @@ public class FilmesVistosController {
 	}
 
 	@GetMapping("/all")
-	public List<Filme> allMovies() {
+	public List<Filme> all() {
 		return filmes;
 	}
 
@@ -44,7 +45,7 @@ public class FilmesVistosController {
 	}
 
 	@GetMapping("/idiomas")
-	public List<String> listarIdiomasDistintos() {
+	public List<String> listarQuantidadeDeFilmesEmCadaIdioma() {
 		return IdiomaUtils.definirQuantidadeDeFilmesEmDeterminadoIdioma();
 	}
 	
@@ -52,5 +53,5 @@ public class FilmesVistosController {
 	public List<String> listarQuantidadeDeFilmesVistosEmCadaMes() {
 		return MesUtils.listarQuantidadeDeCadaMes();
 	}
-	
+
 }
