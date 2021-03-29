@@ -7,7 +7,7 @@ import br.com.luis.api.arquivo.Arquivo;
 
 public class IdiomaUtils {
 	public static String getAbreviacao(String idioma) {
-		String destino = "C:\\Users\\Luis Miguel\\OneDrive\\Documentos do Eclipse\\api\\api\\filmes-2021\\Abreviacoes dos idiomas.csv";
+		String destino = "C:\\Users\\Luis Miguel\\OneDrive\\Documentos do Eclipse\\api-filmes-spring-boot\\filmes-2021\\Abreviacoes dos idiomas.csv";
 		List<String> listaDeAbreviacoes = Arquivo.lerArquivo(destino);
 		
 		return listaDeAbreviacoes.stream()

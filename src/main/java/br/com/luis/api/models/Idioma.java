@@ -19,7 +19,7 @@ public class Idioma {
 	public Idioma(String nome) {
 		super();
 		this.nome = nome;
-		abreviacao = definirAbreviacao();
+		abreviacao = definirAbreviacao(); 
 	}
 
 	public String getNome() {

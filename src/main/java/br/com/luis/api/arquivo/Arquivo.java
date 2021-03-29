@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Arquivo {
-	private static String destino = "C:\\Users\\Luis Miguel\\OneDrive\\Documentos do Eclipse\\api\\api\\filmes-2021\\Filmes assistidos em 2021.csv";
+	private static String destino = "C:\\Users\\Luis Miguel\\OneDrive\\Documentos do Eclipse\\api-filmes-spring-boot\\filmes-2021\\Filmes assistidos em 2021.csv";
 
 	public static List<String> lerArquivo() {
 		List<String> dados = new ArrayList<>();
