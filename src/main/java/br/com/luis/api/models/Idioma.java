@@ -12,7 +12,7 @@ public class Idioma {
 	
 	@JsonIgnore
 	private String abreviacao;
-
+	
 	public Idioma() {
 	}
 
