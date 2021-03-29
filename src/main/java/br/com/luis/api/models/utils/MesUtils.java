@@ -1,6 +1,5 @@
 package br.com.luis.api.models.utils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,11 +8,15 @@ import br.com.luis.api.models.Mes;
 import br.com.luis.api.utils.Mapeamento;
 
 public class MesUtils {
-	private static List<Filme> filmes = Mapeamento.converterLinhaEmObjeto();
+	private static List<Filme> filmes = Mapeamento.getFilmesVistos();
 
 	private static int definirNumeroDoMes(Filme filme) {
-		String[] data = filme.getData().split("/");
-		return Integer.parseInt(data[1]);
+		if (filme.getData() != null) {
+			String[] data = filme.getData().split("/");
+			return Integer.parseInt(data[1]);
+		}
+		
+		return 0;
 	}
 
 	private static String definirNomeDoMes(Filme filme) {

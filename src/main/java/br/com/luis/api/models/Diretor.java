@@ -4,7 +4,7 @@ import br.com.luis.api.models.utils.DiretorUtils;
 
 public class Diretor {
 	private String nome;
-	private int quantidadeDeFilmes;
+	private int quantidadeDeFilmesNaLista;
 
 	public Diretor(String nome) {
 		this.nome = nome;
@@ -19,12 +19,12 @@ public class Diretor {
 	}
 
 	public int getQuantidadeDeFilmes() {
-		quantidadeDeFilmes = DiretorUtils.definirQuantidadeDeFilmesDirigidos(this.nome);
-		return quantidadeDeFilmes;
+		quantidadeDeFilmesNaLista = DiretorUtils.definirQuantidadeDeFilmesDirigidos(this.nome);
+		return quantidadeDeFilmesNaLista;
 	}
 
-	public void setQuantidadeDeFilmes(int quantidadeDeFilmes) {
-		this.quantidadeDeFilmes = quantidadeDeFilmes;
+	public void setQuantidadeDeFilmes(int quantidadeDeFilmesNaLista) {
+		this.quantidadeDeFilmesNaLista = quantidadeDeFilmesNaLista;
 	}
 	
 	@Override

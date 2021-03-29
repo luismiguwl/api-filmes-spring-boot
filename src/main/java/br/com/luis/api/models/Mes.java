@@ -1,7 +1,14 @@
 package br.com.luis.api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_EMPTY)
 public class Mes {
 	private String nome;
+	
+	@JsonIgnore
 	private int numeroDoMes;
 
 	public Mes() {

@@ -1,6 +1,5 @@
 package br.com.luis.api.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -11,16 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luis.api.models.Filme;
-import br.com.luis.api.models.Mes;
 import br.com.luis.api.models.utils.IdiomaUtils;
 import br.com.luis.api.models.utils.MesUtils;
 import br.com.luis.api.utils.Mapeamento;
 
 @RestController
-@RequestMapping("/filmes")
-public class FilmeController {
-
-	private List<Filme> filmes = Mapeamento.converterLinhaEmObjeto();
+@RequestMapping("/filmes/vistos")
+public class FilmesVistosController {
+	private List<Filme> filmes = Mapeamento.getFilmesVistos();
 
 	@GetMapping("/random")
 	public Filme random() {

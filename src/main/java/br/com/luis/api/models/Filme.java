@@ -20,7 +20,6 @@ public class Filme {
 	private List<Diretor> diretores = new ArrayList<>();
 
 	public Filme(String titulo, String data, int ano, Idioma idioma, Diretor diretor) {
-		super();
 		this.titulo = titulo;
 		this.data = data;
 		this.ano = ano;
@@ -29,12 +28,25 @@ public class Filme {
 	}
 
 	public Filme(String titulo, String data, int ano, Idioma idioma, List<Diretor> diretores) {
-		super();
 		this.titulo = titulo;
 		this.data = data;
 		this.ano = ano;
 		this.idioma = idioma;
 		this.diretores = diretores;
+	}
+
+	public Filme(String titulo, int ano, Idioma idioma, List<Diretor> diretores) {
+		this.titulo = titulo;
+		this.ano = ano;
+		this.idioma = idioma;
+		this.diretores = diretores;
+	}
+
+	public Filme(String titulo, int ano, Idioma idioma, Diretor diretor) {
+		this.titulo = titulo;
+		this.ano = ano;
+		this.idioma = idioma;
+		this.diretor = diretor;
 	}
 
 	public String getTitulo() {
@@ -85,36 +97,33 @@ public class Filme {
 		this.diretores = diretores;
 	}
 
-	@Override
-	public String toString() {
-		String corpo = "Título: " + titulo + "\n" + "Assistido em " + data + "\n" + "Lançado em " + ano + "\n"
-				+ "Idioma: " + idioma + "\n" + listarDiretores();
-		return corpo;
-	}
-
-	private String listarDiretores() {
-		if (diretores.size() != 0) {
-			String corpo = "Diretores: ";
-
-			for (int i = 0; i < diretores.size(); i++) {
-				corpo += "" + diretores.get(i).getNome();
-				if (i != (diretores.size() - 1)) {
-					corpo += ", ";
-				}
-			}
-
-			return corpo;
-		}
-		return "Diretor: " + getDiretor().getNome();
-	}
-
 	public Mes getMes() {
-		mes = MesUtils.definirDadosDoMes(this);
-		return mes;
+		return MesUtils.definirDadosDoMes(this);
 	}
 
 	public void setMes(Mes mes) {
 		this.mes = mes;
+	}
+
+	@Override
+	public String toString() {
+		String corpo = "";
+
+		corpo += "Título: " + titulo + "\n";
+		
+		if (data != null) {
+			corpo += "Assistido em " + data + "\n";
+		}
+		
+		corpo += "Lançado em " + ano + "\n";
+		corpo += "Idioma: " + idioma.getNome() + "\n";
+		corpo += FilmeUtils.listarDiretores(this);
+		
+		if (mes != null) {
+			corpo += "Visto no mês de " + mes.getNome();
+		}
+
+		return corpo;
 	}
 
 }
