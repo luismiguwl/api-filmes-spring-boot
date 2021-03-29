@@ -34,7 +34,9 @@ public class FilmeController {
 
 	@GetMapping("/month={mes}")
 	public List<Filme> filtrarPorMes(@PathVariable("mes") int mes) {
-		return filmes.stream().filter(filme -> filme.getMes() == Mes.values()[mes - 1]).collect(Collectors.toList());
+		return filmes.stream()
+				.filter(filme -> filme.getMes().getNumeroDoMes() == mes)
+				.collect(Collectors.toList());
 	}
 
 	@GetMapping("/lang={idioma}")
@@ -47,5 +49,5 @@ public class FilmeController {
 	public List<String> listarIdiomasDistintos() {
 		return IdiomaUtils.definirQuantidadeDeFilmesEmDeterminadoIdioma();
 	}
-
+	
 }

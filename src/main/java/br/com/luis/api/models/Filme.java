@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import br.com.luis.api.models.utils.FilmeUtils;
+import br.com.luis.api.models.utils.MesUtils;
 
 @JsonInclude(Include.NON_EMPTY)
 public class Filme {
@@ -108,7 +109,7 @@ public class Filme {
 	}
 
 	public Mes getMes() {
-		mes = FilmeUtils.definirEmQueMesFoiVisto(this);
+		mes = MesUtils.definirDadosDoMes(this);
 		return mes;
 	}
 
