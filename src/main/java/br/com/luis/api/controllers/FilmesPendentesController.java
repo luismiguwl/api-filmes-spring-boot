@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luis.api.models.Filme;
 import br.com.luis.api.models.MetodosPadrao;
+import br.com.luis.api.models.utils.FilmeUtils;
 import br.com.luis.api.models.utils.IdiomaUtils;
 import br.com.luis.api.utils.Mapeamento;
 
@@ -53,9 +54,10 @@ public class FilmesPendentesController extends MetodosPadrao {
 		return filmes.get(filmes.size() - 1);
 	}
 
-	@Override
-	public List<Filme> filtrarPorPalavraChave(String palavra) {
-		return null;
+	@GetMapping("/key={chave}")
+	public List<Filme> filtrarPorPalavraChave(@PathVariable String chave) {
+		System.out.println(chave);
+		return FilmeUtils.buscarFilmePorPalavra(filmes, chave);
 	}
 
 }
