@@ -17,7 +17,7 @@ import br.com.luis.api.utils.Mapeamento;
 
 @RestController
 @RequestMapping("/filmes/pendentes")
-public class FilmesPendentesControllers extends MetodosPadrao {
+public class FilmesPendentesController extends MetodosPadrao {
 
 	private List<Filme> filmes = Mapeamento.getFilmesPendentes();
 
