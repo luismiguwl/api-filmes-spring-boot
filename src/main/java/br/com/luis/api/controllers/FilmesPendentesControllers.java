@@ -53,4 +53,9 @@ public class FilmesPendentesControllers extends MetodosPadrao {
 		return filmes.get(filmes.size() - 1);
 	}
 
+	@Override
+	public List<Filme> filtrarPorPalavraChave(String palavra) {
+		return null;
+	}
+
 }
