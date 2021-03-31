@@ -39,11 +39,6 @@ public class FilmesPendentesController extends MetodosPadrao {
 				.collect(Collectors.toList());
 	}
 
-	@GetMapping("/idiomas")
-	public List<String> listarQuantidadeDeFilmesEmCadaIdioma() {
-		return IdiomaUtils.definirQuantidadeDeFilmesEmDeterminadoIdioma();
-	}
-
 	@GetMapping("/month={mes}")
 	public List<Filme> filtrarPorMes(@PathVariable int mes) {
 		return filmes.stream().filter(filme -> filme.getMes().getNumeroDoMes() == mes).collect(Collectors.toList());

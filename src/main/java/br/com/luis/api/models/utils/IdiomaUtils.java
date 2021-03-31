@@ -3,15 +3,12 @@ package br.com.luis.api.models.utils;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
-
 import br.com.luis.api.arquivo.Arquivo;
 import br.com.luis.api.models.Filme;
 import br.com.luis.api.models.TipoDeConsulta;
 import br.com.luis.api.utils.Calculadora;
 import br.com.luis.api.utils.Mapeamento;
 
-@ImportAutoConfiguration
 public class IdiomaUtils {
 	private static List<Filme> filmes = Mapeamento.getFilmesVistos();
 
