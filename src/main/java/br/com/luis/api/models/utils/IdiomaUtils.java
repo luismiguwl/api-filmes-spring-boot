@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import br.com.luis.api.arquivo.Arquivo;
 import br.com.luis.api.models.Filme;
 import br.com.luis.api.models.TipoDeConsulta;
+import br.com.luis.api.utils.Calculadora;
 import br.com.luis.api.utils.Mapeamento;
 
 @ImportAutoConfiguration
@@ -22,12 +23,18 @@ public class IdiomaUtils {
 	}
 
 	private static String getQuantidadeDeFilmes(String idioma) {
+		String corpo = "";
+
 		int quantidade = (int) filmes.stream().filter(filme -> filme.getIdioma().getNome().equalsIgnoreCase(idioma))
 				.count();
 		if (quantidade == 1) {
-			return quantidade + " filme visto em " + idioma;
+			corpo += quantidade + " filme visto em " + idioma;
 		}
-		return quantidade + " filmes vistos em " + idioma;
+		corpo += quantidade + " filmes vistos em " + idioma;
+
+		corpo += " (aprox. " + Calculadora.calcularPorcentagem(filmes.size(), quantidade) + "%)";
+
+		return corpo;
 	}
 
 	private static List<String> getIdiomasDistintos() {
