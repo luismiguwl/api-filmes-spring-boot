@@ -29,8 +29,9 @@ public class IdiomaUtils {
 				.count();
 		if (quantidade == 1) {
 			corpo += quantidade + " filme visto em " + idioma;
+		} else {
+			corpo += quantidade + " filmes vistos em " + idioma;
 		}
-		corpo += quantidade + " filmes vistos em " + idioma;
 
 		corpo += " (aprox. " + Calculadora.calcularPorcentagem(filmes.size(), quantidade) + "%)";
 
