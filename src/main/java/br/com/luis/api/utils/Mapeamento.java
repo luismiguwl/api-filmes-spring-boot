@@ -146,9 +146,8 @@ public class Mapeamento {
 		String linhaDiretores = isolarQuandoHouverMaisDeUmDiretor(linhaAtual);
 		linhaDiretores = removerAspas(linhaDiretores);
 		String[] conteudo = linhaDiretores.split(",");
-		diretores = Arrays.asList(conteudo).stream().map(diretor -> new Diretor(diretor.trim()))
+		return Arrays.asList(conteudo).stream().map(diretor -> new Diretor(diretor.trim()))
 				.collect(Collectors.toList());
-		return diretores;
 	}
 
 	private static String removerAspas(String linha) {

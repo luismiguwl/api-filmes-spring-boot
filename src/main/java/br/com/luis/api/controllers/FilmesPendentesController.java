@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.luis.api.models.Filme;
 import br.com.luis.api.models.MetodosPadrao;
 import br.com.luis.api.models.utils.FilmeUtils;
-import br.com.luis.api.models.utils.IdiomaUtils;
 import br.com.luis.api.utils.Mapeamento;
 
 @RestController
@@ -55,4 +56,14 @@ public class FilmesPendentesController extends MetodosPadrao {
 		return FilmeUtils.buscarFilmePorPalavra(filmes, chave);
 	}
 
+	@GetMapping("/ano={ano}")
+	public List<Filme> buscarPorAnoDeLancamento(@PathVariable int ano) {
+		return filmes.stream().filter(filme -> filme.getAno() == ano).collect(Collectors.toList());
+	}
+
+	@GetMapping("/ano?{de}/{para}")
+	public List<Filme> buscarPorIntervaloDeAnos(@PathParam(value = "de") int de, @PathParam(value = "para") int ate) {
+		return filmes.stream().filter(filme -> filme.getAno() >= de && filme.getAno() <= ate)
+				.collect(Collectors.toList());
+	}
 }

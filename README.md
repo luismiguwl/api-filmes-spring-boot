@@ -14,3 +14,8 @@ Esta é minha primeira API desenvolvida em Spring Boot que estou publicando no G
 Decidi utilizar o Spring Boot como framework para criação da minha API por ser um pouco mais familiarizado com o Java. Outro motivo é a enorme quantidade de recursos que o framework possui. Sério, eu fico assustado quando olho a documentação e percebo o quão longe posso ir utilizando APENAS o Spring Boot. Sem contar na quantidade de outros recursos que uma Spring REST pode conter.
 
 Outro motivo que explica o porquê de eu ter escolhido o Spring Boot é a minha vontade de me especializar em algum framework Java. A linguagem me atraiu bastante desde a primeira vez que tive contato com ela.
+
+# O que foi aprendido
+Esta seção será atualizada de acordo com o desenvolvimento da aplicação
+
+Ao iniciar o projeto, eu já tinha plenos conhecimentos sobre a maioria dos recursos que foram utilizados na aplicação. Entretanto, aprendi a utilizar algumas outras ferramentas que eu não fazia ideia de que existiam, como o Jackson e o Lombok. Este último foi um catalisador no que diz respeito ao famoso "Clean Code". Ao ler num fórum sobre os benefícios da utilização do Lombok, decidi ir atrás e verificar do que se tratava. Descobri que é uma ferramenta que funciona à base de anotações, que no momento em que li sobre, soube que precisava adicionar ao meu projeto.

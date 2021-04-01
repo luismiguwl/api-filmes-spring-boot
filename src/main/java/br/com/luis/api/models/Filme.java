@@ -3,6 +3,7 @@ package br.com.luis.api.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -18,6 +19,8 @@ import lombok.Setter;
 public class Filme {
 	private String titulo;
 	private String data;
+	
+	@JsonIgnore
 	private Mes mes;
 	private int ano;
 	private Idioma idioma;
