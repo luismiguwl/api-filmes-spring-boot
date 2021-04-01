@@ -60,7 +60,6 @@ public class FilmesVistosController extends MetodosPadrao {
 
 	@GetMapping("/key={chave}")
 	public List<Filme> filtrarPorPalavraChave(@PathVariable String chave) {
-		System.out.println(chave);
 		return FilmeUtils.buscarFilmePorPalavra(filmes, chave);
 	}
 
