@@ -19,3 +19,11 @@ Outro motivo que explica o porquê de eu ter escolhido o Spring Boot é a minha 
 Esta seção será atualizada de acordo com o desenvolvimento da aplicação
 
 Ao iniciar o projeto, eu já tinha plenos conhecimentos sobre a maioria dos recursos que foram utilizados na aplicação. Entretanto, aprendi a utilizar algumas outras ferramentas que eu não fazia ideia de que existiam, como o Jackson e o Lombok. Este último foi um catalisador no que diz respeito ao famoso "Clean Code". Ao ler num fórum sobre os benefícios da utilização do Lombok, decidi ir atrás e verificar do que se tratava. Descobri que é uma ferramenta que funciona à base de anotações, que no momento em que li sobre, soube que precisava adicionar ao meu projeto.
+
+# Uso de Stream API
+
+Se você assim como eu já leu o livro Clean Code do Robert C. Martin, creio que esta seção irá lhe agradar.
+
+Resolvi dedicar uma seção apenas para falar de Stream pois ao notar que me utilizei deste recurso em praticamente todas as situações onde houve necessidade de implementação de loops, julguei apropriado descrever um pouco da minha experiência.
+
+Além do Lombok e do Jackson, uma outra ferramenta muito útil no que diz respeito ao Clean Code, é a Stream API, fornecida pelo próprio Java. Ao dar uma visão mais detalhada ao projeto, nota-se que o uso de Stream é muito frequente, e isso prova o quão útil é este recurso da linguagem. Usei pipelines de execução em praticamente TODAS as minhas funções. Eu fico me perguntando o quão grande ficaria o código se eu tivesse que desenvolver os algoritmos utilizando for, if/else etc. O uso de loops implícitos facilita bastante na hora de desenvolver uma solução em que eu precisaria de várias linhas de código para criar como era outrora.
