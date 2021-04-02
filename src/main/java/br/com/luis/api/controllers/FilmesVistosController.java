@@ -5,8 +5,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luis.api.models.Filme;
@@ -32,14 +32,14 @@ public class FilmesVistosController extends MetodosPadrao {
 		return filmes;
 	}
 
-	@GetMapping("/month={mes}")
-	public List<Filme> filtrarPorMes(@PathVariable int mes) {
+	@GetMapping("/month")
+	public List<Filme> filtrarPorMes(@RequestParam(name = "m") int mes) {
 		return filmes.stream().filter(filme -> filme.getMes().getNumeroDoMes() == mes).collect(Collectors.toList());
 	}
 
-	@GetMapping("/lang={idioma}")
-	public List<Filme> filtrarPorIdioma(@PathVariable String idioma) {
-		return filmes.stream().filter(filme -> filme.getIdioma().getAbreviacao().equalsIgnoreCase(idioma))
+	@GetMapping("/idioma")
+	public List<Filme> filtrarPorIdioma(@RequestParam(name = "lang") String idioma) {
+		return filmes.stream().filter(filme -> filme.getIdioma().getAbreviacao().contains(idioma))
 				.collect(Collectors.toList());
 	}
 
@@ -58,20 +58,21 @@ public class FilmesVistosController extends MetodosPadrao {
 		return filmes.get(filmes.size() - 1);
 	}
 
-	@GetMapping("/key={chave}")
-	public List<Filme> filtrarPorPalavraChave(@PathVariable String chave) {
+	@GetMapping("/palavra")
+	public List<Filme> filtrarPorPalavraChave(@RequestParam(name = "key") String chave) {
 		return FilmeUtils.buscarFilmePorPalavra(filmes, chave);
 	}
 
-	@GetMapping("/ano={ano}")
-	public List<Filme> buscarPorAnoDeLancamento(@PathVariable int ano) {
+	@GetMapping("/lancamento")
+	public List<Filme> buscarPorAnoDeLancamento(@RequestParam(name = "ano") int ano) {
 		return filmes.stream().filter(filme -> filme.getAno() == ano).collect(Collectors.toList());
 	}
 
-	@GetMapping("/ano/{de}/{ate}")
-	public List<Filme> buscarPorIntervaloDeAnos(@PathVariable int de, @PathVariable int ate) {
+	@GetMapping("/ano")
+	public List<Filme> buscarPorIntervaloDeAnos(@RequestParam(name = "de") int de, 
+			                                    @RequestParam(name = "ate") int ate) {
 		return filmes.stream().filter(filme -> filme.getAno() >= de && filme.getAno() <= ate)
 				.collect(Collectors.toList());
 	}
-
+	
 }

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import br.com.luis.api.models.Filme;
 import br.com.luis.api.models.Mes;
+import br.com.luis.api.utils.Calculadora;
 import br.com.luis.api.utils.Mapeamento;
 
 @JsonInclude(Include.NON_EMPTY)
@@ -68,9 +69,17 @@ public class MesUtils {
 	}
 
 	private static String quantidadeDeCadaMes(Mes mes) {
-		return filmes.stream()
+		int quantidade = (int) filmes.stream()
 				.filter(filme -> filme.getMes().getNome().equals(mes.getNome()))
-				.count() + " filmes vistos no mês de " + mes.getNome();
+				.count();
+		
+		int porcentagem = Calculadora.calcularPorcentagem(filmes.size(), quantidade);
+		
+		if (quantidade == 1) {
+			return quantidade + " filme visto em " + mes.getNome() + " (aprox. " + porcentagem + "% do total)";
+		}
+		
+		return quantidade + " filmes vistos em " + mes.getNome() + " (aprox. " + porcentagem + "% do total)";
 	}
 
 }
