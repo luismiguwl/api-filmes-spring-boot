@@ -27,14 +27,7 @@ public class MesUtils {
 	}
 
 	public static Mes definirDadosDoMes(Filme filme) {
-		// caso o filme esteja na lista de pendentes, ele não possui mês em que foi
-		// assistido
-		// portanto, não precisa ser mapeado para o corpo da resposta
-		if (filme.getData() != null) {
-			return new Mes(definirNomeDoMes(filme), definirNumeroDoMes(filme));
-		}
-
-		return null;
+		return filme.getData() != null ? new Mes(definirNomeDoMes(filme), definirNumeroDoMes(filme)) : null;
 	}
 
 	public static List<String> listarQuantidadeDeCadaMes() {
