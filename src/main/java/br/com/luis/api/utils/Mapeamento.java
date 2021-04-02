@@ -141,8 +141,6 @@ public class Mapeamento {
 	}
 
 	private static List<Diretor> mapearDiretores(String linhaAtual) {
-		List<Diretor> diretores = new ArrayList<>();
-
 		String linhaDiretores = isolarQuandoHouverMaisDeUmDiretor(linhaAtual);
 		linhaDiretores = removerAspas(linhaDiretores);
 		String[] conteudo = linhaDiretores.split(",");

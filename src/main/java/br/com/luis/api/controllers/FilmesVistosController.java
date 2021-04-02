@@ -74,5 +74,4 @@ public class FilmesVistosController extends MetodosPadrao {
 		return filmes.stream().filter(filme -> filme.getAno() >= de && filme.getAno() <= ate)
 				.collect(Collectors.toList());
 	}
-	
 }

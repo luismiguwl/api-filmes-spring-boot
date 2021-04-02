@@ -21,64 +21,36 @@ public class MesUtils {
 	}
 
 	private static String definirNomeDoMes(Filme filme) {
-		switch (definirNumeroDoMes(filme)) {
-		case 1:
-			return "Janeiro";
-		case 2:
-			return "Fevereiro";
-		case 3:
-			return "Março";
-		case 4:
-			return "Abril";
-		case 5:
-			return "Maio";
-		case 6:
-			return "Junho";
-		case 7:
-			return "Julho";
-		case 8:
-			return "Agosto";
-		case 9:
-			return "Setembro";
-		case 10:
-			return "Outubro";
-		case 11:
-			return "Novembro";
-		case 12:
-			return "Dezembro";
-		}
-
-		return null;
+		String[] nomeDosMeses = { "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto",
+				"Setembro", "Outubro", "Novembro", "Dezembro" };
+		return nomeDosMeses[definirNumeroDoMes(filme) - 1];
 	}
 
 	public static Mes definirDadosDoMes(Filme filme) {
-		// caso o filme esteja na lista de pendentes, ele não possui mês em que foi assistido
+		// caso o filme esteja na lista de pendentes, ele não possui mês em que foi
+		// assistido
 		// portanto, não precisa ser mapeado para o corpo da resposta
 		if (filme.getData() != null) {
 			return new Mes(definirNomeDoMes(filme), definirNumeroDoMes(filme));
 		}
-		
+
 		return null;
 	}
 
 	public static List<String> listarQuantidadeDeCadaMes() {
-		return filmes.stream()
-				.map(filme -> quantidadeDeCadaMes(filme.getMes()))
-				.distinct()
+		return filmes.stream().map(filme -> quantidadeDeCadaMes(filme.getMes())).distinct()
 				.collect(Collectors.toList());
 	}
 
 	private static String quantidadeDeCadaMes(Mes mes) {
-		int quantidade = (int) filmes.stream()
-				.filter(filme -> filme.getMes().getNome().equals(mes.getNome()))
-				.count();
-		
+		int quantidade = (int) filmes.stream().filter(filme -> filme.getMes().getNome().equals(mes.getNome())).count();
+
 		int porcentagem = Calculadora.calcularPorcentagem(filmes.size(), quantidade);
-		
+
 		if (quantidade == 1) {
 			return quantidade + " filme visto em " + mes.getNome() + " (aprox. " + porcentagem + "% do total)";
 		}
-		
+
 		return quantidade + " filmes vistos em " + mes.getNome() + " (aprox. " + porcentagem + "% do total)";
 	}
 
