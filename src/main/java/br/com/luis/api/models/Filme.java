@@ -10,15 +10,15 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import br.com.luis.api.models.utils.FilmeUtils;
 import lombok.Data;
 
-@JsonInclude(Include.NON_EMPTY)
 @Data
+@JsonInclude(Include.NON_EMPTY)
 public class Filme {
 	private String titulo;
 	private int ano;
 	private String data;
 	private Idioma idioma;
 	private Diretor diretor;
-	Genero genero;
+	private Genero genero;
 	private List<Genero> generos = new ArrayList<>();
 	private List<Diretor> diretores = new ArrayList<>();
 
@@ -38,6 +38,18 @@ public class Filme {
 		this.generos = generos;
 	}
 
+	public Filme(String titulo, Idioma idioma, Diretor diretor, Genero genero, int ano,
+			List<Diretor> diretores, List<Genero> generos) {
+		super();
+		this.titulo = titulo;
+		this.idioma = idioma;
+		this.diretor = diretor;
+		this.genero = genero;
+		this.ano = ano;
+		this.diretores = diretores;
+		this.generos = generos;
+	}
+	
 	@Override
 	public String toString() {
 		String corpo = "";

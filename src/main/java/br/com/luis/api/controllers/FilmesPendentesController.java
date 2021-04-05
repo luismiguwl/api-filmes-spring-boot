@@ -18,7 +18,7 @@ import br.com.luis.api.utils.Mapeamento;
 @RequestMapping("/filmes/pendentes")
 public class FilmesPendentesController extends MetodosPadrao {
 
-	private List<Filme> filmes = null;
+	private List<Filme> filmes = Mapeamento.getFilmesPendentes();
 
 	@GetMapping("/all")
 	public List<Filme> all() {

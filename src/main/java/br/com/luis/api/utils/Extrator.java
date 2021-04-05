@@ -12,6 +12,7 @@ import br.com.luis.api.models.Filme;
 public class Extrator {
 	public static List<String> extrairTodosOsDiretores() {
 		List<Filme> filmes = Mapeamento.getFilmesVistos();
+		filmes.addAll(Mapeamento.getFilmesPendentes());
 		List<String> diretores = new ArrayList<>();
 
 		for (int i = 0; i < filmes.size(); i++) {

@@ -1,9 +1,13 @@
 package br.com.luis.api.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import br.com.luis.api.models.utils.DiretorUtils;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@JsonInclude(Include.NON_DEFAULT)
 @Data
 @NoArgsConstructor
 public class Diretor {
