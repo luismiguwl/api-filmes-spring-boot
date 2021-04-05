@@ -30,10 +30,10 @@ public class Mapeamento {
 
 			while (csv.readRecord()) {
 				List<Diretor> diretores = new ArrayList<>();
-				List<Genero> generos = new ArrayList<>();
+				List<String> generos = new ArrayList<>();
 
 				Diretor diretor = new Diretor();
-				Genero genero = new Genero();
+				String genero;
 
 				String titulo = csv.get("titulo");
 				String data = csv.get("dataAssistido");
@@ -46,13 +46,9 @@ public class Mapeamento {
 					diretor = new Diretor(csv.get("diretor"));
 				}
 
-				if (csv.get("genero").contains(",")) {
-					generos = mapearGenero(csv.get("genero"));
-				} else {
-					genero = new Genero(csv.get("genero"));
-				}
+				genero = csv.get("genero");
 
-				filme = new Filme(titulo, data, idioma, diretor, genero, ano, diretores, generos);
+				filme = new Filme(titulo, data, idioma, diretor, genero, ano, diretores);
 				filmes.add(filme);
 			}
 		} catch (UnsupportedEncodingException | FileNotFoundException e) {
@@ -79,10 +75,9 @@ public class Mapeamento {
 
 			while (csv.readRecord()) {
 				List<Diretor> diretores = new ArrayList<>();
-				List<Genero> generos = new ArrayList<>();
 
 				Diretor diretor = new Diretor();
-				Genero genero = new Genero();
+				String genero;
 
 				String titulo = csv.get("titulo");
 				int ano = Integer.parseInt(csv.get("anoDeLancamento"));
@@ -94,13 +89,9 @@ public class Mapeamento {
 					diretor = new Diretor(csv.get("diretor"));
 				}
 
-				if (csv.get("genero").contains(",")) {
-					generos = mapearGenero(csv.get("genero"));
-				} else {
-					genero = new Genero(csv.get("genero"));
-				}
+				genero = csv.get("genero");
 
-				filme = new Filme(titulo, idioma, diretor, genero, ano, diretores, generos);
+				filme = new Filme(titulo, idioma, diretor, genero, ano, diretores);
 				filmes.add(filme);
 			}
 		} catch (UnsupportedEncodingException | FileNotFoundException e) {
@@ -114,9 +105,5 @@ public class Mapeamento {
 
 	private static List<Diretor> mapearDiretores(String linha) {
 		return Arrays.stream(linha.split(",")).map(diretor -> new Diretor(diretor.trim())).collect(Collectors.toList());
-	}
-
-	private static List<Genero> mapearGenero(String linha) {
-		return Arrays.stream(linha.split(",")).map(genero -> new Genero(genero.trim())).collect(Collectors.toList());
 	}
 }

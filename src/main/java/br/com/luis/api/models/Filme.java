@@ -18,15 +18,14 @@ public class Filme {
 	private String data;
 	private Idioma idioma;
 	private Diretor diretor;
-	private Genero genero;
-	private List<Genero> generos = new ArrayList<>();
+	private String genero;
 	private List<Diretor> diretores = new ArrayList<>();
 
 	@JsonIgnore
 	private Mes mes;
 
-	public Filme(String titulo, String data, Idioma idioma, Diretor diretor, Genero genero, int ano,
-			List<Diretor> diretores, List<Genero> generos) {
+	public Filme(String titulo, String data, Idioma idioma, Diretor diretor, String genero, int ano,
+			List<Diretor> diretores) {
 		super();
 		this.titulo = titulo;
 		this.data = data;
@@ -35,11 +34,10 @@ public class Filme {
 		this.genero = genero;
 		this.ano = ano;
 		this.diretores = diretores;
-		this.generos = generos;
 	}
 
-	public Filme(String titulo, Idioma idioma, Diretor diretor, Genero genero, int ano,
-			List<Diretor> diretores, List<Genero> generos) {
+	public Filme(String titulo, Idioma idioma, Diretor diretor, String genero, int ano,
+			List<Diretor> diretores) {
 		super();
 		this.titulo = titulo;
 		this.idioma = idioma;
@@ -47,7 +45,6 @@ public class Filme {
 		this.genero = genero;
 		this.ano = ano;
 		this.diretores = diretores;
-		this.generos = generos;
 	}
 	
 	@Override
