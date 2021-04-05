@@ -7,14 +7,12 @@ import br.com.luis.api.models.Diretor;
 import br.com.luis.api.utils.Extrator;
 
 public class DiretorUtils {
-	public static int definirQuantidadeDeFilmesDirigidos(String nome) {
-		List<Diretor> diretores = Extrator.extrairTodosOsDiretores();
-		return (int) diretores.stream().filter(diretor -> diretor.getNome().equals(nome)).count();
+	public static String mesclarTodosOsDiretores(List<Diretor> diretores) {
+		return diretores.stream().map(diretor -> diretor.getNome() + " ").collect(Collectors.joining());
 	}
 
-	public static String mesclarTodosOsDiretores(List<Diretor> diretores) {
-		return diretores.stream()
-				.map(diretor -> diretor.getNome() + " ")
-				.collect(Collectors.joining());
+	public static int definirQuantidadeDeFilmesDirigidos(String nome) {
+		List<String> diretores = Extrator.extrairTodosOsDiretores();
+		return (int) diretores.stream().filter(d -> d.equals(nome)).count();
 	}
 }

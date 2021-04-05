@@ -15,7 +15,7 @@ public class Arquivo {
 		List<String> dados = new ArrayList<>();
 
 		destino = tipoDeConsulta.getDestino(tipoDeConsulta);
-		
+
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(destino), "UTF-8"));
 

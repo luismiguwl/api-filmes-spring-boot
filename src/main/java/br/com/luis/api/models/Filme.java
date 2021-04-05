@@ -8,54 +8,34 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import br.com.luis.api.models.utils.FilmeUtils;
-import br.com.luis.api.models.utils.MesUtils;
 import lombok.Data;
 
 @JsonInclude(Include.NON_EMPTY)
 @Data
 public class Filme {
 	private String titulo;
-	private String data;
-	
-	@JsonIgnore
-	private Mes mes;
 	private int ano;
+	private String data;
 	private Idioma idioma;
 	private Diretor diretor;
+	Genero genero;
+	private List<Genero> generos = new ArrayList<>();
 	private List<Diretor> diretores = new ArrayList<>();
 
-	public Filme(String titulo, String data, int ano, Idioma idioma, Diretor diretor) {
+	@JsonIgnore
+	private Mes mes;
+
+	public Filme(String titulo, String data, Idioma idioma, Diretor diretor, Genero genero, int ano,
+			List<Diretor> diretores, List<Genero> generos) {
+		super();
 		this.titulo = titulo;
 		this.data = data;
-		this.ano = ano;
 		this.idioma = idioma;
 		this.diretor = diretor;
-	}
-
-	public Filme(String titulo, String data, int ano, Idioma idioma, List<Diretor> diretores) {
-		this.titulo = titulo;
-		this.data = data;
+		this.genero = genero;
 		this.ano = ano;
-		this.idioma = idioma;
 		this.diretores = diretores;
-	}
-
-	public Filme(String titulo, int ano, Idioma idioma, List<Diretor> diretores) {
-		this.titulo = titulo;
-		this.ano = ano;
-		this.idioma = idioma;
-		this.diretores = diretores;
-	}
-
-	public Filme(String titulo, int ano, Idioma idioma, Diretor diretor) {
-		this.titulo = titulo;
-		this.ano = ano;
-		this.idioma = idioma;
-		this.diretor = diretor;
-	}
-
-	public Mes getMes() {
-		return MesUtils.definirDadosDoMes(this);
+		this.generos = generos;
 	}
 
 	@Override
@@ -72,10 +52,7 @@ public class Filme {
 		corpo += "Idioma: " + idioma.getNome() + "\n";
 		corpo += FilmeUtils.listarDiretores(this);
 
-		if (mes != null) {
-			corpo += "Visto no mês de " + mes.getNome();
-		}
-
 		return corpo;
 	}
+
 }

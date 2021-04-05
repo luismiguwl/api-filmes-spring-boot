@@ -1,10 +1,11 @@
 package br.com.luis.api.models;
 
 import br.com.luis.api.models.utils.DiretorUtils;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter @Setter
+@Data
+@NoArgsConstructor
 public class Diretor {
 	private String nome;
 	private int quantidadeDeFilmes;

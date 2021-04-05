@@ -69,8 +69,8 @@ public class FilmesVistosController extends MetodosPadrao {
 	}
 
 	@GetMapping("/ano")
-	public List<Filme> buscarPorIntervaloDeAnos(@RequestParam(name = "de") int de, 
-			                                    @RequestParam(name = "ate") int ate) {
+	public List<Filme> buscarPorIntervaloDeAnos(@RequestParam(name = "de") int de,
+			@RequestParam(name = "ate") int ate) {
 		return filmes.stream().filter(filme -> filme.getAno() >= de && filme.getAno() <= ate)
 				.collect(Collectors.toList());
 	}

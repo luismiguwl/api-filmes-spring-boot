@@ -3,6 +3,8 @@ package br.com.luis.api;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import br.com.luis.api.utils.Mapeamento;
+
 @SpringBootApplication
 public class ApiApplication {
 

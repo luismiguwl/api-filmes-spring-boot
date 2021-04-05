@@ -1,154 +1,78 @@
 package br.com.luis.api.utils;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.luis.api.arquivo.Arquivo;
-import br.com.luis.api.models.Diretor;
-import br.com.luis.api.models.Filme;
-import br.com.luis.api.models.Idioma;
-import br.com.luis.api.models.TipoDeConsulta;
+import com.csvreader.CsvReader;
+
+import br.com.luis.api.models.*;
 
 public class Mapeamento {
 	public static List<Filme> getFilmesVistos() {
-		List<String> lista = Arquivo.lerArquivo(TipoDeConsulta.VISTOS);
+		TipoDeConsulta tipo = TipoDeConsulta.VISTOS;
 		List<Filme> filmes = new ArrayList<>();
-		lista.remove(0); // remove o cabeçalho do arquivo
+		String destino = tipo.getDestino(tipo);
+		CsvReader csv;
 
-		for (int i = 0; i < lista.size(); i++) {
-			String linhaAtual = lista.get(i);
-			String titulo = "";
-			String dataAssistido = "";
-			Idioma idioma = null;
-			Diretor diretor = null;
-			int anoLancamento = 0;
-			List<Diretor> diretores = new ArrayList<>();
+		Filme filme;
 
-			Filme filme = new Filme(titulo, dataAssistido, anoLancamento, idioma, diretor);
+		try {
+			csv = new CsvReader(new InputStreamReader(new FileInputStream(destino), "UTF-8"));
 
-			if (identificarTituloComVirgula(linhaAtual) || identificarMaisDeUmDiretor(linhaAtual)) {
-				if (identificarTituloComVirgula(linhaAtual) && !identificarMaisDeUmDiretor(linhaAtual)) {
-					titulo = isolarTituloComVirgula(linhaAtual);
+			csv.readHeaders();
 
-					linhaAtual = linhaAtual.substring(linhaAtual.indexOf(titulo)).replace("\"", "");
-					linhaAtual = linhaAtual.replace(titulo, "").substring(1);
+			while (csv.readRecord()) {
+				List<Diretor> diretores = new ArrayList<>();
+				List<Genero> generos = new ArrayList<>();
 
-					dataAssistido = linhaAtual.split(",")[0];
-					anoLancamento = Integer.parseInt(linhaAtual.split(",")[1]);
-					idioma = new Idioma(linhaAtual.split(",")[2]);
-					diretor = new Diretor(linhaAtual.split(",")[3].trim());
+				Diretor diretor = new Diretor();
+				Genero genero = new Genero();
 
-					filme = new Filme(titulo, dataAssistido, anoLancamento, idioma, diretor);
-				} else if (!identificarTituloComVirgula(linhaAtual) && identificarMaisDeUmDiretor(linhaAtual)) {
-					diretores = mapearDiretores(linhaAtual);
-					String posicaoDiretor = isolarQuandoHouverMaisDeUmDiretor(linhaAtual);
-					linhaAtual = linhaAtual.replace(posicaoDiretor, "");
-					linhaAtual = linhaAtual.substring(0, linhaAtual.length() - 1);
+				String titulo = csv.get("titulo");
+				String data = csv.get("dataAssistido");
+				int ano = Integer.parseInt(csv.get("anoDeLancamento"));
+				Idioma idioma = new Idioma(csv.get("idioma"));
 
-					titulo = linhaAtual.split(",")[0].trim();
-					dataAssistido = linhaAtual.split(",")[1];
-					anoLancamento = Integer.parseInt(linhaAtual.split(",")[2]);
-					idioma = new Idioma(linhaAtual.split(",")[3]);
-
-					filme = new Filme(titulo, dataAssistido, anoLancamento, idioma, diretores);
+				if (csv.get("diretor").contains(",")) {
+					diretores = mapearDiretores(csv.get("diretor"));
+				} else {
+					diretor = new Diretor(csv.get("diretor"));
 				}
-			} else {
-				titulo = linhaAtual.split(",")[0].trim();
-				dataAssistido = linhaAtual.split(",")[1];
-				anoLancamento = Integer.parseInt(linhaAtual.split(",")[2]);
-				idioma = new Idioma(linhaAtual.split(",")[3]);
-				diretor = new Diretor(linhaAtual.split(",")[4].trim());
 
-				filme = new Filme(titulo, dataAssistido, anoLancamento, idioma, diretor);
+				if (csv.get("genero").contains(",")) {
+					generos = mapearGenero(csv.get("genero"));
+				} else {
+					genero = new Genero(csv.get("genero"));
+				}
+
+				filme = new Filme(titulo, data, idioma, diretor, genero, ano, diretores, generos);
+				filmes.add(filme);
 			}
-
-			filmes.add(filme);
+		} catch (UnsupportedEncodingException | FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException io) {
+			io.printStackTrace();
 		}
 
 		return filmes;
+	}
+
+	private static List<Diretor> mapearDiretores(String linha) {
+		return Arrays.stream(linha.split(",")).map(diretor -> new Diretor(diretor.trim())).collect(Collectors.toList());
+	}
+
+	private static List<Genero> mapearGenero(String linha) {
+		return Arrays.stream(linha.split(",")).map(genero -> new Genero(genero.trim())).collect(Collectors.toList());
 	}
 
 	public static List<Filme> getFilmesPendentes() {
-		List<String> lista = Arquivo.lerArquivo(TipoDeConsulta.PENDENTES);
-		List<Filme> filmes = new ArrayList<>();
-		lista.remove(0); // remove o cabeçalho do arquivo
-
-		for (int i = 0; i < lista.size(); i++) {
-			String linhaAtual = lista.get(i);
-			String titulo = "";
-			Idioma idioma = null;
-			Diretor diretor = null;
-			int anoLancamento = 0;
-			List<Diretor> diretores = new ArrayList<>();
-
-			Filme filme = new Filme(titulo, anoLancamento, idioma, diretor);
-
-			if (identificarTituloComVirgula(linhaAtual) || identificarMaisDeUmDiretor(linhaAtual)) {
-				if (identificarTituloComVirgula(linhaAtual) && !identificarMaisDeUmDiretor(linhaAtual)) {
-					titulo = isolarTituloComVirgula(linhaAtual);
-
-					linhaAtual = linhaAtual.substring(linhaAtual.indexOf(titulo)).replace("\"", "");
-					linhaAtual = linhaAtual.replace(titulo, "").substring(1);
-
-					anoLancamento = Integer.parseInt(linhaAtual.split(",")[0]);
-					idioma = new Idioma(linhaAtual.split(",")[1]);
-					diretor = new Diretor(linhaAtual.split(",")[2].trim());
-
-					filme = new Filme(titulo, anoLancamento, idioma, diretor);
-				} else if (!identificarTituloComVirgula(linhaAtual) && identificarMaisDeUmDiretor(linhaAtual)) {
-					diretores = mapearDiretores(linhaAtual);
-					String posicaoDiretor = isolarQuandoHouverMaisDeUmDiretor(linhaAtual);
-					linhaAtual = linhaAtual.replace(posicaoDiretor, "");
-					linhaAtual = linhaAtual.substring(0, linhaAtual.length() - 1);
-
-					titulo = linhaAtual.split(",")[0].trim();
-					anoLancamento = Integer.parseInt(linhaAtual.split(",")[1]);
-					idioma = new Idioma(linhaAtual.split(",")[2]);
-
-					filme = new Filme(titulo, anoLancamento, idioma, diretores);
-				}
-			} else {
-				titulo = linhaAtual.split(",")[0].trim();
-				anoLancamento = Integer.parseInt(linhaAtual.split(",")[1]);
-				idioma = new Idioma(linhaAtual.split(",")[2]);
-				diretor = new Diretor(linhaAtual.split(",")[3].trim());
-
-				filme = new Filme(titulo, anoLancamento, idioma, diretor);
-			}
-
-			filmes.add(filme);
-		}
-
-		return filmes;
-	}
-
-	private static boolean identificarTituloComVirgula(String linha) {
-		return linha.charAt(0) == '\"';
-	}
-
-	private static String isolarTituloComVirgula(String linha) {
-		return linha.substring(1, linha.indexOf("\"", 1));
-	}
-
-	private static String isolarQuandoHouverMaisDeUmDiretor(String linha) {
-		return linha.substring(linha.indexOf("\""));
-	}
-
-	private static boolean identificarMaisDeUmDiretor(String linha) {
-		return !identificarTituloComVirgula(linha) && linha.contains("\"");
-	}
-
-	private static List<Diretor> mapearDiretores(String linhaAtual) {
-		String linhaDiretores = isolarQuandoHouverMaisDeUmDiretor(linhaAtual);
-		linhaDiretores = removerAspas(linhaDiretores);
-		String[] conteudo = linhaDiretores.split(",");
-		return Arrays.asList(conteudo).stream().map(diretor -> new Diretor(diretor.trim()))
-				.collect(Collectors.toList());
-	}
-
-	private static String removerAspas(String linha) {
-		return linha.replace("\"", "");
+		return null;
 	}
 }
