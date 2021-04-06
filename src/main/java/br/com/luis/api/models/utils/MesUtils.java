@@ -8,12 +8,13 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import br.com.luis.api.models.Filme;
 import br.com.luis.api.models.Mes;
+import br.com.luis.api.models.TipoDeConsulta;
 import br.com.luis.api.utils.Calculadora;
 import br.com.luis.api.utils.Mapeamento;
 
 @JsonInclude(Include.NON_EMPTY)
 public class MesUtils {
-	private static List<Filme> filmes = Mapeamento.getFilmesVistos();
+	private static List<Filme> filmes = Mapeamento.getFilmes(TipoDeConsulta.VISTOS);
 
 	private static int definirNumeroDoMes(Filme filme) {
 		String[] data = filme.getData().split("/");

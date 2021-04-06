@@ -9,17 +9,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import br.com.luis.api.models.Filme;
 import br.com.luis.api.models.MetodosPadrao;
+import br.com.luis.api.models.TipoDeConsulta;
 import br.com.luis.api.models.utils.FilmeUtils;
 import br.com.luis.api.models.utils.IdiomaUtils;
 import br.com.luis.api.models.utils.MesUtils;
 import br.com.luis.api.utils.Mapeamento;
 
+@JsonInclude(Include.NON_EMPTY)
 @RestController
 @RequestMapping("/filmes/vistos")
 public class FilmesVistosController extends MetodosPadrao {
-	private List<Filme> filmes = Mapeamento.getFilmesVistos();
+	private List<Filme> filmes = Mapeamento.getFilmes(TipoDeConsulta.VISTOS);
 
 	@GetMapping("/random")
 	public Filme random() {

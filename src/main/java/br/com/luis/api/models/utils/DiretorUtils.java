@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.luis.api.models.Diretor;
+import br.com.luis.api.models.TipoDeConsulta;
 import br.com.luis.api.utils.Extrator;
 
 public class DiretorUtils {
@@ -11,8 +12,8 @@ public class DiretorUtils {
 		return diretores.stream().map(diretor -> diretor.getNome() + " ").collect(Collectors.joining());
 	}
 
-	public static int definirQuantidadeDeFilmesDirigidos(String nome) {
-		List<String> diretores = Extrator.extrairTodosOsDiretores();
-		return (int) diretores.stream().filter(d -> d.equals(nome)).count();
+	public static int getQuantidadeDeFilmesVistos(Diretor diretor) {
+		List<String> diretores = Extrator.extrairNomeDeTodosDiretores(TipoDeConsulta.VISTOS);
+		return (int) diretores.stream().filter(d -> d.equals(diretor.getNome())).count();
 	}
 }

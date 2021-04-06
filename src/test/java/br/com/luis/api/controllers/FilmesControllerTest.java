@@ -41,4 +41,24 @@ public class FilmesControllerTest {
 		.then()
 		    .statusCode(HttpStatus.OK.value());
 	}
+	
+	@Test
+	public void deveRetornarSucesso_QuandoBuscarTodosOsFilmes() {
+		given()
+		    .accept(ContentType.JSON)
+		.when()
+		     .get("/filmes/vistos/all")
+		.then()
+		    .statusCode(HttpStatus.OK.value());
+	}
+	
+	@Test
+	public void deveRetornarSucesso_QuandoBuscarFilmeFiltrandoPorMes() {
+		given()
+		    .accept(ContentType.JSON)
+		.when()
+		     .get("/filmes/vistos/month/m=?")
+		.then()
+		    .statusCode(HttpStatus.OK.value());
+	}
 }

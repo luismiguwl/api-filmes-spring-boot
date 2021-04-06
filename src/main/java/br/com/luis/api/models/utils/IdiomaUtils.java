@@ -10,13 +10,15 @@ import br.com.luis.api.utils.Calculadora;
 import br.com.luis.api.utils.Mapeamento;
 
 public class IdiomaUtils {
-	private static List<Filme> filmes = Mapeamento.getFilmesVistos();
-
+	private static List<Filme> filmes = Mapeamento.getFilmes(TipoDeConsulta.VISTOS);
+	
 	public static String getAbreviacao(String idioma) {
 		List<String> listaDeAbreviacoes = Arquivo.lerArquivo(TipoDeConsulta.ABREVIACOES);
 
-		return listaDeAbreviacoes.stream().filter(abreviacao -> abreviacao.split(",")[0].equals(idioma))
-				.map(abreviacao -> abreviacao.split(",")[1]).collect(Collectors.toList()).get(0);
+		return listaDeAbreviacoes.stream()
+				.filter(abreviacao -> abreviacao.split(",")[0].equals(idioma))
+				.map(abreviacao -> abreviacao.split(",")[1]).collect(Collectors.toList())
+				.get(0);
 	}
 
 	private static String getQuantidadeDeFilmes(String idioma) {

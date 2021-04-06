@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import br.com.luis.api.models.utils.FilmeUtils;
+import br.com.luis.api.models.utils.MesUtils;
 import lombok.Data;
 
 @Data
@@ -15,6 +16,7 @@ import lombok.Data;
 public class Filme {
 	private String titulo;
 	private int ano;
+
 	private String data;
 	private Idioma idioma;
 	private Diretor diretor;
@@ -24,29 +26,22 @@ public class Filme {
 	@JsonIgnore
 	private Mes mes;
 
-	public Filme(String titulo, String data, Idioma idioma, Diretor diretor, String genero, int ano,
+	public Mes getMes() {
+		return MesUtils.definirDadosDoMes(this);
+	}
+
+	public Filme(String titulo, int ano, String data, Idioma idioma, Diretor diretor, String genero,
 			List<Diretor> diretores) {
 		super();
 		this.titulo = titulo;
+		this.ano = ano;
 		this.data = data;
 		this.idioma = idioma;
 		this.diretor = diretor;
 		this.genero = genero;
-		this.ano = ano;
 		this.diretores = diretores;
 	}
 
-	public Filme(String titulo, Idioma idioma, Diretor diretor, String genero, int ano,
-			List<Diretor> diretores) {
-		super();
-		this.titulo = titulo;
-		this.idioma = idioma;
-		this.diretor = diretor;
-		this.genero = genero;
-		this.ano = ano;
-		this.diretores = diretores;
-	}
-	
 	@Override
 	public String toString() {
 		String corpo = "";
@@ -63,5 +58,4 @@ public class Filme {
 
 		return corpo;
 	}
-
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luis.api.models.Filme;
 import br.com.luis.api.models.MetodosPadrao;
+import br.com.luis.api.models.TipoDeConsulta;
 import br.com.luis.api.models.utils.FilmeUtils;
 import br.com.luis.api.utils.Mapeamento;
 
@@ -18,7 +19,7 @@ import br.com.luis.api.utils.Mapeamento;
 @RequestMapping("/filmes/pendentes")
 public class FilmesPendentesController extends MetodosPadrao {
 
-	private List<Filme> filmes = Mapeamento.getFilmesPendentes();
+	private List<Filme> filmes = Mapeamento.getFilmes(TipoDeConsulta.PENDENTES);
 
 	@GetMapping("/all")
 	public List<Filme> all() {

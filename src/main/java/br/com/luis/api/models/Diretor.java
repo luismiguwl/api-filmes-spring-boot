@@ -5,22 +5,19 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import br.com.luis.api.models.utils.DiretorUtils;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@JsonInclude(Include.NON_DEFAULT)
 @Data
-@NoArgsConstructor
+@JsonInclude(Include.NON_EMPTY)
 public class Diretor {
 	private String nome;
-	private int quantidadeDeFilmes;
+	private int quantidadeDeFilmesVistos;
 
 	public Diretor(String nome) {
 		this.nome = nome;
 	}
-
-	public int getQuantidadeDeFilmes() {
-		quantidadeDeFilmes = DiretorUtils.definirQuantidadeDeFilmesDirigidos(nome);
-		return quantidadeDeFilmes;
+	
+	public int getQuantidadeDeFilmesVistos() {
+		return DiretorUtils.getQuantidadeDeFilmesVistos(this);
 	}
 
 }

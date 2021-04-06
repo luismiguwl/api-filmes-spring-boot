@@ -2,29 +2,26 @@ package br.com.luis.api.utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-import br.com.luis.api.models.Diretor;
 import br.com.luis.api.models.Filme;
+import br.com.luis.api.models.TipoDeConsulta;
 
 public class Extrator {
-	public static List<String> extrairTodosOsDiretores() {
-		List<Filme> filmes = Mapeamento.getFilmesVistos();
-		filmes.addAll(Mapeamento.getFilmesPendentes());
-		List<String> diretores = new ArrayList<>();
+	public static List<String> extrairNomeDeTodosDiretores(TipoDeConsulta tipo) {
+		List<Filme> filmes = Mapeamento.getFilmes(tipo);
+		List<String> nomeDosDiretores = new ArrayList<>();
 
 		for (int i = 0; i < filmes.size(); i++) {
 			if (!filmes.get(i).getDiretores().isEmpty()) {
-				diretores.addAll(obterNomeDosDiretoresDoFilme(filmes.get(i)));
+				nomeDosDiretores.addAll(obterNomeDosDiretoresDoFilme(filmes.get(i)));
 				continue;
 			}
 
-			diretores.add(filmes.get(i).getDiretor().getNome());
+			nomeDosDiretores.add(filmes.get(i).getDiretor().getNome());
 		}
 
-		return diretores;
+		return nomeDosDiretores;
 	}
 
 	private static List<String> obterNomeDosDiretoresDoFilme(Filme filme) {
