@@ -16,6 +16,7 @@ import br.com.luis.api.models.Filme;
 import br.com.luis.api.models.MetodosPadrao;
 import br.com.luis.api.models.TipoDeConsulta;
 import br.com.luis.api.models.utils.FilmeUtils;
+import br.com.luis.api.models.utils.GeneroUtils;
 import br.com.luis.api.models.utils.IdiomaUtils;
 import br.com.luis.api.models.utils.MesUtils;
 import br.com.luis.api.utils.Mapeamento;
@@ -78,5 +79,10 @@ public class FilmesVistosController extends MetodosPadrao {
 			@RequestParam(name = "ate") int ate) {
 		return filmes.stream().filter(filme -> filme.getAno() >= de && filme.getAno() <= ate)
 				.collect(Collectors.toList());
+	}
+	
+	@GetMapping("/quantidadeporidioma")
+	public List<String> quantidadeDeFilmesPorGenero() {
+		return GeneroUtils.getTodosOsGeneros();
 	}
 }
