@@ -36,6 +36,7 @@ public class Mapeamento {
 				String titulo = csv.get("titulo");
 				String data = csv.get("dataAssistido");
 				int ano = Integer.parseInt(csv.get("anoDeLancamento"));
+				int runtime = Integer.parseInt(csv.get("duracao"));
 				Idioma idioma = new Idioma(csv.get("idioma"));
 
 				if (csv.get("diretor").contains(",")) {
@@ -46,7 +47,7 @@ public class Mapeamento {
 
 				genero = csv.get("genero");
 
-				filme = new Filme(titulo, ano, data, idioma, diretor, genero, diretores);
+				filme = new Filme(titulo, ano, data, idioma, diretor, genero, diretores, runtime);
 				filmes.add(filme);
 			}
 		} catch (UnsupportedEncodingException | FileNotFoundException e) {

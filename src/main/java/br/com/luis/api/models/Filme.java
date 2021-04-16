@@ -22,6 +22,7 @@ public class Filme {
 	private Diretor diretor;
 	private String genero;
 	private List<Diretor> diretores = new ArrayList<>();
+	private int runtime;
 
 	@JsonIgnore
 	private Mes mes;
@@ -31,7 +32,7 @@ public class Filme {
 	}
 
 	public Filme(String titulo, int ano, String data, Idioma idioma, Diretor diretor, String genero,
-			List<Diretor> diretores) {
+			List<Diretor> diretores, int runtime) {
 		super();
 		this.titulo = titulo;
 		this.ano = ano;
@@ -40,6 +41,7 @@ public class Filme {
 		this.diretor = diretor;
 		this.genero = genero;
 		this.diretores = diretores;
+		this.runtime = runtime;
 	}
 
 	@Override
