@@ -1,94 +1,96 @@
-titulo,dataAssistido,anoDeLancamento,idioma,diretor,genero
-Soul,03/01/2021,2020,Inglês,Peter Docter,"Animação, Aventura, Drama"
-Batman: Hush,08/01/2021,2019,Inglês,Justin Copeland,"Animação, Ação, Aventura"
-Tapete Vermelho,10/01/2021,2006,Português (Brasileiro),Luiz Alberto Pereira,Comédia
-The Last Shift,10/01/2021,2020,Inglês,Andrew Cohn,"Comédia, Drama"
-Back to the Future,12/01/2021,1985,Inglês,Robert Zemeckis,"Aventura, Comédia, Ficção científica"
-Back to the Future Part II,13/01/2021,1989,Inglês,Robert Zemeckis,"Aventura, Comédia, Ficção científica"
-Back to the Future Part III,13/01/2021,1990,Inglês,Robert Zemeckis,"Aventura, Comédia, Ficção científica"
-Bill & Ted Face the Music,15/01/2021,2020,Inglês,Dean Parisot,"Aventura, Comédia, Música"
-Batman Begins,16/01/2021,2005,Inglês,Christopher Nolan,"Ação, Aventura"
-The Dark Knight,18/01/2021,2008,Inglês,Christopher Nolan,"Ação, Crime, Drama"
-The Dark Knight Rises,18/01/2021,2012,Inglês,Christopher Nolan,"Ação, Aventura"
-Jojo Rabbit,20/01/2021,2019,Inglês,Taika Waititi,"Comédia, Drama, Guerra"
-Não Vamos Pagar Nada,20/01/2021,2020,Português (Brasileiro),João Fonseca,Comédia
-Scott Pilgrim vs. the World,21/01/2021,2010,Inglês,Edgar Wright,"Ação, Comédia, Fantasia"
-Fifty Shades of Grey,22/01/2021,2015,Inglês,Sam Taylor-Johnson,"Drama, Romance, Thriller"
-V for Vendetta,23/01/2021,2005,Inglês,James McTeigue,"Ação, Drama, Ficção científica"
-The Adventures of Sharkboy and Lavagirl in 3-D,23/01/2021,2005,Inglês,Robert Rodriguez,"Ação, Aventura, Comédia"
-The Fast and the Furious,24/01/2021,2001,Inglês,Rob Cohen,"Ação, Crime, Thriller"
-Men in Black: International,25/01/2021,2019,Inglês,F. Gary Gray,"Ação, Aventura, Comédia"
-2 Fast 2 Furious,26/01/2021,2003,Inglês,John Singleton,"Ação, Crime, Thriller"
-Casa Grande,27/01/2021,2014,Português (Brasileiro),Fellipe Gamarano Barbosa,"Drama, Romance"
-Batman v Superman: Dawn of Justice,28/01/2021,2016,Inglês,Zack Snyder,"Ação, Aventura, Ficção científica"
-The Martian,29/01/2021,2015,Inglês,Ridley Scott,"Aventura, Drama, Ficção científica"
-The Devil's Advocate,30/01/2021,1997,Inglês,Taylor Hackford,"Drama, Mistério, Thriller"
-Astro Boy,31/01/2021,2009,Inglês,David Bowers,"Animação, Ação, Comédia"
-"I, Robot",06/02/2021,2004,Inglês,Alex Proyas,"Ação, Drama, Ficção científica"
-The Maze Runner,08/02/2021,2014,Inglês,Wes Ball,"Ação, Mistério, Ficção científica"
-Maze Runner: The Scorch Trials,08/02/2021,2015,Inglês,Wes Ball,"Ação, Aventura, Ficção científica"
-Godzilla,08/02/2021,2014,Inglês,Gareth Edwards,"Ação, Aventura, Ficção científica"
-Dunkirk,09/02/2021,2017,Inglês,Christopher Nolan,"Ação, Drama, História"
-Insomnia,09/02/2021,2002,Inglês,Christopher Nolan,"Drama, Mistério, Thriller"
-Maze Runner: The Death Cure,10/02/2021,2018,Inglês,Wes Ball,"Ação, Aventura, Ficção científica"
-10 Things I Hate About You,11/02/2021,1999,Inglês,Gil Junger,"Comédia, Drama, Romance"
-Inception,11/02/2021,2010,Inglês,Christopher Nolan,"Ação, Aventura, Ficção científica"
-Memento,12/02/2021,2000,Inglês,Christopher Nolan,"Mistério, Thriller"
-The Prestige,13/02/2021,2006,Inglês,Christopher Nolan,"Drama, Mistério, Ficção científica"
-Spider-Man: Into the Spider-Verse,14/02/2021,2018,Inglês,"Bob Persichetti, Peter Ramsey, Rodney Rothman","Animação, Ação, Aventura"
-Titanic,15/02/2021,1997,Inglês,James Cameron,"Drama, Romance"
-Spider-Man,16/02/2021,2002,Inglês,Sam Raimi,"Ação, Aventura, Ficção científica"
-Spider-Man 2,16/02/2021,2004,Inglês,Sam Raimi,"Ação, Aventura, Ficção científica"
-Spider-Man 3,18/02/2021,2007,Inglês,Sam Raimi,"Ação, Aventura, Ficção científica"
-The Amazing Spider-Man,19/02/2021,2012,Inglês,Marc Webb,"Ação, Aventura, Fantasia"
-The Amazing Spider-Man 2,20/02/2021,2014,Inglês,Marc Webb,"Ação, Aventura, Fantasia"
-Spider-Man: Homecoming,21/02/2021,2017,Inglês,Jon Watts,"Ação, Aventura, Ficção científica"
-Spider-Man: Far From Home,22/02/2021,2019,Inglês,Jon Watts,"Ação, Aventura, Ficção científica"
-"Love, Rosie",23/02/2021,2014,Inglês,Christian Ditter,"Comédia, Romance"
-Jurassic World,26/02/2021,2015,Inglês,Colin Trevorrow,"Ação, Aventura, Ficção científica"
-The 40-Year-Old Virgin,01/03/2021,2005,Inglês,Judd Apatow,"Comédia, Romance"
-Meu Passado Me Condena,01/03/2021,2013,Português (Brasileiro),Júlia Rezende,"Comédia, Romance"
-Porta dos Fundos: Contrato Vitalício,01/03/2021,2016,Português (Brasileiro),Ian SBF,Comédia
-Justice League,01/03/2021,2017,Inglês,Zack Snyder,"Ação, Aventura, Fantasia"
-Tropa de Elite,02/03/2021,2007,Português (Brasileiro),José Padilha,"Ação, Crime, Drama"
-Superbad,02/03/2021,2007,Inglês,Greg Mottola,Comédia
-Cilada.com,03/03/2021,2011,Português (Brasileiro),José Alvarenga Júnior,"Comédia, Romance"
-Meu Passado Me Condena 2,04/03/2021,2015,Português (Brasileiro),Júlia Rezende,"Comédia, Romance"
-Space Jam,04/03/2021,1996,Inglês,Joe Pytka,"Animação, Aventura, Comédia"
-O Homem do Futuro,04/03/2021,2011,Português (Brasileiro),Cláudio Torres,"Comédia, Fantasia, Romance"
-The Theory of Everything,05/03/2021,2014,Inglês,James Marsh,"Biografia, Drama, Romance"
-How to Train Your Dragon,06/03/2021,2010,Inglês,"Chris Sanders, Dean DeBlois","Animação, Ação, Aventura"
-"E Aí, Comeu?",06/03/2021,2012,Português (Brasileiro),Felipe Joffily,Comédia
-The Post,07/03/2021,2017,Inglês,Steven Spielberg,Drama
-Jurassic World: Fallen Kingdom,07/03/2021,2018,Inglês,J. A. Bayona,"Ação, Aventura, Ficção científica"
-O Concurso,08/03/2021,2013,Português (Brasileiro),Pedro Vasconcellos,Comédia
-Bee Movie,09/03/2021,2007,Inglês,"Simon J. Smith, Steve Hickner","Animação, Aventura, Comédia"
-Entre Abelhas,09/03/2021,2015,Português (Brasileiro),Ian SBF,"Comédia, Drama"
-"Especial de Natal: Se Beber, Não Ceie",11/03/2021,2018,Português (Brasileiro),Rodrigo Van Der Put,Comédia
-The Late Bloomer,11/03/2021,2016,Inglês,Kevin Pollak,"Comédia, Drama, Romance"
-O Último Virgem,13/03/2021,2016,Português (Brasileiro),"Rilson Baco, Felipe Bretas","Comédia, Romance"
-Climax,14/03/2021,2018,Francês,Gaspar Noé,"Drama, Horror, Música"
-A Primeira Tentação de Cristo,15/03/2021,2019,Português (Brasileiro),Rodrigo Van Der Put,Comédia
-Divã,17/03/2021,2009,Português (Brasileiro),José Alvarenga Júnior,"Comédia, Drama, Romance"
-Cloudy with a Chance of Meatballs,20/03/2021,2009,Inglês,"Phil Lord, Christopher Miller","Animação, Aventura, Comédia"
-Batman Ninja,22/03/2021,2018,Japonês,Junpei Mizusaki,"Animação, Ficção científica"
-Going in Style,23/03/2021,2017,Inglês,Zach Braff,"Comédia, Crime"
-Cloudy with a Chance of Meatballs 2,25/03/2021,2013,Inglês,"Cody Cameron, Kris Pearn","Animação, Aventura, Comédia"
-Pixels,27/03/2021,2015,Inglês,Chris Columbus,"Ação, Comédia, Fantasia"
-Mr. Peabody & Sherman,28/03/2021,2014,Inglês,Rob Minkoff,"Animação, Aventura, Comédia"
-The Lego Movie,30/03/2021,2014,Inglês,"Phil Lord, Christopher Miller","Animação, Ação, Aventura"
-Kick-Ass,01/04/2021,2010,Inglês,Matthew Vaughn,"Ação, Comédia, Crime"
-American Psycho,02/04/2021,2000,Inglês,Mary Harron,"Comédia, Crime, Drama"
-Secret Magic Control Agency,02/04/2021,2021,Inglês,Aleksey Tsitsilin,"Animação, Aventura, Comédia"
-Black is Beltza,03/04/2021,2018,Espanhol,Fermín Muguruza,Animação
-Reflexões de um Liquidificador,06/04/2021,2010,Português (Brasileiro),André Klotzel,"Comédia, Thriller"
-De Pernas pro Ar,07/04/2021,2010,Português (Brasileiro),Roberto Santucci,Comédia
-De Pernas pro Ar 2,07/04/2021,2012,Português (Brasileiro),Roberto Santucci,"Comédia, Romance"
-Focus,08/04/2021,2015,Inglês,"Glenn Ficarra, John Requa","Comédia, Crime, Drama"
-Batman & Mr. Freeze: SubZero,10/04/2021,1998,Inglês,Boyd Kirkland,"Animação, Ação, Crime"
-Batman Returns,10/04/2021,1992,Inglês,Tim Burton,"Ação, Crime, Fantasia"
-Batman: Mask of the Phantasm,10/04/2021,1993,Inglês,"Eric Radomski, Bruce Timm","Animação, Ação, Crime"
-Batman: Soul of the Dragon,11/04/2021,2021,Inglês,Sam Liu,"Animação, Ação, Aventura"
-"Batman: The Dark Knight Returns, Part 1",11/04/2021,2012,Inglês,Jay Oliva,"Animação, Ação, Crime"
-"Batman: The Dark Knight Returns, Part 2",12/04/2021,2013,Inglês,Jay Oliva,"Animação, Ação, Crime"
-Batman,12/04/2021,1989,Inglês,Tim Burton,"Ação, Aventura"
+titulo,dataAssistido,anoDeLancamento,idioma,diretor,genero,duracao
+Soul,03/01/2021,2020,Inglês,Peter Docter,"Animação, Aventura, Drama",100
+Batman: Hush,08/01/2021,2019,Inglês,Justin Copeland,"Animação, Ação, Aventura",81
+Tapete Vermelho,10/01/2021,2006,Português (Brasileiro),Luiz Alberto Pereira,Comédia,100
+The Last Shift,10/01/2021,2020,Inglês,Andrew Cohn,"Comédia, Drama",90
+Back to the Future,12/01/2021,1985,Inglês,Robert Zemeckis,"Aventura, Comédia, Ficção científica",116
+Back to the Future Part II,13/01/2021,1989,Inglês,Robert Zemeckis,"Aventura, Comédia, Ficção científica",108
+Back to the Future Part III,13/01/2021,1990,Inglês,Robert Zemeckis,"Aventura, Comédia, Ficção científica",118
+Bill & Ted Face the Music,15/01/2021,2020,Inglês,Dean Parisot,"Aventura, Comédia, Música",91
+Batman Begins,16/01/2021,2005,Inglês,Christopher Nolan,"Ação, Aventura",140
+The Dark Knight,18/01/2021,2008,Inglês,Christopher Nolan,"Ação, Crime, Drama",152
+The Dark Knight Rises,18/01/2021,2012,Inglês,Christopher Nolan,"Ação, Aventura",164
+Jojo Rabbit,20/01/2021,2019,Inglês,Taika Waititi,"Comédia, Drama, Guerra",108
+Não Vamos Pagar Nada,20/01/2021,2020,Português (Brasileiro),João Fonseca,Comédia,87
+Scott Pilgrim vs. the World,21/01/2021,2010,Inglês,Edgar Wright,"Ação, Comédia, Fantasia",112
+Fifty Shades of Grey,22/01/2021,2015,Inglês,Sam Taylor-Johnson,"Drama, Romance, Thriller",125
+V for Vendetta,23/01/2021,2005,Inglês,James McTeigue,"Ação, Drama, Ficção científica",132
+The Adventures of Sharkboy and Lavagirl in 3-D,23/01/2021,2005,Inglês,Robert Rodriguez,"Ação, Aventura, Comédia",93
+The Fast and the Furious,24/01/2021,2001,Inglês,Rob Cohen,"Ação, Crime, Thriller",106
+Men in Black: International,25/01/2021,2019,Inglês,F. Gary Gray,"Ação, Aventura, Comédia",114
+2 Fast 2 Furious,26/01/2021,2003,Inglês,John Singleton,"Ação, Crime, Thriller",107
+Casa Grande,27/01/2021,2014,Português (Brasileiro),Fellipe Gamarano Barbosa,"Drama, Romance",115
+Batman v Superman: Dawn of Justice,28/01/2021,2016,Inglês,Zack Snyder,"Ação, Aventura, Ficção científica",152
+The Martian,29/01/2021,2015,Inglês,Ridley Scott,"Aventura, Drama, Ficção científica",144
+The Devil's Advocate,30/01/2021,1997,Inglês,Taylor Hackford,"Drama, Mistério, Thriller",144
+Astro Boy,31/01/2021,2009,Inglês,David Bowers,"Animação, Ação, Comédia",94
+"I, Robot",06/02/2021,2004,Inglês,Alex Proyas,"Ação, Drama, Ficção científica",115
+The Maze Runner,08/02/2021,2014,Inglês,Wes Ball,"Ação, Mistério, Ficção científica",113
+Maze Runner: The Scorch Trials,08/02/2021,2015,Inglês,Wes Ball,"Ação, Aventura, Ficção científica",131
+Godzilla,08/02/2021,2014,Inglês,Gareth Edwards,"Ação, Aventura, Ficção científica",123
+Dunkirk,09/02/2021,2017,Inglês,Christopher Nolan,"Ação, Drama, História",106
+Insomnia,09/02/2021,2002,Inglês,Christopher Nolan,"Drama, Mistério, Thriller",118
+Maze Runner: The Death Cure,10/02/2021,2018,Inglês,Wes Ball,"Ação, Aventura, Ficção científica",143
+10 Things I Hate About You,11/02/2021,1999,Inglês,Gil Junger,"Comédia, Drama, Romance",97
+Inception,11/02/2021,2010,Inglês,Christopher Nolan,"Ação, Aventura, Ficção científica",148
+Memento,12/02/2021,2000,Inglês,Christopher Nolan,"Mistério, Thriller",113
+The Prestige,13/02/2021,2006,Inglês,Christopher Nolan,"Drama, Mistério, Ficção científica",130
+Spider-Man: Into the Spider-Verse,14/02/2021,2018,Inglês,"Bob Persichetti, Peter Ramsey, Rodney Rothman","Animação, Ação, Aventura",117
+Titanic,15/02/2021,1997,Inglês,James Cameron,"Drama, Romance",194
+Spider-Man,16/02/2021,2002,Inglês,Sam Raimi,"Ação, Aventura, Ficção científica",121
+Spider-Man 2,16/02/2021,2004,Inglês,Sam Raimi,"Ação, Aventura, Ficção científica",127
+Spider-Man 3,18/02/2021,2007,Inglês,Sam Raimi,"Ação, Aventura, Ficção científica",139
+The Amazing Spider-Man,19/02/2021,2012,Inglês,Marc Webb,"Ação, Aventura, Fantasia",136
+The Amazing Spider-Man 2,20/02/2021,2014,Inglês,Marc Webb,"Ação, Aventura, Fantasia",142
+Spider-Man: Homecoming,21/02/2021,2017,Inglês,Jon Watts,"Ação, Aventura, Ficção científica",133
+Spider-Man: Far From Home,22/02/2021,2019,Inglês,Jon Watts,"Ação, Aventura, Ficção científica",129
+"Love, Rosie",23/02/2021,2014,Inglês,Christian Ditter,"Comédia, Romance",102
+Jurassic World,26/02/2021,2015,Inglês,Colin Trevorrow,"Ação, Aventura, Ficção científica",124
+The 40-Year-Old Virgin,01/03/2021,2005,Inglês,Judd Apatow,"Comédia, Romance",116
+Meu Passado Me Condena,01/03/2021,2013,Português (Brasileiro),Júlia Rezende,"Comédia, Romance",102
+Porta dos Fundos: Contrato Vitalício,01/03/2021,2016,Português (Brasileiro),Ian SBF,Comédia,100
+Justice League,01/03/2021,2017,Inglês,Zack Snyder,"Ação, Aventura, Fantasia",120
+Tropa de Elite,02/03/2021,2007,Português (Brasileiro),José Padilha,"Ação, Crime, Drama",115
+Superbad,02/03/2021,2007,Inglês,Greg Mottola,Comédia,113
+Cilada.com,03/03/2021,2011,Português (Brasileiro),José Alvarenga Júnior,"Comédia, Romance",95
+Meu Passado Me Condena 2,04/03/2021,2015,Português (Brasileiro),Júlia Rezende,"Comédia, Romance",105
+Space Jam,04/03/2021,1996,Inglês,Joe Pytka,"Animação, Aventura, Comédia",88
+O Homem do Futuro,04/03/2021,2011,Português (Brasileiro),Cláudio Torres,"Comédia, Fantasia, Romance",106
+The Theory of Everything,05/03/2021,2014,Inglês,James Marsh,"Biografia, Drama, Romance",123 
+How to Train Your Dragon,06/03/2021,2010,Inglês,"Chris Sanders, Dean DeBlois","Animação, Ação, Aventura",98
+"E Aí, Comeu?",06/03/2021,2012,Português (Brasileiro),Felipe Joffily,Comédia,104
+The Post,07/03/2021,2017,Inglês,Steven Spielberg,Drama,116
+Jurassic World: Fallen Kingdom,07/03/2021,2018,Inglês,J. A. Bayona,"Ação, Aventura, Ficção científica",128 
+O Concurso,08/03/2021,2013,Português (Brasileiro),Pedro Vasconcellos,Comédia,86 
+Bee Movie,09/03/2021,2007,Inglês,"Simon J. Smith, Steve Hickner","Animação, Aventura, Comédia",91 
+Entre Abelhas,09/03/2021,2015,Português (Brasileiro),Ian SBF,"Comédia, Drama",100 
+"Especial de Natal: Se Beber, Não Ceie",11/03/2021,2018,Português (Brasileiro),Rodrigo Van Der Put,Comédia,44 
+The Late Bloomer,11/03/2021,2016,Inglês,Kevin Pollak,"Comédia, Drama, Romance",90
+O Último Virgem,13/03/2021,2016,Português (Brasileiro),"Rilson Baco, Felipe Bretas","Comédia, Romance",82 
+Climax,14/03/2021,2018,Francês,Gaspar Noé,"Drama, Horror, Música",97
+A Primeira Tentação de Cristo,15/03/2021,2019,Português (Brasileiro),Rodrigo Van Der Put,Comédia,46
+Divã,17/03/2021,2009,Português (Brasileiro),José Alvarenga Júnior,"Comédia, Drama, Romance",90
+Cloudy with a Chance of Meatballs,20/03/2021,2009,Inglês,"Phil Lord, Christopher Miller","Animação, Aventura, Comédia",90 
+Batman Ninja,22/03/2021,2018,Japonês,Junpei Mizusaki,"Animação, Ficção científica",85 
+Going in Style,23/03/2021,2017,Inglês,Zach Braff,"Comédia, Crime",96 
+Cloudy with a Chance of Meatballs 2,25/03/2021,2013,Inglês,"Cody Cameron, Kris Pearn","Animação, Aventura, Comédia",95 
+Pixels,27/03/2021,2015,Inglês,Chris Columbus,"Ação, Comédia, Fantasia",105
+Mr. Peabody & Sherman,28/03/2021,2014,Inglês,Rob Minkoff,"Animação, Aventura, Comédia",92 
+The Lego Movie,30/03/2021,2014,Inglês,"Phil Lord, Christopher Miller","Animação, Ação, Aventura",100
+Kick-Ass,01/04/2021,2010,Inglês,Matthew Vaughn,"Ação, Comédia, Crime",117 
+American Psycho,02/04/2021,2000,Inglês,Mary Harron,"Comédia, Crime, Drama",101 
+Secret Magic Control Agency,02/04/2021,2021,Inglês,Aleksey Tsitsilin,"Animação, Aventura, Comédia",103 
+Black is Beltza,03/04/2021,2018,Espanhol,Fermín Muguruza,Animação,87 
+Reflexões de um Liquidificador,06/04/2021,2010,Português (Brasileiro),André Klotzel,"Comédia, Thriller",80 
+De Pernas pro Ar,07/04/2021,2010,Português (Brasileiro),Roberto Santucci,Comédia,101 
+De Pernas pro Ar 2,07/04/2021,2012,Português (Brasileiro),Roberto Santucci,"Comédia, Romance",115 
+Focus,08/04/2021,2015,Inglês,"Glenn Ficarra, John Requa","Comédia, Crime, Drama",105 
+Batman & Mr. Freeze: SubZero,10/04/2021,1998,Inglês,Boyd Kirkland,"Animação, Ação, Crime",70 
+Batman Returns,10/04/2021,1992,Inglês,Tim Burton,"Ação, Crime, Fantasia",126 
+Batman: Mask of the Phantasm,10/04/2021,1993,Inglês,"Eric Radomski, Bruce Timm","Animação, Ação, Crime",76 
+Batman: Soul of the Dragon,11/04/2021,2021,Inglês,Sam Liu,"Animação, Ação, Aventura",83 
+"Batman: The Dark Knight Returns, Part 1",11/04/2021,2012,Inglês,Jay Oliva,"Animação, Ação, Crime",76 
+"Batman: The Dark Knight Returns, Part 2",12/04/2021,2013,Inglês,Jay Oliva,"Animação, Ação, Crime",76 
+Batman,12/04/2021,1989,Inglês,Tim Burton,"Ação, Aventura",126
+Batman: Mystery of the Batwoman,14/04/2021,2003,Inglês,Curt Geda,"Animação, Ação, Crime",75 
+The Batman vs. Dracula,14/04/2021,2005,Inglês,Michael Goguen,"Animação, Ação, Horror",83 
