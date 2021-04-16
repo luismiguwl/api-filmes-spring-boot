@@ -57,6 +57,7 @@ public class Filme {
 		corpo += "Lançado em " + ano + "\n";
 		corpo += "Idioma: " + idioma.getNome() + "\n";
 		corpo += FilmeUtils.listarDiretores(this);
+		corpo += "Runtime: " + runtime;
 
 		return corpo;
 	}
