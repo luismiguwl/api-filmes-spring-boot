@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import br.com.luis.api.models.Filme;
 import br.com.luis.api.models.MetodosPadrao;
 import br.com.luis.api.models.TipoDeConsulta;
@@ -21,7 +18,6 @@ import br.com.luis.api.models.utils.IdiomaUtils;
 import br.com.luis.api.models.utils.MesUtils;
 import br.com.luis.api.utils.Mapeamento;
 
-@JsonInclude(Include.NON_EMPTY)
 @RestController
 @RequestMapping("/filmes/vistos")
 public class FilmesVistosController extends MetodosPadrao {
@@ -39,12 +35,13 @@ public class FilmesVistosController extends MetodosPadrao {
 	}
 
 	@GetMapping("/month")
-	public List<Filme> filtrarPorMes(@RequestParam(name = "m") int mes) {
+	public List<Filme> filtrarPorMes(@RequestParam int mes) {
 		return filmes.stream().filter(filme -> filme.getMes().getNumeroDoMes() == mes).collect(Collectors.toList());
 	}
 
 	@GetMapping("/idioma")
-	public List<Filme> filtrarPorIdioma(@RequestParam(name = "lang") String idioma) {
+	public List<Filme> filtrarPorIdioma(@RequestParam String idioma) {
+		System.out.println(idioma);
 		return filmes.stream().filter(filme -> filme.getIdioma().getAbreviacao().contains(idioma))
 				.collect(Collectors.toList());
 	}
@@ -65,22 +62,21 @@ public class FilmesVistosController extends MetodosPadrao {
 	}
 
 	@GetMapping("/palavra")
-	public List<Filme> filtrarPorPalavraChave(@RequestParam(name = "key") String chave) {
-		return FilmeUtils.buscarFilmePorPalavra(filmes, chave);
+	public List<Filme> filtrarPorPalavraChave(@RequestParam String palavra) {
+		return FilmeUtils.buscarFilmePorPalavra(filmes, palavra);
 	}
 
 	@GetMapping("/lancamento")
-	public List<Filme> buscarPorAnoDeLancamento(@RequestParam(name = "ano") int ano) {
+	public List<Filme> buscarPorAnoDeLancamento(@RequestParam int ano) {
 		return filmes.stream().filter(filme -> filme.getAno() == ano).collect(Collectors.toList());
 	}
 
 	@GetMapping("/ano")
-	public List<Filme> buscarPorIntervaloDeAnos(@RequestParam(name = "de") int de,
-			@RequestParam(name = "ate") int ate) {
+	public List<Filme> buscarPorIntervaloDeAnos(@RequestParam int de, @RequestParam int ate) {
 		return filmes.stream().filter(filme -> filme.getAno() >= de && filme.getAno() <= ate)
 				.collect(Collectors.toList());
 	}
-	
+
 	@GetMapping("/quantidadeporidioma")
 	public List<String> quantidadeDeFilmesPorGenero() {
 		return GeneroUtils.getTodosOsGeneros();

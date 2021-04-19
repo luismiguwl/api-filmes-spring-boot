@@ -21,24 +21,20 @@ public class FilmesPendentesController extends MetodosPadrao {
 
 	private List<Filme> filmes = Mapeamento.getFilmes(TipoDeConsulta.PENDENTES);
 
+	@GetMapping("/random")
+	public Filme random() {
+		int posicaoAleatoria = new Random().nextInt(filmes.size());
+		return filmes.get(posicaoAleatoria);
+	}
+
 	@GetMapping("/all")
 	public List<Filme> all() {
 		return filmes;
 	}
 
-	@GetMapping("/random")
-	public Filme random() {
-		int numeroAleatorio = new Random().nextInt(filmes.size());
-		return filmes.get(numeroAleatorio);
-	}
-
-	@GetMapping("/month")
-	public List<Filme> filtrarPorMes(@RequestParam(name = "m") int mes) {
-		return filmes.stream().filter(filme -> filme.getMes().getNumeroDoMes() == mes).collect(Collectors.toList());
-	}
-
 	@GetMapping("/idioma")
-	public List<Filme> filtrarPorIdioma(@RequestParam(name = "lang") String idioma) {
+	public List<Filme> filtrarPorIdioma(@RequestParam String idioma) {
+		System.out.println(idioma);
 		return filmes.stream().filter(filme -> filme.getIdioma().getAbreviacao().contains(idioma))
 				.collect(Collectors.toList());
 	}
@@ -49,19 +45,19 @@ public class FilmesPendentesController extends MetodosPadrao {
 	}
 
 	@GetMapping("/palavra")
-	public List<Filme> filtrarPorPalavraChave(@RequestParam(name = "key") String chave) {
-		return FilmeUtils.buscarFilmePorPalavra(filmes, chave);
+	public List<Filme> filtrarPorPalavraChave(@RequestParam String palavra) {
+		return FilmeUtils.buscarFilmePorPalavra(filmes, palavra);
 	}
 
 	@GetMapping("/lancamento")
-	public List<Filme> buscarPorAnoDeLancamento(@RequestParam(name = "ano") int ano) {
+	public List<Filme> buscarPorAnoDeLancamento(@RequestParam int ano) {
 		return filmes.stream().filter(filme -> filme.getAno() == ano).collect(Collectors.toList());
 	}
 
 	@GetMapping("/ano")
-	public List<Filme> buscarPorIntervaloDeAnos(@RequestParam(name = "de") int de,
-			@RequestParam(name = "ate") int ate) {
+	public List<Filme> buscarPorIntervaloDeAnos(@RequestParam int de, @RequestParam int ate) {
 		return filmes.stream().filter(filme -> filme.getAno() >= de && filme.getAno() <= ate)
 				.collect(Collectors.toList());
 	}
+
 }

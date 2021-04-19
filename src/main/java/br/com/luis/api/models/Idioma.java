@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import br.com.luis.api.models.utils.IdiomaUtils;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @JsonInclude(Include.NON_EMPTY)
 @Data
@@ -18,7 +16,6 @@ public class Idioma {
 	private String abreviacao;
 
 	public Idioma(String nome) {
-		super();
 		this.nome = nome;
 		abreviacao = definirAbreviacao();
 	}

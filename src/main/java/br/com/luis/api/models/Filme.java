@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import br.com.luis.api.models.utils.FilmeUtils;
 import br.com.luis.api.models.utils.MesUtils;
 import lombok.Data;
+import lombok.Getter;
 
 @Data
 @JsonInclude(Include.NON_EMPTY)

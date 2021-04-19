@@ -14,11 +14,10 @@ public class IdiomaUtils {
 	
 	public static String getAbreviacao(String idioma) {
 		List<String> listaDeAbreviacoes = Arquivo.lerArquivo(TipoDeConsulta.ABREVIACOES);
-
 		return listaDeAbreviacoes.stream()
 				.filter(abreviacao -> abreviacao.split(",")[0].equals(idioma))
 				.map(abreviacao -> abreviacao.split(",")[1]).collect(Collectors.toList())
-				.get(0);
+				.get(0).toLowerCase();
 	}
 
 	private static String getQuantidadeDeFilmes(String idioma) {
