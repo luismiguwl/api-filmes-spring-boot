@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.*;
 
+import br.com.luis.apifilmes.controllers.FilmesVistosController;
 import io.restassured.http.ContentType;
 
 @WebMvcTest
