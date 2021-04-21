@@ -9,9 +9,11 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import br.com.luis.apifilmes.models.utils.FilmeUtils;
 import br.com.luis.apifilmes.models.utils.MesUtils;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 @JsonInclude(Include.NON_EMPTY)
 public class Filme {
 	private String titulo;
@@ -24,21 +26,6 @@ public class Filme {
 	private int runtime;
 
 	@JsonIgnore
-	private Mes mes;
-
-	public Filme(String titulo, int ano, String data, Idioma idioma, Diretor diretor, String genero,
-			List<Diretor> diretores, int runtime) {
-		super();
-		this.titulo = titulo;
-		this.ano = ano;
-		this.data = data;
-		this.idioma = idioma;
-		this.diretor = diretor;
-		this.genero = genero;
-		this.diretores = diretores;
-		this.runtime = runtime;
-	}
-
 	public Mes getMes() {
 		return MesUtils.definirDadosDoMes(this);
 	}

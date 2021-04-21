@@ -12,14 +12,10 @@ import java.util.stream.Collectors;
 
 import com.csvreader.CsvReader;
 
-import br.com.luis.apifilmes.models.Diretor;
-import br.com.luis.apifilmes.models.Filme;
-import br.com.luis.apifilmes.models.Idioma;
-import br.com.luis.apifilmes.models.TipoDeConsulta;
+import br.com.luis.apifilmes.models.*;
 
 public class Mapeamento {
 	public static List<Filme> getFilmes(TipoDeConsulta tipo) {
-		System.out.println("chamou o getFilmes()");
 		List<Filme> filmes = new ArrayList<>();
 		String destino = tipo.getDestino(tipo);
 		CsvReader csv;
@@ -50,7 +46,7 @@ public class Mapeamento {
 
 				genero = csv.get("genero");
 
-				filme = new Filme(titulo, ano, data, idioma, diretor, genero, diretores, runtime);
+				filme = new Filme(titulo, ano, data, idioma, genero, diretor, diretores, runtime);
 				filmes.add(filme);
 			}
 		} catch (UnsupportedEncodingException | FileNotFoundException e) {
@@ -63,7 +59,9 @@ public class Mapeamento {
 	}
 
 	private static List<Diretor> mapearDiretores(String linha) {
-		return Arrays.stream(linha.split(",")).map(diretor -> new Diretor(diretor.trim())).collect(Collectors.toList());
+		return Arrays.stream(linha.split(","))
+				.map(diretor -> new Diretor(diretor.trim()))
+				.collect(Collectors.toList());
 	}
 
 	public static List<String> getAbreviacoes() {

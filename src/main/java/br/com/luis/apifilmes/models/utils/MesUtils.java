@@ -39,7 +39,7 @@ public class MesUtils {
 	private static String quantidadeDeCadaMes(Mes mes) {
 		int quantidade = (int) filmes.stream().filter(filme -> filme.getMes().getNome().equals(mes.getNome())).count();
 		int porcentagem = Calculadora.calcularPorcentagem(filmes.size(), quantidade);
-
+ 
 		if (quantidade == 1) {
 			return quantidade + " filme visto em " + mes.getNome() + " (aprox. " + porcentagem + "% do total)";
 		}
