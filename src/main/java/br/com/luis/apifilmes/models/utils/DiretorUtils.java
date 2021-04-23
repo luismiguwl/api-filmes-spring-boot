@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.luis.apifilmes.models.Coluna;
 import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
@@ -13,7 +14,7 @@ public class DiretorUtils {
 	}
 
 	public static int getQuantidadeDeFilmesVistos(Diretor diretor) {
-		List<String> nomeDosDiretores = Mapeamento.getDadosDaColuna("diretor");
+		List<String> nomeDosDiretores = Mapeamento.getDadosDaColuna(Coluna.DIRETOR);
 		List<Diretor> diretores = mapearDiretores(nomeDosDiretores);
 		return (int) diretores.stream()
 				.filter(d -> d.getNome().equals(diretor.getNome()))

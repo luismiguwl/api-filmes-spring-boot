@@ -1,6 +1,7 @@
 package br.com.luis.apifilmes.utils;
 
 import static br.com.luis.apifilmes.models.TipoDeConsulta.getDestino;
+import static br.com.luis.apifilmes.models.Coluna.getColuna;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -82,17 +83,18 @@ public class Mapeamento {
 		return abreviacoes;
 	}
 
-	public static List<String> getDadosDaColuna(String coluna) {
+	public static List<String> getDadosDaColuna(Coluna coluna) {
 		List<String> dadosDaColuna = new ArrayList<>();
 		String destino = getDestino(TipoDeConsulta.VISTOS);
+		String nomeDaColuna = getColuna(coluna);
 		
 		try {
 			CsvReader csv = new CsvReader(new InputStreamReader(new FileInputStream(destino), "UTF-8"));
 			csv.readHeaders();
 
-			if (Arrays.asList(csv.getHeaders()).contains(coluna)) {
+			if (Arrays.asList(csv.getHeaders()).contains(nomeDaColuna)) {
 				while (csv.readRecord()) {
-					dadosDaColuna.add(csv.get(coluna));
+					dadosDaColuna.add(csv.get(nomeDaColuna));
 				}
 				
 				return dadosDaColuna;
