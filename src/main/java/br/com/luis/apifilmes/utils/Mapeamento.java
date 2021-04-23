@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import com.csvreader.CsvReader;
 
 import br.com.luis.apifilmes.models.*;
+import br.com.luis.apifilmes.models.exceptions.ColunaInexistenteException;
 
 public class Mapeamento {
 
@@ -57,7 +58,7 @@ public class Mapeamento {
 		return filmes;
 	}
 
-	private static List<Diretor> mapearDiretores(String linha) {
+	public static List<Diretor> mapearDiretores(String linha) {
 		return Arrays.stream(linha.split(","))
 				.map(diretor -> new Diretor(diretor.trim()))
 				.collect(Collectors.toList());
@@ -81,21 +82,29 @@ public class Mapeamento {
 		return abreviacoes;
 	}
 
-	public static List<Diretor> getTodosOsDiretores() {
-		List<Diretor> diretores = new ArrayList<>();
+	public static List<String> getDadosDaColuna(String coluna) {
+		List<String> dadosDaColuna = new ArrayList<>();
 		String destino = getDestino(TipoDeConsulta.VISTOS);
 		
 		try {
 			CsvReader csv = new CsvReader(new InputStreamReader(new FileInputStream(destino), "UTF-8"));
 			csv.readHeaders();
 
-			while (csv.readRecord()) {
-				diretores.add(new Diretor(csv.get("diretor")));
+			if (Arrays.asList(csv.getHeaders()).contains(coluna)) {
+				while (csv.readRecord()) {
+					dadosDaColuna.add(csv.get(coluna));
+				}
+				
+				return dadosDaColuna;
 			}
+			
+			throw new ColunaInexistenteException();
 		} catch (IOException e) {
 			logger.error("Arquivo não encontrado!");
+		} catch (ColunaInexistenteException e) {
+			logger.error("Coluna '" + coluna + "' não existe!");
 		}
 		
-		return diretores;
+		return dadosDaColuna;
 	}
 }
