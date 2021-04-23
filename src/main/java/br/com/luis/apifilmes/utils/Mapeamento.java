@@ -1,41 +1,41 @@
 package br.com.luis.apifilmes.utils;
 
+import static br.com.luis.apifilmes.models.TipoDeConsulta.getDestino;
+
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.csvreader.CsvReader;
 
 import br.com.luis.apifilmes.models.*;
 
 public class Mapeamento {
+
+	private static Logger logger = LoggerFactory.getLogger(Mapeamento.class);
+
 	public static List<Filme> getFilmes(TipoDeConsulta tipo) {
 		List<Filme> filmes = new ArrayList<>();
-		String destino = tipo.getDestino(tipo);
-		CsvReader csv;
-
-		Filme filme;
+		String destino = getDestino(tipo);
 
 		try {
-			csv = new CsvReader(new InputStreamReader(new FileInputStream(destino), "UTF-8"));
+			CsvReader csv = new CsvReader(new InputStreamReader(new FileInputStream(destino), "UTF-8"));
 			csv.readHeaders();
 
 			while (csv.readRecord()) {
 				List<Diretor> diretores = new ArrayList<>();
-
 				Diretor diretor = null;
-				String genero;
 
 				String titulo = csv.get("titulo");
 				String data = csv.get("dataAssistido");
 				int ano = Integer.parseInt(csv.get("anoDeLancamento"));
-				int runtime = Integer.parseInt(csv.get("duracao"));
 				Idioma idioma = new Idioma(csv.get("idioma"));
 
 				if (csv.get("diretor").contains(",")) {
@@ -44,15 +44,14 @@ public class Mapeamento {
 					diretor = new Diretor(csv.get("diretor"));
 				}
 
-				genero = csv.get("genero");
+				String genero = csv.get("genero");
+				int runtime = Integer.parseInt(csv.get("duracao"));
 
-				filme = new Filme(titulo, ano, data, idioma, genero, diretor, diretores, runtime);
+				Filme filme = new Filme(titulo, ano, data, idioma, genero, diretor, diretores, runtime);
 				filmes.add(filme);
 			}
-		} catch (UnsupportedEncodingException | FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException io) {
-			io.printStackTrace();
+		} catch (IOException e) {
+			logger.error("Arquivo não encontrado!");
 		}
 
 		return filmes;
@@ -66,23 +65,37 @@ public class Mapeamento {
 
 	public static List<String> getAbreviacoes() {
 		List<String> abreviacoes = new ArrayList<>();
-		String destino = TipoDeConsulta.ABREVIACOES.getDestino(TipoDeConsulta.ABREVIACOES);
-
-		CsvReader csv;
+		String destino = getDestino(TipoDeConsulta.ABREVIACOES);
 
 		try {
-			csv = new CsvReader(new InputStreamReader(new FileInputStream(destino), "UTF-8"));
+			CsvReader csv = new CsvReader(new InputStreamReader(new FileInputStream(destino), "UTF-8"));
 			csv.readHeaders();
 
 			while (csv.readRecord()) {
 				abreviacoes.add(csv.get("idioma") + "," + csv.get("abreviacao"));
 			}
-		} catch (UnsupportedEncodingException | FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException io) {
-			io.printStackTrace();
+		} catch (IOException e) {
+			logger.error("Arquivo não encontrado!");
 		}
 
 		return abreviacoes;
+	}
+
+	public static List<Diretor> getTodosOsDiretores() {
+		List<Diretor> diretores = new ArrayList<>();
+		String destino = getDestino(TipoDeConsulta.VISTOS);
+		
+		try {
+			CsvReader csv = new CsvReader(new InputStreamReader(new FileInputStream(destino), "UTF-8"));
+			csv.readHeaders();
+
+			while (csv.readRecord()) {
+				diretores.add(new Diretor(csv.get("diretor")));
+			}
+		} catch (IOException e) {
+			logger.error("Arquivo não encontrado!");
+		}
+		
+		return diretores;
 	}
 }

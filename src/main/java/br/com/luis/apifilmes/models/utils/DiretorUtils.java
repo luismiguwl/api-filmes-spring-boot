@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.Diretor;
-import br.com.luis.apifilmes.models.TipoDeConsulta;
-import br.com.luis.apifilmes.utils.Extrator;
+import br.com.luis.apifilmes.utils.Mapeamento;
 
 public class DiretorUtils {
 	public static String mesclarTodosOsDiretores(List<Diretor> diretores) {
@@ -13,7 +12,9 @@ public class DiretorUtils {
 	}
 
 	public static int getQuantidadeDeFilmesVistos(Diretor diretor) {
-		List<String> diretores = Extrator.extrairNomeDeTodosDiretores(TipoDeConsulta.VISTOS);
-		return (int) diretores.stream().filter(d -> d.equals(diretor.getNome())).count();
+		List<Diretor> diretores = Mapeamento.getTodosOsDiretores();
+		return (int) diretores.stream()
+				.filter(d -> d.getNome().equals(diretor.getNome()))
+				.count();
 	}
 }

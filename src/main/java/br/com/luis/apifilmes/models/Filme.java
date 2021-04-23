@@ -13,8 +13,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 @JsonInclude(Include.NON_EMPTY)
+@AllArgsConstructor
 public class Filme {
 	private String titulo;
 	private int ano;
