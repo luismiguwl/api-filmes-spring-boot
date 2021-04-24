@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import br.com.luis.apifilmes.models.utils.FilmeUtils;
 import br.com.luis.apifilmes.models.utils.MesUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,21 +29,4 @@ public class Filme {
 		return MesUtils.definirDadosDoMes(this);
 	}
 	
-	@Override
-	public String toString() {
-		String corpo = "";
-
-		corpo += "Título: " + titulo + "\n";
-
-		if (data != null) {
-			corpo += "Assistido em " + data + "\n";
-		}
-
-		corpo += "Lançado em " + ano + "\n";
-		corpo += "Idioma: " + idioma.getNome() + "\n";
-		corpo += FilmeUtils.listarDiretores(this);
-		corpo += "Runtime: " + runtime;
-
-		return corpo;
-	}
 }
