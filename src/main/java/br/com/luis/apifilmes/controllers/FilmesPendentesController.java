@@ -34,7 +34,6 @@ public class FilmesPendentesController extends MetodosPadrao {
 
 	@GetMapping("/idioma")
 	public List<Filme> filtrarPorIdioma(@RequestParam String idioma) {
-		System.out.println(idioma);
 		return filmes.stream().filter(filme -> filme.getIdioma().getAbreviacao().contains(idioma))
 				.collect(Collectors.toList());
 	}
