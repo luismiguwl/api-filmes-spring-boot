@@ -42,4 +42,8 @@ public class IdiomaUtils {
 	public static List<String> definirQuantidadeDeFilmesEmDeterminadoIdioma() {
 		return getIdiomasDistintos().stream().map(filme -> getQuantidadeDeFilmes(filme)).collect(Collectors.toList());
 	}
+
+	public static boolean filtrarPorIdioma(Filme filme, String idioma) {
+		return filme.getIdioma().getAbreviacao().contains(idioma);
+	}
 }
