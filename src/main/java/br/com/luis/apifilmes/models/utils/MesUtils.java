@@ -1,5 +1,8 @@
 package br.com.luis.apifilmes.models.utils;
 
+import static br.com.luis.apifilmes.models.utils.FilmeUtils.verificarSeFilmeFoiVistoNoMes;
+import static br.com.luis.apifilmes.utils.Calculadora.calcularPorcentagem;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import br.com.luis.apifilmes.models.Filme;
 import br.com.luis.apifilmes.models.Mes;
 import br.com.luis.apifilmes.models.TipoDeConsulta;
-import static br.com.luis.apifilmes.utils.Calculadora.calcularPorcentagem;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
 @JsonInclude(Include.NON_EMPTY)
@@ -45,7 +47,7 @@ public class MesUtils {
 
 	private static String getQuantidadeDeCadaMes(Mes mes) {
 		int quantidade = (int) filmes.stream()
-				.filter(filme -> FilmeUtils.filtrarQuantidadeDeCadaMes(filme, mes))
+				.filter(filme -> verificarSeFilmeFoiVistoNoMes(filme, mes))
 				.count();
 		
 		int porcentagem = calcularPorcentagem(filmes.size(), quantidade);

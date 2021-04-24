@@ -42,7 +42,7 @@ public class FilmeUtils {
 		return corpo.trim();
 	}
 
-	public static boolean filtrarQuantidadeDeCadaMes(Filme filme, Mes mes) {
+	public static boolean verificarSeFilmeFoiVistoNoMes(Filme filme, Mes mes) {
 		return filme.getMes().getNome().equals(mes.getNome());
 	}
 
