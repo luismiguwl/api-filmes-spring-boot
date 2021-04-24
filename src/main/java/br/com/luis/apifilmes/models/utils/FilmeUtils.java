@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.Filme;
+import br.com.luis.apifilmes.models.Mes;
 
 public class FilmeUtils {
 	public static String listarDiretores(Filme filme) {
@@ -30,9 +31,7 @@ public class FilmeUtils {
 	}
 
 	private static String mesclarDadosDeUmFilme(Filme filme) {
-		String corpo = "";
-
-		corpo += filme.getTitulo() + " ";
+		String corpo = filme.getTitulo() + " ";
 
 		if (filme.getDiretores().isEmpty()) {
 			corpo += filme.getDiretor().getNome() + " ";
@@ -43,4 +42,9 @@ public class FilmeUtils {
 		return corpo.trim();
 	}
 
+	public static boolean filtrarQuantidadeDeCadaMes(Filme filme, Mes mes) {
+		return filme.getMes().getNome().equals(mes.getNome());
+	}
+
+	
 }
