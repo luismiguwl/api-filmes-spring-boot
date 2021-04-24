@@ -25,7 +25,6 @@ public class FilmesVistosController extends MetodosPadrao {
 
 	@GetMapping("/all")
 	public List<Filme> all() {
-		Analise.getSomaDaDuracaoDeTodosOsFilmes(filmes);
 		return filmes;
 	}
 
