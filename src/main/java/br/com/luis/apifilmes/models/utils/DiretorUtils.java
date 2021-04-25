@@ -10,7 +10,9 @@ import br.com.luis.apifilmes.utils.Mapeamento;
 
 public class DiretorUtils {
 	public static String mesclarTodosOsDiretores(List<Diretor> diretores) {
-		return diretores.stream().map(diretor -> diretor.getNome() + " ").collect(Collectors.joining());
+		return diretores.stream()
+				.map(diretor -> diretor.getNome() + " ")
+				.collect(Collectors.joining()).trim();
 	}
 
 	public static int getQuantidadeDeFilmesVistos(Diretor diretor) {
