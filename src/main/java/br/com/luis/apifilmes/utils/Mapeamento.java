@@ -1,8 +1,5 @@
 package br.com.luis.apifilmes.utils;
 
-import static br.com.luis.apifilmes.models.TipoDeConsulta.getDestino;
-import static br.com.luis.apifilmes.models.Coluna.getColuna;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -17,15 +14,14 @@ import org.slf4j.LoggerFactory;
 import com.csvreader.CsvReader;
 
 import br.com.luis.apifilmes.models.*;
-import br.com.luis.apifilmes.models.exceptions.ColunaInexistenteException;
 
 public class Mapeamento {
-
     private static Logger logger = LoggerFactory.getLogger(Mapeamento.class);
 
     public static List<Filme> getFilmes(TipoDeConsulta tipo) {
         List<Filme> filmes = new ArrayList<>();
-        String destino = getDestino(tipo);
+        String destino = tipo.getDestino();
+        System.out.println(destino);
 
         try {
             CsvReader csv = new CsvReader(new InputStreamReader(new FileInputStream(destino), "UTF-8"));
@@ -35,19 +31,19 @@ public class Mapeamento {
                 List<Diretor> diretores = new ArrayList<>();
                 Diretor diretor = null;
 
-                String titulo = csv.get("titulo");
-                String data = csv.get("dataAssistido");
-                int ano = Integer.parseInt(csv.get("anoDeLancamento"));
-                Idioma idioma = new Idioma(csv.get("idioma"));
+                String titulo = csv.get(Coluna.TITULO.getColuna());
+                String data = csv.get(Coluna.DATA_ASSISTIDO.getColuna());
+                int ano = Integer.parseInt(csv.get(Coluna.ANO_LANCAMENTO.getColuna()));
+                Idioma idioma = new Idioma(csv.get(Coluna.IDIOMA.getColuna()));
 
                 if (csv.get("diretor").contains(",")) {
-                    diretores = mapearDiretores(csv.get("diretor"));
+                    diretores = mapearDiretores(csv.get(Coluna.DIRETOR.getColuna()));
                 } else {
-                    diretor = new Diretor(csv.get("diretor"));
+                    diretor = new Diretor(csv.get(Coluna.DIRETOR.getColuna()));
                 }
 
-                String genero = csv.get("genero");
-                int runtime = Integer.parseInt(csv.get("duracao"));
+                String genero = csv.get(Coluna.GENERO.getColuna());
+                int runtime = Integer.parseInt(csv.get(Coluna.DURACAO.getColuna()));
 
                 Filme filme = new Filme(titulo, ano, data, idioma, genero, diretor, diretores, runtime);
                 filmes.add(filme);
@@ -67,7 +63,7 @@ public class Mapeamento {
 
     public static List<String> getAbreviacoes() {
         List<String> abreviacoes = new ArrayList<>();
-        String destino = getDestino(TipoDeConsulta.ABREVIACOES);
+        String destino = TipoDeConsulta.ABREVIACOES.getDestino();
 
         try {
             CsvReader csv = new CsvReader(new InputStreamReader(new FileInputStream(destino), "UTF-8"));
@@ -85,26 +81,18 @@ public class Mapeamento {
 
     public static List<String> getDadosDaColuna(Coluna coluna) {
         List<String> dadosDaColuna = new ArrayList<>();
-        String destino = getDestino(TipoDeConsulta.VISTOS);
-        String nomeDaColuna = getColuna(coluna);
+        String destino = TipoDeConsulta.VISTOS.getDestino();
+        String nomeDaColuna = coluna.getColuna();
 
         try {
             CsvReader csv = new CsvReader(new InputStreamReader(new FileInputStream(destino), "UTF-8"));
             csv.readHeaders();
 
-            if (Arrays.asList(csv.getHeaders()).contains(nomeDaColuna)) {
-                while (csv.readRecord()) {
-                    dadosDaColuna.add(csv.get(nomeDaColuna));
-                }
-
-                return dadosDaColuna;
+            while (csv.readRecord()) {
+                dadosDaColuna.add(csv.get(nomeDaColuna));
             }
-
-            throw new ColunaInexistenteException();
         } catch (IOException e) {
             logger.error("Arquivo não encontrado!");
-        } catch (ColunaInexistenteException e) {
-            logger.error("Coluna '" + coluna + "' não existe!");
         }
 
         return dadosDaColuna;

@@ -1,28 +1,13 @@
 package br.com.luis.apifilmes.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum Coluna {
-	TITULO, DATA_ASSISTIDO, ANO_LANCAMENTO, IDIOMA, DIRETOR, GENERO, DURACAO;
-	
-	public static String getColuna(Coluna coluna) {
-		
-		// TODO: obter nome da coluna via Reflection
-		switch (coluna) {
-			case TITULO:
-				return "titulo";
-			case DATA_ASSISTIDO:
-				return "dataAssistido";
-			case ANO_LANCAMENTO:
-				return "anoDeLancamento";
-			case IDIOMA:
-				return "idioma";
-			case DIRETOR:
-				return "diretor";
-			case GENERO:
-				return "genero";
-			case DURACAO:
-				return "duracao";
-			default:
-				return null;
-		}
-	}
+	TITULO("titulo"), DATA_ASSISTIDO("dataAssistido"), ANO_LANCAMENTO("anoDeLancamento"), IDIOMA("idioma"),
+	DIRETOR("diretor"), GENERO("genero"), DURACAO("duracao");
+
+	private String coluna;
 }

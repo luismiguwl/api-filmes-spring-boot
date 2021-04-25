@@ -1,18 +1,13 @@
 package br.com.luis.apifilmes.models;
 
-public enum TipoDeConsulta {
-	VISTOS, PENDENTES, ABREVIACOES;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-	public static String getDestino(TipoDeConsulta tipo) {
-		switch (tipo) {
-			case VISTOS:
-				return "filmes-2021\\Filmes assistidos em 2021.csv";
-			case PENDENTES:
-				return "filmes-2021\\Filmes pendentes para 2021.csv";
-			case ABREVIACOES:
-				return "filmes-2021\\Abreviacoes dos idiomas.csv";
-			default:
-				return null;
-			}
-	}
+@AllArgsConstructor
+@Getter
+public enum TipoDeConsulta {
+	VISTOS("filmes-2021\\Filmes assistidos em 2021.csv"), PENDENTES("filmes-2021\\Filmes pendentes para 2021.csv"),
+	ABREVIACOES("filmes-2021\\Abreviacoes dos idiomas.csv");
+
+	private String destino;
 }
