@@ -7,26 +7,8 @@ import br.com.luis.apifilmes.models.Filme;
 import br.com.luis.apifilmes.models.Mes;
 
 public class FilmeUtils {
-	public static String listarDiretores(Filme filme) {
-		if (!filme.getDiretores().isEmpty()) {
-			String corpo = "Diretores: ";
-
-			for (int i = 0; i < filme.getDiretores().size(); i++) {
-				corpo += "" + filme.getDiretores().get(i).getNome();
-				if (i != (filme.getDiretores().size() - 1)) {
-					corpo += ", ";
-				}
-			}
-
-			return corpo;
-		}
-		
-		return "Diretor: " + filme.getDiretor().getNome();
-	}
-
 	public static List<Filme> buscarFilmePorPalavra(List<Filme> filmes, String chave) {
-		return filmes.stream()
-				.filter(filme -> mesclarDadosDeUmFilme(filme).toLowerCase().contains(chave.toLowerCase()))
+		return filmes.stream().filter(filme -> mesclarDadosDeUmFilme(filme).toLowerCase().contains(chave.toLowerCase()))
 				.collect(Collectors.toList());
 	}
 
@@ -38,7 +20,7 @@ public class FilmeUtils {
 		} else {
 			corpo += DiretorUtils.mesclarTodosOsDiretores(filme.getDiretores());
 		}
-		
+
 		return corpo.trim();
 	}
 
@@ -46,5 +28,4 @@ public class FilmeUtils {
 		return filme.getMes().getNome().equals(mes.getNome());
 	}
 
-	
 }
