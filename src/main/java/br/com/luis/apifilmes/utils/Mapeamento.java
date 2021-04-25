@@ -21,7 +21,6 @@ public class Mapeamento {
     public static List<Filme> getFilmes(TipoDeConsulta tipo) {
         List<Filme> filmes = new ArrayList<>();
         String destino = tipo.getDestino();
-        System.out.println(destino);
 
         try {
             CsvReader csv = new CsvReader(new InputStreamReader(new FileInputStream(destino), "UTF-8"));
