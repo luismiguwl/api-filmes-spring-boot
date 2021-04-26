@@ -1,0 +1,25 @@
+/* Todos os elementos da página */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Elementos com o ID "titulo" */
+#titulo {
+    font-family: 'Segoe UI';
+    font-size: 10ex;
+    color:chartreuse;
+    text-align: center;
+} 
+
+/* Elementos com o ID "subtitulo" */
+#subtitulo {
+    font-family: Tahoma;
+    font-size: 7ex;
+    color:chartreuse;
+    text-align: center;
+}
+
+body {
+    background-color: black;
+}
