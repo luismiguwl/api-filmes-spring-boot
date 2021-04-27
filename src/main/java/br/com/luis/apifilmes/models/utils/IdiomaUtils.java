@@ -3,13 +3,14 @@ package br.com.luis.apifilmes.models.utils;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.luis.apifilmes.models.Coluna;
 import br.com.luis.apifilmes.models.Filme;
-import br.com.luis.apifilmes.models.TipoDeConsulta;
 import br.com.luis.apifilmes.utils.Calculadora;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
 public class IdiomaUtils {
-	private static List<Filme> filmes = Mapeamento.getFilmes(TipoDeConsulta.VISTOS);
+	private static List<String> idiomas = Mapeamento.getDadosDaColuna(Coluna.IDIOMA);
+	
 	
 	public static String getAbreviacao(String idioma) {
 		List<String> listaDeAbreviacoes = Mapeamento.getAbreviacoes();
@@ -22,7 +23,7 @@ public class IdiomaUtils {
 	private static String getQuantidadeDeFilmes(String idioma) {
 		String corpo = "";
 
-		int quantidade = (int) filmes.stream().filter(filme -> filme.getIdioma().getNome().equalsIgnoreCase(idioma))
+		int quantidade = (int) idiomas.stream().filter(i -> i.equalsIgnoreCase(idioma))
 				.count();
 		if (quantidade == 1) {
 			corpo += quantidade + " filme visto em " + idioma;
@@ -30,17 +31,21 @@ public class IdiomaUtils {
 			corpo += quantidade + " filmes vistos em " + idioma;
 		}
 
-		corpo += " (aprox. " + Calculadora.calcularPorcentagem(filmes.size(), quantidade) + "%)";
+		corpo += " (aprox. " + Calculadora.calcularPorcentagem(idiomas.size(), quantidade) + "%)";
 
 		return corpo;
 	}
 
 	private static List<String> getIdiomasDistintos() {
-		return filmes.stream().map(filme -> filme.getIdioma().getNome()).distinct().collect(Collectors.toList());
+		return idiomas.stream()
+				.distinct()
+				.collect(Collectors.toList());
 	}
 
 	public static List<String> definirQuantidadeDeFilmesEmDeterminadoIdioma() {
-		return getIdiomasDistintos().stream().map(filme -> getQuantidadeDeFilmes(filme)).collect(Collectors.toList());
+		return getIdiomasDistintos().stream()
+				.map(filme -> getQuantidadeDeFilmes(filme))
+				.collect(Collectors.toList());
 	}
 
 	public static boolean filtrarPorIdioma(Filme filme, String idioma) {

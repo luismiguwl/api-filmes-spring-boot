@@ -5,17 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.luis.apifilmes.models.Filme;
-import br.com.luis.apifilmes.models.TipoDeConsulta;
+import br.com.luis.apifilmes.models.Coluna;
 import br.com.luis.apifilmes.utils.Calculadora;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
 public class GeneroUtils {
-	private static List<Filme> filmes = Mapeamento.getFilmes(TipoDeConsulta.VISTOS);
+	private static List<String> generos = Mapeamento.getDadosDaColuna(Coluna.GENERO);
 
 	public static List<String> getTodosOsGeneros() {
-		List<String> generos = filmes.stream().map(filme -> filme.getGenero()).sorted().collect(Collectors.toList());
-
 		List<String> todosOsGeneros = obterCadaGenero(generos);
 		List<String> quantidadeDeFilmesEmCadaGenero = new ArrayList<>();
 		List<String> generosDistintos = todosOsGeneros.stream().distinct().collect(Collectors.toList());
