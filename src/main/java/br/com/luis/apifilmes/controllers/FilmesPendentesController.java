@@ -22,8 +22,8 @@ import br.com.luis.apifilmes.utils.Mapeamento;
 @RequestMapping("/filmes/pendentes")
 @EnableScheduling
 public class FilmesPendentesController extends MetodosPadrao {
-	private final TipoDeConsulta tipoDeConsulta = TipoDeConsulta.VISTOS;
-	private List<Filme> filmes = getFilmes(TipoDeConsulta.PENDENTES);
+	private final TipoDeConsulta tipoDeConsulta = TipoDeConsulta.PENDENTES;
+	private List<Filme> filmes = getFilmes(tipoDeConsulta);
 
 	@GetMapping("/random")
 	public Filme random() {
