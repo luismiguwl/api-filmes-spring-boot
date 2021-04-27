@@ -10,4 +10,5 @@ public abstract class MetodosPadrao {
 	public abstract List<Filme> filtrarPorPalavraChave(String palavra);
 	public abstract List<Filme> buscarPorAnoDeLancamento(int ano);
 	public abstract List<Filme> buscarPorIntervaloDeAnos(int de, int ate);
+	public abstract void atualizarLista();
 }

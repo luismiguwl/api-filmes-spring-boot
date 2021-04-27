@@ -3,6 +3,7 @@ package br.com.luis.apifilmes.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +16,8 @@ import br.com.luis.apifilmes.utils.*;
 @RestController
 @RequestMapping("/filmes/vistos")
 public class FilmesVistosController extends MetodosPadrao {
-	private List<Filme> filmes = Mapeamento.getFilmes(TipoDeConsulta.VISTOS);
+	private final TipoDeConsulta tipoDeConsulta = TipoDeConsulta.VISTOS;
+	private List<Filme> filmes = Mapeamento.getFilmes(tipoDeConsulta);
 
 	@GetMapping("/random")
 	public Filme random() {
@@ -85,4 +87,10 @@ public class FilmesVistosController extends MetodosPadrao {
 	public List<String> getSomaDaDuracaoDeTodosOsFilmes() {
 		return Analise.getSomaDaDuracaoDeTodosOsFilmes(filmes);
 	}
+
+	@Scheduled(cron = "0 0/1 * 1/1 * ?")
+	public void atualizarLista() {
+		filmes = Mapeamento.getFilmes(tipoDeConsulta);
+	}
+
 }
