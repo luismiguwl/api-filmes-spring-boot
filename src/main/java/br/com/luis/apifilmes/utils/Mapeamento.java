@@ -1,5 +1,7 @@
 package br.com.luis.apifilmes.utils;
 
+import static br.com.luis.apifilmes.models.utils.MapeamentoUtils.mapearDiretores;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -52,12 +54,6 @@ public class Mapeamento {
         }
 
         return filmes;
-    }
-
-    public static List<Diretor> mapearDiretores(String linha) {
-        return Arrays.stream(linha.split(","))
-                .map(diretor -> new Diretor(diretor.trim()))
-                .collect(Collectors.toList());
     }
 
     public static List<String> getAbreviacoes() {

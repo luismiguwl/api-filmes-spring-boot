@@ -25,7 +25,7 @@ public class DiretorUtils {
 	
 	private static List<Diretor> mapearDiretores(List<String> dados) {
 		List<Diretor> diretores = new ArrayList<>();
-		dados.stream().forEach(linha -> diretores.addAll(Mapeamento.mapearDiretores(linha)));
+		dados.stream().forEach(linha -> diretores.addAll(MapeamentoUtils.mapearDiretores(linha)));
 		return diretores;
 	}
 }
