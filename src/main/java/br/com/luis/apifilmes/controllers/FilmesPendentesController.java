@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luis.apifilmes.models.*;
-import br.com.luis.apifilmes.models.utils.IdiomaUtils;
-import br.com.luis.apifilmes.utils.Mapeamento;
+import br.com.luis.apifilmes.models.utils.*;
+import br.com.luis.apifilmes.utils.*;
 
 @RestController
 @RequestMapping("/filmes/pendentes")
@@ -56,14 +56,14 @@ public class FilmesPendentesController extends MetodosPadrao {
 	@GetMapping("/lancamento")
 	public List<Filme> buscarPorAnoDeLancamento(@RequestParam int ano) {
 		return filmes.stream()
-				.filter(filme -> filme.getAno() == ano)
+				.filter(filme -> FilmeUtils.buscarPorAnoDeLancamento(filme, ano))
 				.collect(Collectors.toList());
 	}
 
 	@GetMapping("/ano")
 	public List<Filme> buscarPorIntervaloDeAnos(@RequestParam int de, @RequestParam int ate) {
 		return filmes.stream()
-				.filter(filme -> filme.getAno() >= de && filme.getAno() <= ate)
+				.filter(filme -> FilmeUtils.buscarPorIntervaloDeAnos(filme, de, ate))
 				.collect(Collectors.toList());
 	}
 

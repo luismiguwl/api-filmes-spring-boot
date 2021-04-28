@@ -36,4 +36,14 @@ public class FilmeUtils {
 		chave = chave.toLowerCase();
 		return tituloDoFilmeConcatenadoComDiretores.contains(chave);
 	}
+
+
+	public static boolean buscarPorIntervaloDeAnos(Filme filme, int de, int ate) {
+		return filme.getAno() >= de && filme.getAno() <= ate;
+	}
+
+
+	public static boolean buscarPorAnoDeLancamento(Filme filme, int ano) {
+		return filme.getAno() == ano;
+	}
 }

@@ -33,7 +33,7 @@ public class FilmesVistosController extends MetodosPadrao {
 	@GetMapping("/month")
 	public List<Filme> filtrarPorMes(@RequestParam int mes) {
 		return filmes.stream()
-				.filter(filme -> filme.getMes().getNumeroDoMes() == mes)
+				.filter(filme -> MesUtils.filtrarPorMes(filme, mes))
 				.collect(Collectors.toList());
 	}
 
@@ -67,14 +67,14 @@ public class FilmesVistosController extends MetodosPadrao {
 	@GetMapping("/lancamento")
 	public List<Filme> buscarPorAnoDeLancamento(@RequestParam int ano) {
 		return filmes.stream()
-				.filter(filme -> filme.getAno() == ano)
+				.filter(filme -> FilmeUtils.buscarPorAnoDeLancamento(filme, ano))
 				.collect(Collectors.toList());
 	}
 
 	@GetMapping("/ano")
 	public List<Filme> buscarPorIntervaloDeAnos(@RequestParam int de, @RequestParam int ate) {
 		return filmes.stream()
-				.filter(filme -> filme.getAno() >= de && filme.getAno() <= ate)
+				.filter(filme -> FilmeUtils.buscarPorIntervaloDeAnos(filme, de, ate))
 				.collect(Collectors.toList());
 	}
 

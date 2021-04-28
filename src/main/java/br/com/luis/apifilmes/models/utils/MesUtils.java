@@ -59,4 +59,8 @@ public class MesUtils {
 		return quantidade + " filmes vistos em " + mes.getNome() + " (aprox. " + porcentagem + "% do total)";
 	}
 
+	public static boolean filtrarPorMes(Filme filme, int mes) {
+		return filme.getMes().getNumeroDoMes() == mes;
+	}
+
 }
