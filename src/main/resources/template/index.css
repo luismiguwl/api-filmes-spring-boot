@@ -1,25 +1,28 @@
-/* Todos os elementos da página */
 * {
     margin: 0;
     padding: 0;
 }
 
-/* Elementos com o ID "titulo" */
 #titulo {
     font-family: 'Segoe UI';
+    font-weight: 500px;
     font-size: 10ex;
-    color:black;
+    color:white;
     text-align: center;
 } 
 
-/* Elementos com o ID "subtitulo" */
 #subtitulo {
     font-family: Tahoma;
+    font-weight: 500px;
     font-size: 7ex;
-    color:black;
+    color:white;
     text-align: center;
 }
 
 body {
-    background-color: hotpink;
+    background-color: rgb(56, 41, 44);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
