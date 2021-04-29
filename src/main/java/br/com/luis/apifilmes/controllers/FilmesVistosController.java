@@ -88,6 +88,11 @@ public class FilmesVistosController implements MetodosPadrao {
 		return Analise.getSomaDaDuracaoDeTodosOsFilmes(filmes);
 	}
 
+	@GetMapping("/ranking/diretores")
+	public List<String> testDiretor(@RequestParam int top) {
+		return DiretorUtils.filtrarOsDezDiretoresComMaisFilmes(filmes, top);
+	}
+	
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
 	public List<Filme> atualizarLista() {
 		return Mapeamento.getFilmes(tipoDeConsulta);

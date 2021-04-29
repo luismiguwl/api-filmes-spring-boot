@@ -2,7 +2,6 @@ package br.com.luis.apifilmes.controllers;
 
 import static br.com.luis.apifilmes.models.utils.FilmeUtils.buscarFilmePorPalavra;
 import static br.com.luis.apifilmes.utils.Calculadora.getNumeroAleatorio;
-import static br.com.luis.apifilmes.utils.Mapeamento.getFilmes;
 
 import java.util.List;
 import java.util.stream.Collectors;

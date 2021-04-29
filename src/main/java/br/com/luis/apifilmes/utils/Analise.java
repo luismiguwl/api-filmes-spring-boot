@@ -11,7 +11,8 @@ public class Analise {
 		
 		int minutosAssistidos = filmes.stream()
 				.map(filme -> filme.getRuntime())
-				.reduce((total, duracao) -> total + duracao).get();
+				.reduce((total, duracao) -> total + duracao)
+				.get();
 		
 		int quantidadeDeHoras = definirQuantidadeDeHoras(minutosAssistidos);
 		int quantidadeDeDias = definirQuantidadeDeDias(quantidadeDeHoras);
