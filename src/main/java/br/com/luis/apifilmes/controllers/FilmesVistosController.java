@@ -15,9 +15,9 @@ import br.com.luis.apifilmes.utils.*;
 
 @RestController
 @RequestMapping("/filmes/vistos")
-public class FilmesVistosController extends MetodosPadrao {
+public class FilmesVistosController implements MetodosPadrao {
 	private final TipoDeConsulta tipoDeConsulta = TipoDeConsulta.VISTOS;
-	private List<Filme> filmes = Mapeamento.getFilmes(tipoDeConsulta);
+	private List<Filme> filmes = atualizarLista();
 
 	@GetMapping("/random")
 	public Filme random() {
@@ -89,8 +89,8 @@ public class FilmesVistosController extends MetodosPadrao {
 	}
 
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
-	public void atualizarLista() {
-		filmes = Mapeamento.getFilmes(tipoDeConsulta);
+	public List<Filme> atualizarLista() {
+		return Mapeamento.getFilmes(tipoDeConsulta);
 	}
 
 }
