@@ -90,7 +90,7 @@ public class FilmesVistosController implements MetodosPadrao {
 
 	@GetMapping("/ranking/diretores")
 	public List<String> testDiretor(@RequestParam int top) {
-		return DiretorUtils.filtrarOsDezDiretoresComMaisFilmes(filmes, top);
+		return DiretorUtils.filtrarDiretoresComMaisFilmes(filmes, top);
 	}
 	
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")

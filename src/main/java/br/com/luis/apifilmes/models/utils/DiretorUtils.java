@@ -32,7 +32,7 @@ public class DiretorUtils {
 		return diretores;
 	}
 	
-	public static List<String> filtrarOsDezDiretoresComMaisFilmes(List<Filme> filmes, int top) {
+	public static List<String> filtrarDiretoresComMaisFilmes(List<Filme> filmes, int top) {
 		List<String> nomeDosDiretores = Mapeamento.getDadosDaColuna(Coluna.DIRETOR);
 		List<Diretor> diretores = mapearDiretores(nomeDosDiretores);
 		
