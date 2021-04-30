@@ -1,6 +1,6 @@
 package br.com.luis.apifilmes.utils;
 
-import static br.com.luis.apifilmes.models.utils.MapeamentoUtils.mapearDiretores;
+import static br.com.luis.apifilmes.models.utils.MapeamentoUtils.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,22 +30,30 @@ public class Mapeamento {
             while (csv.readRecord()) {
                 List<Diretor> diretores = new ArrayList<>();
                 Diretor diretor = null;
+                
+                List<Genero> generos = new ArrayList<>();
+                Genero genero = null;
 
                 String titulo = csv.get(Coluna.TITULO.getColuna());
                 String data = csv.get(Coluna.DATA_ASSISTIDO.getColuna());
                 int ano = Integer.parseInt(csv.get(Coluna.ANO_LANCAMENTO.getColuna()));
                 Idioma idioma = new Idioma(csv.get(Coluna.IDIOMA.getColuna()));
 
-                if (csv.get("diretor").contains(",")) {
+                if (csv.get(Coluna.DIRETOR.getColuna()).contains(",")) {
                     diretores = mapearDiretores(csv.get(Coluna.DIRETOR.getColuna()));
                 } else {
                     diretor = new Diretor(csv.get(Coluna.DIRETOR.getColuna()));
                 }
 
-                String genero = csv.get(Coluna.GENERO.getColuna());
                 int runtime = Integer.parseInt(csv.get(Coluna.DURACAO.getColuna()));
+                
+                if (csv.get(Coluna.GENERO.getColuna()).contains(",")) {
+					generos = mapearGeneros(csv.get(Coluna.GENERO.getColuna()));
+				} else {
+					genero = new Genero(csv.get(Coluna.GENERO.getColuna()));
+				}
 
-                Filme filme = new Filme(titulo, ano, data, idioma, genero, diretor, diretores, runtime);
+                Filme filme = new Filme(titulo, ano, data, idioma, diretor, diretores, genero, generos, runtime);
                 filmes.add(filme);
             }
         } catch (IOException e) {

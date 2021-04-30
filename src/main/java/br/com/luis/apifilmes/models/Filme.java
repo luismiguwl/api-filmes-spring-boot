@@ -19,9 +19,10 @@ public class Filme {
 	private int ano;
 	private String data;
 	private Idioma idioma;
-	private String genero;
 	private Diretor diretor;
 	private List<Diretor> diretores = new ArrayList<>();
+	private Genero genero;
+	private List<Genero> generos = new ArrayList<>();
 	private int runtime;
 
 	@JsonIgnore

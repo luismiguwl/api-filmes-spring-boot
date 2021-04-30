@@ -42,7 +42,6 @@ public class FilmeUtils {
 		return filme.getAno() >= de && filme.getAno() <= ate;
 	}
 
-
 	public static boolean buscarPorAnoDeLancamento(Filme filme, int ano) {
 		return filme.getAno() == ano;
 	}

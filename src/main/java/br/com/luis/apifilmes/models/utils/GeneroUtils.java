@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.Coluna;
+import br.com.luis.apifilmes.models.Genero;
 import br.com.luis.apifilmes.utils.Calculadora;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
@@ -45,6 +46,17 @@ public class GeneroUtils {
 		} else {
 			return quantidade + " filme contém o gênero " + genero + " (aprox. " + porcentagem + "%)";
 		}
+	}
+
+	public static int getQuantidadeDeFilmes(Genero genero) {
+		List<Genero> allGeneros = new ArrayList<>();
+		generos.forEach(g -> allGeneros.addAll(MapeamentoUtils.mapearGeneros(g)));
+		
+		int quantidade = (int) allGeneros.stream()
+				.filter(g -> g.getNome().equals(genero.getNome()))
+				.count();
+		
+		return quantidade;
 	}
 
 }

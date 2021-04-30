@@ -36,6 +36,6 @@ public class SwaggerConfig {
 	}
 	
 	private Contact contact() {
-		return new Contact("Luis Miguel", "http://github.com/luismiguwl", "luisbwrb@gmail.com");
+		return new Contact("Luis Miguel", "https://github.com/luismiguwl/api-filmes-spring-boot", "luisbwrb@gmail.com");
 	}
 }
