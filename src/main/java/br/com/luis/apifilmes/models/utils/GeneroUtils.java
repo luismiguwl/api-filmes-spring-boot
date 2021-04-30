@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.Coluna;
+import br.com.luis.apifilmes.models.Filme;
 import br.com.luis.apifilmes.models.Genero;
 import br.com.luis.apifilmes.utils.Calculadora;
 import br.com.luis.apifilmes.utils.Mapeamento;
@@ -59,4 +60,17 @@ public class GeneroUtils {
 		return quantidade;
 	}
 
+	public static List<Genero> getAllGeneros(List<Filme> filmes) {
+		List<Genero> allGeneros = new ArrayList<>();
+		
+		filmes.forEach(filme -> {
+			allGeneros.addAll(filme.getGeneros());
+			allGeneros.add(filme.getGenero());
+		});
+		
+		return allGeneros.stream()
+				.filter(genero -> genero != null)
+				.distinct()
+				.collect(Collectors.toList());
+	}
 }

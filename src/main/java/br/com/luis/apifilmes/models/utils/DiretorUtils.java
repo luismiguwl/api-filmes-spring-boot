@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import br.com.luis.apifilmes.models.Coluna;
 import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.models.Filme;
+import br.com.luis.apifilmes.models.Genero;
 import br.com.luis.apifilmes.models.comparators.DiretorComparatorDecrescente;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
@@ -43,6 +44,20 @@ public class DiretorUtils {
 				.map(diretor -> diretor.getNome() + " - " + diretor.getQuantidadeDeFilmesVistos() + " filmes")
 				.distinct()
 				.limit(top)
+				.collect(Collectors.toList());
+	}
+
+	public static List<Diretor> getAllDiretores(List<Filme> filmes) {
+		List<Diretor> allDiretores = new ArrayList<>();
+		
+		filmes.forEach(filme -> {
+			allDiretores.addAll(filme.getDiretores());
+			allDiretores.add(filme.getDiretor());
+		});
+		
+		return allDiretores.stream()
+				.filter(diretor -> diretor != null)
+				.distinct()
 				.collect(Collectors.toList());
 	}
 	

@@ -16,8 +16,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class Filme {
 	private String titulo;
-	private int ano;
-	private String data;
+	private int anoDeLancamento;
+	private String dataEmQueFoiAssistido;
 	private Idioma idioma;
 	private Diretor diretor;
 	private List<Diretor> diretores = new ArrayList<>();

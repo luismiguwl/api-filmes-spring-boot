@@ -93,6 +93,16 @@ public class FilmesVistosController implements MetodosPadrao {
 		return DiretorUtils.filtrarDiretoresComMaisFilmes(filmes, top);
 	}
 	
+	@GetMapping("/diretores")
+	public List<Diretor> getDiretores() {
+		return DiretorUtils.getAllDiretores(filmes);
+	}
+	
+	@GetMapping("/generos")
+	public List<Genero> getGeneros() {
+		return GeneroUtils.getAllGeneros(filmes);
+	}
+	
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
 	public List<Filme> atualizarLista() {
 		return Mapeamento.getFilmes(tipoDeConsulta);
