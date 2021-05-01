@@ -8,6 +8,9 @@ public class Calculadora {
 	}
 	
 	public static int getNumeroAleatorio(int range) {
+		if (range < 0) {
+			throw new IllegalArgumentException();
+		}
 		int randomNumber = new Random().nextInt(range);
 		return randomNumber;
 	}
