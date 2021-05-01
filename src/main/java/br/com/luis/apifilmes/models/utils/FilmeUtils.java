@@ -39,10 +39,10 @@ public class FilmeUtils {
 
 
 	public static boolean buscarPorIntervaloDeAnos(Filme filme, int de, int ate) {
-		return filme.getAno() >= de && filme.getAno() <= ate;
+		return filme.getAnoDeLancamento() >= de && filme.getAnoDeLancamento() <= ate;
 	}
 
 	public static boolean buscarPorAnoDeLancamento(Filme filme, int ano) {
-		return filme.getAno() == ano;
+		return filme.getAnoDeLancamento() == ano;
 	}
 }

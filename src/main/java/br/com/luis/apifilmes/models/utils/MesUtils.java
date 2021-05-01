@@ -30,8 +30,8 @@ public class MesUtils {
 	}
 
 	public static Mes definirDadosDoMes(Filme filme) {
-		if (filme.getData() != null) {
-			int numeroDoMes = definirNumeroDoMes(filme.getData());
+		if (filme.getDataEmQueFoiAssistido() != null) {
+			int numeroDoMes = definirNumeroDoMes(filme.getDataEmQueFoiAssistido());
 			String nomeDoMes = definirNomeDoMes(numeroDoMes);
 			return new Mes(nomeDoMes, numeroDoMes);
 		}
