@@ -27,8 +27,6 @@ class CalculadoraTest {
 	@DisplayName("Deve retornar erro se número for negativo")
 	public void deveRetornarErroSeNumeroForNegativo() {
 		int valor = -1;
-		assertThrows(IllegalArgumentException.class, () -> {
-			getNumeroAleatorio(valor);
-		});
+		assertThrows(IllegalArgumentException.class, () -> getNumeroAleatorio(valor));
 	}
 }

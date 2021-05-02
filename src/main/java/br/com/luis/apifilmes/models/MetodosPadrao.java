@@ -10,5 +10,5 @@ public interface MetodosPadrao {
 	 List<Filme> filtrarPorPalavraChave(String palavra);
 	 List<Filme> buscarPorAnoDeLancamento(int ano);
 	 List<Filme> buscarPorIntervaloDeAnos(int de, int ate);
-	 List<Filme> atualizarLista();
+	 void atualizarLista();
 }

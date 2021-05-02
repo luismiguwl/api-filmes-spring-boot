@@ -22,7 +22,7 @@ import br.com.luis.apifilmes.utils.*;
 @EnableScheduling
 public class FilmesPendentesController implements MetodosPadrao {
 	private final TipoDeConsulta tipoDeConsulta = TipoDeConsulta.PENDENTES;
-	private List<Filme> filmes = atualizarLista();
+	private List<Filme> filmes = Mapeamento.getFilmes(tipoDeConsulta);
 
 	@GetMapping("/random")
 	public Filme random() {
@@ -67,7 +67,7 @@ public class FilmesPendentesController implements MetodosPadrao {
 	}
 
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
-	public List<Filme> atualizarLista() {
-		return Mapeamento.getFilmes(tipoDeConsulta);
+	public void atualizarLista() {
+		filmes = Mapeamento.getFilmes(tipoDeConsulta);
 	}
 }
