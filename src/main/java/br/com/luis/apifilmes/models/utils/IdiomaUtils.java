@@ -49,6 +49,6 @@ public class IdiomaUtils {
 	}
 
 	public static boolean filtrarPorIdioma(Filme filme, String idioma) {
-		return filme.getIdioma().getAbreviacao().contains(idioma);
+		return filme.getIdioma().getAbreviacao().startsWith(idioma);
 	}
 }
