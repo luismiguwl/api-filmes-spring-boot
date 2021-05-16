@@ -3,16 +3,20 @@ package br.com.luis.apifilmes.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.luis.apifilmes.models.utils.GeneroUtils;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@AllArgsConstructor
+@Getter
 public class Genero {
-	String nome;
+	private String nome;
+	private Integer quantidadeDeFilmes;
 	
-	@JsonIgnore
-	public int getQuantidadeDeFilmes() {
-		return GeneroUtils.getQuantidadeDeFilmes(this);
+	public Genero(String nome) {
+		this.nome = nome;
+	}
+	
+	public Integer getQuantidadeDeFilmes() {
+		quantidadeDeFilmes = GeneroUtils.getQuantidadeDeFilmes(this);
+		return quantidadeDeFilmes;
 	}
 }

@@ -2,6 +2,8 @@ package br.com.luis.apifilmes.models.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,9 +12,11 @@ import br.com.luis.apifilmes.models.Filme;
 import br.com.luis.apifilmes.models.Genero;
 import br.com.luis.apifilmes.utils.Calculadora;
 import br.com.luis.apifilmes.utils.Mapeamento;
+import lombok.Getter;
 
+@Getter
 public class GeneroUtils {
-	private static List<String> generos = Mapeamento.getDadosDaColuna(Coluna.GENERO);
+	public static List<String> generos = Mapeamento.getDadosDaColuna(Coluna.GENERO);
 
 	public static List<String> getTodosOsGeneros() {
 		List<String> todosOsGeneros = obterCadaGenero(generos);
@@ -27,7 +31,7 @@ public class GeneroUtils {
 		return quantidadeDeFilmesEmCadaGenero;
 	}
 
-	private static List<String> obterCadaGenero(List<String> generos) {
+	public static List<String> obterCadaGenero(List<String> generos) {
 		List<String> generosDistintos = new ArrayList<>();
 
 		for (int i = 0; i < generos.size(); i++) {
@@ -35,7 +39,7 @@ public class GeneroUtils {
 			Arrays.stream(gens).forEach(g -> generosDistintos.add(g.trim()));
 		}
 
-		return generosDistintos.stream().collect(Collectors.toList());
+		return generosDistintos;
 	}
 
 	private static String calcularQuantidadeDeCadaGenero(String genero, List<String> generos) {
@@ -64,13 +68,27 @@ public class GeneroUtils {
 		List<Genero> allGeneros = new ArrayList<>();
 		
 		filmes.forEach(filme -> {
-			allGeneros.addAll(filme.getGeneros());
-			allGeneros.add(filme.getGenero());
+			if (!filme.getGeneros().isEmpty()) {
+				allGeneros.addAll(filme.getGeneros());
+			}
+			
+			if (filme.getGenero() != null) {
+				allGeneros.add(filme.getGenero());
+			}
 		});
 		
 		return allGeneros.stream()
-				.filter(genero -> genero != null)
 				.distinct()
 				.collect(Collectors.toList());
+	}
+	
+	public static List<Genero> getListaDeGenerosOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(List<Genero> generos) {
+		Collections.sort(generos, new Comparator<Genero>() {
+			public int compare(Genero o1, Genero o2) {
+				return Integer.compare(o2.getQuantidadeDeFilmes(), o1.getQuantidadeDeFilmes());
+			}
+		});
+		
+		return generos;
 	}
 }

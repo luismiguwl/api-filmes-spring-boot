@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import br.com.luis.apifilmes.models.Coluna;
 import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.models.Filme;
-import br.com.luis.apifilmes.models.Genero;
 import br.com.luis.apifilmes.models.comparators.DiretorComparatorDecrescente;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
@@ -27,13 +26,13 @@ public class DiretorUtils {
 				.count();
 	}
 	
-	private static List<Diretor> mapearDiretores(List<String> dados) {
+	public static List<Diretor> mapearDiretores(List<String> dados) {
 		List<Diretor> diretores = new ArrayList<>();
 		dados.stream().forEach(linha -> diretores.addAll(MapeamentoUtils.mapearDiretores(linha)));
 		return diretores;
 	}
 	
-	public static List<String> filtrarDiretoresComMaisFilmes(List<Filme> filmes, int top) {
+	public static List<Diretor> filtrarDiretoresComMaisFilmes(List<Filme> filmes, int top) {
 		List<String> nomeDosDiretores = Mapeamento.getDadosDaColuna(Coluna.DIRETOR);
 		List<Diretor> diretores = mapearDiretores(nomeDosDiretores);
 		
@@ -41,7 +40,6 @@ public class DiretorUtils {
 		Collections.sort(diretores, diretorComparatorDecrescente);
 		
 		return diretores.stream()
-				.map(diretor -> diretor.getNome() + " - " + diretor.getQuantidadeDeFilmesVistos() + " filmes")
 				.distinct()
 				.limit(top)
 				.collect(Collectors.toList());

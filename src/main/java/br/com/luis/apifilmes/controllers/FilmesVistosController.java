@@ -84,12 +84,12 @@ public class FilmesVistosController implements MetodosPadrao {
 	}
 	
 	@GetMapping("/analise")
-	public List<String> getSomaDaDuracaoDeTodosOsFilmes() {
-		return Analise.getSomaDaDuracaoDeTodosOsFilmes(filmes);
+	public AnaliseDosFilmes getSomaDaDuracaoDeTodosOsFilmes() {
+		return new AnaliseDosFilmes(filmes);
 	}
 
 	@GetMapping("/ranking/diretores")
-	public List<String> getTopDiretores(@RequestParam int top) {
+	public List<Diretor> getTopDiretores(@RequestParam int top) {
 		return DiretorUtils.filtrarDiretoresComMaisFilmes(filmes, top);
 	}
 	
