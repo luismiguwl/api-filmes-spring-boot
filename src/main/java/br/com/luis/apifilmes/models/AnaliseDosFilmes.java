@@ -1,7 +1,6 @@
 package br.com.luis.apifilmes.models;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +23,8 @@ public class AnaliseDosFilmes {
 	private Mes mesEmQueMaisFilmesForamAssistidos;
 	private Genero generoMaisAssistido;
 	private List<Filme> filmes;
+	private Filme primeiroFilmeVisto;
+	private Filme ultimoFilmeVisto;
 	
 	public AnaliseDosFilmes(List<Filme> filmes) {
 		this.filmes = filmes;
@@ -89,5 +90,14 @@ public class AnaliseDosFilmes {
 		Genero generoMaisAssistido = generos.get(0);
 		
 		return generoMaisAssistido;
+	}
+	
+	public Filme getPrimeiroFilmeVisto() {
+		return filmes.get(0);
+	}
+	
+	public Filme getUltimoFilmeVisto() {
+		int lastMoviePosition = filmes.size() - 1;
+		return filmes.get(lastMoviePosition);
 	}
 }
