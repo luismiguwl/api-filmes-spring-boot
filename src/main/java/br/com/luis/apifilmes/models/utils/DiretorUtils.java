@@ -2,13 +2,13 @@ package br.com.luis.apifilmes.models.utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.Coluna;
 import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.models.Filme;
-import br.com.luis.apifilmes.models.comparators.DiretorComparatorDecrescente;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
 public class DiretorUtils {
@@ -36,8 +36,7 @@ public class DiretorUtils {
 		List<String> nomeDosDiretores = Mapeamento.getDadosDaColuna(Coluna.DIRETOR);
 		List<Diretor> diretores = mapearDiretores(nomeDosDiretores);
 		
-		DiretorComparatorDecrescente diretorComparatorDecrescente = new DiretorComparatorDecrescente();
-		Collections.sort(diretores, diretorComparatorDecrescente);
+		diretores = getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(diretores);
 		
 		return diretores.stream()
 				.distinct()
@@ -59,4 +58,13 @@ public class DiretorUtils {
 				.collect(Collectors.toList());
 	}
 	
+	public static List<Diretor> getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(List<Diretor> diretores) {
+		Collections.sort(diretores, new Comparator<Diretor>() {
+			public int compare(Diretor o1, Diretor o2) {
+				return Integer.compare(o2.getQuantidadeDeFilmesVistos(), o1.getQuantidadeDeFilmesVistos());
+			}
+		});
+		
+		return diretores;
+	}
 }

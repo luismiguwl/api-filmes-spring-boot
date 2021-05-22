@@ -3,12 +3,15 @@ package br.com.luis.apifilmes.models.utils;
 import static br.com.luis.apifilmes.models.utils.FilmeUtils.verificarSeFilmeFoiVistoNoMes;
 import static br.com.luis.apifilmes.utils.Calculadora.calcularPorcentagem;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.models.Filme;
 import br.com.luis.apifilmes.models.Mes;
 import br.com.luis.apifilmes.models.TipoDeConsulta;
@@ -61,6 +64,16 @@ public class MesUtils {
 
 	public static boolean filtrarPorMes(Filme filme, int mes) {
 		return filme.getMes().getNumeroDoMes() == mes;
+	}
+	
+	public static List<Mes> getListaDeMesesOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(List<Mes> meses) {
+		Collections.sort(meses, new Comparator<Mes>() {
+			public int compare(Mes o1, Mes o2) {
+				return Integer.compare(o2.getQuantidadeDeFilmesVistosNoMes(), o1.getQuantidadeDeFilmesVistosNoMes());
+			}
+		});
+		
+		return meses;
 	}
 
 }

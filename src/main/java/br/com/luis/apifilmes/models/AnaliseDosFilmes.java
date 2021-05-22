@@ -1,18 +1,13 @@
 package br.com.luis.apifilmes.models;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-import br.com.luis.apifilmes.models.comparators.MesComparatorDecrescente;
 import br.com.luis.apifilmes.models.utils.DiretorUtils;
 import br.com.luis.apifilmes.models.utils.GeneroUtils;
+import br.com.luis.apifilmes.models.utils.MesUtils;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
-@JsonInclude(Include.NON_EMPTY)
 public class AnaliseDosFilmes {
 	private int minutosAssistidos;
 	private int totalEmHoras;
@@ -29,7 +24,7 @@ public class AnaliseDosFilmes {
 	public AnaliseDosFilmes(List<Filme> filmes) {
 		this.filmes = filmes;
 	}
-
+	
 	public int getMinutosAssistidos() {
 		minutosAssistidos = filmes.stream()
 				.map(filme -> filme.getRuntime())
@@ -76,7 +71,7 @@ public class AnaliseDosFilmes {
 				.map(filme -> filme.getMes())
 				.collect(Collectors.toList());
 		
-		Collections.sort(meses, new MesComparatorDecrescente());
+		meses = MesUtils.getListaDeMesesOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(meses);
 		
 		return meses.stream()
 				.collect(Collectors.toList())
