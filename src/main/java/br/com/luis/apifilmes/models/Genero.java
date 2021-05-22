@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.luis.apifilmes.models.utils.GeneroUtils;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class Genero {
 	private String nome;
+	
+	@JsonIgnore
 	private Integer quantidadeDeFilmes;
 	
 	public Genero(String nome) {

@@ -3,12 +3,14 @@ package br.com.luis.apifilmes.models;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.luis.apifilmes.models.extras.GeneroComQuantidadeDeFilmesExposta;
 import br.com.luis.apifilmes.models.utils.DiretorUtils;
 import br.com.luis.apifilmes.models.utils.GeneroUtils;
 import br.com.luis.apifilmes.models.utils.MesUtils;
-import br.com.luis.apifilmes.utils.Mapeamento;
+import br.com.luis.apifilmes.utils.Mapeamento;		
 
 public class AnaliseDosFilmes {
+	private int quantidadeDeFilmesVistos;
 	private int minutosAssistidos;
 	private int totalEmHoras;
 	private int totalEmDias;
@@ -78,13 +80,13 @@ public class AnaliseDosFilmes {
 				.get(0);
 	}
 	
-	public Genero getGeneroMaisAssistido() {
+	public GeneroComQuantidadeDeFilmesExposta getGeneroMaisAssistido() {
 		List<Genero> generos = GeneroUtils.getAllGeneros(filmes);
 		generos = GeneroUtils.getListaDeGenerosOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(generos);
 		
 		Genero generoMaisAssistido = generos.get(0);
 		
-		return generoMaisAssistido;
+		return new GeneroComQuantidadeDeFilmesExposta(generoMaisAssistido);
 	}
 	
 	public Filme getPrimeiroFilmeVisto() {
@@ -94,5 +96,9 @@ public class AnaliseDosFilmes {
 	public Filme getUltimoFilmeVisto() {
 		int lastMoviePosition = filmes.size() - 1;
 		return filmes.get(lastMoviePosition);
+	}
+	
+	public int getQuantidadeDeFilmesVistos() {
+		return filmes.size();
 	}
 }
