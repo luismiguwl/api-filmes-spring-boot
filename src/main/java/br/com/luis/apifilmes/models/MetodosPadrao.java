@@ -2,13 +2,15 @@ package br.com.luis.apifilmes.models;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 public interface MetodosPadrao {
-	 Filme ultimo();
-	 Filme random();
-	 List<Filme> all();
-	 List<Filme> filtrarPorIdioma(String idioma);
-	 List<Filme> filtrarPorPalavraChave(String palavra);
-	 List<Filme> buscarPorAnoDeLancamento(int ano);
-	 List<Filme> buscarPorIntervaloDeAnos(int de, int ate);
+	 ResponseEntity<Filme> ultimo();
+	 ResponseEntity<Filme> random();
+	 ResponseEntity<List<Filme>> all();
+	 ResponseEntity<List<Filme>> filtrarPorIdioma(String idioma);
+	 ResponseEntity<List<Filme>> filtrarPorPalavraChave(String palavra);
+	 ResponseEntity<List<Filme>> buscarPorAnoDeLancamento(int ano);
+	 ResponseEntity<List<Filme>> buscarPorIntervaloDeAnos(int de, int ate);
 	 void atualizarLista();
 }
