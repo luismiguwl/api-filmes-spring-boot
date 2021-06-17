@@ -10,9 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.luis.apifilmes.models.*;
-import br.com.luis.apifilmes.models.utils.*;
-import br.com.luis.apifilmes.utils.*;
+import br.com.luis.apifilmes.models.AnaliseDosFilmes;
+import br.com.luis.apifilmes.models.Diretor;
+import br.com.luis.apifilmes.models.Filme;
+import br.com.luis.apifilmes.models.Genero;
+import br.com.luis.apifilmes.models.MetodosPadrao;
+import br.com.luis.apifilmes.models.TipoDeConsulta;
+import br.com.luis.apifilmes.models.utils.DiretorUtils;
+import br.com.luis.apifilmes.models.utils.FilmeUtils;
+import br.com.luis.apifilmes.models.utils.GeneroUtils;
+import br.com.luis.apifilmes.models.utils.IdiomaUtils;
+import br.com.luis.apifilmes.models.utils.MesUtils;
+import br.com.luis.apifilmes.utils.Calculadora;
+import br.com.luis.apifilmes.utils.Mapeamento;
 
 @RestController
 @RequestMapping("/filmes/vistos")
@@ -120,5 +130,4 @@ public class FilmesVistosController implements MetodosPadrao {
 	public void atualizarLista() {
 		filmes = Mapeamento.getFilmes(tipoDeConsulta);
 	}
-
 }
