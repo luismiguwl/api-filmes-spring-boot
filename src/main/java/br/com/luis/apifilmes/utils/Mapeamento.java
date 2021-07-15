@@ -42,8 +42,6 @@ public class Mapeamento {
 
                 String titulo = record.get(Coluna.TITULO.getColuna());
                 
-                System.out.println(titulo);
-                
                 if (tipo.equals(TipoDeConsulta.VISTOS)) {
                 	data = record.get(Coluna.DATA_ASSISTIDO.getColuna());
                 }

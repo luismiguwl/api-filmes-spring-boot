@@ -13,58 +13,47 @@ import br.com.luis.apifilmes.utils.Mapeamento;
 
 public class DiretorUtils {
 	public static String mesclarTodosOsDiretores(List<Diretor> diretores) {
-		return diretores.stream()
-				.map(diretor -> diretor.getNome() + " ")
-				.collect(Collectors.joining()).trim();
+		return diretores.stream().map(diretor -> diretor.getNome() + " ").collect(Collectors.joining()).trim();
 	}
 
 	public static int getQuantidadeDeFilmesVistos(Diretor diretor) {
 		List<String> nomeDosDiretores = Mapeamento.getDadosDaColuna(Coluna.DIRETOR);
 		List<Diretor> diretores = mapearDiretores(nomeDosDiretores);
-		return (int) diretores.stream()
-				.filter(d -> d.getNome().equals(diretor.getNome()))
-				.count();
+		return (int) diretores.stream().filter(d -> d.getNome().equals(diretor.getNome())).count();
 	}
-	
+
 	public static List<Diretor> mapearDiretores(List<String> dados) {
 		List<Diretor> diretores = new ArrayList<>();
 		dados.stream().forEach(linha -> diretores.addAll(MapeamentoUtils.mapearDiretores(linha)));
 		return diretores;
 	}
-	
+
 	public static List<Diretor> filtrarDiretoresComMaisFilmes(List<Filme> filmes, int top) {
 		List<String> nomeDosDiretores = Mapeamento.getDadosDaColuna(Coluna.DIRETOR);
 		List<Diretor> diretores = mapearDiretores(nomeDosDiretores);
-		
+
 		diretores = getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(diretores);
-		
-		return diretores.stream()
-				.distinct()
-				.limit(top)
-				.collect(Collectors.toList());
+
+		return diretores.stream().distinct().limit(top).collect(Collectors.toList());
 	}
 
 	public static List<Diretor> getAllDiretores(List<Filme> filmes) {
 		List<Diretor> allDiretores = new ArrayList<>();
-		
+
 		filmes.forEach(filme -> {
 			allDiretores.addAll(filme.getDiretores());
 			allDiretores.add(filme.getDiretor());
 		});
-		
-		return allDiretores.stream()
-				.filter(diretor -> diretor != null)
-				.distinct()
-				.collect(Collectors.toList());
+
+		return allDiretores.stream().filter(diretor -> diretor != null).distinct().collect(Collectors.toList());
 	}
-	
-	public static List<Diretor> getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(List<Diretor> diretores) {
-		Collections.sort(diretores, new Comparator<Diretor>() {
-			public int compare(Diretor o1, Diretor o2) {
-				return Integer.compare(o2.getQuantidadeDeFilmesVistos(), o1.getQuantidadeDeFilmesVistos());
-			}
-		});
-		
+
+	public static List<Diretor> getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(
+			List<Diretor> diretores) {
+		diretores = diretores.stream()
+				.sorted(Comparator.comparing(Diretor::getQuantidadeDeFilmesVistos).reversed())
+				.collect(Collectors.toList());
+
 		return diretores;
 	}
 }

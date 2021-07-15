@@ -67,11 +67,9 @@ public class MesUtils {
 	}
 	
 	public static List<Mes> getListaDeMesesOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(List<Mes> meses) {
-		Collections.sort(meses, new Comparator<Mes>() {
-			public int compare(Mes o1, Mes o2) {
-				return Integer.compare(o2.getQuantidadeDeFilmesVistosNoMes(), o1.getQuantidadeDeFilmesVistosNoMes());
-			}
-		});
+		meses = meses.stream()
+				.sorted(Comparator.comparing(Mes::getQuantidadeDeFilmesVistosNoMes).reversed())
+				.collect(Collectors.toList());
 		
 		return meses;
 	}
