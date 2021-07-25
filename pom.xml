@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.luis</groupId>
-	<artifactId>api</artifactId>
+	<artifactId>api-de-filmes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>api</name>
-	<description>API geral</description>
+	<name>api-de-filmes</name>
+	<description>API de filmes para fins didáticos</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
