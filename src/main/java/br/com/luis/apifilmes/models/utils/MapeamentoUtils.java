@@ -8,13 +8,13 @@ import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.models.Genero;
 
 public class MapeamentoUtils {
-	public static List<Diretor> mapearDiretores(String linha) {
+	public static List<Diretor> obterListaContendoNomeDeCadaDiretorBaseadoNumaString(String linha) {
         return Arrays.stream(linha.split(","))
                 .map(diretor -> new Diretor(diretor.trim()))
                 .collect(Collectors.toList());
     }
 	
-	public static List<Genero> mapearGeneros(String linha) {
+	public static List<Genero> obterListaContendoCadaGeneroBaseadoNumaString(String linha) {
 		return Arrays.stream(linha.split(","))
                 .map(genero -> new Genero(genero.trim()))
                 .collect(Collectors.toList());

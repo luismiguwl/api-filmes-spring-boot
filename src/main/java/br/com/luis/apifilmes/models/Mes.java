@@ -6,16 +6,29 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.luis.apifilmes.utils.Mapeamento;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
-@Data
-@AllArgsConstructor
 public class Mes {
 	private String nome;
 	
 	@JsonIgnore
 	private int numeroDoMes;
+	
+	public Mes(String nome) {
+		this.nome = nome;
+	}
+	
+	public Mes(String nome, int numeroDoMes) {
+		this.nome = nome;
+		this.numeroDoMes = numeroDoMes;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public int getNumeroDoMes() {
+		return numeroDoMes;
+	}
 	
 	public int getQuantidadeDeFilmesVistosNoMes() {
 		List<String> datas = Mapeamento.getDadosDaColuna(Coluna.DATA_ASSISTIDO);
@@ -26,5 +39,6 @@ public class Mes {
 		return (int) numeroDosMeses.stream()
 				.filter(numero -> numero == numeroDoMes)
 				.count();
-	}
+	}	
+	
 }

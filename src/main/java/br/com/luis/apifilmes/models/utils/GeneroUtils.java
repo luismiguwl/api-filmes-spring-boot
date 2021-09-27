@@ -55,7 +55,7 @@ public class GeneroUtils {
 
 	public static int getQuantidadeDeFilmes(Genero genero) {
 		List<Genero> allGeneros = new ArrayList<>();
-		generos.forEach(g -> allGeneros.addAll(MapeamentoUtils.mapearGeneros(g)));
+		generos.forEach(g -> allGeneros.addAll(MapeamentoUtils.obterListaContendoCadaGeneroBaseadoNumaString(g)));
 		
 		int quantidade = (int) allGeneros.stream()
 				.filter(g -> g.getNome().equals(genero.getNome()))

@@ -8,12 +8,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import br.com.luis.apifilmes.models.utils.MesUtils;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
-@Data
 @JsonInclude(Include.NON_EMPTY)
-@AllArgsConstructor
 public class Filme {
 	private String titulo;
 	private int anoDeLancamento;
@@ -28,6 +24,94 @@ public class Filme {
 	@JsonIgnore
 	public Mes getMes() {
 		return MesUtils.definirDadosDoMes(this);
+	}
+
+	public Filme(String titulo, int anoDeLancamento, String dataEmQueFoiAssistido, Idioma idioma, Diretor diretor,
+			List<Diretor> diretores, Genero genero, List<Genero> generos, int runtime) {
+		this.titulo = titulo;
+		this.anoDeLancamento = anoDeLancamento;
+		this.dataEmQueFoiAssistido = dataEmQueFoiAssistido;
+		this.idioma = idioma;
+		this.diretor = diretor;
+		this.diretores = diretores;
+		this.genero = genero;
+		this.generos = generos;
+		this.runtime = runtime;
+	}
+
+	public Filme() {
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public int getAnoDeLancamento() {
+		return anoDeLancamento;
+	}
+
+	public void setAnoDeLancamento(int anoDeLancamento) {
+		this.anoDeLancamento = anoDeLancamento;
+	}
+
+	public String getDataEmQueFoiAssistido() {
+		return dataEmQueFoiAssistido;
+	}
+
+	public void setDataEmQueFoiAssistido(String dataEmQueFoiAssistido) {
+		this.dataEmQueFoiAssistido = dataEmQueFoiAssistido;
+	}
+
+	public Idioma getIdioma() {
+		return idioma;
+	}
+
+	public void setIdioma(Idioma idioma) {
+		this.idioma = idioma;
+	}
+
+	public Diretor getDiretor() {
+		return diretor;
+	}
+
+	public void setDiretor(Diretor diretor) {
+		this.diretor = diretor;
+	}
+
+	public List<Diretor> getDiretores() {
+		return diretores;
+	}
+
+	public void setDiretores(List<Diretor> diretores) {
+		this.diretores = diretores;
+	}
+
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
+
+	public List<Genero> getGeneros() {
+		return generos;
+	}
+
+	public void setGeneros(List<Genero> generos) {
+		this.generos = generos;
+	}
+
+	public int getRuntime() {
+		return runtime;
+	}
+
+	public void setRuntime(int runtime) {
+		this.runtime = runtime;
 	}
 
 }

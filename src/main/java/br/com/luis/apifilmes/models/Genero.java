@@ -3,9 +3,7 @@ package br.com.luis.apifilmes.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.luis.apifilmes.models.utils.GeneroUtils;
-import lombok.Getter;
 
-@Getter
 public class Genero {
 	private String nome;
 	
@@ -14,6 +12,10 @@ public class Genero {
 	
 	public Genero(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getNome() {
+		return nome;
 	}
 	
 	public Integer getQuantidadeDeFilmes() {

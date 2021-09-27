@@ -2,22 +2,22 @@ package br.com.luis.apifilmes.utils;
 
 import static br.com.luis.apifilmes.models.utils.MapeamentoUtils.*;
 
-import java.io.FileReader;
-import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
+import br.com.luis.apifilmes.arquivo.Arquivo;
 import br.com.luis.apifilmes.models.*;
+import static br.com.luis.apifilmes.models.Coluna.*;
 
 public class Mapeamento {
 	public static List<Filme> getFilmes(TipoDeConsulta tipo) {
 		List<Filme> filmes = new ArrayList<>();
 		String destino = tipo.getDestino();
 
-		Iterable<CSVRecord> records = lerArquivoCsv(destino);
+		Iterable<CSVRecord> records = Arquivo.lerArquivoCsv(destino);
 
 		for (CSVRecord record : records) {
 			String data = null;
@@ -28,27 +28,27 @@ public class Mapeamento {
 			List<Genero> generos = new ArrayList<>();
 			Genero genero = null;
 
-			String titulo = record.get(Coluna.TITULO.getColuna());
+			String titulo = record.get(TITULO.getColuna());
 
 			if (tipo.equals(TipoDeConsulta.VISTOS)) {
-				data = record.get(Coluna.DATA_ASSISTIDO.getColuna());
+				data = record.get(DATA_ASSISTIDO.getColuna());
 			}
 
-			int ano = Integer.parseInt(record.get(Coluna.ANO_LANCAMENTO.getColuna()));
-			Idioma idioma = new Idioma(record.get(Coluna.IDIOMA.getColuna()));
+			int ano = Integer.parseInt(record.get(ANO_LANCAMENTO.getColuna()));
+			Idioma idioma = new Idioma(record.get(IDIOMA.getColuna()));
 
-			if (record.get(Coluna.DIRETOR.getColuna()).contains(",")) {
-				diretores = mapearDiretores(record.get(Coluna.DIRETOR.getColuna()));
+			if (record.get(DIRETOR.getColuna()).contains(",")) {
+				diretores = obterListaContendoNomeDeCadaDiretorBaseadoNumaString(record.get(DIRETOR.getColuna()));
 			} else {
-				diretor = new Diretor(record.get(Coluna.DIRETOR.getColuna()));
+				diretor = new Diretor(record.get(DIRETOR.getColuna()));
 			}
 
-			int runtime = Integer.parseInt(record.get(Coluna.DURACAO.getColuna()).trim());
+			int runtime = Integer.parseInt(record.get(DURACAO.getColuna()).trim());
 
-			if (record.get(Coluna.GENERO.getColuna()).contains(",")) {
-				generos = mapearGeneros(record.get(Coluna.GENERO.getColuna()));
+			if (record.get(GENERO.getColuna()).contains(",")) {
+				generos = obterListaContendoCadaGeneroBaseadoNumaString(record.get(GENERO.getColuna()));
 			} else {
-				genero = new Genero(record.get(Coluna.GENERO.getColuna()));
+				genero = new Genero(record.get(GENERO.getColuna()));
 			}
 
 			Filme filme = new Filme(titulo, ano, data, idioma, diretor, diretores, genero, generos, runtime);
@@ -58,41 +58,63 @@ public class Mapeamento {
 		return filmes;
 	}
 
-	public static List<String> getAbreviacoes() {
-		List<String> abreviacoes = new ArrayList<>();
-		String destino = TipoDeConsulta.ABREVIACOES.getDestino();
-
-		Iterable<CSVRecord> records = lerArquivoCsv(destino);
-
-		for (CSVRecord record : records) {
-			abreviacoes.add(record.get("idioma") + "," + record.get("abreviacao"));
-		}
-
-		return abreviacoes;
-	}
-
-	public static List<String> getDadosDaColuna(Coluna coluna) {
+	public static List<String> getDadosDaColuna(Coluna... colunas) {
 		List<String> dadosDaColuna = new ArrayList<>();
-		String destino = TipoDeConsulta.VISTOS.getDestino();
-		String nomeDaColuna = coluna.getColuna();
+		String destino = obterDestinoBaseadoNasColunas(colunas);
 
-		Iterable<CSVRecord> records = lerArquivoCsv(destino);
+		Iterable<CSVRecord> records = Arquivo.lerArquivoCsv(destino);
 
 		for (CSVRecord record : records) {
-			dadosDaColuna.add(record.get(nomeDaColuna));
+			String dado;
+			
+			if (colunas.length > 1) {
+				dado = obterLinhaContendoDadosDasColunasInserindoVirgulaEntreElesSeForMaisDeUmaColuna(record, colunas);
+			} else {
+				String coluna = colunas[0].getColuna();
+				dado = record.get(coluna);
+			}
+			
+			dadosDaColuna.add(dado);
 		}
 
 		return dadosDaColuna;
 	}
-
-	private static Iterable<CSVRecord> lerArquivoCsv(String destino) {
-		try {
-			Reader in = new FileReader(destino);
-			Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
-			return records;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+	
+	private static String obterDestinoBaseadoNasColunas(Coluna[] colunas) {
+		boolean colunaDeAbreviacaoEncontrada = 
+				Arrays.asList(colunas).stream()
+				.anyMatch(coluna -> coluna.equals(ABREVIACAO));
+		
+		if (colunaDeAbreviacaoEncontrada) {
+			return TipoDeConsulta.ABREVIACOES.getDestino();
+		} else {
+			return TipoDeConsulta.VISTOS.getDestino();
 		}
+	}
+	
+	private static String obterLinhaContendoDadosDasColunasInserindoVirgulaEntreElesSeForMaisDeUmaColuna(CSVRecord record, Coluna[] colunas) {
+		String[] dados = new String[colunas.length];
+		
+		for (int i = 0; i < colunas.length; i++) {
+			String coluna = colunas[i].getColuna();
+			dados[i] = record.get(coluna);
+		}
+		
+		String linhaContendoDados = aplicarVirgulaSeNecessario(dados);
+		return linhaContendoDados;
+	}
+	
+	private static String aplicarVirgulaSeNecessario(String[] dados) {
+		if (dados.length > 1) {
+			String linha = dados[0];
+			
+			for (int i = 1; i < dados.length; i++) {
+				linha += "," + dados[i];
+			}
+			
+			return linha;
+		}
+		
+		return dados[0];
 	}
 }

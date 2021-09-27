@@ -127,7 +127,7 @@ public class FilmesVistosController implements MetodosPadrao {
 	}
 	
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
-	public void atualizarLista() {
+	private void atualizarLista() {
 		filmes = Mapeamento.getFilmes(tipoDeConsulta);
 	}
 }

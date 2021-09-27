@@ -1,13 +1,16 @@
 package br.com.luis.apifilmes.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@AllArgsConstructor
-@Getter
 public enum TipoDeConsulta {
-	VISTOS("filmes-2021\\Filmes assistidos em 2021.csv"), PENDENTES("filmes-2021\\Filmes pendentes para 2021.csv"),
-	ABREVIACOES("filmes-2021\\Abreviacoes dos idiomas.csv");
+	VISTOS("/home/luis/ondrive/Documentos do Eclipse/api-filmes-spring-boot/filmes-2021/Filmes assistidos em 2021.csv"), PENDENTES("/home/luis/ondrive/Documentos do Eclipse/api-filmes-spring-boot/filmes-2021/Filmes pendentes para 2021.csv"),
+	ABREVIACOES("/home/luis/ondrive/Documentos do Eclipse/api-filmes-spring-boot/filmes-2021/Abreviacoes dos idiomas.csv");
 
 	private String destino;
+	
+	private TipoDeConsulta(String destino) {
+		this.destino = destino;
+	}
+	
+	public String getDestino() {
+		return destino;
+	}
 }

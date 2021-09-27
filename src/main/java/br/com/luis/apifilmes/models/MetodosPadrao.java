@@ -12,5 +12,4 @@ public interface MetodosPadrao {
 	 ResponseEntity<List<Filme>> filtrarPorPalavraChave(String palavra);
 	 ResponseEntity<List<Filme>> buscarPorAnoDeLancamento(int ano);
 	 ResponseEntity<List<Filme>> buscarPorIntervaloDeAnos(int de, int ate);
-	 void atualizarLista();
 }

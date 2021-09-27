@@ -1,7 +1,5 @@
 package br.com.luis.apifilmes.controllers;
 
-import static br.com.luis.apifilmes.models.utils.FilmeUtils.buscarFilmePorPalavra;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,7 +71,7 @@ public class FilmesPendentesController implements MetodosPadrao {
 	}
 
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
-	public void atualizarLista() {
+	private void atualizarLista() {
 		filmes = Mapeamento.getFilmes(tipoDeConsulta);
 	}
 }
