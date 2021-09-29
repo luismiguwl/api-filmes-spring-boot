@@ -16,10 +16,10 @@ import lombok.Getter;
 
 @Getter
 public class GeneroUtils {
-	public static List<String> generos = Mapeamento.getDadosDaColuna(Coluna.GENERO);
+	public static String[] generos = Mapeamento.getDadosDaColuna(Coluna.GENERO);
 
 	public static List<String> getTodosOsGeneros() {
-		List<String> todosOsGeneros = obterCadaGenero(generos);
+		List<String> todosOsGeneros = obterListaDeGenerosDistintos(generos);
 		List<String> quantidadeDeFilmesEmCadaGenero = new ArrayList<>();
 		List<String> generosDistintos = todosOsGeneros.stream().distinct().collect(Collectors.toList());
 
@@ -31,15 +31,18 @@ public class GeneroUtils {
 		return quantidadeDeFilmesEmCadaGenero;
 	}
 
-	public static List<String> obterCadaGenero(List<String> generos) {
-		List<String> generosDistintos = new ArrayList<>();
+	public static List<String> obterListaDeGenerosDistintos(String[] listaDeGenerosSeparadoPorVirgula) {
+		List<String> generos = new ArrayList<>();
 
-		for (int i = 0; i < generos.size(); i++) {
-			String[] gens = generos.get(i).split(",");
-			Arrays.stream(gens).forEach(g -> generosDistintos.add(g.trim()));
+		for (String linhaDeGenerosSeparadaPorVirgula : listaDeGenerosSeparadoPorVirgula) {
+			String[] generosContidosNaLinha = linhaDeGenerosSeparadaPorVirgula.split(",");
+
+			for (String genero : generosContidosNaLinha) {
+				generos.add(genero.trim());
+			}
 		}
 
-		return generosDistintos;
+		return generos;
 	}
 
 	private static String calcularQuantidadeDeCadaGenero(String genero, List<String> generos) {
@@ -53,29 +56,21 @@ public class GeneroUtils {
 		}
 	}
 
-	public static int getQuantidadeDeFilmes(Genero genero) {
-		List<Genero> allGeneros = new ArrayList<>();
-		generos.forEach(g -> allGeneros.addAll(MapeamentoUtils.obterListaContendoCadaGeneroBaseadoNumaString(g)));
-		
-		int quantidade = (int) allGeneros.stream()
-				.filter(g -> g.getNome().equals(genero.getNome()))
+	public static int getQuantidadeDeFilmes(Genero generoAlvo) {
+		List<Genero> generos = MapeamentoUtils.obterListaContendoCadaGeneroBaseadoNumaString(generoAlvo.getNome());
+
+		return (int) generos.stream()
+				.filter(genero -> genero.getNome().equals(generoAlvo.getNome()))
 				.count();
-		
-		return quantidade;
 	}
 
-	public static List<Genero> getAllGeneros(List<Filme> filmes) {
+	public static List<Genero> getAllGenerosDistintos(List<Filme> filmes) {
 		List<Genero> allGeneros = new ArrayList<>();
-		
-		filmes.forEach(filme -> {
-			if (!filme.getGeneros().isEmpty()) {
-				allGeneros.addAll(filme.getGeneros());
-			}
-			
-			if (filme.getGenero() != null) {
-				allGeneros.add(filme.getGenero());
-			}
-		});
+
+		for (Filme filme : filmes) {
+			List<Genero> generos = filme.getGeneros();
+			allGeneros.addAll(generos);
+		}
 		
 		return allGeneros.stream()
 				.distinct()

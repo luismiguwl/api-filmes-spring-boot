@@ -116,13 +116,13 @@ public class FilmesVistosController implements MetodosPadrao {
 	
 	@GetMapping("/diretores")
 	public ResponseEntity<List<Diretor>> getDiretores() {
-		List<Diretor> listaContendoTodosOsDiretores = DiretorUtils.getAllDiretores(filmes);
+		List<Diretor> listaContendoTodosOsDiretores = DiretorUtils.getAllDiretoresDistintos(filmes);
 		return ResponseEntity.ok(listaContendoTodosOsDiretores);
 	}
 	
 	@GetMapping("/generos")
 	public ResponseEntity<List<Genero>> getGeneros() {
-		List<Genero> listaContendoTodosOsGeneros = GeneroUtils.getAllGeneros(filmes);
+		List<Genero> listaContendoTodosOsGeneros = GeneroUtils.getAllGenerosDistintos(filmes);
 		return ResponseEntity.ok(listaContendoTodosOsGeneros);
 	}
 	

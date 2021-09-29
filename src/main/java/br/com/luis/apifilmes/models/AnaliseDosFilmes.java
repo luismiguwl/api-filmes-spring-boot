@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import br.com.luis.apifilmes.models.extras.GeneroComQuantidadeDeFilmesExposta;
 import br.com.luis.apifilmes.models.utils.DiretorUtils;
 import br.com.luis.apifilmes.models.utils.GeneroUtils;
+import br.com.luis.apifilmes.models.utils.MapeamentoUtils;
 import br.com.luis.apifilmes.models.utils.MesUtils;
 import br.com.luis.apifilmes.utils.Mapeamento;		
 
@@ -46,8 +47,8 @@ public class AnaliseDosFilmes {
 	}
 
 	public int getDiretoresDiferentes() {
-		List<String> nomeDosDiretores = Mapeamento.getDadosDaColuna(Coluna.DIRETOR);
-		List<Diretor> diretores = DiretorUtils.mapearDiretores(nomeDosDiretores);
+		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(Coluna.DIRETOR);
+		List<Diretor> diretores = MapeamentoUtils.obterListaDeDiretoresBaseadoNumaListaDeLinhasContendoNomes(nomeDosDiretores);
 
 		return (int) diretores.stream()
 				.map(diretor -> diretor.getNome())
@@ -56,8 +57,8 @@ public class AnaliseDosFilmes {
 	}
 
 	public int getGenerosDiferentes() {
-		List<String> nomeDosGeneros = Mapeamento.getDadosDaColuna(Coluna.GENERO);
-		nomeDosGeneros = GeneroUtils.obterCadaGenero(nomeDosGeneros);
+		String[] listaContendoCadaGenero = Mapeamento.getDadosDaColuna(Coluna.GENERO);
+		List<String> nomeDosGeneros = GeneroUtils.obterListaDeGenerosDistintos(listaContendoCadaGenero);
 
 		return (int) nomeDosGeneros.stream()
 				.distinct()
@@ -81,7 +82,7 @@ public class AnaliseDosFilmes {
 	}
 	
 	public GeneroComQuantidadeDeFilmesExposta getGeneroMaisAssistido() {
-		List<Genero> generos = GeneroUtils.getAllGeneros(filmes);
+		List<Genero> generos = GeneroUtils.getAllGenerosDistintos(filmes);
 		generos = GeneroUtils.getListaDeGenerosOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(generos);
 		
 		Genero generoMaisAssistido = generos.get(0);

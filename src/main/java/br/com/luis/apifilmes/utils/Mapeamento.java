@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import br.com.luis.apifilmes.models.utils.MapeamentoUtils;
 import org.apache.commons.csv.CSVRecord;
 
 import br.com.luis.apifilmes.arquivo.Arquivo;
@@ -22,12 +23,6 @@ public class Mapeamento {
 		for (CSVRecord record : records) {
 			String data = null;
 
-			List<Diretor> diretores = new ArrayList<>();
-			Diretor diretor = null;
-
-			List<Genero> generos = new ArrayList<>();
-			Genero genero = null;
-
 			String titulo = record.get(TITULO.getColuna());
 
 			if (tipo.equals(TipoDeConsulta.VISTOS)) {
@@ -37,32 +32,23 @@ public class Mapeamento {
 			int ano = Integer.parseInt(record.get(ANO_LANCAMENTO.getColuna()));
 			Idioma idioma = new Idioma(record.get(IDIOMA.getColuna()));
 
-			if (record.get(DIRETOR.getColuna()).contains(",")) {
-				diretores = obterListaContendoNomeDeCadaDiretorBaseadoNumaString(record.get(DIRETOR.getColuna()));
-			} else {
-				diretor = new Diretor(record.get(DIRETOR.getColuna()));
-			}
+			List<Diretor> diretores = obterListaDeDiretoresBaseadoNumaListaDeLinhasContendoNomes(record.get(DIRETOR.getColuna()));
+			List<Genero> generos = obterListaContendoCadaGeneroBaseadoNumaString(record.get(GENERO.getColuna()));
 
 			int runtime = Integer.parseInt(record.get(DURACAO.getColuna()).trim());
 
-			if (record.get(GENERO.getColuna()).contains(",")) {
-				generos = obterListaContendoCadaGeneroBaseadoNumaString(record.get(GENERO.getColuna()));
-			} else {
-				genero = new Genero(record.get(GENERO.getColuna()));
-			}
-
-			Filme filme = new Filme(titulo, ano, data, idioma, diretor, diretores, genero, generos, runtime);
+			Filme filme = new Filme(titulo, ano, data, idioma, diretores, generos, runtime);
 			filmes.add(filme);
 		}
 
 		return filmes;
 	}
 
-	public static List<String> getDadosDaColuna(Coluna... colunas) {
-		List<String> dadosDaColuna = new ArrayList<>();
+	public static String[] getDadosDaColuna(Coluna... colunas) {
 		String destino = obterDestinoBaseadoNasColunas(colunas);
-
 		Iterable<CSVRecord> records = Arquivo.lerArquivoCsv(destino);
+
+		List<String> dadosDaColuna = new ArrayList<>();
 
 		for (CSVRecord record : records) {
 			String dado;
@@ -77,7 +63,8 @@ public class Mapeamento {
 			dadosDaColuna.add(dado);
 		}
 
-		return dadosDaColuna;
+		String[] dados = MapeamentoUtils.converterListaDeStringParaArray(dadosDaColuna);
+		return dados;
 	}
 	
 	private static String obterDestinoBaseadoNasColunas(Coluna[] colunas) {

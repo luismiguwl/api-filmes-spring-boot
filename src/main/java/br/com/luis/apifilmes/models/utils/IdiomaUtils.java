@@ -1,5 +1,6 @@
 package br.com.luis.apifilmes.models.utils;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,46 +10,56 @@ import br.com.luis.apifilmes.utils.Calculadora;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
 public class IdiomaUtils {
-	private static List<String> idiomas = Mapeamento.getDadosDaColuna(Coluna.IDIOMA);
+	private static String[] idiomas = Mapeamento.getDadosDaColuna(Coluna.IDIOMA);
 	
-	public static String getAbreviacao(String idioma) {
-		List<String> listaDeAbreviacoes = Mapeamento.getDadosDaColuna(Coluna.IDIOMA, Coluna.ABREVIACAO);
-		return listaDeAbreviacoes.stream()
-				.filter(abreviacao -> abreviacao.split(",")[0].equals(idioma))
-				.map(abreviacao -> abreviacao.split(",")[1]).collect(Collectors.toList())
-				.get(0)
-				.toLowerCase();
-	}
+	public static String getAbreviacao(String idiomaAlvo) {
+		String[] listaContendoIdiomaEAbreviacaoSeparadosPorVirgula = Mapeamento.getDadosDaColuna(Coluna.IDIOMA, Coluna.ABREVIACAO);
 
-	private static String getQuantidadeDeFilmes(String idioma) {
-		String corpo = "";
+		for (String idiomaEAbreviacao : listaContendoIdiomaEAbreviacaoSeparadosPorVirgula) {
+			String[] idiomaEAbreviacaoSeparadosPorVirgula = idiomaEAbreviacao.split(",");
 
-		int quantidade = (int) idiomas.stream()
-				.filter(i -> i.equalsIgnoreCase(idioma))
-				.count();
-		
-		if (quantidade == 1) {
-			corpo += quantidade + " filme visto em " + idioma;
-		} else {
-			corpo += quantidade + " filmes vistos em " + idioma;
+			String idioma = idiomaEAbreviacaoSeparadosPorVirgula[0];
+			String abreviacao = idiomaEAbreviacaoSeparadosPorVirgula[1];
+
+			if (idioma == idiomaAlvo) {
+				return abreviacao;
+			}
 		}
 
-		int porcentagem = Calculadora.calcularPorcentagem(idiomas.size(), quantidade);
-		corpo += " (aprox. " + porcentagem + "%)";
+		return null;
+	}
 
-		return corpo;
+	public static List<String> definirQuantidadeDeFilmesEmDeterminadoIdioma() {
+		List<String> idiomasDistintos = getIdiomasDistintos();
+
+		return idiomasDistintos.stream()
+				.map(idioma -> getQuantidadeDeFilmes(idioma))
+				.collect(Collectors.toList());
 	}
 
 	private static List<String> getIdiomasDistintos() {
-		return idiomas.stream()
+		return Arrays.asList(idiomas).stream()
 				.distinct()
 				.collect(Collectors.toList());
 	}
 
-	public static List<String> definirQuantidadeDeFilmesEmDeterminadoIdioma() {
-		return getIdiomasDistintos().stream()
-				.map(filme -> getQuantidadeDeFilmes(filme))
-				.collect(Collectors.toList());
+	private static String getQuantidadeDeFilmes(String idioma) {
+		int quantidade = (int) Arrays.asList(idiomas).stream()
+				.filter(i -> i.equalsIgnoreCase(idioma))
+				.count();
+
+		String corpo = "";
+
+		if (quantidade == 1) {
+			corpo += quantidade + " filme visto no idioma " + idioma;
+		} else {
+			corpo += quantidade + " filmes vistos no idioma " + idioma;
+		}
+
+		int porcentagem = Calculadora.calcularPorcentagem(idiomas.length, quantidade);
+		corpo += " (aprox. " + porcentagem + "%)";
+
+		return corpo;
 	}
 
 	public static boolean filtrarPorIdioma(Filme filme, String idioma) {

@@ -1,11 +1,8 @@
 package br.com.luis.apifilmes.models;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.luis.apifilmes.utils.Mapeamento;
+import static br.com.luis.apifilmes.utils.Mapeamento.getDadosDaColuna;
 
 public class Mes {
 	private String nome;
@@ -31,14 +28,23 @@ public class Mes {
 	}
 	
 	public int getQuantidadeDeFilmesVistosNoMes() {
-		List<String> datas = Mapeamento.getDadosDaColuna(Coluna.DATA_ASSISTIDO);
-		List<Integer> numeroDosMeses = datas.stream()
-				.map(data -> Integer.parseInt(data.split("/")[1]))
-				.collect(Collectors.toList());
+		String[] datas = getDadosDaColuna(Coluna.DATA_ASSISTIDO);
+		int quantidadeDeFilmesVistosNoMes = 0;
 		
-		return (int) numeroDosMeses.stream()
-				.filter(numero -> numero == numeroDoMes)
-				.count();
+		// 15/02/2021
+		// String[] d = {"15", "02", "2021"};
+		// int mes = d[1];
+
+		for (String data : datas) {
+			String[] dadosDaDataSeparadosPorBarra = data.split("/");
+			int mes = Integer.parseInt(dadosDaDataSeparadosPorBarra[1]);
+
+			if (mes == getNumeroDoMes()) {
+				quantidadeDeFilmesVistosNoMes++;
+			}
+		}
+
+		return quantidadeDeFilmesVistosNoMes;
 	}	
 	
 }

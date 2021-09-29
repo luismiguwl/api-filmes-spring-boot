@@ -1,5 +1,6 @@
 package br.com.luis.apifilmes.models.utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,15 +9,49 @@ import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.models.Genero;
 
 public class MapeamentoUtils {
-	public static List<Diretor> obterListaContendoNomeDeCadaDiretorBaseadoNumaString(String linha) {
-        return Arrays.stream(linha.split(","))
-                .map(diretor -> new Diretor(diretor.trim()))
-                .collect(Collectors.toList());
+	public static List<Diretor> obterListaDeDiretoresBaseadoNumaListaDeLinhasContendoNomes(String... linhas) {
+		List<Diretor> diretores = new ArrayList<>();
+
+		for (String linha : linhas) {
+			if (linha.contains(",")) {
+				String[] elementosDaLinhaSeparadaPorVirgula = linha.split(",");
+
+				for (String nome : elementosDaLinhaSeparadaPorVirgula) {
+					diretores.add(new Diretor(nome.trim()));
+				}
+			} else {
+				diretores.add(new Diretor(linha.trim()));
+			}
+		}
+
+		return diretores;
     }
 	
-	public static List<Genero> obterListaContendoCadaGeneroBaseadoNumaString(String linha) {
-		return Arrays.stream(linha.split(","))
-                .map(genero -> new Genero(genero.trim()))
-                .collect(Collectors.toList());
+	public static List<Genero> obterListaContendoCadaGeneroBaseadoNumaString(String... linhas) {
+		List<Genero> generos = new ArrayList<>();
+
+		for (String linha : linhas) {
+			if (linha.contains(",")) {
+				String[] elementosDaLinhaSeparadaPorVirgula = linha.split(",");
+
+				for (String nome : elementosDaLinhaSeparadaPorVirgula) {
+					generos.add(new Genero(nome.trim()));
+				}
+			} else {
+				generos.add(new Genero(linha.trim()));
+			}
+		}
+
+		return generos;
+	}
+
+	public static String[] converterListaDeStringParaArray(List<String> strings) {
+		String[] array = new String[strings.size()];
+
+		for (int i = 0; i < strings.size(); i++) {
+			array[i] = strings.get(i);
+		}
+
+		return array;
 	}
 }

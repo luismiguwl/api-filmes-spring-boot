@@ -15,9 +15,7 @@ public class Filme {
 	private int anoDeLancamento;
 	private String dataEmQueFoiAssistido;
 	private Idioma idioma;
-	private Diretor diretor;
 	private List<Diretor> diretores = new ArrayList<>();
-	private Genero genero;
 	private List<Genero> generos = new ArrayList<>();
 	private int runtime;
 
@@ -26,15 +24,13 @@ public class Filme {
 		return MesUtils.definirDadosDoMes(this);
 	}
 
-	public Filme(String titulo, int anoDeLancamento, String dataEmQueFoiAssistido, Idioma idioma, Diretor diretor,
-			List<Diretor> diretores, Genero genero, List<Genero> generos, int runtime) {
+	public Filme(String titulo, int anoDeLancamento, String dataEmQueFoiAssistido, Idioma idioma,
+			List<Diretor> diretores, List<Genero> generos, int runtime) {
 		this.titulo = titulo;
 		this.anoDeLancamento = anoDeLancamento;
 		this.dataEmQueFoiAssistido = dataEmQueFoiAssistido;
 		this.idioma = idioma;
-		this.diretor = diretor;
 		this.diretores = diretores;
-		this.genero = genero;
 		this.generos = generos;
 		this.runtime = runtime;
 	}
@@ -74,28 +70,12 @@ public class Filme {
 		this.idioma = idioma;
 	}
 
-	public Diretor getDiretor() {
-		return diretor;
-	}
-
-	public void setDiretor(Diretor diretor) {
-		this.diretor = diretor;
-	}
-
 	public List<Diretor> getDiretores() {
 		return diretores;
 	}
 
 	public void setDiretores(List<Diretor> diretores) {
 		this.diretores = diretores;
-	}
-
-	public Genero getGenero() {
-		return genero;
-	}
-
-	public void setGenero(Genero genero) {
-		this.genero = genero;
 	}
 
 	public List<Genero> getGeneros() {

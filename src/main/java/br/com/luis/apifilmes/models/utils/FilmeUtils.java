@@ -15,14 +15,14 @@ public class FilmeUtils {
 
 
 	private static String mesclarTituloComDiretores(Filme filme) {
-		String corpo = filme.getTitulo() + " ";
+		String corpo = filme.getTitulo();
 
-		if (filme.getDiretores().isEmpty()) {
-			corpo += filme.getDiretor().getNome() + " ";
-			return corpo.trim();
+		if (filme.getDiretores().size() == 1) {
+			corpo += " " + filme.getDiretores().get(0).getNome();
+			return corpo;
 		}
 		
-		corpo += DiretorUtils.mesclarTodosOsDiretores(filme.getDiretores());
+		corpo += " " + DiretorUtils.mesclarTodosOsDiretores(filme.getDiretores());
 		return corpo;
 	}
 
