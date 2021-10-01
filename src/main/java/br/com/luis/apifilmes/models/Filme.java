@@ -2,6 +2,7 @@ package br.com.luis.apifilmes.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -94,4 +95,13 @@ public class Filme {
 		this.runtime = runtime;
 	}
 
+	public String mesclarTituloComDiretores() {
+		String corpo = getTitulo();
+
+		corpo += getDiretores().stream()
+				.map(diretor -> diretor.getNome())
+				.collect(Collectors.joining());
+
+		return corpo;
+	}
 }

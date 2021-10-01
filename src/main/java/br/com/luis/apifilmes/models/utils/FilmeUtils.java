@@ -1,6 +1,7 @@
 package br.com.luis.apifilmes.models.utils;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.Filme;
@@ -13,28 +14,15 @@ public class FilmeUtils {
 				.collect(Collectors.toList());
 	}
 
-
-	private static String mesclarTituloComDiretores(Filme filme) {
-		String corpo = filme.getTitulo();
-
-		if (filme.getDiretores().size() == 1) {
-			corpo += " " + filme.getDiretores().get(0).getNome();
-			return corpo;
-		}
-		
-		corpo += " " + DiretorUtils.mesclarTodosOsDiretores(filme.getDiretores());
-		return corpo;
-	}
-
 	public static boolean verificarSeFilmeFoiVistoNoMes(Filme filme, Mes mes) {
 		return filme.getMes().getNome().equals(mes.getNome());
 	}
 
 	private static boolean verificarSeExistePalavraNosDadosDoFilme(Filme filme, String chave) {
-		String tituloDoFilmeConcatenadoComDiretores = mesclarTituloComDiretores(filme).toLowerCase();
+		String tituloDoFilmeConcatenadoComNomeDosDiretores = filme.mesclarTituloComDiretores().toLowerCase();
 		
 		chave = chave.toLowerCase();
-		return tituloDoFilmeConcatenadoComDiretores.contains(chave);
+		return tituloDoFilmeConcatenadoComNomeDosDiretores.contains(chave);
 	}
 
 
