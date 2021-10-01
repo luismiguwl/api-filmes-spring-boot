@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.luis.apifilmes.models.utils.DiretorUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -96,12 +97,8 @@ public class Filme {
 	}
 
 	public String mesclarTituloComDiretores() {
-		String corpo = getTitulo();
-
-		corpo += getDiretores().stream()
-				.map(diretor -> diretor.getNome())
-				.collect(Collectors.joining());
-
+		String corpo = getTitulo() + " ";
+		corpo += DiretorUtils.mesclarTodosOsDiretores(diretores);
 		return corpo;
 	}
 }

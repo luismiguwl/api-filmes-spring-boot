@@ -5,6 +5,7 @@ import static br.com.luis.apifilmes.models.utils.MapeamentoUtils.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.utils.MapeamentoUtils;
 import org.apache.commons.csv.CSVRecord;
@@ -12,6 +13,7 @@ import org.apache.commons.csv.CSVRecord;
 import br.com.luis.apifilmes.arquivo.Arquivo;
 import br.com.luis.apifilmes.models.*;
 import static br.com.luis.apifilmes.models.Coluna.*;
+import static br.com.luis.apifilmes.models.TipoDeConsulta.*;
 
 public class Mapeamento {
 	public static List<Filme> getFilmes(TipoDeConsulta tipo) {
@@ -72,11 +74,7 @@ public class Mapeamento {
 				Arrays.asList(colunas).stream()
 				.anyMatch(coluna -> coluna.equals(ABREVIACAO));
 		
-		if (colunaDeAbreviacaoEncontrada) {
-			return TipoDeConsulta.ABREVIACOES.getDestino();
-		} else {
-			return TipoDeConsulta.VISTOS.getDestino();
-		}
+		return colunaDeAbreviacaoEncontrada ? ABREVIACOES.getDestino() : VISTOS.getDestino();
 	}
 	
 	private static String obterLinhaContendoDadosDasColunasInserindoVirgulaEntreElesSeForMaisDeUmaColuna(CSVRecord record, Coluna[] colunas) {
@@ -86,20 +84,14 @@ public class Mapeamento {
 			String coluna = colunas[i].getColuna();
 			dados[i] = record.get(coluna);
 		}
-		
-		String linhaContendoDados = aplicarVirgulaSeNecessario(dados);
-		return linhaContendoDados;
+
+		return aplicarVirgulaSeNecessario(dados);
 	}
 	
 	private static String aplicarVirgulaSeNecessario(String[] dados) {
 		if (dados.length > 1) {
-			String linha = dados[0];
-			
-			for (int i = 1; i < dados.length; i++) {
-				linha += "," + dados[i];
-			}
-			
-			return linha;
+			return Arrays.asList(dados).stream()
+					.collect(Collectors.joining(","));
 		}
 		
 		return dados[0];

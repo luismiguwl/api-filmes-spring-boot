@@ -1,6 +1,8 @@
 package br.com.luis.apifilmes.arquivo;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Reader;
 
 import org.apache.commons.csv.CSVFormat;
@@ -16,7 +18,7 @@ public class Arquivo {
 					.parse(in);
 			
 			return records;
-		} catch (Exception e) {
+		} catch (IOException e) {
 			return null;
 		}
 	}
