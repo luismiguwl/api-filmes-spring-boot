@@ -1,4 +1,4 @@
-package br.com.luis.apifilmes.models;
+package br.com.luis.apifilmes.models.enums;
 
 public enum Coluna {
 	TITULO("titulo"), DATA_ASSISTIDO("dataAssistido"), ANO_LANCAMENTO("anoDeLancamento"), IDIOMA("idioma"),

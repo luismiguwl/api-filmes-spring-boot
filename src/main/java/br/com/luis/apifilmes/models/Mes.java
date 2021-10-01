@@ -2,6 +2,8 @@ package br.com.luis.apifilmes.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.luis.apifilmes.models.enums.Coluna;
+
 import static br.com.luis.apifilmes.utils.Mapeamento.getDadosDaColuna;
 
 public class Mes {

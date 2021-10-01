@@ -15,7 +15,7 @@ import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.models.Filme;
 import br.com.luis.apifilmes.models.Genero;
 import br.com.luis.apifilmes.models.MetodosPadrao;
-import br.com.luis.apifilmes.models.TipoDeConsulta;
+import br.com.luis.apifilmes.models.enums.Destino;
 import br.com.luis.apifilmes.models.utils.DiretorUtils;
 import br.com.luis.apifilmes.models.utils.FilmeUtils;
 import br.com.luis.apifilmes.models.utils.GeneroUtils;
@@ -27,7 +27,7 @@ import br.com.luis.apifilmes.utils.Mapeamento;
 @RestController
 @RequestMapping("/filmes/vistos")
 public class FilmesVistosController implements MetodosPadrao {
-	private final TipoDeConsulta tipoDeConsulta = TipoDeConsulta.VISTOS;
+	private final Destino tipoDeConsulta = Destino.VISTOS;
 	public List<Filme> filmes = Mapeamento.getFilmes(tipoDeConsulta);
 
 	@GetMapping("/random")

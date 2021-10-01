@@ -14,12 +14,12 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.models.Filme;
 import br.com.luis.apifilmes.models.Mes;
-import br.com.luis.apifilmes.models.TipoDeConsulta;
+import br.com.luis.apifilmes.models.enums.Destino;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
 @JsonInclude(Include.NON_EMPTY)
 public class MesUtils {
-	private static List<Filme> filmes = Mapeamento.getFilmes(TipoDeConsulta.VISTOS);
+	private static List<Filme> filmes = Mapeamento.getFilmes(Destino.VISTOS);
 	private static String[] nomeDosMeses = { "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto",
 			"Setembro", "Outubro", "Novembro", "Dezembro" };
 

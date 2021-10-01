@@ -5,9 +5,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.luis.apifilmes.models.Coluna;
 import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.models.Filme;
+import br.com.luis.apifilmes.models.enums.Coluna;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
 public class DiretorUtils {

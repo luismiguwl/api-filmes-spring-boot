@@ -3,12 +3,13 @@ package br.com.luis.apifilmes.models;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static br.com.luis.apifilmes.models.enums.Coluna.*;
 import br.com.luis.apifilmes.models.extras.GeneroComQuantidadeDeFilmesExposta;
 import br.com.luis.apifilmes.models.utils.DiretorUtils;
 import br.com.luis.apifilmes.models.utils.GeneroUtils;
 import br.com.luis.apifilmes.models.utils.MapeamentoUtils;
 import br.com.luis.apifilmes.models.utils.MesUtils;
-import br.com.luis.apifilmes.utils.Mapeamento;		
+import br.com.luis.apifilmes.utils.Mapeamento;
 
 public class AnaliseDosFilmes {
 	private int quantidadeDeFilmesVistos;
@@ -47,7 +48,7 @@ public class AnaliseDosFilmes {
 	}
 
 	public int getDiretoresDiferentes() {
-		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(Coluna.DIRETOR);
+		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(DIRETOR);
 		List<Diretor> diretores = MapeamentoUtils.obterListaDeDiretoresBaseadoNumaListaDeLinhasContendoNomes(nomeDosDiretores);
 
 		return (int) diretores.stream()
@@ -57,7 +58,7 @@ public class AnaliseDosFilmes {
 	}
 
 	public int getGenerosDiferentes() {
-		String[] listaContendoCadaGenero = Mapeamento.getDadosDaColuna(Coluna.GENERO);
+		String[] listaContendoCadaGenero = Mapeamento.getDadosDaColuna(GENERO);
 		List<String> nomeDosGeneros = GeneroUtils.obterListaDeGenerosDistintos(listaContendoCadaGenero);
 
 		return (int) nomeDosGeneros.stream()

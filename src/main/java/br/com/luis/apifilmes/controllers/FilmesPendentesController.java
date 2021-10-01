@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luis.apifilmes.models.*;
+import br.com.luis.apifilmes.models.enums.Destino;
 import br.com.luis.apifilmes.models.utils.FilmeUtils;
 import br.com.luis.apifilmes.models.utils.IdiomaUtils;
 import br.com.luis.apifilmes.utils.Calculadora;
@@ -21,7 +22,7 @@ import br.com.luis.apifilmes.utils.Mapeamento;
 @RequestMapping("/filmes/pendentes")
 @EnableScheduling
 public class FilmesPendentesController implements MetodosPadrao {
-	private final TipoDeConsulta tipoDeConsulta = TipoDeConsulta.PENDENTES;
+	private final Destino tipoDeConsulta = Destino.PENDENTES;
 	private List<Filme> filmes = Mapeamento.getFilmes(tipoDeConsulta);
 
 	@GetMapping("/random")
