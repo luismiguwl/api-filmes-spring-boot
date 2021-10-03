@@ -8,10 +8,10 @@ public class Calculadora {
 	}
 	
 	public static int getNumeroAleatorio(int range) {
-		if (range < 0 || range == 0) {
-			throw new IllegalArgumentException("Número precisa ser positivo!");
+		if (range <= 0) {
+			throw new IllegalArgumentException("Número precisa ser maior que 0!");
 		}
-		int randomNumber = new Random().nextInt(range + 1);
-		return randomNumber;
+
+		return new Random().nextInt(range + 1);
 	}
 }
