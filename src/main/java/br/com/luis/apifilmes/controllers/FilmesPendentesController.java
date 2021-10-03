@@ -22,12 +22,13 @@ import br.com.luis.apifilmes.utils.Mapeamento;
 @RequestMapping("/filmes/pendentes")
 @EnableScheduling
 public class FilmesPendentesController implements MetodosPadrao {
+	private static Calculadora calculadora;
 	private final Destino tipoDeConsulta = Destino.PENDENTES;
 	private List<Filme> filmes = Mapeamento.getFilmes(tipoDeConsulta);
 
 	@GetMapping("/random")
 	public ResponseEntity<Filme> obterFilmeAleatorio() {
-		int posicaoAleatoria = Calculadora.getNumeroAleatorio(filmes.size());
+		int posicaoAleatoria = calculadora.getNumeroAleatorio(filmes.size());
 		return ResponseEntity.ok(filmes.get(posicaoAleatoria));
 	}
 

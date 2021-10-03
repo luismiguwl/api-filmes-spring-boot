@@ -10,6 +10,7 @@ import br.com.luis.apifilmes.utils.Calculadora;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
 public class IdiomaUtils {
+	private static Calculadora calculadora;
 	private static String[] idiomas = Mapeamento.getDadosDaColuna(Coluna.IDIOMA);
 	
 	public static String getAbreviacao(String idiomaAlvo) {
@@ -56,7 +57,7 @@ public class IdiomaUtils {
 			corpo += quantidade + " filmes vistos no idioma " + idioma;
 		}
 
-		int porcentagem = Calculadora.calcularPorcentagem(quantidade, idiomas.length);
+		int porcentagem = calculadora.calcularPorcentagem(quantidade, idiomas.length);
 		corpo += " (aprox. " + porcentagem + "%)";
 
 		return corpo;

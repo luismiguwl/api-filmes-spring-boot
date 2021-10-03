@@ -12,9 +12,12 @@ import static br.com.luis.apifilmes.models.utils.MapeamentoUtils.*;
 
 import br.com.luis.apifilmes.models.*;
 import br.com.luis.apifilmes.models.enums.Coluna;
+import br.com.luis.apifilmes.utils.Calculadora;
 
 public class GeneroUtils {
-	public static String[] generos = getDadosDaColuna(Coluna.GENERO);
+	private static Calculadora calculadora;
+	
+	private static String[] generos = getDadosDaColuna(Coluna.GENERO);
 
 	public static List<String> obterListaContendoCadaGenero() {
 		List<String> todosOsGeneros = obterListaDeGenerosDistintos(generos);
@@ -46,7 +49,7 @@ public class GeneroUtils {
 		int quantidade = (int) generos.stream()
 				.filter(gen -> gen.equals(genero))
 				.count();
-		int porcentagem = calcularPorcentagem(quantidade, generos.size());
+		int porcentagem = calculadora.calcularPorcentagem(quantidade, generos.size());
 
 		if (quantidade > 1) {
 			return quantidade + " filmes contém o gênero " + genero + " (aprox. " + porcentagem + "%)";

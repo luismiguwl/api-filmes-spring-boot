@@ -1,7 +1,6 @@
 package br.com.luis.apifilmes.models.utils;
 
 import static br.com.luis.apifilmes.models.utils.FilmeUtils.verificarSeFilmeFoiVistoNoMes;
-import static br.com.luis.apifilmes.utils.Calculadora.calcularPorcentagem;
 
 import java.util.Comparator;
 import java.util.List;
@@ -13,10 +12,12 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import br.com.luis.apifilmes.models.Filme;
 import br.com.luis.apifilmes.models.Mes;
 import br.com.luis.apifilmes.models.enums.Destino;
+import br.com.luis.apifilmes.utils.Calculadora;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
 @JsonInclude(Include.NON_EMPTY)
 public class MesUtils {
+	private static Calculadora calculadora;
 	private static List<Filme> filmes = Mapeamento.getFilmes(Destino.VISTOS);
 	private static String[] nomeDosMeses = { "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto",
 			"Setembro", "Outubro", "Novembro", "Dezembro" };
@@ -51,7 +52,7 @@ public class MesUtils {
 				.filter(filme -> verificarSeFilmeFoiVistoNoMes(filme, mes))
 				.count();
 		
-		int porcentagem = calcularPorcentagem(quantidade, filmes.size());
+		int porcentagem = calculadora.calcularPorcentagem(quantidade, filmes.size());
  
 		if (quantidade == 1) {
 			return quantidade + " filme visto em " + mes.getNome() + " (aprox. " + porcentagem + "% do total)";
