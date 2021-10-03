@@ -34,7 +34,7 @@ class CalculadoraTest {
 	@DisplayName("Deve retornar um valor aleatório entre 1 e 10")
 	public void deveRetornarUmValorEntreUmEDez() {
 		int valor = 10;
-		assertThat(calculadora.getNumeroAleatorio(valor)).isBetween(1, 10);
+		assertThat(calculadora.getNumeroAleatorio(valor)).isBetween(1, 10 + 1);
 	}
 
 	@Test
