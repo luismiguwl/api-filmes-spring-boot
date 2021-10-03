@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.models.Filme;
 import br.com.luis.apifilmes.models.Genero;
 import br.com.luis.apifilmes.models.enums.Coluna;
@@ -57,7 +58,7 @@ public class GeneroUtils {
 	}
 
 	public static int getQuantidadeDeFilmes(Genero generoAlvo) {
-		List<Genero> generos = MapeamentoUtils.obterListaContendoCadaGeneroBaseadoNumaString(generoAlvo.getNome());
+		List<Genero> generos = (List<Genero>) MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Genero.class, generoAlvo.getNome());
 
 		return (int) generos.stream()
 				.filter(genero -> genero.getNome().equals(generoAlvo.getNome()))

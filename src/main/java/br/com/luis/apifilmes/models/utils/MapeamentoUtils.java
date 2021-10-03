@@ -1,7 +1,6 @@
 package br.com.luis.apifilmes.models.utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,40 +8,32 @@ import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.models.Genero;
 
 public class MapeamentoUtils {
-	public static List<Diretor> obterListaDeDiretoresBaseadoNumaListaDeLinhasContendoNomes(String... linhas) {
-		List<Diretor> diretores = new ArrayList<>();
-
+	public static List<?> obterListaDeObjetosBaseadoNaString(Class classe,
+			String... linhas) {
+		List<String> nomes = new ArrayList<>();
+		
 		for (String linha : linhas) {
 			if (linha.contains(",")) {
 				String[] elementosDaLinhaSeparadaPorVirgula = linha.split(",");
 
 				for (String nome : elementosDaLinhaSeparadaPorVirgula) {
-					diretores.add(new Diretor(nome.trim()));
+					nomes.add(nome);
 				}
 			} else {
-				diretores.add(new Diretor(linha.trim()));
+				nomes.add(linha);
 			}
 		}
-
-		return diretores;
-    }
-	
-	public static List<Genero> obterListaContendoCadaGeneroBaseadoNumaString(String... linhas) {
-		List<Genero> generos = new ArrayList<>();
-
-		for (String linha : linhas) {
-			if (linha.contains(",")) {
-				String[] elementosDaLinhaSeparadaPorVirgula = linha.split(",");
-
-				for (String nome : elementosDaLinhaSeparadaPorVirgula) {
-					generos.add(new Genero(nome.trim()));
-				}
-			} else {
-				generos.add(new Genero(linha.trim()));
-			}
+		
+		if (classe == Diretor.class) {
+			return nomes.stream()
+					.map(nome -> new Diretor(nome))
+					.collect(Collectors.toList());
+		} else {
+			return nomes.stream()
+					.map(nome -> new Genero(nome))
+					.collect(Collectors.toList());
 		}
 
-		return generos;
 	}
 
 	public static String[] converterListaDeStringParaArray(List<String> strings) {

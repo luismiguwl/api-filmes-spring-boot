@@ -19,7 +19,7 @@ public class DiretorUtils {
 
 	public static int getQuantidadeDeFilmesVistos(Diretor diretor) {
 		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(Coluna.DIRETOR);
-		List<Diretor> diretores = MapeamentoUtils.obterListaDeDiretoresBaseadoNumaListaDeLinhasContendoNomes(nomeDosDiretores);
+		List<Diretor> diretores = (List<Diretor>) MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor.class, nomeDosDiretores);
 		return (int) diretores.stream()
 				.filter(d -> d.getNome().equals(diretor.getNome()))
 				.count();
@@ -27,7 +27,7 @@ public class DiretorUtils {
 
 	public static List<Diretor> filtrarDiretoresComMaisFilmes(List<Filme> filmes, int top) {
 		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(Coluna.DIRETOR);
-		List<Diretor> diretores = MapeamentoUtils.obterListaDeDiretoresBaseadoNumaListaDeLinhasContendoNomes(nomeDosDiretores);
+		List<Diretor> diretores = (List<Diretor>) MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor.class, nomeDosDiretores);
 
 		diretores = getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(diretores);
 
