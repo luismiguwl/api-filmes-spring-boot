@@ -11,7 +11,7 @@ public class Calculadora {
 		if (range < 0 || range == 0) {
 			throw new IllegalArgumentException("Número precisa ser positivo!");
 		}
-		int randomNumber = new Random().nextInt(range);
+		int randomNumber = new Random().nextInt(range + 1);
 		return randomNumber;
 	}
 }
