@@ -46,12 +46,6 @@ public class MapeamentoUtils {
 	}
 
 	public static String[] converterListaDeStringParaArray(List<String> strings) {
-		String[] array = new String[strings.size()];
-
-		for (int i = 0; i < strings.size(); i++) {
-			array[i] = strings.get(i);
-		}
-
-		return array;
+		return strings.toArray(new String[0]);
 	}
 }
