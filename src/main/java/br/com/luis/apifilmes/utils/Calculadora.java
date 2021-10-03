@@ -3,7 +3,7 @@ package br.com.luis.apifilmes.utils;
 import java.util.Random;
 
 public class Calculadora {
-	public static int calcularPorcentagem(int total, int valor) {
+	public static int calcularPorcentagem(int valor, int total) {
 		return (valor * 100) / total;
 	}
 	

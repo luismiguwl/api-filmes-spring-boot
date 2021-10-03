@@ -56,7 +56,7 @@ public class IdiomaUtils {
 			corpo += quantidade + " filmes vistos no idioma " + idioma;
 		}
 
-		int porcentagem = Calculadora.calcularPorcentagem(idiomas.length, quantidade);
+		int porcentagem = Calculadora.calcularPorcentagem(quantidade, idiomas.length);
 		corpo += " (aprox. " + porcentagem + "%)";
 
 		return corpo;

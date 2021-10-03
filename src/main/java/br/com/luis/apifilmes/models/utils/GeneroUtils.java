@@ -16,14 +16,14 @@ import br.com.luis.apifilmes.models.enums.Coluna;
 public class GeneroUtils {
 	public static String[] generos = getDadosDaColuna(Coluna.GENERO);
 
-	public static List<String> getTodosOsGeneros() {
+	public static List<String> obterListaContendoCadaGenero() {
 		List<String> todosOsGeneros = obterListaDeGenerosDistintos(generos);
 		List<String> generosDistintos = todosOsGeneros.stream()
 				.distinct()
 				.collect(Collectors.toList());
 
 		return generosDistintos.stream()
-						.map(genero -> calcularQuantidadeDeCadaGenero(genero, todosOsGeneros))
+						.map(genero -> calcularQuantidadeDeFilmesEmCadaGenero(genero, todosOsGeneros))
 						.collect(Collectors.toList());
 		
 	}
@@ -42,11 +42,11 @@ public class GeneroUtils {
 		return generos;
 	}
 
-	private static String calcularQuantidadeDeCadaGenero(String genero, List<String> generos) {
+	private static String calcularQuantidadeDeFilmesEmCadaGenero(String genero, List<String> generos) {
 		int quantidade = (int) generos.stream()
 				.filter(gen -> gen.equals(genero))
 				.count();
-		int porcentagem = calcularPorcentagem(generos.size(), quantidade);
+		int porcentagem = calcularPorcentagem(quantidade, generos.size());
 
 		if (quantidade > 1) {
 			return quantidade + " filmes contém o gênero " + genero + " (aprox. " + porcentagem + "%)";
@@ -64,14 +64,18 @@ public class GeneroUtils {
 	}
 
 	public static List<Genero> getAllGenerosDistintos(List<Filme> filmes) {
-		List<Genero> allGeneros = new ArrayList<>();
+		final List<String> allGeneros = new ArrayList<>();
 
 		filmes.forEach(filme -> {
-			allGeneros.addAll(filme.getGeneros());
+			filme.getGeneros().forEach(genero -> {
+				allGeneros.add(genero.getNome().trim());
+			});
 		});
 		
 		return allGeneros.stream()
 				.distinct()
+				.sorted()
+				.map(nome -> new Genero(nome))
 				.collect(Collectors.toList());
 	}
 	

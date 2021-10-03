@@ -47,11 +47,10 @@ public class DiretorUtils {
 	public static List<Diretor> getAllDiretoresDistintos(List<Filme> filmes) {
 		List<Diretor> allDiretores = new ArrayList<>();
 
-		for (Filme filme : filmes) {
-			List<Diretor> diretoresDoFilmeAtual = filme.getDiretores();
-			allDiretores.addAll(diretoresDoFilmeAtual);
-		}
-
+		filmes.forEach(filme -> {
+			allDiretores.addAll(filme.getDiretores());
+		});
+		
 		return allDiretores.stream()
 				.distinct()
 				.collect(Collectors.toList());

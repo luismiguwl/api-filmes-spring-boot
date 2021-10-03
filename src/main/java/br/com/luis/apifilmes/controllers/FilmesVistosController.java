@@ -31,18 +31,18 @@ public class FilmesVistosController implements MetodosPadrao {
 	public List<Filme> filmes = Mapeamento.getFilmes(tipoDeConsulta);
 
 	@GetMapping("/random")
-	public ResponseEntity<Filme> random() {
+	public ResponseEntity<Filme> obterFilmeAleatorio() {
 		int posicaoAleatoria = Calculadora.getNumeroAleatorio(filmes.size());
 		return ResponseEntity.ok(filmes.get(posicaoAleatoria));
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<List<Filme>> all() {
+	public ResponseEntity<List<Filme>> obterTodosOsFilmes() {
 		return ResponseEntity.ok(filmes);
 	}
 
 	@GetMapping("/month")
-	public ResponseEntity<List<Filme>> filtrarPorMes(@RequestParam int mes) {
+	public ResponseEntity<List<Filme>> filtrarFilmePorMes(@RequestParam int mes) {
 		List<Filme> filmesVistosNoMes = filmes.stream()
 				.filter(filme -> MesUtils.filtrarPorMes(filme, mes))
 				.collect(Collectors.toList());
@@ -50,7 +50,7 @@ public class FilmesVistosController implements MetodosPadrao {
 	}
 
 	@GetMapping("/idioma")
-	public ResponseEntity<List<Filme>> filtrarPorIdioma(@RequestParam String idioma) {
+	public ResponseEntity<List<Filme>> filtrarFilmePorIdioma(@RequestParam String idioma) {
 		List<Filme> filmesVistosPorIdioma = filmes.stream()
 				.filter(filme -> IdiomaUtils.filtrarPorIdioma(filme, idioma))
 				.collect(Collectors.toList());
@@ -70,18 +70,18 @@ public class FilmesVistosController implements MetodosPadrao {
 	}
 
 	@GetMapping("/last")
-	public ResponseEntity<Filme> ultimo() {
+	public ResponseEntity<Filme> obterUltimoFilmeVisto() {
 		return ResponseEntity.ok(filmes.get(filmes.size() - 1));
 	}
 
 	@GetMapping("/palavra")
-	public ResponseEntity<List<Filme>> filtrarPorPalavraChave(@RequestParam String palavra) {
+	public ResponseEntity<List<Filme>> filtrarFilmePorPalavraChave(@RequestParam String palavra) {
 		List<Filme> filmesEncontradosPorKeyword = FilmeUtils.buscarFilmePorPalavra(filmes, palavra);
 		return ResponseEntity.ok(filmesEncontradosPorKeyword);
 	}
 
 	@GetMapping("/lancamento")
-	public ResponseEntity<List<Filme>> buscarPorAnoDeLancamento(@RequestParam int ano) {
+	public ResponseEntity<List<Filme>> buscarFilmePorAnoDeLancamento(@RequestParam int ano) {
 		List<Filme> filmesFiltradosPorAnoDeLancamento = filmes.stream()
 				.filter(filme -> FilmeUtils.buscarPorAnoDeLancamento(filme, ano))
 				.collect(Collectors.toList());
@@ -89,7 +89,7 @@ public class FilmesVistosController implements MetodosPadrao {
 	}
 
 	@GetMapping("/ano")
-	public ResponseEntity<List<Filme>> buscarPorIntervaloDeAnos(@RequestParam int de, @RequestParam int ate) {
+	public ResponseEntity<List<Filme>> buscarFilmePorIntervaloDeAnos(@RequestParam int de, @RequestParam int ate) {
 		List<Filme> filmesFiltradosPorIntervaloDeAnos = filmes.stream()
 				.filter(filme -> FilmeUtils.buscarPorIntervaloDeAnos(filme, de, ate))
 				.collect(Collectors.toList());
@@ -97,31 +97,31 @@ public class FilmesVistosController implements MetodosPadrao {
 	}
 
 	@GetMapping("/quantidadeporidioma")
-	public ResponseEntity<List<String>> quantidadeDeFilmesPorGenero() {
-		List<String> todosOsGeneros = GeneroUtils.getTodosOsGeneros();
+	public ResponseEntity<List<String>> obterQuantidadeDeFilmesPorGenero() {
+		List<String> todosOsGeneros = GeneroUtils.obterListaContendoCadaGenero();
 		return ResponseEntity.ok(todosOsGeneros);
 	}
 	
 	@GetMapping("/analise")
-	public ResponseEntity<AnaliseDosFilmes> getSomaDaDuracaoDeTodosOsFilmes() {
+	public ResponseEntity<AnaliseDosFilmes> obterAnaliseDosFilmes() {
 		AnaliseDosFilmes analiseDosFilmes = new AnaliseDosFilmes(filmes);
 		return ResponseEntity.ok(analiseDosFilmes);
 	}
 
 	@GetMapping("/ranking/diretores")
-	public ResponseEntity<List<Diretor>> getTopDiretores(@RequestParam int top) {
+	public ResponseEntity<List<Diretor>> obterListaDeDiretoresComMaisFilmesVistos(@RequestParam int top) {
 		List<Diretor> diretoresComMaisFilmes = DiretorUtils.filtrarDiretoresComMaisFilmes(filmes, top);
 		return ResponseEntity.ok(diretoresComMaisFilmes);
 	}
 	
 	@GetMapping("/diretores")
-	public ResponseEntity<List<Diretor>> getDiretores() {
+	public ResponseEntity<List<Diretor>> obterListaContendoTodosOsDiretores() {
 		List<Diretor> listaContendoTodosOsDiretores = DiretorUtils.getAllDiretoresDistintos(filmes);
 		return ResponseEntity.ok(listaContendoTodosOsDiretores);
 	}
 	
 	@GetMapping("/generos")
-	public ResponseEntity<List<Genero>> getGeneros() {
+	public ResponseEntity<List<Genero>> obterListaContendoTodosOsGeneros() {
 		List<Genero> listaContendoTodosOsGeneros = GeneroUtils.getAllGenerosDistintos(filmes);
 		return ResponseEntity.ok(listaContendoTodosOsGeneros);
 	}
@@ -129,5 +129,5 @@ public class FilmesVistosController implements MetodosPadrao {
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
 	private void atualizarLista() {
 		filmes = Mapeamento.getFilmes(tipoDeConsulta);
-	}
+	} 
 }

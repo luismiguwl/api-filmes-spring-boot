@@ -10,4 +10,12 @@ public class GeneroComQuantidadeDeFilmesExposta {
 		nome = genero.getNome();
 		quantidadeDeFilmes = genero.getQuantidadeDeFilmes();
 	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public int getQuantidadeDeFilmes() {
+		return quantidadeDeFilmes;
+	}
 }

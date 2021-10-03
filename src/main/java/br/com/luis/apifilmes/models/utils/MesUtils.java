@@ -3,7 +3,6 @@ package br.com.luis.apifilmes.models.utils;
 import static br.com.luis.apifilmes.models.utils.FilmeUtils.verificarSeFilmeFoiVistoNoMes;
 import static br.com.luis.apifilmes.utils.Calculadora.calcularPorcentagem;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +10,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.models.Filme;
 import br.com.luis.apifilmes.models.Mes;
 import br.com.luis.apifilmes.models.enums.Destino;
@@ -53,7 +51,7 @@ public class MesUtils {
 				.filter(filme -> verificarSeFilmeFoiVistoNoMes(filme, mes))
 				.count();
 		
-		int porcentagem = calcularPorcentagem(filmes.size(), quantidade);
+		int porcentagem = calcularPorcentagem(quantidade, filmes.size());
  
 		if (quantidade == 1) {
 			return quantidade + " filme visto em " + mes.getNome() + " (aprox. " + porcentagem + "% do total)";

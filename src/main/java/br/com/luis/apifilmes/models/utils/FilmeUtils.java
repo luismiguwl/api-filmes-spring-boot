@@ -25,7 +25,6 @@ public class FilmeUtils {
 		return tituloDoFilmeConcatenadoComNomeDosDiretores.contains(chave);
 	}
 
-
 	public static boolean buscarPorIntervaloDeAnos(Filme filme, int de, int ate) {
 		return filme.getAnoDeLancamento() >= de && filme.getAnoDeLancamento() <= ate;
 	}
