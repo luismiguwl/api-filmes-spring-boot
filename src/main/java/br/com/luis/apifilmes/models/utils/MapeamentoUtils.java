@@ -26,11 +26,11 @@ public class MapeamentoUtils {
 		
 		if (classe == Diretor.class) {
 			return nomes.stream()
-					.map(nome -> new Diretor(nome))
+					.map(Diretor::new)
 					.collect(Collectors.toList());
 		} else {
 			return nomes.stream()
-					.map(nome -> new Genero(nome))
+					.map(Genero::new)
 					.collect(Collectors.toList());
 		}
 
