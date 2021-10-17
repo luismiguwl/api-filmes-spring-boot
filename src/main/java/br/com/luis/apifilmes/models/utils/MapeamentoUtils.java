@@ -2,14 +2,11 @@ package br.com.luis.apifilmes.models.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import br.com.luis.apifilmes.models.Diretor;
-import br.com.luis.apifilmes.models.Genero;
-
 public class MapeamentoUtils {
-	public static List<?> obterListaDeObjetosBaseadoNaString(Class classe,
-			String... linhas) {
+	public static <T> List<T> obterListaDeObjetosBaseadoNaString(Function<String, T> fn, String ... linhas) {
 		List<String> nomes = new ArrayList<>();
 		
 		for (String linha : linhas) {
@@ -24,16 +21,9 @@ public class MapeamentoUtils {
 			}
 		}
 		
-		if (classe == Diretor.class) {
-			return nomes.stream()
-					.map(Diretor::new)
-					.collect(Collectors.toList());
-		} else {
-			return nomes.stream()
-					.map(Genero::new)
-					.collect(Collectors.toList());
-		}
-
+		return nomes.stream()
+				.map(fn)
+				.collect(Collectors.toList());
 	}
 
 	public static String[] converterListaDeStringParaArray(List<String> strings) {

@@ -5,16 +5,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.Filme;
-import br.com.luis.apifilmes.models.enums.Coluna;
+import static br.com.luis.apifilmes.models.enums.Coluna.*;
 import br.com.luis.apifilmes.utils.Calculadora;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
 public class IdiomaUtils {
 	private static Calculadora calculadora;
-	private static String[] idiomas = Mapeamento.getDadosDaColuna(Coluna.IDIOMA);
+	private static String[] idiomas = Mapeamento.getDadosDaColuna(IDIOMA);
 	
 	public static String getAbreviacao(String idiomaAlvo) {
-		String[] listaContendoIdiomaEAbreviacaoSeparadosPorVirgula = Mapeamento.getDadosDaColuna(Coluna.IDIOMA, Coluna.ABREVIACAO);
+		String[] listaContendoIdiomaEAbreviacaoSeparadosPorVirgula = Mapeamento.getDadosDaColuna(IDIOMA, ABREVIACAO);
 
 		for (String idiomaEAbreviacao : listaContendoIdiomaEAbreviacaoSeparadosPorVirgula) {
 			String[] idiomaEAbreviacaoSeparadosPorVirgula = idiomaEAbreviacao.split(",");

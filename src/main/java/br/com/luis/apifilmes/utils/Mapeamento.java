@@ -35,8 +35,8 @@ public class Mapeamento {
 			
 			Idioma idioma = new Idioma(record.get(IDIOMA.getColuna()));
 
-			List<Diretor> diretores = (List<Diretor>) obterListaDeObjetosBaseadoNaString(Diretor.class, record.get(DIRETOR.getColuna()));
-			List<Genero> generos = (List<Genero>) obterListaDeObjetosBaseadoNaString(Genero.class, record.get(GENERO.getColuna()));
+			List<Diretor> diretores = obterListaDeObjetosBaseadoNaString(Diretor::new, record.get(DIRETOR.getColuna()));
+			List<Genero> generos = obterListaDeObjetosBaseadoNaString(Genero::new, record.get(GENERO.getColuna()));
 
 			Filme filme = new Filme(titulo, ano, data, idioma, diretores, generos, runtime);
 			filmes.add(filme);

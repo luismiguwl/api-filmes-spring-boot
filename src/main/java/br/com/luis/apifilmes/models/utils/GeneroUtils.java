@@ -7,17 +7,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static br.com.luis.apifilmes.utils.Mapeamento.*;
-import static br.com.luis.apifilmes.utils.Calculadora.*;
 import static br.com.luis.apifilmes.models.utils.MapeamentoUtils.*;
 
 import br.com.luis.apifilmes.models.*;
-import br.com.luis.apifilmes.models.enums.Coluna;
+import static br.com.luis.apifilmes.models.enums.Coluna.*;
 import br.com.luis.apifilmes.utils.Calculadora;
 
 public class GeneroUtils {
 	private static Calculadora calculadora;
 	
-	private static String[] generos = getDadosDaColuna(Coluna.GENERO);
+	private static String[] generos = getDadosDaColuna(GENERO);
 
 	public static List<String> obterListaContendoCadaGenero() {
 		List<String> todosOsGeneros = obterListaDeGenerosDistintos(generos);
@@ -59,7 +58,7 @@ public class GeneroUtils {
 	}
 
 	public static int getQuantidadeDeFilmes(Genero generoAlvo) {
-		List<Genero> generos = (List<Genero>) obterListaDeObjetosBaseadoNaString(Genero.class, generoAlvo.getNome());
+		List<Genero> generos = obterListaDeObjetosBaseadoNaString(Genero::new, generoAlvo.getNome());
 
 		return (int) generos.stream()
 				.filter(genero -> genero.getNome().equals(generoAlvo.getNome()))
@@ -78,7 +77,7 @@ public class GeneroUtils {
 		return allGeneros.stream()
 				.distinct()
 				.sorted()
-				.map(nome -> new Genero(nome))
+				.map(Genero::new)
 				.collect(Collectors.toList());
 	}
 	

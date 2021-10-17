@@ -49,7 +49,7 @@ public class AnaliseDosFilmes {
 
 	public int getDiretoresDiferentes() {
 		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(DIRETOR);
-		List<Diretor> diretores = (List<Diretor>) MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor.class, nomeDosDiretores);
+		List<Diretor> diretores = MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor::new, nomeDosDiretores);
 
 		return (int) diretores.stream()
 				.map(diretor -> diretor.getNome())

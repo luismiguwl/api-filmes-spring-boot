@@ -1,7 +1,6 @@
 package br.com.luis.apifilmes.models.utils;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.Filme;

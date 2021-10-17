@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.Diretor;
 import br.com.luis.apifilmes.models.Filme;
-import br.com.luis.apifilmes.models.enums.Coluna;
+import static br.com.luis.apifilmes.models.enums.Coluna.*;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
 public class DiretorUtils {
@@ -18,16 +18,16 @@ public class DiretorUtils {
 	}
 
 	public static int getQuantidadeDeFilmesVistos(Diretor diretor) {
-		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(Coluna.DIRETOR);
-		List<Diretor> diretores = (List<Diretor>) MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor.class, nomeDosDiretores);
+		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(DIRETOR);
+		List<Diretor> diretores = MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor::new, nomeDosDiretores);
 		return (int) diretores.stream()
 				.filter(d -> d.getNome().equals(diretor.getNome()))
 				.count();
 	}
 
 	public static List<Diretor> filtrarDiretoresComMaisFilmes(List<Filme> filmes, int top) {
-		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(Coluna.DIRETOR);
-		List<Diretor> diretores = (List<Diretor>) MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor.class, nomeDosDiretores);
+		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(DIRETOR);
+		List<Diretor> diretores = MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor::new, nomeDosDiretores);
 
 		diretores = getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(diretores);
 
