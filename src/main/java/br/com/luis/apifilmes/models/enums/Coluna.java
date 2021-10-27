@@ -10,7 +10,7 @@ public enum Coluna {
 		this.coluna = coluna;
 	}
 	
-	public String getColuna() {
+	public String get() {
 		return coluna;
 	}
 }

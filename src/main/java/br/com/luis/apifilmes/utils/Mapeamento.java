@@ -23,20 +23,20 @@ public class Mapeamento {
 		Iterable<CSVRecord> records = Arquivo.lerArquivoCsv(destino);
 
 		for (CSVRecord record : records) {
-			String titulo = record.get(TITULO.getColuna());
+			String titulo = record.get(TITULO.get());
 
 			String data = null;
 			if (destino.equals(VISTOS)) {
-				data = record.get(DATA_ASSISTIDO.getColuna());
+				data = record.get(DATA_ASSISTIDO.get());
 			}
 
-			int ano = Integer.parseInt(record.get(ANO_LANCAMENTO.getColuna()));
-			int runtime = Integer.parseInt(record.get(DURACAO.getColuna()));
+			int ano = Integer.parseInt(record.get(ANO_LANCAMENTO.get()));
+			int runtime = Integer.parseInt(record.get(DURACAO.get()));
 			
-			Idioma idioma = new Idioma(record.get(IDIOMA.getColuna()));
+			Idioma idioma = new Idioma(record.get(IDIOMA.get()));
 
-			List<Diretor> diretores = obterListaDeObjetosBaseadoNaString(Diretor::new, record.get(DIRETOR.getColuna()));
-			List<Genero> generos = obterListaDeObjetosBaseadoNaString(Genero::new, record.get(GENERO.getColuna()));
+			List<Diretor> diretores = obterListaDeObjetosBaseadoNaString(Diretor::new, record.get(DIRETOR.get()));
+			List<Genero> generos = obterListaDeObjetosBaseadoNaString(Genero::new, record.get(GENERO.get()));
 
 			Filme filme = new Filme(titulo, ano, data, idioma, diretores, generos, runtime);
 			filmes.add(filme);
@@ -57,7 +57,7 @@ public class Mapeamento {
 			if (colunas.length > 1) {
 				dado = obterLinhaContendoDadosDasColunasInserindoVirgulaEntreElesSeForMaisDeUmaColuna(record, colunas);
 			} else {
-				String coluna = colunas[0].getColuna();
+				String coluna = colunas[0].get();
 				dado = record.get(coluna);
 			}
 			
@@ -80,7 +80,7 @@ public class Mapeamento {
 		String[] dados = new String[colunas.length];
 		
 		for (int i = 0; i < colunas.length; i++) {
-			String coluna = colunas[i].getColuna();
+			String coluna = colunas[i].get();
 			dados[i] = record.get(coluna);
 		}
 
