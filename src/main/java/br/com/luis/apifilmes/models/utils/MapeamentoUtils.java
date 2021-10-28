@@ -14,10 +14,10 @@ public class MapeamentoUtils {
 				String[] elementosDaLinhaSeparadaPorVirgula = linha.split(",");
 
 				for (String nome : elementosDaLinhaSeparadaPorVirgula) {
-					nomes.add(nome);
+					nomes.add(nome.trim());
 				}
 			} else {
-				nomes.add(linha);
+				nomes.add(linha.trim());
 			}
 		}
 		

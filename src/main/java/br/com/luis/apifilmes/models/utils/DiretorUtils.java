@@ -17,23 +17,32 @@ public class DiretorUtils {
 				.collect(Collectors.joining(" "));
 	}
 
-	public static int getQuantidadeDeFilmesVistos(Diretor diretor) {
+	public static int getQuantidadeDeFilmesVistos(Diretor diretorAlvo) {
 		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(DIRETOR);
 		List<Diretor> diretores = MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor::new, nomeDosDiretores);
 		return (int) diretores.stream()
-				.filter(d -> d.getNome().equals(diretor.getNome()))
+				.filter(d -> d.getNome().equals(diretorAlvo.getNome()))
 				.count();
 	}
 
 	public static List<Diretor> filtrarDiretoresComMaisFilmes(List<Filme> filmes, int top) {
 		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(DIRETOR);
 		List<Diretor> diretores = MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor::new, nomeDosDiretores);
-
 		diretores = getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(diretores);
 
-		return diretores.stream()
-				.distinct()
+		List<Diretor> lista = new ArrayList<>();
+		
+		for (Diretor diretor : diretores) {
+			boolean onList = lista.stream().anyMatch(novo -> novo.getNome().equals(diretor.getNome()));
+			
+			if (!onList) {
+				lista.add(diretor);
+			}
+		}
+		
+		return lista.stream()
 				.limit(top)
+				.distinct()
 				.collect(Collectors.toList());
 	}
 

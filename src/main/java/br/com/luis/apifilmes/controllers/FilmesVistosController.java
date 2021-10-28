@@ -10,19 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.luis.apifilmes.models.AnaliseDosFilmes;
-import br.com.luis.apifilmes.models.Diretor;
-import br.com.luis.apifilmes.models.Filme;
-import br.com.luis.apifilmes.models.Genero;
-import br.com.luis.apifilmes.models.MetodosPadrao;
+import br.com.luis.apifilmes.models.*;
 import br.com.luis.apifilmes.models.enums.Destino;
-import br.com.luis.apifilmes.models.utils.DiretorUtils;
-import br.com.luis.apifilmes.models.utils.FilmeUtils;
-import br.com.luis.apifilmes.models.utils.GeneroUtils;
-import br.com.luis.apifilmes.models.utils.IdiomaUtils;
-import br.com.luis.apifilmes.models.utils.MesUtils;
-import br.com.luis.apifilmes.utils.Calculadora;
-import br.com.luis.apifilmes.utils.Mapeamento;
+import br.com.luis.apifilmes.models.utils.*;
+import br.com.luis.apifilmes.utils.*;
 
 @RestController
 @RequestMapping("/filmes/vistos")
@@ -97,18 +88,6 @@ public class FilmesVistosController implements MetodosPadrao {
         return ResponseEntity.ok(filmesFiltradosPorIntervaloDeAnos);
 	}
 
-	@GetMapping("/quantidadeporidioma")
-	public ResponseEntity<List<String>> obterQuantidadeDeFilmesPorGenero() {
-		List<String> todosOsGeneros = GeneroUtils.obterListaContendoCadaGenero();
-		return ResponseEntity.ok(todosOsGeneros);
-	}
-	
-	@GetMapping("/analise")
-	public ResponseEntity<AnaliseDosFilmes> obterAnaliseDosFilmes() {
-		AnaliseDosFilmes analiseDosFilmes = new AnaliseDosFilmes(filmes);
-		return ResponseEntity.ok(analiseDosFilmes);
-	}
-
 	@GetMapping("/ranking/diretores")
 	public ResponseEntity<List<Diretor>> obterListaDeDiretoresComMaisFilmesVistos(@RequestParam int top) {
 		List<Diretor> diretoresComMaisFilmes = DiretorUtils.filtrarDiretoresComMaisFilmes(filmes, top);
@@ -119,12 +98,6 @@ public class FilmesVistosController implements MetodosPadrao {
 	public ResponseEntity<List<Diretor>> obterListaContendoTodosOsDiretores() {
 		List<Diretor> listaContendoTodosOsDiretores = DiretorUtils.getAllDiretoresDistintos(filmes);
 		return ResponseEntity.ok(listaContendoTodosOsDiretores);
-	}
-	
-	@GetMapping("/generos")
-	public ResponseEntity<List<Genero>> obterListaContendoTodosOsGeneros() {
-		List<Genero> listaContendoTodosOsGeneros = GeneroUtils.getAllGenerosDistintos(filmes);
-		return ResponseEntity.ok(listaContendoTodosOsGeneros);
 	}
 	
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
