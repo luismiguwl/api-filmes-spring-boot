@@ -30,17 +30,18 @@ public class DiretorUtils {
 		List<Diretor> diretores = MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor::new, nomeDosDiretores);
 		diretores = getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(diretores);
 
-		List<Diretor> lista = new ArrayList<>();
+		List<Diretor> rankingDeDiretoresComMaisFilmes = new ArrayList<>();
 		
 		for (Diretor diretor : diretores) {
-			boolean onList = lista.stream().anyMatch(novo -> novo.getNome().equals(diretor.getNome()));
+			boolean onList = rankingDeDiretoresComMaisFilmes.stream()
+					.anyMatch(diretorRanking -> diretorRanking.getNome().equals(diretor.getNome()));
 			
 			if (!onList) {
-				lista.add(diretor);
+				rankingDeDiretoresComMaisFilmes.add(diretor);
 			}
 		}
 		
-		return lista.stream()
+		return rankingDeDiretoresComMaisFilmes.stream()
 				.limit(top)
 				.distinct()
 				.collect(Collectors.toList());

@@ -2,7 +2,6 @@ package br.com.luis.apifilmes.models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.utils.DiretorUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,61 +43,31 @@ public class Filme {
 		return titulo;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
 	public int getAnoDeLancamento() {
 		return anoDeLancamento;
-	}
-
-	public void setAnoDeLancamento(int anoDeLancamento) {
-		this.anoDeLancamento = anoDeLancamento;
 	}
 
 	public String getDataEmQueFoiAssistido() {
 		return dataEmQueFoiAssistido;
 	}
 
-	public void setDataEmQueFoiAssistido(String dataEmQueFoiAssistido) {
-		this.dataEmQueFoiAssistido = dataEmQueFoiAssistido;
-	}
-
 	public Idioma getIdioma() {
 		return idioma;
-	}
-
-	public void setIdioma(Idioma idioma) {
-		this.idioma = idioma;
 	}
 
 	public List<Diretor> getDiretores() {
 		return diretores;
 	}
 
-	public void setDiretores(List<Diretor> diretores) {
-		this.diretores = diretores;
-	}
-
 	public List<Genero> getGeneros() {
 		return generos;
-	}
-
-	public void setGeneros(List<Genero> generos) {
-		this.generos = generos;
 	}
 
 	public int getRuntime() {
 		return runtime;
 	}
 
-	public void setRuntime(int runtime) {
-		this.runtime = runtime;
-	}
-
 	public String mesclarTituloComDiretores() {
-		String corpo = getTitulo() + " ";
-		corpo += DiretorUtils.mesclarTodosOsDiretores(diretores);
-		return corpo;
+		return getTitulo() + " " + DiretorUtils.mesclarTodosOsDiretores(diretores);
 	}
 }
