@@ -23,15 +23,15 @@ public class Mapeamento {
 		Iterable<CSVRecord> records = Arquivo.lerArquivoCsv(destino);
 
 		for (CSVRecord record : records) {
-			String titulo = record.get(TITULO.get());
+			String titulo = record.get(TITULO.get().trim());
 
 			String data = null;
 			if (destino.equals(VISTOS)) {
-				data = record.get(DATA_ASSISTIDO.get());
+				data = record.get(DATA_ASSISTIDO.get().trim());
 			}
 
-			int ano = Integer.parseInt(record.get(ANO_LANCAMENTO.get()));
-			int runtime = Integer.parseInt(record.get(DURACAO.get()));
+			int ano = Integer.parseInt(record.get(ANO_LANCAMENTO.get()).trim());
+			int runtime = Integer.parseInt(record.get(DURACAO.get()).trim());
 			
 			Idioma idioma = new Idioma(record.get(IDIOMA.get()));
 
