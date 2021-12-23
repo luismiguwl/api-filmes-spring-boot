@@ -30,6 +30,7 @@ public class FilmesVistosController implements MetodosPadrao {
 
 	@GetMapping("/all")
 	public ResponseEntity<List<Filme>> obterTodosOsFilmes() {
+		System.out.println("requisicao pro metodo /all");
 		return ResponseEntity.ok(filmes);
 	}
 
