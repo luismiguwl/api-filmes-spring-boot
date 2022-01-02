@@ -17,23 +17,22 @@ public class DiretorUtils {
 				.collect(Collectors.joining(" "));
 	}
 
-	public static int getQuantidadeDeFilmesVistos(Diretor diretorAlvo) {
-		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(DIRETOR);
+	public static int getQuantidadeDeFilmesVistos(String[] nomeDosDiretores, Diretor diretorAlvo) {
 		List<Diretor> diretores = MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor::new, nomeDosDiretores);
+		
 		return (int) diretores.stream()
-				.filter(d -> d.getNome().equals(diretorAlvo.getNome()))
+				.filter(diretor -> diretor.getNome().equals(diretorAlvo.getNome()))
 				.count();
 	}
 
-	public static List<Diretor> filtrarDiretoresComMaisFilmes(List<Filme> filmes, int top) {
-		String[] nomeDosDiretores = Mapeamento.getDadosDaColuna(DIRETOR);
+	public static List<Diretor> filtrarDiretoresComMaisFilmes(String[] nomeDosDiretores, int top) {
 		List<Diretor> diretores = MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor::new, nomeDosDiretores);
 		diretores = getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(diretores);
-
 		List<Diretor> rankingDeDiretoresComMaisFilmes = new ArrayList<>();
 		
 		for (Diretor diretor : diretores) {
-			boolean onList = rankingDeDiretoresComMaisFilmes.stream()
+			boolean onList = 
+					rankingDeDiretoresComMaisFilmes.stream()
 					.anyMatch(diretorRanking -> diretorRanking.getNome().equals(diretor.getNome()));
 			
 			if (!onList) {
@@ -50,6 +49,7 @@ public class DiretorUtils {
 	public static List<Diretor> getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(
 			List<Diretor> diretores) {
 		return diretores.stream()
+				.filter(diretor -> diretor.getQuantidadeDeFilmesVistos() != null)
 				.sorted(Comparator.comparing(Diretor::getQuantidadeDeFilmesVistos).reversed())
 				.collect(Collectors.toList());
 	}

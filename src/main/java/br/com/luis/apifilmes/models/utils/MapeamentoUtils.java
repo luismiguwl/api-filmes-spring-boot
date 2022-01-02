@@ -26,6 +26,16 @@ public class MapeamentoUtils {
 				.collect(Collectors.toList());
 	}
 
+	public static <T> String[] obterArrayDeStringContendoAtributoDeUmaClasse(Function<T, String> fn, List<T> lista) {
+		List<String> strings = new ArrayList<>();
+
+		lista.stream()
+			.map(fn)
+			.forEach(elemento -> strings.add(elemento));
+		
+		return converterListaDeStringParaArray(strings);
+	}
+	
 	public static String[] converterListaDeStringParaArray(List<String> strings) {
 		return strings.toArray(new String[0]);
 	}

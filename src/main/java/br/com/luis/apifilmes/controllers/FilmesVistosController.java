@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luis.apifilmes.models.*;
+import br.com.luis.apifilmes.models.enums.Coluna;
 import br.com.luis.apifilmes.models.enums.Destino;
 import br.com.luis.apifilmes.models.utils.*;
 import br.com.luis.apifilmes.utils.*;
@@ -18,7 +19,7 @@ import br.com.luis.apifilmes.utils.*;
 @RestController
 @RequestMapping("/filmes/vistos")
 public class FilmesVistosController implements MetodosPadrao {
-	private static Calculadora calculadora;
+	private static Calculadora calculadora = Calculadora.get();
 	private final Destino tipoDeConsulta = Destino.VISTOS;
 	public List<Filme> filmes = Mapeamento.getFilmes(tipoDeConsulta);
 
@@ -91,7 +92,7 @@ public class FilmesVistosController implements MetodosPadrao {
 
 	@GetMapping("/ranking/diretores")
 	public ResponseEntity<List<Diretor>> obterListaDeDiretoresComMaisFilmesVistos(@RequestParam int top) {
-		List<Diretor> diretoresComMaisFilmes = DiretorUtils.filtrarDiretoresComMaisFilmes(filmes, top);
+		List<Diretor> diretoresComMaisFilmes = DiretorUtils.filtrarDiretoresComMaisFilmes(Mapeamento.getDadosDaColuna(Coluna.DIRETOR), top);
 		return ResponseEntity.ok(diretoresComMaisFilmes);
 	}
 	

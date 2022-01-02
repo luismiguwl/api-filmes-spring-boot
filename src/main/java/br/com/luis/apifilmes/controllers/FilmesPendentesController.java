@@ -22,7 +22,7 @@ import br.com.luis.apifilmes.utils.Mapeamento;
 @RequestMapping("/filmes/pendentes")
 @EnableScheduling
 public class FilmesPendentesController implements MetodosPadrao {
-	private static Calculadora calculadora;
+	private static Calculadora calculadora = Calculadora.get();
 	private final Destino tipoDeConsulta = Destino.PENDENTES;
 	private List<Filme> filmes = Mapeamento.getFilmes(tipoDeConsulta);
 

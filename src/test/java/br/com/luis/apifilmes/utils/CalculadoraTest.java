@@ -3,18 +3,12 @@ package br.com.luis.apifilmes.utils;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CalculadoraTest {
 	
-	private Calculadora calculadora;
-	
-	@BeforeEach
-	public void setUp() {
-		calculadora = new Calculadora();
-	}
+	private Calculadora calculadora = Calculadora.get();
 	
 	@Test
 	@DisplayName("Deve calcular a porcentagem corretamente")
@@ -31,10 +25,10 @@ class CalculadoraTest {
 	}
 	
 	@Test
-	@DisplayName("Deve retornar um valor aleatório entre 1 e 10")
+	@DisplayName("Deve retornar um valor aleatório entre 0 e 10")
 	public void deveRetornarUmValorEntreUmEDez() {
 		int valor = 10;
-		assertThat(calculadora.getNumeroAleatorio(valor)).isBetween(1, 10 + 1);
+		assertThat(calculadora.getNumeroAleatorio(valor)).isBetween(0, 9);
 	}
 
 	@Test

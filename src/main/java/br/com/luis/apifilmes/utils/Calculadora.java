@@ -3,6 +3,14 @@ package br.com.luis.apifilmes.utils;
 import java.util.Random;
 
 public class Calculadora {
+
+	public static Calculadora get() {
+		return new Calculadora();
+	}
+	
+	private Calculadora() {
+	}
+	
 	public int calcularPorcentagem(int valor, int total) {
 		return (valor * 100) / total;
 	}
@@ -12,6 +20,6 @@ public class Calculadora {
 			throw new IllegalArgumentException("Número precisa ser maior que 0!");
 		}
 
-		return new Random().nextInt(range + 1);
+		return new Random().nextInt(range);
 	}
 }
