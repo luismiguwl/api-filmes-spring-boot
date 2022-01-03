@@ -26,27 +26,24 @@ public class Mapeamento {
 			String titulo = record.get(TITULO.get().trim());
 
 			String data = null;
-			if (destino.equals(VISTOS)) {
+			if (!destino.equals(PENDENTES)) {
 				data = record.get(DATA_ASSISTIDO.get().trim());
 			}
 
 			int ano = Integer.parseInt(record.get(ANO_LANCAMENTO.get()).trim());
 			int runtime = Integer.parseInt(record.get(DURACAO.get()).trim());
 			
-			Idioma idioma = new Idioma(record.get(IDIOMA.get()));
-
 			List<Diretor> diretores = obterListaDeObjetosBaseadoNaString(Diretor::new, record.get(DIRETOR.get()));
 			List<Genero> generos = obterListaDeObjetosBaseadoNaString(Genero::new, record.get(GENERO.get()));
 
-			Filme filme = new Filme(titulo, ano, data, idioma, diretores, generos, runtime);
+			Filme filme = new Filme(titulo, ano, data, diretores, generos, runtime);
 			filmes.add(filme);
 		}
 
 		return filmes;
 	}
 
-	public static String[] getDadosDaColuna(Coluna... colunas) {
-		Destino destino = obterDestinoBaseadoNasColunas(colunas);
+	public static String[] getDadosDaColuna(Destino destino, Coluna... colunas) {
 		Iterable<CSVRecord> records = Arquivo.lerArquivoCsv(destino);
 
 		List<String> dadosDaColuna = new ArrayList<>();
@@ -66,14 +63,6 @@ public class Mapeamento {
 
 		String[] dados = MapeamentoUtils.converterListaDeStringParaArray(dadosDaColuna);
 		return dados;
-	}
-	
-	private static Destino obterDestinoBaseadoNasColunas(Coluna[] colunas) {
-		boolean colunaDeAbreviacaoEncontrada = 
-				Arrays.asList(colunas).stream()
-				.anyMatch(coluna -> coluna.equals(ABREVIACAO));
-		
-		return colunaDeAbreviacaoEncontrada ? ABREVIACOES : VISTOS;
 	}
 	
 	private static String obterLinhaContendoDadosDasColunasInserindoVirgulaEntreElesSeForMaisDeUmaColuna(CSVRecord record, Coluna[] colunas) {

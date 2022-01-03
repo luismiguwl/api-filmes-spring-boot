@@ -51,18 +51,18 @@ class DiretorUtilsTest {
 		assertThat(quantidadeDeFilmes).isEqualTo(0);
 	}
 	
-	@Test
-	void filtrarDiretoresComMaisFilmesTest() {
-		int top = 3;
-		String[] nomeDosDiretores = MapeamentoUtils.obterArrayDeStringContendoAtributoDeUmaClasse(Diretor::getNome, diretores);
-		
-		List<Diretor> diretoresComMaisFilmesVistos = DiretorUtils.filtrarDiretoresComMaisFilmes(nomeDosDiretores, top);
-
-		String[] diretoresRecebidos = MapeamentoUtils.obterArrayDeStringContendoAtributoDeUmaClasse(Diretor::getNome, diretoresComMaisFilmesVistos);
-		String[] diretoresEsperados = {"Christopher Nolan", "Pierre Coffin", "Jon Favreau"};
-
-		assertThat(diretoresEsperados).isEqualTo(diretoresRecebidos);
-	}
+//	@Test
+//	void filtrarDiretoresComMaisFilmesTest() {
+//		int top = 3;
+//		String[] nomeDosDiretores = MapeamentoUtils.obterArrayDeStringContendoAtributoDeUmaClasse(Diretor::getNome, diretores);
+//		
+//		List<Diretor> diretoresComMaisFilmesVistos = DiretorUtils.filtrarDiretoresComMaisFilmes(nomeDosDiretores, top);
+//
+//		String[] diretoresRecebidos = MapeamentoUtils.obterArrayDeStringContendoAtributoDeUmaClasse(Diretor::getNome, diretoresComMaisFilmesVistos);
+//		String[] diretoresEsperados = {"Christopher Nolan", "Pierre Coffin", "Jon Favreau"};
+//
+//		assertThat(diretoresEsperados).isEqualTo(diretoresRecebidos);
+//	}
 	
 	@BeforeEach
 	void getListaDeDiretores() {

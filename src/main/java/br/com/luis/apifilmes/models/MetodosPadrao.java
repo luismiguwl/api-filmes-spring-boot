@@ -8,7 +8,6 @@ public interface MetodosPadrao {
 	 ResponseEntity<Filme> obterUltimoFilmeVisto();
 	 ResponseEntity<Filme> obterFilmeAleatorio();
 	 ResponseEntity<List<Filme>> obterTodosOsFilmes();
-	 ResponseEntity<List<Filme>> filtrarFilmePorIdioma(String idioma);
 	 ResponseEntity<List<Filme>> filtrarFilmePorPalavraChave(String palavra);
 	 ResponseEntity<List<Filme>> buscarFilmePorAnoDeLancamento(int ano);
 	 ResponseEntity<List<Filme>> buscarFilmePorIntervaloDeAnos(int de, int ate);

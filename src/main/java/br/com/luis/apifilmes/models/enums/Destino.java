@@ -1,8 +1,10 @@
 package br.com.luis.apifilmes.models.enums;
 
 public enum Destino {
-	VISTOS("filmes-2021/Filmes assistidos em 2021.csv"), PENDENTES("filmes-2021/Filmes pendentes para 2021.csv"),
-	ABREVIACOES("filmes-2021/Abreviacoes dos idiomas.csv");
+	VISTOS_EM_2021("dados/Filmes assistidos em 2021.csv"),
+	VISTOS_EM_2022("dados/Filmes assistidos em 2022.csv"),
+	PENDENTES("dados/Filmes pendentes para 2021.csv"),
+	ABREVIACOES("dados/Abreviacoes dos idiomas.csv");
 
 	private String destino;
 	

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,11 +18,11 @@ import br.com.luis.apifilmes.models.utils.*;
 import br.com.luis.apifilmes.utils.*;
 
 @RestController
-@RequestMapping("/filmes/vistos")
+@RequestMapping("/**/filmes/vistos")
 public class FilmesVistosController implements MetodosPadrao {
-	private static Calculadora calculadora = Calculadora.get();
-	private final Destino tipoDeConsulta = Destino.VISTOS;
-	public List<Filme> filmes = Mapeamento.getFilmes(tipoDeConsulta);
+	private Calculadora calculadora = Calculadora.get();
+	private Destino destino = Destino.VISTOS_EM_2021;
+	public List<Filme> filmes;
 
 	@GetMapping("/random")
 	public ResponseEntity<Filme> obterFilmeAleatorio() {
@@ -35,36 +36,12 @@ public class FilmesVistosController implements MetodosPadrao {
 		return ResponseEntity.ok(filmes);
 	}
 
-	@GetMapping("/month")
-	public ResponseEntity<List<Filme>> filtrarFilmePorMes(@RequestParam int mes) {
-		List<Filme> filmesVistosNoMes = filmes.stream()
-				.filter(filme -> MesUtils.filtrarPorMes(filme, mes))
-				.collect(Collectors.toList());
-		return ResponseEntity.ok(filmesVistosNoMes);
-	}
-
-	@GetMapping("/idioma")
-	public ResponseEntity<List<Filme>> filtrarFilmePorIdioma(@RequestParam String idioma) {
-		List<Filme> filmesVistosPorIdioma = filmes.stream()
-				.filter(filme -> IdiomaUtils.filtrarPorIdioma(filme, idioma))
-				.collect(Collectors.toList());
-		return ResponseEntity.ok(filmesVistosPorIdioma);
-	}
-
-	@GetMapping("/idiomas")
-	public ResponseEntity<List<String>> listarQuantidadeDeFilmesEmCadaIdioma() {
-		List<String> quantidadeDeFilmesPorIdioma = IdiomaUtils.definirQuantidadeDeFilmesEmDeterminadoIdioma();
-		return ResponseEntity.ok(quantidadeDeFilmesPorIdioma);
-	}
-
-	@GetMapping("/quantidadepormes")
-	public ResponseEntity<List<String>> listarQuantidadeDeFilmesVistosEmCadaMes() {
-		List<String> quantidadeDeFilmesVistosEmCadaMes = MesUtils.listarQuantidadeDeCadaMes();
-		return ResponseEntity.ok(quantidadeDeFilmesVistosEmCadaMes);
-	}
-
 	@GetMapping("/last")
 	public ResponseEntity<Filme> obterUltimoFilmeVisto() {
+		if (filmes.isEmpty()) {
+			return ResponseEntity.ok().build();
+		}
+		
 		return ResponseEntity.ok(filmes.get(filmes.size() - 1));
 	}
 
@@ -92,7 +69,7 @@ public class FilmesVistosController implements MetodosPadrao {
 
 	@GetMapping("/ranking/diretores")
 	public ResponseEntity<List<Diretor>> obterListaDeDiretoresComMaisFilmesVistos(@RequestParam int top) {
-		List<Diretor> diretoresComMaisFilmes = DiretorUtils.filtrarDiretoresComMaisFilmes(Mapeamento.getDadosDaColuna(Coluna.DIRETOR), top);
+		List<Diretor> diretoresComMaisFilmes = DiretorUtils.filtrarDiretoresComMaisFilmes(Mapeamento.getDadosDaColuna(destino, Coluna.DIRETOR), top);
 		return ResponseEntity.ok(diretoresComMaisFilmes);
 	}
 	
@@ -103,7 +80,25 @@ public class FilmesVistosController implements MetodosPadrao {
 	}
 	
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
-	private void atualizarLista() {
-		filmes = Mapeamento.getFilmes(tipoDeConsulta);
-	} 
+	private void atualizarListaDeFilmes() {
+		filmes = Mapeamento.getFilmes(destino);
+	}
+	
+	@ModelAttribute
+	private void definirDados() {
+		String pathAtual = DestinoAtual.getPathAtual();
+
+		if (!pathAtualPossuiAnoValido(pathAtual)) {
+			throw new IllegalArgumentException("Ano inválido!");
+		}
+
+		destino = DestinoAtual.getDestino();
+		atualizarListaDeFilmes();
+	}
+
+	private boolean pathAtualPossuiAnoValido(String pathAtual) {
+		String ano = pathAtual.split("/")[1].trim();
+		return ano.equals("2021") || ano.equals("2022");
+	}
+	
 }

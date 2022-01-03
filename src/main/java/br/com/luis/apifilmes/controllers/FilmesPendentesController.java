@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.luis.apifilmes.models.*;
 import br.com.luis.apifilmes.models.enums.Destino;
 import br.com.luis.apifilmes.models.utils.FilmeUtils;
-import br.com.luis.apifilmes.models.utils.IdiomaUtils;
 import br.com.luis.apifilmes.utils.Calculadora;
 import br.com.luis.apifilmes.utils.Mapeamento;
 
@@ -37,13 +36,13 @@ public class FilmesPendentesController implements MetodosPadrao {
 		return ResponseEntity.ok(filmes);
 	}
 
-	@GetMapping("/idioma")
-	public ResponseEntity<List<Filme>> filtrarFilmePorIdioma(@RequestParam String idioma) {
-		List<Filme> filmesVistosPorIdioma = filmes.stream()
-				.filter(filme -> IdiomaUtils.filtrarPorIdioma(filme, idioma))
-				.collect(Collectors.toList());
-		return ResponseEntity.ok(filmesVistosPorIdioma);
-	}
+//	@GetMapping("/idioma")
+//	public ResponseEntity<List<Filme>> filtrarFilmePorIdioma(@RequestParam String idioma) {
+//		List<Filme> filmesVistosPorIdioma = filmes.stream()
+//				.filter(filme -> IdiomaUtils.filtrarPorIdioma(filme, idioma))
+//				.collect(Collectors.toList());
+//		return ResponseEntity.ok(filmesVistosPorIdioma);
+//	}
 
 	@GetMapping("/last")
 	public ResponseEntity<Filme> obterUltimoFilmeVisto() {

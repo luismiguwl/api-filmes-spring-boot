@@ -4,17 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.Filme;
-import br.com.luis.apifilmes.models.Mes;
 
 public class FilmeUtils {
 	public static List<Filme> buscarFilmePorPalavra(List<Filme> filmes, String chave) {
 		return filmes.stream()
 				.filter(filme -> verificarSeExistePalavraNosDadosDoFilme(filme, chave))
 				.collect(Collectors.toList());
-	}
-
-	public static boolean verificarSeFilmeFoiVistoNoMes(Filme filme, Mes mes) {
-		return filme.getMes().getNome().equals(mes.getNome());
 	}
 
 	private static boolean verificarSeExistePalavraNosDadosDoFilme(Filme filme, String chave) {
