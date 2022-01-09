@@ -1,5 +1,6 @@
 package br.com.luis.apifilmes.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -79,6 +80,38 @@ public class FilmesVistosController implements MetodosPadrao {
 		return ResponseEntity.ok(listaContendoTodosOsDiretores);
 	}
 	
+	@GetMapping("/idiomas")
+	public ResponseEntity<List<String>> obterListaDeIdiomas() {
+		List<String> idiomas = new ArrayList<>();
+
+		idiomas = filmes.stream()
+						.map(filme -> filme.getIdioma().getNome())
+						.distinct()
+						.collect(Collectors.toList());
+
+		return ResponseEntity.ok(idiomas);
+	}
+
+	@GetMapping("/generos")
+	public ResponseEntity<List<String>> obterListaDeGeneros() {
+		List<String> generos = obterListaDeGenerosDistintos();
+		return ResponseEntity.ok(generos);
+	}
+
+	private List<String> obterListaDeGenerosDistintos() {
+		List<String> todosOsGeneros = new ArrayList<>();
+
+		for (Filme filme : filmes) {
+			List<Genero> generos = filme.getGeneros();
+			generos.stream()
+					.map(genero -> genero.getNome())
+					.distinct()
+					.forEach(genero -> todosOsGeneros.add(genero));
+		}
+
+		return todosOsGeneros.stream().distinct().sorted().collect(Collectors.toList());
+	}
+
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
 	private void atualizarListaDeFilmes() {
 		filmes = Mapeamento.getFilmes(destino);

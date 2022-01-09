@@ -3,7 +3,6 @@ package br.com.luis.apifilmes.models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import br.com.luis.apifilmes.controllers.FilmesVistosController;
 import br.com.luis.apifilmes.models.enums.Coluna;
 import br.com.luis.apifilmes.models.enums.Destino;
 import br.com.luis.apifilmes.models.utils.DiretorUtils;

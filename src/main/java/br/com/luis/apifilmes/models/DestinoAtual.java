@@ -16,6 +16,11 @@ public class DestinoAtual {
 
 	public static Destino getDestino() {
 		getPathAtual();
+
+		if (pathAtual.contains("/pendentes")) {
+			return Destino.PENDENTES;
+		}
+
 		int ano = obterAnoDaRequisicao();
 		
 		if (ano == 2021) {
