@@ -10,6 +10,9 @@ public class Genero {
 	@JsonIgnore
 	private Integer quantidadeDeFilmes;
 	
+	public Genero() {
+	}
+	
 	public Genero(String nome) {
 		this.nome = nome;
 	}

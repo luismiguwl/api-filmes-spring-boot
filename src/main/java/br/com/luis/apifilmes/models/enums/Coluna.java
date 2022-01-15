@@ -2,7 +2,7 @@ package br.com.luis.apifilmes.models.enums;
 
 public enum Coluna {
 	TITULO("titulo"), DATA_ASSISTIDO("dataAssistido"), ANO_LANCAMENTO("anoDeLancamento"), IDIOMA("idioma"),
-	DIRETOR("diretor"), GENERO("genero"), DURACAO("duracao"), ABREVIACAO("abreviacao");
+	DIRETOR("diretor"), GENERO("genero"), DURACAO("duracao"), ABREVIACAO("abreviacao"), PLATAFORMA("plataforma");
 
 	private String coluna;
 	

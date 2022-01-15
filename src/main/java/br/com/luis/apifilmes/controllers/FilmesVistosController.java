@@ -8,14 +8,25 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.luis.apifilmes.models.*;
-import br.com.luis.apifilmes.models.enums.*;
-import br.com.luis.apifilmes.models.utils.*;
-import br.com.luis.apifilmes.utils.*;
+import br.com.luis.apifilmes.arquivo.Arquivo;
+import br.com.luis.apifilmes.models.DestinoAtual;
+import br.com.luis.apifilmes.models.Diretor;
+import br.com.luis.apifilmes.models.Filme;
+import br.com.luis.apifilmes.models.Genero;
+import br.com.luis.apifilmes.models.MetodosPadrao;
+import br.com.luis.apifilmes.models.enums.Coluna;
+import br.com.luis.apifilmes.models.enums.Destino;
+import br.com.luis.apifilmes.models.enums.Plataforma;
+import br.com.luis.apifilmes.models.utils.DiretorUtils;
+import br.com.luis.apifilmes.models.utils.FilmeUtils;
+import br.com.luis.apifilmes.utils.Calculadora;
+import br.com.luis.apifilmes.utils.Mapeamento;
 
 @RestController
 @RequestMapping("/**/filmes/vistos")
@@ -135,6 +146,11 @@ public class FilmesVistosController implements MetodosPadrao {
 		return todosOsGeneros.stream().distinct().sorted().collect(Collectors.toList());
 	}
 
+	@PostMapping(value = "/inserir")
+	public void inserirFilme(@RequestBody Filme filme) {
+		Arquivo.escreverFilmeNoArquivoCSV(filme, destino);
+	}
+	
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
 	private void atualizarListaDeFilmes() {
 		filmes = Mapeamento.getFilmes(destino);

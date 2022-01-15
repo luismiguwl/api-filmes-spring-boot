@@ -37,11 +37,11 @@ public class Mapeamento {
 			List<Diretor> diretores = obterListaDeObjetosBaseadoNaString(Diretor::new, record.get(DIRETOR.get()));
 			List<Genero> generos = obterListaDeObjetosBaseadoNaString(Genero::new, record.get(GENERO.get()));
 
-			Idioma idioma = new Idioma(record.get("idioma"));
+			Idioma idioma = new Idioma(record.get(IDIOMA.get()));
 			
 			Plataforma plataforma = null;
 			try {
-				plataforma = definirPlataforma(record.get("plataforma"));
+				plataforma = definirPlataforma(record.get(PLATAFORMA.get()));
 			} catch (Exception e) {
 				
 			}
@@ -99,7 +99,7 @@ public class Mapeamento {
 		Plataforma[] plataformas = Plataforma.values();
 
 		for (Plataforma plataforma : plataformas) {
-			if (plataforma.getPlataforma().equals(texto)) {
+			if (plataforma.getPlataforma().equalsIgnoreCase(texto)) {
 				return plataforma;
 			}
 		}
