@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luis.apifilmes.models.*;
-import br.com.luis.apifilmes.models.enums.Coluna;
-import br.com.luis.apifilmes.models.enums.Destino;
+import br.com.luis.apifilmes.models.enums.*;
 import br.com.luis.apifilmes.models.utils.*;
 import br.com.luis.apifilmes.utils.*;
 
@@ -102,6 +101,18 @@ public class FilmesVistosController implements MetodosPadrao {
 							.distinct()
 							.collect(Collectors.toList());
 		return ResponseEntity.ok(nomeDosDiretores);
+	}
+
+	@GetMapping("/plataformas")
+	public ResponseEntity<List<String>> obterListaDePlataformas() {
+		List<String> plataformasString = new ArrayList<>();
+		Plataforma[] plataformas = Plataforma.values();
+
+		for (Plataforma plataforma : plataformas) {
+			plataformasString.add(plataforma.getPlataforma());
+		}
+
+		return ResponseEntity.ok(plataformasString);
 	}
 
 	@GetMapping("/generos")
