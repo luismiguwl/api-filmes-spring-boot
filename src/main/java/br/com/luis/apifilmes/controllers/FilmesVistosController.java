@@ -86,6 +86,24 @@ public class FilmesVistosController implements MetodosPadrao {
 		return ResponseEntity.ok(idiomas);
 	}
 
+	@GetMapping("/diretores")
+	public ResponseEntity<List<String>> obterListaDeDiretoresDistintos() {
+		List<String> nomeDosDiretores = new ArrayList<>();
+
+		for (Filme filme : filmes) {
+			for (Diretor diretor : filme.getDiretores()) {
+				nomeDosDiretores.add(diretor.getNome());
+			}
+		}
+
+		nomeDosDiretores = nomeDosDiretores
+							.stream()
+							.sorted()
+							.distinct()
+							.collect(Collectors.toList());
+		return ResponseEntity.ok(nomeDosDiretores);
+	}
+
 	@GetMapping("/generos")
 	public ResponseEntity<List<String>> obterListaDeGeneros() {
 		List<String> generos = obterListaDeGenerosDistintos();
