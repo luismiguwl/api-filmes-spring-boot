@@ -3,6 +3,7 @@ package br.com.luis.apifilmes.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.luis.apifilmes.models.enums.Plataforma;
 import br.com.luis.apifilmes.models.utils.DiretorUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -16,9 +17,10 @@ public class Filme {
 	private List<Genero> generos = new ArrayList<>();
 	private Idioma idioma;
 	private int runtime;
+	private Plataforma plataformaEmQueFoiAssistido;
 
 	public Filme(String titulo, int anoDeLancamento, String dataEmQueFoiAssistido,
-			List<Diretor> diretores, List<Genero> generos, Idioma idioma, int runtime) {
+			List<Diretor> diretores, List<Genero> generos, Idioma idioma, int runtime, Plataforma plataforma) {
 		this.titulo = titulo;
 		this.anoDeLancamento = anoDeLancamento;
 		this.dataEmQueFoiAssistido = dataEmQueFoiAssistido;
@@ -26,6 +28,7 @@ public class Filme {
 		this.generos = generos;
 		this.runtime = runtime;
 		this.idioma = idioma;
+		this.plataformaEmQueFoiAssistido = plataforma;
 	}
 
 	public Filme() {
@@ -57,6 +60,14 @@ public class Filme {
 
 	public int getRuntime() {
 		return runtime;
+	}
+
+	public String getPlataformaEmQueFoiAssistido() {
+		if (plataformaEmQueFoiAssistido != null) {
+			return plataformaEmQueFoiAssistido.getPlataforma();
+		}
+
+		return null;
 	}
 
 	public String mesclarTituloComDiretores() {

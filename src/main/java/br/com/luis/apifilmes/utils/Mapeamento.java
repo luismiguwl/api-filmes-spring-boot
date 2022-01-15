@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import br.com.luis.apifilmes.models.enums.Plataforma;
 
 import br.com.luis.apifilmes.models.utils.MapeamentoUtils;
 import org.apache.commons.csv.CSVRecord;
@@ -37,8 +38,15 @@ public class Mapeamento {
 			List<Genero> generos = obterListaDeObjetosBaseadoNaString(Genero::new, record.get(GENERO.get()));
 
 			Idioma idioma = new Idioma(record.get("idioma"));
+			
+			Plataforma plataforma = null;
+			try {
+				plataforma = definirPlataforma(record.get("plataforma"));
+			} catch (Exception e) {
+				
+			}
 
-			Filme filme = new Filme(titulo, ano, data, diretores, generos, idioma, runtime);
+			Filme filme = new Filme(titulo, ano, data, diretores, generos, idioma, runtime, plataforma);
 			filmes.add(filme);
 		}
 
@@ -85,5 +93,17 @@ public class Mapeamento {
 		}
 		
 		return dados[0];
+	}
+
+	private static Plataforma definirPlataforma(String texto) {
+		Plataforma[] plataformas = Plataforma.values();
+
+		for (Plataforma plataforma : plataformas) {
+			if (plataforma.getPlataforma().equals(texto)) {
+				return plataforma;
+			}
+		}
+
+		return Plataforma.OUTROS;
 	}
 }
