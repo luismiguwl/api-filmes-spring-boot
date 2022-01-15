@@ -53,16 +53,4 @@ public class DiretorUtils {
 				.collect(Collectors.toList());
 	}
 
-	public static List<Diretor> getAllDiretoresDistintos(List<Filme> filmes) {
-		List<Diretor> allDiretores = new ArrayList<>();
-
-		filmes.forEach(filme -> {
-			allDiretores.addAll(filme.getDiretores());
-		});
-		
-		return allDiretores.stream()
-				.distinct()
-				.collect(Collectors.toList());
-	}
-
 }

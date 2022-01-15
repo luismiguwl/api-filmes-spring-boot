@@ -74,12 +74,6 @@ public class FilmesVistosController implements MetodosPadrao {
 		return ResponseEntity.ok(diretoresComMaisFilmes);
 	}
 	
-	@GetMapping("/diretores")
-	public ResponseEntity<List<Diretor>> obterListaContendoTodosOsDiretores() {
-		List<Diretor> listaContendoTodosOsDiretores = DiretorUtils.getAllDiretoresDistintos(filmes);
-		return ResponseEntity.ok(listaContendoTodosOsDiretores);
-	}
-	
 	@GetMapping("/idiomas")
 	public ResponseEntity<List<String>> obterListaDeIdiomas() {
 		List<String> idiomas = new ArrayList<>();
