@@ -1,1 +1,5 @@
-titulo,dataAssistido,anoDeLancamento,idioma,diretor,genero,duracao,plataforma
+titulo,dataAssistido,anoDeLancamento,idioma,diretor,genero,duracao,plataforma,assistidoLegendado
+13 Going on 30,01/01/2022,2004,Inglês,Gary Winick,"Comédia, Fantasia, Romance",98,Netflix,true
+Venom: Let There Be Carnage,02/01/2021,2021,Inglês,Andy Serkis,"Ação, Aventura, Ficção científica",97,Outros,true
+Reign of the Supermen,05/01/2021,2019,Inglês,Sam Liu,"Animação, Ação, Aventura",87,Outros,true
+Batman: Gotham by Gaslight,09/01/2021,2018,Inglês,Sam Liu,"Animação, Ação, Aventura",78,Outros,true

@@ -18,9 +18,10 @@ public class Filme {
 	private Idioma idioma;
 	private int runtime;
 	private Plataforma plataformaEmQueFoiAssistido;
+	private Boolean assistidoLegendado;
 
 	public Filme(String titulo, int anoDeLancamento, String dataEmQueFoiAssistido,
-			List<Diretor> diretores, List<Genero> generos, Idioma idioma, int runtime, Plataforma plataforma) {
+			List<Diretor> diretores, List<Genero> generos, Idioma idioma, int runtime, Plataforma plataforma, Boolean assistidoLegendado) {
 		this.titulo = titulo;
 		this.anoDeLancamento = anoDeLancamento;
 		this.dataEmQueFoiAssistido = dataEmQueFoiAssistido;
@@ -29,6 +30,7 @@ public class Filme {
 		this.runtime = runtime;
 		this.idioma = idioma;
 		this.plataformaEmQueFoiAssistido = plataforma;
+		this.assistidoLegendado = assistidoLegendado;
 	}
 
 	public Filme() {
@@ -63,11 +65,11 @@ public class Filme {
 	}
 
 	public String getPlataformaEmQueFoiAssistido() {
-		if (plataformaEmQueFoiAssistido != null) {
-			return plataformaEmQueFoiAssistido.getPlataforma();
-		}
+		return plataformaEmQueFoiAssistido.getPlataforma();
+	}
 
-		return null;
+	public boolean foiAssistidoLegendado() {
+		return assistidoLegendado;
 	}
 
 	public String mesclarTituloComDiretores() {

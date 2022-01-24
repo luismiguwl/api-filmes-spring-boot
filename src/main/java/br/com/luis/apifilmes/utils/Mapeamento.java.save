@@ -39,12 +39,12 @@ public class Mapeamento {
 
 			Idioma idioma = new Idioma(record.get(IDIOMA.get()));
 			
-			Plataforma plataforma = null;
-			Boolean assistidoLegendado = null;
 			if (!destino.equals(PENDENTES)) {
-				plataforma = definirPlataforma(record.get(PLATAFORMA.get()));
-				assistidoLegendado = record.get(ASSISTIDO_LEGENDADO.get()).equals("true");
+				
 			}
+			
+
+			boolean assistidoLegendado = record.get(ASSISTIDO_LEGENDADO.get()).equals("true");
 
 			Filme filme = new Filme(titulo, ano, data, diretores, generos, idioma, runtime, plataforma, assistidoLegendado);
 			filmes.add(filme);
