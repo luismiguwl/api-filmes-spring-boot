@@ -1,29 +1,23 @@
 package br.com.luis.apifilmes.arquivo;
 
-import static br.com.luis.apifilmes.models.enums.Coluna.ANO_LANCAMENTO;
-import static br.com.luis.apifilmes.models.enums.Coluna.DATA_ASSISTIDO;
-import static br.com.luis.apifilmes.models.enums.Coluna.DIRETOR;
-import static br.com.luis.apifilmes.models.enums.Coluna.DURACAO;
-import static br.com.luis.apifilmes.models.enums.Coluna.GENERO;
-import static br.com.luis.apifilmes.models.enums.Coluna.IDIOMA;
-import static br.com.luis.apifilmes.models.enums.Coluna.PLATAFORMA;
-import static br.com.luis.apifilmes.models.enums.Coluna.TITULO;
+import static br.com.luis.apifilmes.models.enums.Coluna.*;
+import static br.com.luis.apifilmes.models.enums.Destino.PENDENTES;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 
-import br.com.luis.apifilmes.models.Diretor;
-import br.com.luis.apifilmes.models.Filme;
-import br.com.luis.apifilmes.models.Genero;
-import br.com.luis.apifilmes.models.enums.Destino;
+import br.com.luis.apifilmes.models.*;
+import br.com.luis.apifilmes.models.enums.*;
 import br.com.luis.apifilmes.models.utils.MapeamentoUtils;
 
 public class Arquivo {
@@ -38,13 +32,14 @@ public class Arquivo {
 		}
 	}
 
-	public static void escreverFilmeNoArquivoCSV(Filme filme, Destino destino) {
-		String[] headers = definirHeadersBaseadoNoObjeto(filme).split(",");
-		List<String> campos = new ArrayList<>();
+	public static void escreverFilmeNoArquivoCSV(FilmeVisto filme, Destino destino) {
+		String[] headers = definirHeaders().split(",");
+		List<Object> campos = new ArrayList<>();
+		boolean ehFilmePendente = destino.equals(PENDENTES);
 		
 		campos.add(filme.getTitulo());
 		
-		if (!destino.equals(Destino.PENDENTES)) {
+		if (!ehFilmePendente) {
 			campos.add(filme.getDataEmQueFoiAssistido());
 		}
 		
@@ -59,9 +54,9 @@ public class Arquivo {
 	
 		campos.add(Integer.toString(filme.getRuntime()));
 		
-		if (filme.getPlataformaEmQueFoiAssistido() != null) {
-			campos.add(filme.getPlataformaEmQueFoiAssistido());
-		}
+		campos.add(filme.getPlataformaEmQueFoiAssistido().getPlataforma());
+		
+		campos.add(filme.getAssistidoLegendado());
 		
 		try {
 			FileWriter out = new FileWriter(destino.get(), true);
@@ -82,9 +77,10 @@ public class Arquivo {
 		}
 	}
 
-	private static String definirHeadersBaseadoNoObjeto(Filme filme) {
+	private static String definirHeaders() {
+		String camposParaStringFormatada = definirCampoParaStringFormatada();
 		String headers = String.format(
-				"%s,%s,%s,%s,%s,%s,%s,%s", 
+				camposParaStringFormatada, 
 				TITULO.get(), 
 				DATA_ASSISTIDO.get(), 
 				ANO_LANCAMENTO.get(), 
@@ -92,16 +88,18 @@ public class Arquivo {
 				DIRETOR.get(), 
 				GENERO.get(), 
 				DURACAO.get(),
-				PLATAFORMA.get());
-		
-		if (filme.getPlataformaEmQueFoiAssistido() == null) {
-			headers = headers.replace(PLATAFORMA.get() + ",", "");
-		}
-		
-		if (filme.getDataEmQueFoiAssistido() == null) {
-			headers = headers.replace(DATA_ASSISTIDO.get() + ",", "");
-		}
+				PLATAFORMA.get(),
+				ASSISTIDO_LEGENDADO.get());
 		
 		return headers;
+	}
+	
+	private static String definirCampoParaStringFormatada() {
+		Coluna[] colunas = Coluna.values();
+		String[] strings = new String[colunas.length];
+
+		Arrays.fill(strings, "%s");
+		
+		return Arrays.stream(strings).collect(Collectors.joining(","));
 	}
 }

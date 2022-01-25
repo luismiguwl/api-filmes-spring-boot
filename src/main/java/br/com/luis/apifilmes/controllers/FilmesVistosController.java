@@ -15,18 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luis.apifilmes.arquivo.Arquivo;
-import br.com.luis.apifilmes.models.DestinoAtual;
-import br.com.luis.apifilmes.models.Diretor;
-import br.com.luis.apifilmes.models.Filme;
-import br.com.luis.apifilmes.models.Genero;
-import br.com.luis.apifilmes.models.MetodosPadrao;
-import br.com.luis.apifilmes.models.enums.Coluna;
-import br.com.luis.apifilmes.models.enums.Destino;
-import br.com.luis.apifilmes.models.enums.Plataforma;
-import br.com.luis.apifilmes.models.utils.DiretorUtils;
-import br.com.luis.apifilmes.models.utils.FilmeUtils;
-import br.com.luis.apifilmes.utils.Calculadora;
-import br.com.luis.apifilmes.utils.Mapeamento;
+import br.com.luis.apifilmes.models.*;
+import br.com.luis.apifilmes.models.enums.*;
+import br.com.luis.apifilmes.models.utils.*;
+import br.com.luis.apifilmes.utils.*;
 
 @RestController
 @RequestMapping("/**/filmes/vistos")
@@ -147,7 +139,7 @@ public class FilmesVistosController implements MetodosPadrao {
 	}
 
 	@PostMapping(value = "/inserir")
-	public void inserirFilme(@RequestBody Filme filme) {
+	public void inserirFilme(@RequestBody FilmeVisto filme) {
 		Arquivo.escreverFilmeNoArquivoCSV(filme, destino);
 	}
 	

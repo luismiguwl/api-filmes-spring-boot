@@ -15,19 +15,19 @@ import org.apache.commons.csv.CSVRecord;
 
 import br.com.luis.apifilmes.arquivo.Arquivo;
 import br.com.luis.apifilmes.models.*;
-import br.com.luis.apifilmes.models.enums.Coluna;
-import br.com.luis.apifilmes.models.enums.Destino;
+import br.com.luis.apifilmes.models.enums.*;
 
 public class Mapeamento {
 	public static List<Filme> getFilmes(Destino destino) {
 		List<Filme> filmes = new ArrayList<>();
 		Iterable<CSVRecord> records = Arquivo.lerArquivoCsv(destino);
+		boolean ehFilmePendente = destino.equals(PENDENTES);
 
 		for (CSVRecord record : records) {
 			String titulo = record.get(TITULO.get().trim());
 
 			String data = null;
-			if (!destino.equals(PENDENTES)) {
+			if (!ehFilmePendente) {
 				data = record.get(DATA_ASSISTIDO.get().trim());
 			}
 
@@ -41,12 +41,18 @@ public class Mapeamento {
 			
 			Plataforma plataforma = null;
 			Boolean assistidoLegendado = null;
-			if (!destino.equals(PENDENTES)) {
+			if (!ehFilmePendente) {
 				plataforma = definirPlataforma(record.get(PLATAFORMA.get()));
 				assistidoLegendado = record.get(ASSISTIDO_LEGENDADO.get()).equals("true");
 			}
 
-			Filme filme = new Filme(titulo, ano, data, diretores, generos, idioma, runtime, plataforma, assistidoLegendado);
+			Filme filme;
+			if (!ehFilmePendente) {
+				filme = new FilmeVisto(titulo, ano, diretores, generos, idioma, runtime, data, plataforma, assistidoLegendado);
+			} else {
+				filme = new Filme(titulo, ano, diretores, generos, idioma, runtime);
+			}
+			
 			filmes.add(filme);
 		}
 
