@@ -50,7 +50,7 @@ public class Mapeamento {
 			if (!ehFilmePendente) {
 				filme = new FilmeVisto(titulo, ano, diretores, generos, idioma, runtime, data, plataforma, assistidoLegendado);
 			} else {
-				filme = new Filme(titulo, ano, diretores, generos, idioma, runtime);
+				filme = new FilmePendente(titulo, ano, diretores, generos, idioma, runtime);
 			}
 			
 			filmes.add(filme);

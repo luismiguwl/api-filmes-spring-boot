@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-public class Filme {
+public abstract class Filme {
 	private String titulo;
 	private int anoDeLancamento;
 	private List<Diretor> diretores = new ArrayList<>();
