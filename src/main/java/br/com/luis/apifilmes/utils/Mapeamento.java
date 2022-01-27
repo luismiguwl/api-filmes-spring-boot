@@ -32,7 +32,9 @@ public class Mapeamento {
 			}
 
 			int ano = Integer.parseInt(record.get(ANO_LANCAMENTO.get()).trim());
-			int runtime = Integer.parseInt(record.get(DURACAO.get()).trim());
+			int runtimeTipoPrimitivo = Integer.parseInt(record.get(DURACAO.get()).trim());
+			
+			Integer runtime = runtimeTipoPrimitivo > 0 ? runtimeTipoPrimitivo : null;
 			
 			List<Diretor> diretores = obterListaDeObjetosBaseadoNaString(Diretor::new, record.get(DIRETOR.get()));
 			List<Genero> generos = obterListaDeObjetosBaseadoNaString(Genero::new, record.get(GENERO.get()));

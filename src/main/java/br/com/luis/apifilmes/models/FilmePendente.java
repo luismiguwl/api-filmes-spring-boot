@@ -9,11 +9,12 @@ public class FilmePendente extends Filme {
 	private List<Diretor> diretores = new ArrayList<>();
 	private List<Genero> generos = new ArrayList<>();
 	private Idioma idioma;
-	private int runtime;
+	private Integer runtime;
 
 	public FilmePendente(String titulo, int anoDeLancamento, List<Diretor> diretores, List<Genero> generos,
-			Idioma idioma, int runtime) {
-		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime);
+			Idioma idioma, Integer runtime) {
+		super(titulo, anoDeLancamento, diretores, generos, idioma);
+		this.runtime = runtime;
 	}
 
 	@Override
@@ -41,9 +42,8 @@ public class FilmePendente extends Filme {
 		return super.getGeneros();
 	}
 
-	@Override
-	public int getRuntime() {
-		return super.getRuntime();
+	public Integer getRuntime() {
+		return runtime;
 	}
 
 	@Override

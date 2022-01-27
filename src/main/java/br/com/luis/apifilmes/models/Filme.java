@@ -14,14 +14,12 @@ public abstract class Filme {
 	private List<Diretor> diretores = new ArrayList<>();
 	private List<Genero> generos = new ArrayList<>();
 	private Idioma idioma;
-	private int runtime;
 
-	public Filme(String titulo, int anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma, int runtime) {
+	public Filme(String titulo, int anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma) {
 		this.titulo = titulo;
 		this.anoDeLancamento = anoDeLancamento;
 		this.diretores = diretores;
 		this.generos = generos;
-		this.runtime = runtime;
 		this.idioma = idioma;
 	}
 
@@ -46,10 +44,6 @@ public abstract class Filme {
 
 	public List<Genero> getGeneros() {
 		return generos;
-	}
-
-	public int getRuntime() {
-		return runtime;
 	}
 
 	public String mesclarTituloComDiretores() {
