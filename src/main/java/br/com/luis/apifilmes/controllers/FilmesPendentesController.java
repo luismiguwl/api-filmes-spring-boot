@@ -1,5 +1,6 @@
 package br.com.luis.apifilmes.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,58 +15,53 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.luis.apifilmes.models.*;
 import br.com.luis.apifilmes.models.enums.Destino;
 import br.com.luis.apifilmes.models.utils.FilmeUtils;
-import br.com.luis.apifilmes.utils.Calculadora;
-import br.com.luis.apifilmes.utils.Mapeamento;
+import br.com.luis.apifilmes.utils.*;
 
 @RestController
 @RequestMapping("/filmes/pendentes")
 @EnableScheduling
-public class FilmesPendentesController implements MetodosPadrao {
+public class FilmesPendentesController implements MetodosPadrao<FilmePendente> {
 	private static Calculadora calculadora = Calculadora.get();
 	private final Destino tipoDeConsulta = Destino.PENDENTES;
-	private List<Filme> filmes = Mapeamento.getFilmes(tipoDeConsulta);
-
+	private List<FilmePendente> filmes;
+	
+	public FilmesPendentesController() {
+		atualizarLista();
+	}
+	
 	@GetMapping("/random")
-	public ResponseEntity<Filme> obterFilmeAleatorio() {
+	public ResponseEntity<FilmePendente> obterFilmeAleatorio() {
 		int posicaoAleatoria = calculadora.getNumeroAleatorio(filmes.size());
 		return ResponseEntity.ok(filmes.get(posicaoAleatoria));
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<List<Filme>> obterTodosOsFilmes() {
+	public ResponseEntity<List<FilmePendente>> obterTodosOsFilmes() {
 		return ResponseEntity.ok(filmes);
 	}
 
-//	@GetMapping("/idioma")
-//	public ResponseEntity<List<Filme>> filtrarFilmePorIdioma(@RequestParam String idioma) {
-//		List<Filme> filmesVistosPorIdioma = filmes.stream()
-//				.filter(filme -> IdiomaUtils.filtrarPorIdioma(filme, idioma))
-//				.collect(Collectors.toList());
-//		return ResponseEntity.ok(filmesVistosPorIdioma);
-//	}
-
 	@GetMapping("/last")
-	public ResponseEntity<Filme> obterUltimoFilmeVisto() {
+	public ResponseEntity<FilmePendente> obterUltimoFilmeVisto() {
 		return ResponseEntity.ok(filmes.get(filmes.size() - 1));
 	}
 
 	@GetMapping("/palavra")
-	public ResponseEntity<List<Filme>> filtrarFilmePorPalavraChave(@RequestParam String palavra) {
-		List<Filme> filmesEncontradosPorKeyword = FilmeUtils.buscarFilmePorPalavra(filmes, palavra);
+	public ResponseEntity<List<FilmePendente>> filtrarFilmePorPalavraChave(@RequestParam String palavra) {
+		List<FilmePendente> filmesEncontradosPorKeyword = (List<FilmePendente>) FilmeUtils.buscarFilmePorPalavra(filmes, palavra);
 		return ResponseEntity.ok(filmesEncontradosPorKeyword);
 	}
 
 	@GetMapping("/lancamento")
-	public ResponseEntity<List<Filme>> buscarFilmePorAnoDeLancamento(@RequestParam int ano) {
-		List<Filme> filmesFiltradosPorAnoDeLancamento = filmes.stream()
+	public ResponseEntity<List<FilmePendente>> buscarFilmePorAnoDeLancamento(@RequestParam int ano) {
+		List<FilmePendente> filmesFiltradosPorAnoDeLancamento = filmes.stream()
 				.filter(filme -> FilmeUtils.buscarPorAnoDeLancamento(filme, ano))
 				.collect(Collectors.toList());
 		return ResponseEntity.ok(filmesFiltradosPorAnoDeLancamento);
 	}
 
 	@GetMapping("/ano")
-	public ResponseEntity<List<Filme>> buscarFilmePorIntervaloDeAnos(@RequestParam int de, @RequestParam int ate) {
-		List<Filme> filmesFiltradosPorIntervaloDeAnos = filmes.stream()
+	public ResponseEntity<List<FilmePendente>> buscarFilmePorIntervaloDeAnos(@RequestParam int de, @RequestParam int ate) {
+		List<FilmePendente> filmesFiltradosPorIntervaloDeAnos = filmes.stream()
 				.filter(filme -> FilmeUtils.buscarPorIntervaloDeAnos(filme, de, ate))
 				.collect(Collectors.toList());
         return ResponseEntity.ok(filmesFiltradosPorIntervaloDeAnos);
@@ -73,6 +69,17 @@ public class FilmesPendentesController implements MetodosPadrao {
 
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
 	private void atualizarLista() {
-		filmes = Mapeamento.getFilmes(tipoDeConsulta);
+		List<Filme> filmesNaoConvertidos = Mapeamento.getFilmes(tipoDeConsulta);
+		converterFilmesGenericosParaFilmeEspecifico(filmesNaoConvertidos);
+	}
+	
+	public void converterFilmesGenericosParaFilmeEspecifico(List<Filme> filmesGenericos) {
+		filmes = new ArrayList<>();
+		
+		for (Filme filme : filmesGenericos) {
+			if (filme instanceof FilmePendente) {
+				filmes.add((FilmePendente) filme);
+			}
+		}
 	}
 }

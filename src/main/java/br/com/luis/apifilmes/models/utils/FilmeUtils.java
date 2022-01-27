@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import br.com.luis.apifilmes.models.Filme;
 
 public class FilmeUtils {
-	public static List<Filme> buscarFilmePorPalavra(List<Filme> filmes, String chave) {
+	public static List<? extends Filme> buscarFilmePorPalavra(List<? extends Filme> filmes, String chave) {
 		return filmes.stream()
 				.filter(filme -> verificarSeExistePalavraNosDadosDoFilme(filme, chave))
 				.collect(Collectors.toList());

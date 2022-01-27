@@ -22,68 +22,64 @@ import br.com.luis.apifilmes.utils.*;
 
 @RestController
 @RequestMapping("/**/filmes/vistos")
-public class FilmesVistosController implements MetodosPadrao {
+public class FilmesVistosController implements MetodosPadrao<FilmeVisto> {
 	private Calculadora calculadora = Calculadora.get();
 	private Destino destino = Destino.VISTOS_EM_2021;
-	public List<Filme> filmes;
+	public List<FilmeVisto> filmes;
 
 	@GetMapping("/random")
-	public ResponseEntity<Filme> obterFilmeAleatorio() {
+	public ResponseEntity<FilmeVisto> obterFilmeAleatorio() {
 		int posicaoAleatoria = calculadora.getNumeroAleatorio(filmes.size());
 		return ResponseEntity.ok(filmes.get(posicaoAleatoria));
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<List<Filme>> obterTodosOsFilmes() {
+	public ResponseEntity<List<FilmeVisto>> obterTodosOsFilmes() {
 		System.out.println("requisicao pro metodo /all");
 		return ResponseEntity.ok(filmes);
 	}
 
 	@GetMapping("/last")
-	public ResponseEntity<Filme> obterUltimoFilmeVisto() {
+	public ResponseEntity<FilmeVisto> obterUltimoFilmeVisto() {
 		if (filmes.isEmpty()) {
 			return ResponseEntity.ok().build();
 		}
-		
+
 		return ResponseEntity.ok(filmes.get(filmes.size() - 1));
 	}
 
 	@GetMapping("/palavra")
-	public ResponseEntity<List<Filme>> filtrarFilmePorPalavraChave(@RequestParam String palavra) {
-		List<Filme> filmesEncontradosPorKeyword = FilmeUtils.buscarFilmePorPalavra(filmes, palavra);
+	public ResponseEntity<List<FilmeVisto>> filtrarFilmePorPalavraChave(@RequestParam String palavra) {
+		List<FilmeVisto> filmesEncontradosPorKeyword = (List<FilmeVisto>) FilmeUtils.buscarFilmePorPalavra(filmes, palavra);
 		return ResponseEntity.ok(filmesEncontradosPorKeyword);
 	}
 
 	@GetMapping("/lancamento")
-	public ResponseEntity<List<Filme>> buscarFilmePorAnoDeLancamento(@RequestParam int ano) {
-		List<Filme> filmesFiltradosPorAnoDeLancamento = filmes.stream()
-				.filter(filme -> FilmeUtils.buscarPorAnoDeLancamento(filme, ano))
-				.collect(Collectors.toList());
+	public ResponseEntity<List<FilmeVisto>> buscarFilmePorAnoDeLancamento(@RequestParam int ano) {
+		List<FilmeVisto> filmesFiltradosPorAnoDeLancamento = filmes.stream()
+				.filter(filme -> FilmeUtils.buscarPorAnoDeLancamento(filme, ano)).collect(Collectors.toList());
 		return ResponseEntity.ok(filmesFiltradosPorAnoDeLancamento);
 	}
 
 	@GetMapping("/ano")
-	public ResponseEntity<List<Filme>> buscarFilmePorIntervaloDeAnos(@RequestParam int de, @RequestParam int ate) {
-		List<Filme> filmesFiltradosPorIntervaloDeAnos = filmes.stream()
-				.filter(filme -> FilmeUtils.buscarPorIntervaloDeAnos(filme, de, ate))
-				.collect(Collectors.toList());
-        return ResponseEntity.ok(filmesFiltradosPorIntervaloDeAnos);
+	public ResponseEntity<List<FilmeVisto>> buscarFilmePorIntervaloDeAnos(@RequestParam int de, @RequestParam int ate) {
+		List<FilmeVisto> filmesFiltradosPorIntervaloDeAnos = filmes.stream()
+				.filter(filme -> FilmeUtils.buscarPorIntervaloDeAnos(filme, de, ate)).collect(Collectors.toList());
+		return ResponseEntity.ok(filmesFiltradosPorIntervaloDeAnos);
 	}
 
 	@GetMapping("/ranking/diretores")
 	public ResponseEntity<List<Diretor>> obterListaDeDiretoresComMaisFilmesVistos(@RequestParam int top) {
-		List<Diretor> diretoresComMaisFilmes = DiretorUtils.filtrarDiretoresComMaisFilmes(Mapeamento.getDadosDaColuna(destino, Coluna.DIRETOR), top);
+		List<Diretor> diretoresComMaisFilmes = DiretorUtils
+				.filtrarDiretoresComMaisFilmes(Mapeamento.getDadosDaColuna(destino, Coluna.DIRETOR), top);
 		return ResponseEntity.ok(diretoresComMaisFilmes);
 	}
-	
+
 	@GetMapping("/idiomas")
 	public ResponseEntity<List<String>> obterListaDeIdiomas() {
 		List<String> idiomas = new ArrayList<>();
 
-		idiomas = filmes.stream()
-						.map(filme -> filme.getIdioma().getNome())
-						.distinct()
-						.collect(Collectors.toList());
+		idiomas = filmes.stream().map(filme -> filme.getIdioma().getNome()).distinct().collect(Collectors.toList());
 
 		return ResponseEntity.ok(idiomas);
 	}
@@ -92,17 +88,13 @@ public class FilmesVistosController implements MetodosPadrao {
 	public ResponseEntity<List<String>> obterListaDeDiretoresDistintos() {
 		List<String> nomeDosDiretores = new ArrayList<>();
 
-		for (Filme filme : filmes) {
+		for (FilmeVisto filme : filmes) {
 			for (Diretor diretor : filme.getDiretores()) {
 				nomeDosDiretores.add(diretor.getNome());
 			}
 		}
 
-		nomeDosDiretores = nomeDosDiretores
-							.stream()
-							.sorted()
-							.distinct()
-							.collect(Collectors.toList());
+		nomeDosDiretores = nomeDosDiretores.stream().sorted().distinct().collect(Collectors.toList());
 		return ResponseEntity.ok(nomeDosDiretores);
 	}
 
@@ -127,12 +119,9 @@ public class FilmesVistosController implements MetodosPadrao {
 	private List<String> obterListaDeGenerosDistintos() {
 		List<String> todosOsGeneros = new ArrayList<>();
 
-		for (Filme filme : filmes) {
+		for (FilmeVisto filme : filmes) {
 			List<Genero> generos = filme.getGeneros();
-			generos.stream()
-					.map(genero -> genero.getNome())
-					.distinct()
-					.forEach(genero -> todosOsGeneros.add(genero));
+			generos.stream().map(genero -> genero.getNome()).distinct().forEach(genero -> todosOsGeneros.add(genero));
 		}
 
 		return todosOsGeneros.stream().distinct().sorted().collect(Collectors.toList());
@@ -142,12 +131,7 @@ public class FilmesVistosController implements MetodosPadrao {
 	public void inserirFilme(@RequestBody FilmeVisto filme) {
 		Arquivo.escreverFilmeNoArquivoCSV(filme, destino);
 	}
-	
-	@Scheduled(cron = "0 0/1 * 1/1 * ?")
-	private void atualizarListaDeFilmes() {
-		filmes = Mapeamento.getFilmes(destino);
-	}
-	
+
 	@ModelAttribute
 	private void definirDados() {
 		String pathAtual = DestinoAtual.getPathAtual();
@@ -164,5 +148,21 @@ public class FilmesVistosController implements MetodosPadrao {
 		String ano = pathAtual.split("/")[1].trim();
 		return ano.equals("2021") || ano.equals("2022");
 	}
-	
+
+	@Scheduled(cron = "0 0/1 * 1/1 * ?")
+	private void atualizarListaDeFilmes() {
+		List<Filme> filmesGenericos = Mapeamento.getFilmes(destino);
+		converterFilmesGenericosParaFilmeEspecifico(filmesGenericos);
+	}
+
+	public void converterFilmesGenericosParaFilmeEspecifico(List<Filme> filmesGenericos) {
+		filmes = new ArrayList<>();
+
+		for (Filme filme : filmesGenericos) {
+			if (filme instanceof FilmeVisto) {
+				filmes.add((FilmeVisto) filme);
+			}
+		}
+	}
+
 }
