@@ -29,7 +29,9 @@ public class Diretor {
 
 	public Integer getQuantidadeDeFilmesVistos() {
 		Destino destinoAtual = DestinoAtual.getDestino();
-		int quantidadeDeFilmesVistos = DiretorUtils.getQuantidadeDeFilmesVistos(Mapeamento.getDadosDaColuna(destinoAtual, Coluna.DIRETOR), this);
+		Mapeamento mapeamento = new Mapeamento(destinoAtual);
+		
+		int quantidadeDeFilmesVistos = DiretorUtils.getQuantidadeDeFilmesVistos(mapeamento.getDadosDaColuna(destinoAtual, Coluna.DIRETOR), this);
 		return quantidadeDeFilmesVistos > 0 ? quantidadeDeFilmesVistos : null;
 	}
 }

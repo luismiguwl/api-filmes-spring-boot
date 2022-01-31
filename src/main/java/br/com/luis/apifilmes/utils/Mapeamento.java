@@ -13,21 +13,29 @@ import br.com.luis.apifilmes.models.enums.Plataforma;
 import br.com.luis.apifilmes.models.utils.MapeamentoUtils;
 import org.apache.commons.csv.CSVRecord;
 
-import br.com.luis.apifilmes.arquivo.Arquivo;
+import br.com.luis.apifilmes.arquivo.*;
 import br.com.luis.apifilmes.models.*;
 import br.com.luis.apifilmes.models.enums.*;
 
-public class Mapeamento {
-	public static List<Filme> getFilmes(Destino destino) {
-		List<Filme> filmes = new ArrayList<>();
-		Iterable<CSVRecord> records = Arquivo.lerArquivoCsv(destino);
-		boolean ehFilmePendente = destino.equals(PENDENTES);
-
+public class Mapeamento implements AcoesComFilmePendente {
+	private Destino destino;
+	private LeitorDeCSV leitor;
+	private List<Filme> filmes;
+	
+	public Mapeamento(Destino destino) {
+		this.destino = destino;
+		leitor = new LeitorDeCSV(destino);
+		filmes = new ArrayList<>();
+	}
+	
+	public List<Filme> getFilmes() {
+		Iterable<CSVRecord> records = leitor.lerArquivoCsv();
+		
 		for (CSVRecord record : records) {
 			String titulo = record.get(TITULO.get().trim());
 
 			String data = null;
-			if (!ehFilmePendente) {
+			if (!ehFilmePendente()) {
 				data = record.get(DATA_ASSISTIDO.get().trim());
 			}
 
@@ -42,14 +50,14 @@ public class Mapeamento {
 			Idioma idioma = new Idioma(record.get(IDIOMA.get()));
 			
 			Plataforma plataforma = null;
-			Boolean assistidoLegendado = null;
-			if (!ehFilmePendente) {
+			boolean assistidoLegendado = false;
+			if (!ehFilmePendente()) {
 				plataforma = definirPlataforma(record.get(PLATAFORMA.get()));
 				assistidoLegendado = record.get(ASSISTIDO_LEGENDADO.get()).equals("true");
 			}
 
 			Filme filme;
-			if (!ehFilmePendente) {
+			if (!ehFilmePendente()) {
 				filme = new FilmeVisto(titulo, ano, diretores, generos, idioma, runtime, data, plataforma, assistidoLegendado);
 			} else {
 				filme = new FilmePendente(titulo, ano, diretores, generos, idioma, runtime);
@@ -61,9 +69,13 @@ public class Mapeamento {
 		return filmes;
 	}
 
-	public static String[] getDadosDaColuna(Destino destino, Coluna... colunas) {
-		Iterable<CSVRecord> records = Arquivo.lerArquivoCsv(destino);
-
+	@Override
+	public boolean ehFilmePendente() {
+		return destino.equals(PENDENTES);
+	}
+	
+	public String[] getDadosDaColuna(Destino destino, Coluna... colunas) {
+		Iterable<CSVRecord> records = leitor.lerArquivoCsv();
 		List<String> dadosDaColuna = new ArrayList<>();
 
 		for (CSVRecord record : records) {
@@ -83,7 +95,7 @@ public class Mapeamento {
 		return dados;
 	}
 	
-	private static String obterLinhaContendoDadosDasColunasInserindoVirgulaEntreElesSeForMaisDeUmaColuna(CSVRecord record, Coluna[] colunas) {
+	private String obterLinhaContendoDadosDasColunasInserindoVirgulaEntreElesSeForMaisDeUmaColuna(CSVRecord record, Coluna[] colunas) {
 		String[] dados = new String[colunas.length];
 		
 		for (int i = 0; i < colunas.length; i++) {
@@ -94,7 +106,7 @@ public class Mapeamento {
 		return aplicarVirgulaSeNecessario(dados);
 	}
 	
-	private static String aplicarVirgulaSeNecessario(String[] dados) {
+	private String aplicarVirgulaSeNecessario(String[] dados) {
 		if (dados.length > 1) {
 			return Arrays.asList(dados).stream()
 					.collect(Collectors.joining(","));
@@ -103,15 +115,8 @@ public class Mapeamento {
 		return dados[0];
 	}
 
-	private static Plataforma definirPlataforma(String texto) {
-		Plataforma[] plataformas = Plataforma.values();
-
-		for (Plataforma plataforma : plataformas) {
-			if (plataforma.getPlataforma().equalsIgnoreCase(texto)) {
-				return plataforma;
-			}
-		}
-
-		return Plataforma.OUTROS;
+	private Plataforma definirPlataforma(String texto) {
+		return Plataforma.valueOfPersonalizado(texto);
 	}
+
 }

@@ -11,5 +11,5 @@ public interface MetodosPadrao<T> {
 	 ResponseEntity<List<T>> filtrarFilmePorPalavraChave(String palavra);
 	 ResponseEntity<List<T>> buscarFilmePorAnoDeLancamento(int ano);
 	 ResponseEntity<List<T>> buscarFilmePorIntervaloDeAnos(int de, int ate);
-	 void converterFilmesGenericosParaFilmeEspecifico(List<Filme> filmesGenericos);
+	 void converterFilmesGenericosParaFilmesEspecificos(List<Filme> filmesGenericos);
 }

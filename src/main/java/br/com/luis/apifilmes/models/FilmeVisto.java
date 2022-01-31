@@ -69,4 +69,16 @@ public class FilmeVisto extends Filme {
 		return super.mesclarTituloComDiretores();
 	}
 
+	@Override
+	public String toString() {
+		return "FilmeVisto [dataEmQueFoiAssistido=" + dataEmQueFoiAssistido + ", plataformaEmQueFoiAssistido="
+				+ plataformaEmQueFoiAssistido + ", assistidoLegendado=" + assistidoLegendado + ", runtime=" + runtime
+				+ ", getDataEmQueFoiAssistido()=" + getDataEmQueFoiAssistido() + ", getPlataformaEmQueFoiAssistido()="
+				+ getPlataformaEmQueFoiAssistido() + ", getAssistidoLegendado()=" + getAssistidoLegendado()
+				+ ", getRuntime()=" + getRuntime() + ", getTitulo()=" + getTitulo() + ", getAnoDeLancamento()="
+				+ getAnoDeLancamento() + ", getDiretores()=" + getDiretores() + ", getIdioma()=" + getIdioma()
+				+ ", getGeneros()=" + getGeneros() + ", mesclarTituloComDiretores()=" + mesclarTituloComDiretores()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
 }

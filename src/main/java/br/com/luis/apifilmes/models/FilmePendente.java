@@ -1,14 +1,8 @@
 package br.com.luis.apifilmes.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FilmePendente extends Filme {
-	private String titulo;
-	private int anoDeLancamento;
-	private List<Diretor> diretores = new ArrayList<>();
-	private List<Genero> generos = new ArrayList<>();
-	private Idioma idioma;
 	private Integer runtime;
 
 	public FilmePendente(String titulo, int anoDeLancamento, List<Diretor> diretores, List<Genero> generos,

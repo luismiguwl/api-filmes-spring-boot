@@ -1,6 +1,7 @@
 package br.com.luis.apifilmes.controllers;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.luis.apifilmes.arquivo.Arquivo;
+import br.com.luis.apifilmes.arquivo.EscritorDeCSV;
 import br.com.luis.apifilmes.models.*;
 import br.com.luis.apifilmes.models.enums.*;
 import br.com.luis.apifilmes.models.utils.*;
@@ -26,6 +27,7 @@ public class FilmesVistosController implements MetodosPadrao<FilmeVisto> {
 	private Calculadora calculadora = Calculadora.get();
 	private Destino destino = Destino.VISTOS_EM_2021;
 	public List<FilmeVisto> filmes;
+	private Mapeamento mapeamento;
 
 	@GetMapping("/random")
 	public ResponseEntity<FilmeVisto> obterFilmeAleatorio() {
@@ -71,7 +73,7 @@ public class FilmesVistosController implements MetodosPadrao<FilmeVisto> {
 	@GetMapping("/ranking/diretores")
 	public ResponseEntity<List<Diretor>> obterListaDeDiretoresComMaisFilmesVistos(@RequestParam int top) {
 		List<Diretor> diretoresComMaisFilmes = DiretorUtils
-				.filtrarDiretoresComMaisFilmes(Mapeamento.getDadosDaColuna(destino, Coluna.DIRETOR), top);
+				.filtrarDiretoresComMaisFilmes(mapeamento.getDadosDaColuna(destino, Coluna.DIRETOR), top);
 		return ResponseEntity.ok(diretoresComMaisFilmes);
 	}
 
@@ -104,7 +106,7 @@ public class FilmesVistosController implements MetodosPadrao<FilmeVisto> {
 		Plataforma[] plataformas = Plataforma.values();
 
 		for (Plataforma plataforma : plataformas) {
-			plataformasString.add(plataforma.getPlataforma());
+			plataformasString.add(plataforma.getNome());
 		}
 
 		return ResponseEntity.ok(plataformasString);
@@ -129,7 +131,8 @@ public class FilmesVistosController implements MetodosPadrao<FilmeVisto> {
 
 	@PostMapping(value = "/inserir")
 	public void inserirFilme(@RequestBody FilmeVisto filme) {
-		Arquivo.escreverFilmeNoArquivoCSV(filme, destino);
+		EscritorDeCSV escritor = new EscritorDeCSV(destino);
+		escritor.escreverFilmeNoArquivoCSV(filme);
 	}
 
 	@ModelAttribute
@@ -145,17 +148,22 @@ public class FilmesVistosController implements MetodosPadrao<FilmeVisto> {
 	}
 
 	private boolean pathAtualPossuiAnoValido(String pathAtual) {
-		String ano = pathAtual.split("/")[1].trim();
-		return ano.equals("2021") || ano.equals("2022");
+		int ano = Integer.parseInt(pathAtual.split("/")[1].trim());
+		
+		final int anoMinimo = 2021;
+		int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
+
+		return ano >= anoMinimo && ano <= anoAtual; 
 	}
 
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
 	private void atualizarListaDeFilmes() {
-		List<Filme> filmesGenericos = Mapeamento.getFilmes(destino);
-		converterFilmesGenericosParaFilmeEspecifico(filmesGenericos);
+		mapeamento = new Mapeamento(destino);
+		List<Filme> filmesGenericos = mapeamento.getFilmes();
+		converterFilmesGenericosParaFilmesEspecificos(filmesGenericos);
 	}
 
-	public void converterFilmesGenericosParaFilmeEspecifico(List<Filme> filmesGenericos) {
+	public void converterFilmesGenericosParaFilmesEspecificos(List<Filme> filmesGenericos) {
 		filmes = new ArrayList<>();
 
 		for (Filme filme : filmesGenericos) {

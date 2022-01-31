@@ -22,7 +22,7 @@ import br.com.luis.apifilmes.utils.*;
 @EnableScheduling
 public class FilmesPendentesController implements MetodosPadrao<FilmePendente> {
 	private static Calculadora calculadora = Calculadora.get();
-	private final Destino tipoDeConsulta = Destino.PENDENTES;
+	private final Destino destino = Destino.PENDENTES;
 	private List<FilmePendente> filmes;
 	
 	public FilmesPendentesController() {
@@ -69,11 +69,12 @@ public class FilmesPendentesController implements MetodosPadrao<FilmePendente> {
 
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
 	private void atualizarLista() {
-		List<Filme> filmesNaoConvertidos = Mapeamento.getFilmes(tipoDeConsulta);
-		converterFilmesGenericosParaFilmeEspecifico(filmesNaoConvertidos);
+		Mapeamento mapeamento = new Mapeamento(destino);
+		List<Filme> filmesNaoConvertidos = mapeamento.getFilmes();
+		converterFilmesGenericosParaFilmesEspecificos(filmesNaoConvertidos);
 	}
 	
-	public void converterFilmesGenericosParaFilmeEspecifico(List<Filme> filmesGenericos) {
+	public void converterFilmesGenericosParaFilmesEspecificos(List<Filme> filmesGenericos) {
 		filmes = new ArrayList<>();
 		
 		for (Filme filme : filmesGenericos) {
