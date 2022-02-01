@@ -20,6 +20,10 @@ public enum Plataforma {
 	}
 
 	public static Plataforma valueOfPersonalizado(String texto) {
+		if (texto.isEmpty() || texto.isBlank()) {
+			return OUTROS;
+		}
+
 		Plataforma[] plataformas = Plataforma.values();
 
 		for (Plataforma plataforma : plataformas) {
