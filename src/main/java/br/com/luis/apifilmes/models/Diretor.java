@@ -3,7 +3,7 @@ package br.com.luis.apifilmes.models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import br.com.luis.apifilmes.models.enums.Coluna;
+import static br.com.luis.apifilmes.models.enums.Coluna.DIRETOR;
 import br.com.luis.apifilmes.models.enums.Destino;
 import br.com.luis.apifilmes.models.utils.DiretorUtils;
 import br.com.luis.apifilmes.utils.Mapeamento;
@@ -28,10 +28,13 @@ public class Diretor {
 	}
 
 	public Integer getQuantidadeDeFilmesVistos() {
-		Destino destinoAtual = DestinoAtual.getDestino();
-		Mapeamento mapeamento = new Mapeamento(destinoAtual);
+		DestinoAtual destinoAtual = new DestinoAtual();
+		Destino destino = destinoAtual.getDestino();
+		Mapeamento mapeamento = new Mapeamento(destino);
 		
-		int quantidadeDeFilmesVistos = DiretorUtils.getQuantidadeDeFilmesVistos(mapeamento.getDadosDaColuna(destinoAtual, Coluna.DIRETOR), this);
+		String[] dadosDaColuna = mapeamento.getDadosDaColuna(destino, DIRETOR);
+		int quantidadeDeFilmesVistos = DiretorUtils.getQuantidadeDeFilmesVistos(dadosDaColuna, this);
+
 		return quantidadeDeFilmesVistos > 0 ? quantidadeDeFilmesVistos : null;
 	}
 }

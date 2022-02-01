@@ -1,38 +1,40 @@
 package br.com.luis.apifilmes.models;
 
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.util.UriComponentsBuilder;
-
 import br.com.luis.apifilmes.models.enums.Destino;
+import br.com.luis.apifilmes.models.*;
 
 public class DestinoAtual {
-	private static String pathAtual;
-	
-	public static String getPathAtual() {
-		UriComponentsBuilder uri = ServletUriComponentsBuilder.fromCurrentRequest();
-		pathAtual = uri.buildAndExpand().getPath();
-		return pathAtual;
+	private String pathAtual;
+
+	public DestinoAtual() {
+		this.pathAtual = PathAtual.get();
 	}
 
-	public static Destino getDestino() {
-		getPathAtual();
-
-		if (pathAtual.contains("/pendentes")) {
+	public Destino getDestino() {
+		if (destinoAtualEhPraFilmePendente()) {
 			return Destino.PENDENTES;
+		} else if (validarAnoDaRequisicaoAtual()) {
+			int ano = obterAnoDaRequisicao();
+			return Destino.obterDestinoBaseadoNoAno(ano);
 		}
 
-		int ano = obterAnoDaRequisicao();
-		
-		if (ano == 2021) {
-			return Destino.VISTOS_EM_2021;
-		} else if (ano == 2022) {
-			return Destino.VISTOS_EM_2022;
-		}
-		
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException("Path inválido");		
+	}
+
+	private boolean destinoAtualEhPraFilmePendente() {
+		return pathAtual.contains("/pendentes");
 	}
 	
-	private static int obterAnoDaRequisicao() {
-		return Integer.parseInt(pathAtual.split("/")[1]);
+	public int obterAnoDaRequisicao() {
+		try {
+			return Integer.parseInt(pathAtual.split("/")[1]);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("Informe um valor inteiro!");
+		}
+	}
+
+	public boolean validarAnoDaRequisicaoAtual() {
+		int ano = obterAnoDaRequisicao();
+		return new ValidadorDeAnoDaRequisicao(ano).validar();
 	}
 }

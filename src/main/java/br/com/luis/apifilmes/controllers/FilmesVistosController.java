@@ -21,11 +21,13 @@ import br.com.luis.apifilmes.models.enums.*;
 import br.com.luis.apifilmes.models.utils.*;
 import br.com.luis.apifilmes.utils.*;
 
+import static br.com.luis.apifilmes.models.DestinoAtual.*;
+
 @RestController
 @RequestMapping("/**/filmes/vistos")
 public class FilmesVistosController implements MetodosPadrao<FilmeVisto> {
 	private Calculadora calculadora = Calculadora.get();
-	private Destino destino = Destino.VISTOS_EM_2021;
+	private Destino destino = Destino.obterDestinoBaseadoNoAnoAtual();
 	public List<FilmeVisto> filmes;
 	private Mapeamento mapeamento;
 
@@ -137,23 +139,15 @@ public class FilmesVistosController implements MetodosPadrao<FilmeVisto> {
 
 	@ModelAttribute
 	private void definirDados() {
-		String pathAtual = DestinoAtual.getPathAtual();
+		DestinoAtual destinoAtual = new DestinoAtual();
 
-		if (!pathAtualPossuiAnoValido(pathAtual)) {
-			throw new IllegalArgumentException("Ano inválido!");
+		if (!destinoAtual.validarAnoDaRequisicaoAtual()) {
+			int ano = destinoAtual.obterAnoDaRequisicao();
+			throw new IllegalArgumentException(String.format("%d não é um ano válido. Informe um ano entre 2021 e %d", ano, AnoAtual.get()));
 		}
 
-		destino = DestinoAtual.getDestino();
+		destino = destinoAtual.getDestino();
 		atualizarListaDeFilmes();
-	}
-
-	private boolean pathAtualPossuiAnoValido(String pathAtual) {
-		int ano = Integer.parseInt(pathAtual.split("/")[1].trim());
-		
-		final int anoMinimo = 2021;
-		int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
-
-		return ano >= anoMinimo && ano <= anoAtual; 
 	}
 
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
