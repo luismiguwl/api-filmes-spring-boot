@@ -21,7 +21,6 @@ import br.com.luis.apifilmes.utils.*;
 @RequestMapping("/filmes/pendentes")
 @EnableScheduling
 public class FilmesPendentesController implements MetodosPadrao<FilmePendente> {
-	private static Calculadora calculadora = Calculadora.get();
 	private final Destino destino = Destino.PENDENTES;
 	private List<FilmePendente> filmes;
 	
@@ -31,7 +30,7 @@ public class FilmesPendentesController implements MetodosPadrao<FilmePendente> {
 	
 	@GetMapping("/random")
 	public ResponseEntity<FilmePendente> obterFilmeAleatorio() {
-		int posicaoAleatoria = calculadora.getNumeroAleatorio(filmes.size());
+		int posicaoAleatoria = GeradorDeNumeroAleatorio.gerar(filmes.size());
 		return ResponseEntity.ok(filmes.get(posicaoAleatoria));
 	}
 

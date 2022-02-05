@@ -26,20 +26,18 @@ import static br.com.luis.apifilmes.models.DestinoAtual.*;
 @RestController
 @RequestMapping("/**/filmes/vistos")
 public class FilmesVistosController implements MetodosPadrao<FilmeVisto> {
-	private Calculadora calculadora = Calculadora.get();
 	private Destino destino = Destino.obterDestinoBaseadoNoAnoAtual();
 	public List<FilmeVisto> filmes;
 	private Mapeamento mapeamento;
 
 	@GetMapping("/random")
 	public ResponseEntity<FilmeVisto> obterFilmeAleatorio() {
-		int posicaoAleatoria = calculadora.getNumeroAleatorio(filmes.size());
+		int posicaoAleatoria = GeradorDeNumeroAleatorio.gerar(filmes.size());
 		return ResponseEntity.ok(filmes.get(posicaoAleatoria));
 	}
 
 	@GetMapping("/all")
 	public ResponseEntity<List<FilmeVisto>> obterTodosOsFilmes() {
-		System.out.println("requisicao pro metodo /all");
 		return ResponseEntity.ok(filmes);
 	}
 
