@@ -8,10 +8,10 @@ public class FilmeVisto extends Filme {
 	private String dataEmQueFoiAssistido;
 	private Plataforma plataformaEmQueFoiAssistido;
 	private boolean assistidoLegendado;
-	private int runtime;
+	private Duracao runtime;
 
 	public FilmeVisto(String titulo, int anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma,
-			int runtime, String dataEmQueFoiAssistido, Plataforma plataformaEmQueFoiAssistido,
+			Duracao runtime, String dataEmQueFoiAssistido, Plataforma plataformaEmQueFoiAssistido,
 			boolean assistidoLegendado) {
 		super(titulo, anoDeLancamento, diretores, generos, idioma);
 		this.dataEmQueFoiAssistido = dataEmQueFoiAssistido;
@@ -35,7 +35,7 @@ public class FilmeVisto extends Filme {
 		return assistidoLegendado;
 	}
 	
-	public int getRuntime() {
+	public Duracao getRuntime() {
 		return runtime;
 	}
 

@@ -1,7 +1,6 @@
 package br.com.luis.apifilmes.models;
 
 import br.com.luis.apifilmes.models.enums.Destino;
-import br.com.luis.apifilmes.models.*;
 
 public class DestinoAtual {
 	private String pathAtual;

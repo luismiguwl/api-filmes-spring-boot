@@ -42,7 +42,10 @@ public class Mapeamento implements AcoesComFilmePendente {
 			int ano = Integer.parseInt(record.get(ANO_LANCAMENTO.get()).trim());
 			int runtimeTipoPrimitivo = Integer.parseInt(record.get(DURACAO.get()).trim());
 			
-			Integer runtime = runtimeTipoPrimitivo > 0 ? runtimeTipoPrimitivo : null;
+			Duracao runtime = null;
+			if (runtimeTipoPrimitivo > 0) {
+				runtime = new Duracao(runtimeTipoPrimitivo);
+			}
 			
 			List<Diretor> diretores = obterListaDeObjetosBaseadoNaString(Diretor::new, record.get(DIRETOR.get()));
 			List<Genero> generos = obterListaDeObjetosBaseadoNaString(Genero::new, record.get(GENERO.get()));

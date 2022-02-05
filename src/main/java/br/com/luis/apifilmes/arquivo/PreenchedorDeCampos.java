@@ -57,7 +57,7 @@ public class PreenchedorDeCampos implements AcoesComFilmePendente {
 		String[] generos = obterArrayDeStringContendoAtributoDeUmaClasse(Genero::getNome, filme.getGeneros());
 		campos.add(generos.length > 0 ? String.join(", ", generos) : generos[0].trim());
 		
-		campos.add(Integer.toString(filme.getRuntime()));
+		campos.add(Integer.toString(filme.getRuntime().getDuracaoEmMinutos()));
 		campos.add(filme.getPlataformaEmQueFoiAssistido().getNome());
 		campos.add(filme.getAssistidoLegendado());
 	}
