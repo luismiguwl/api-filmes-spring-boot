@@ -4,11 +4,13 @@ import java.util.List;
 
 public class FilmePendente extends Filme {
 	private Duracao runtime;
+	private String dataEmQueFoiAdicionado;
 
 	public FilmePendente(String titulo, int anoDeLancamento, List<Diretor> diretores, List<Genero> generos,
-			Idioma idioma, Duracao runtime) {
+			Idioma idioma, Duracao runtime, String dataEmQueFoiAdicionado) {
 		super(titulo, anoDeLancamento, diretores, generos, idioma);
 		this.runtime = runtime;
+		this.dataEmQueFoiAdicionado = dataEmQueFoiAdicionado;
 	}
 
 	@Override
@@ -38,6 +40,10 @@ public class FilmePendente extends Filme {
 
 	public Duracao getRuntime() {
 		return runtime;
+	}
+	
+	public String getDataEmQueFoiAdicionado() {
+		return dataEmQueFoiAdicionado;
 	}
 
 	@Override

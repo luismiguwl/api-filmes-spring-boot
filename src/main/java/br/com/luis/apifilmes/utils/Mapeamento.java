@@ -54,16 +54,19 @@ public class Mapeamento implements AcoesComFilmePendente {
 			
 			Plataforma plataforma = null;
 			boolean assistidoLegendado = false;
+			String dataEmQueFoiAdicionado = null;
 			if (!ehFilmePendente()) {
 				plataforma = definirPlataforma(record.get(PLATAFORMA.get()));
 				assistidoLegendado = record.get(ASSISTIDO_LEGENDADO.get()).equals("true");
+			} else {
+				dataEmQueFoiAdicionado = record.get("dataEmQueFoiAdicionado");
 			}
 
 			Filme filme;
 			if (!ehFilmePendente()) {
 				filme = new FilmeVisto(titulo, ano, diretores, generos, idioma, runtime, data, plataforma, assistidoLegendado);
 			} else {
-				filme = new FilmePendente(titulo, ano, diretores, generos, idioma, runtime);
+				filme = new FilmePendente(titulo, ano, diretores, generos, idioma, runtime, dataEmQueFoiAdicionado);
 			}
 			
 			filmes.add(filme);

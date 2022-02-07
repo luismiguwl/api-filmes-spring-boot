@@ -8,28 +8,19 @@ public class Duracao {
 
     public Duracao(int horas, int minutos) {
         this.horas = horas;
-        definirMinuto(minutos);
-    }
-
-    public void definirMinuto(int minutos) {
-        if (minutos >= 60) {
-            horas += (minutos / 60);
-            this.minutos = (minutos % 60);
-        } else {
-            this.minutos = minutos;
-        }
+        definirHoraEMinuto(minutos);
     }
 
     public Duracao(int minutos) {
         definirHoraEMinuto(minutos);
     }
-
-    public void definirHoraEMinuto(int minutos) {
-        if (minutos < 60) {
-            this.minutos = minutos;
-        } else {
-            horas = minutos / 60;
+    
+    private void definirHoraEMinuto(int minutos) {
+        if (minutos >= 60) {
+            horas += (minutos / 60);
             this.minutos = (minutos % 60);
+        } else {
+            this.minutos = minutos;
         }
     }
 
