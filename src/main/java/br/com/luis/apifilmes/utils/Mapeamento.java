@@ -50,6 +50,8 @@ public class Mapeamento implements AcoesComFilmePendente {
 			List<Diretor> diretores = obterListaDeObjetosBaseadoNaString(Diretor::new, record.get(DIRETOR.get()));
 			List<Genero> generos = obterListaDeObjetosBaseadoNaString(Genero::new, record.get(GENERO.get()));
 
+			diretores = definirQuantidadeDeFilmesDeCadaDiretor(diretores);
+			
 			Idioma idioma = new Idioma(record.get(IDIOMA.get()));
 			
 			Plataforma plataforma = null;
@@ -125,4 +127,22 @@ public class Mapeamento implements AcoesComFilmePendente {
 		return Plataforma.valueOfPersonalizado(texto);
 	}
 
+	private List<Diretor> definirQuantidadeDeFilmesDeCadaDiretor(List<Diretor> diretores) {		
+		for (Diretor diretor : diretores) {
+			String[] dadosDiretor = getDadosDaColuna(destino, DIRETOR);
+			int quantidade = 0;
+			
+			for (int i = 0; i < dadosDiretor.length; i++) {
+				if (dadosDiretor[i].equals(diretor.getNome())) {
+					quantidade++;
+				}
+			}
+			
+			if (quantidade > 0) {
+				diretor.setQuantidadeDeFilmesVistos(quantidade);
+			}
+		}
+		
+		return diretores;
+	}
 }
