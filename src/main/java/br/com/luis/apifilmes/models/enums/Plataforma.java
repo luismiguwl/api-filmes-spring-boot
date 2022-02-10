@@ -37,6 +37,6 @@ public enum Plataforma {
 	
 	private static boolean textoPertenceAPlataforma(Plataforma plataforma, String texto) {
 		return Arrays.stream(plataforma.getNomes())
-				.anyMatch(nome -> nome.equalsIgnoreCase(plataforma.name()));
+				.anyMatch(nome -> nome.equalsIgnoreCase(texto));
 	}
 }
