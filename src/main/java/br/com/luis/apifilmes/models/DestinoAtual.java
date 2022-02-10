@@ -1,16 +1,17 @@
 package br.com.luis.apifilmes.models;
 
+import br.com.luis.apifilmes.arquivo.AcoesComFilmePendente;
 import br.com.luis.apifilmes.models.enums.Destino;
 
-public class DestinoAtual {
-	private String pathAtual;
+public class DestinoAtual implements AcoesComFilmePendente {
+	private PathAtual pathAtual;
 
-	public DestinoAtual() {
-		this.pathAtual = PathAtual.get();
+	public DestinoAtual(PathAtual pathAtual) {
+		this.pathAtual = pathAtual;
 	}
 
 	public Destino getDestino() {
-		if (destinoAtualEhPraFilmePendente()) {
+		if (ehFilmePendente()) {
 			return Destino.PENDENTES;
 		} else if (validarAnoDaRequisicaoAtual()) {
 			int ano = obterAnoDaRequisicao();
@@ -20,15 +21,16 @@ public class DestinoAtual {
 		throw new IllegalArgumentException("Path inválido");		
 	}
 
-	private boolean destinoAtualEhPraFilmePendente() {
-		return pathAtual.contains("/pendentes");
+	@Override
+	public boolean ehFilmePendente() {
+		return pathAtual.get().split("/")[1].equals("pendentes");
 	}
 	
 	public int obterAnoDaRequisicao() {
 		try {
-			return Integer.parseInt(pathAtual.split("/")[1]);
+			return Integer.parseInt(pathAtual.get().split("/")[1]);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("Informe um valor inteiro!");
+			throw new NumberFormatException("Informe um valor inteiro!");
 		}
 	}
 
@@ -36,4 +38,5 @@ public class DestinoAtual {
 		int ano = obterAnoDaRequisicao();
 		return new ValidadorDeAnoDaRequisicao(ano).validar();
 	}
+	
 }

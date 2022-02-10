@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.Diretor;
-import br.com.luis.apifilmes.models.Filme;
-import br.com.luis.apifilmes.models.enums.Destino;
 
 public class DiretorUtils {
 	public static String mesclarTodosOsDiretores(List<Diretor> diretores) {

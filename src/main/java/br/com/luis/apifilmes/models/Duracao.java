@@ -6,12 +6,13 @@ public class Duracao {
     private int horas;
     private int minutos;
 
-    public Duracao(int horas, int minutos) {
-        this.horas = horas;
-        definirHoraEMinuto(minutos);
-    }
-
     public Duracao(int minutos) {
+    	this.minutos = minutos;
+    	
+    	if (!validarNumeros()) {
+    		throw new IllegalArgumentException("Valor não pode ser negativos");
+		}
+    	
         definirHoraEMinuto(minutos);
     }
     
@@ -25,17 +26,7 @@ public class Duracao {
     }
 
     public String getDuracaoFormatada() {
-        VerificadorDeHorario validador = new VerificadorDeHorario(this);
-        
-        if (validador.possuiApenasUmMinuto()) {
-            return "1 minuto";
-        } else if (validador.possuiMenosDeUmaHora()) {
-            return String.format("%d minutos", minutos);
-        } else if (validador.possuiHoraExata()) {
-            return String.format("%dh", horas);
-        }
-
-        return String.format("%dh %dm", horas, minutos);
+        return new FormatadorDeDuracao(this).get();
     }
 
     public int getDuracaoEmMinutos() {
@@ -51,5 +42,9 @@ public class Duracao {
     public int getMinutos() {
         return minutos;
     }
-
+    
+    private boolean validarNumeros() {
+    	return minutos >= 0;
+    }
+    
 }

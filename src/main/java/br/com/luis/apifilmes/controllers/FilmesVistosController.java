@@ -137,11 +137,13 @@ public class FilmesVistosController implements MetodosPadrao<FilmeVisto> {
 
 	@ModelAttribute
 	private void definirDados() {
-		DestinoAtual destinoAtual = new DestinoAtual();
+		PathAtual path = new PathAtual();
+		DestinoAtual destinoAtual = new DestinoAtual(path);
 
 		if (!destinoAtual.validarAnoDaRequisicaoAtual()) {
 			int ano = destinoAtual.obterAnoDaRequisicao();
-			throw new IllegalArgumentException(String.format("%d não é um ano válido. Informe um ano entre 2021 e %d", ano, AnoAtual.get()));
+			int anoAtual = new AnoAtual().get();
+			throw new IllegalArgumentException(String.format("%d não é um ano válido. Informe um ano entre 2021 e %d", ano, anoAtual));
 		}
 
 		destino = destinoAtual.getDestino();

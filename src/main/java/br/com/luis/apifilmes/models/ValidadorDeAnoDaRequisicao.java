@@ -9,7 +9,7 @@ class ValidadorDeAnoDaRequisicao {
 
 	public boolean validar() {
 		final int ANO_MINIMO = 2021;
-		int anoAtual = AnoAtual.get();
+		int anoAtual = new AnoAtual().get();
 
 		return ano >= ANO_MINIMO && ano <= anoAtual;
 	}

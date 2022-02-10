@@ -28,7 +28,8 @@ public class Diretor {
 	}
 
 	public Integer getQuantidadeDeFilmesVistos() {
-		DestinoAtual destinoAtual = new DestinoAtual();
+		PathAtual path = new PathAtual();
+		DestinoAtual destinoAtual = new DestinoAtual(path);
 		Destino destino = destinoAtual.getDestino();
 		Mapeamento mapeamento = new Mapeamento(destino);
 		
@@ -38,3 +39,4 @@ public class Diretor {
 		return quantidadeDeFilmesVistos > 0 ? quantidadeDeFilmesVistos : null;
 	}
 }
+	

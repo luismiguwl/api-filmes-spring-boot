@@ -36,7 +36,7 @@ public enum Destino {
 	}
 
 	public static Destino obterDestinoBaseadoNoAnoAtual() {
-		int anoAtual = AnoAtual.get();
+		int anoAtual = new AnoAtual().get();
 		String nome = obterModeloDeNomeParaFilmeVistoBaseadoNoAno(anoAtual);
 		return Destino.valueOf(nome);
 	}

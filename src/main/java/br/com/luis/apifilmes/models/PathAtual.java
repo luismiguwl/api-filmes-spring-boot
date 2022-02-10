@@ -4,7 +4,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PathAtual {
-	public static String get() {
+	public String get() {
 		UriComponentsBuilder uri = ServletUriComponentsBuilder.fromCurrentRequest();
 		return uri.buildAndExpand().getPath();
 	}
