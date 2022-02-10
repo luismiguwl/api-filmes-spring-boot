@@ -6,7 +6,11 @@ import static br.com.luis.apifilmes.models.utils.MapeamentoUtils.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.function.BiPredicate;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import br.com.luis.apifilmes.models.enums.Plataforma;
 
@@ -48,9 +52,14 @@ public class Mapeamento implements AcoesComFilmePendente {
 			}
 			
 			List<Diretor> diretores = obterListaDeObjetosBaseadoNaString(Diretor::new, record.get(DIRETOR.get()));
+			String[] nomeDosDiretores = getDadosDaColuna(destino, DIRETOR);
+			ContadorDeDiretor contadorDeDiretor = new ContadorDeDiretor();
+			diretores = contadorDeDiretor.definirOcorrencias(diretores, nomeDosDiretores);
+			
 			List<Genero> generos = obterListaDeObjetosBaseadoNaString(Genero::new, record.get(GENERO.get()));
-
-			diretores = definirQuantidadeDeFilmesDeCadaDiretor(diretores);
+			String[] nomeDosGeneros = getDadosDaColuna(destino, GENERO);
+			ContadorDeGenero contadorDeGenero = new ContadorDeGenero();
+			generos = contadorDeGenero.definirOcorrencias(generos, nomeDosGeneros);
 			
 			Idioma idioma = new Idioma(record.get(IDIOMA.get()));
 			
@@ -127,22 +136,4 @@ public class Mapeamento implements AcoesComFilmePendente {
 		return Plataforma.valueOfPersonalizado(texto);
 	}
 
-	private List<Diretor> definirQuantidadeDeFilmesDeCadaDiretor(List<Diretor> diretores) {		
-		for (Diretor diretor : diretores) {
-			String[] dadosDiretor = getDadosDaColuna(destino, DIRETOR);
-			int quantidade = 0;
-			
-			for (int i = 0; i < dadosDiretor.length; i++) {
-				if (dadosDiretor[i].equals(diretor.getNome())) {
-					quantidade++;
-				}
-			}
-			
-			if (quantidade > 0) {
-				diretor.setQuantidadeDeFilmesVistos(quantidade);
-			}
-		}
-		
-		return diretores;
-	}
 }

@@ -22,7 +22,10 @@ public class Genero {
 	}
 	
 	public Integer getQuantidadeDeFilmes() {
-		quantidadeDeFilmes = GeneroUtils.getQuantidadeDeFilmes(this);
 		return quantidadeDeFilmes;
+	}
+	
+	public void setQuantidadeDeFilmes(Integer quantidadeDeFilmes) {
+		this.quantidadeDeFilmes = quantidadeDeFilmes;
 	}
 }

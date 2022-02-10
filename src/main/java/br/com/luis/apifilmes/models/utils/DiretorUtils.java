@@ -14,14 +14,6 @@ public class DiretorUtils {
 				.collect(Collectors.joining(" "));
 	}
 
-	public static int getQuantidadeDeFilmesVistos(String[] nomeDosDiretores, Diretor diretorAlvo) {
-		List<Diretor> diretores = MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor::new, nomeDosDiretores);
-		
-		return (int) diretores.stream()
-				.filter(diretor -> diretor.getNome().equals(diretorAlvo.getNome()))
-				.count();
-	}
-
 	public static List<Diretor> filtrarDiretoresComMaisFilmes(String[] nomeDosDiretores, int top) {
 		List<Diretor> diretores = MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor::new, nomeDosDiretores);
 		diretores = getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(diretores);
