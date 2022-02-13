@@ -1,7 +1,6 @@
 package br.com.luis.apifilmes.controllers;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,14 +20,12 @@ import br.com.luis.apifilmes.models.enums.*;
 import br.com.luis.apifilmes.models.utils.*;
 import br.com.luis.apifilmes.utils.*;
 
-import static br.com.luis.apifilmes.models.DestinoAtual.*;
-
 @RestController
 @RequestMapping("/**/filmes/vistos")
-public class FilmesVistosController implements MetodosPadrao<FilmeVisto> {
+public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 	private Destino destino = Destino.obterDestinoBaseadoNoAnoAtual();
 	public List<FilmeVisto> filmes;
-	private Mapeamento mapeamento;
+	private AcessoADados acessoADados;
 
 	@GetMapping("/random")
 	public ResponseEntity<FilmeVisto> obterFilmeAleatorio() {
@@ -73,7 +70,7 @@ public class FilmesVistosController implements MetodosPadrao<FilmeVisto> {
 	@GetMapping("/ranking/diretores")
 	public ResponseEntity<List<Diretor>> obterListaDeDiretoresComMaisFilmesVistos(@RequestParam int top) {
 		List<Diretor> diretoresComMaisFilmes = DiretorUtils
-				.filtrarDiretoresComMaisFilmes(mapeamento.getDadosDaColuna(destino, Coluna.DIRETOR), top);
+				.filtrarDiretoresComMaisFilmes(acessoADados.getDadosDaColuna(destino, Coluna.DIRETOR), top);
 		return ResponseEntity.ok(diretoresComMaisFilmes);
 	}
 
@@ -152,8 +149,8 @@ public class FilmesVistosController implements MetodosPadrao<FilmeVisto> {
 
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
 	private void atualizarListaDeFilmes() {
-		mapeamento = new Mapeamento(destino);
-		List<Filme> filmesGenericos = mapeamento.getFilmes();
+		acessoADados = new AcessoADados(destino);
+		List<Filme> filmesGenericos = acessoADados.getFilmes();
 		converterFilmesGenericosParaFilmesEspecificos(filmesGenericos);
 	}
 

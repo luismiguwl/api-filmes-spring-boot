@@ -20,7 +20,7 @@ import br.com.luis.apifilmes.utils.*;
 @RestController
 @RequestMapping("/filmes/pendentes")
 @EnableScheduling
-public class FilmesPendentesController implements MetodosPadrao<FilmePendente> {
+public class FilmesPendentesController implements ControllerDeFilme<FilmePendente> {
 	private final Destino destino = Destino.PENDENTES;
 	private List<FilmePendente> filmes;
 	
@@ -68,8 +68,8 @@ public class FilmesPendentesController implements MetodosPadrao<FilmePendente> {
 
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
 	private void atualizarLista() {
-		Mapeamento mapeamento = new Mapeamento(destino);
-		List<Filme> filmesNaoConvertidos = mapeamento.getFilmes();
+		AcessoADados acessoADados = new AcessoADados(destino);
+		List<Filme> filmesNaoConvertidos = acessoADados.getFilmes();
 		converterFilmesGenericosParaFilmesEspecificos(filmesNaoConvertidos);
 	}
 	

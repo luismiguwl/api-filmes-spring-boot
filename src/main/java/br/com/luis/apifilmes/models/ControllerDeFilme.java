@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-public interface MetodosPadrao<T> {
+public interface ControllerDeFilme<T> {
 	 ResponseEntity<T> obterUltimoFilmeVisto();
 	 ResponseEntity<T> obterFilmeAleatorio();
 	 ResponseEntity<List<T>> obterTodosOsFilmes();

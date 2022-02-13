@@ -21,12 +21,12 @@ import br.com.luis.apifilmes.arquivo.*;
 import br.com.luis.apifilmes.models.*;
 import br.com.luis.apifilmes.models.enums.*;
 
-public class Mapeamento implements AcoesComFilmePendente {
+public class AcessoADados implements AcoesComFilmePendente {
 	private Destino destino;
 	private LeitorDeCSV leitor;
 	private List<Filme> filmes;
 	
-	public Mapeamento(Destino destino) {
+	public AcessoADados(Destino destino) {
 		this.destino = destino;
 		leitor = new LeitorDeCSV(destino);
 		filmes = new ArrayList<>();
