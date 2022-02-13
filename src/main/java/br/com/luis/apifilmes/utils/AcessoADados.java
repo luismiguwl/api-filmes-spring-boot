@@ -14,6 +14,7 @@ import br.com.luis.apifilmes.models.utils.MapeamentoUtils;
 import org.apache.commons.csv.CSVRecord;
 
 import br.com.luis.apifilmes.arquivo.*;
+import br.com.luis.apifilmes.interfaces.AcoesComFilmePendente;
 import br.com.luis.apifilmes.models.*;
 import br.com.luis.apifilmes.models.enums.*;
 

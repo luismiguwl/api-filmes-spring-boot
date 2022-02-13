@@ -1,4 +1,4 @@
-package br.com.luis.apifilmes.arquivo;
+package br.com.luis.apifilmes.interfaces;
 
 public interface AcoesComFilmePendente {
 	boolean ehFilmePendente();

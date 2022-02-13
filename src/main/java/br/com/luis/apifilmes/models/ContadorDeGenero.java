@@ -3,6 +3,8 @@ package br.com.luis.apifilmes.models;
 import java.util.Arrays;
 import java.util.List;
 
+import br.com.luis.apifilmes.interfaces.Contador;
+
 public class ContadorDeGenero implements Contador<Genero> {
 	@Override
 	public List<Genero> definirOcorrencias(List<Genero> generos, String... dados) {

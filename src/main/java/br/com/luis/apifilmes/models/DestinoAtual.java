@@ -1,6 +1,6 @@
 package br.com.luis.apifilmes.models;
 
-import br.com.luis.apifilmes.arquivo.AcoesComFilmePendente;
+import br.com.luis.apifilmes.interfaces.AcoesComFilmePendente;
 import br.com.luis.apifilmes.models.enums.Destino;
 
 public class DestinoAtual implements AcoesComFilmePendente {

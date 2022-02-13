@@ -1,4 +1,4 @@
-package br.com.luis.apifilmes.models;
+package br.com.luis.apifilmes.interfaces;
 
 import java.util.List;
 
