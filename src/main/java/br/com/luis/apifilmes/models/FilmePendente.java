@@ -3,13 +3,11 @@ package br.com.luis.apifilmes.models;
 import java.util.List;
 
 public class FilmePendente extends Filme {
-	private Duracao runtime;
 	private String dataEmQueFoiAdicionado;
 
 	public FilmePendente(String titulo, int anoDeLancamento, List<Diretor> diretores, List<Genero> generos,
 			Idioma idioma, Duracao runtime, String dataEmQueFoiAdicionado) {
-		super(titulo, anoDeLancamento, diretores, generos, idioma);
-		this.runtime = runtime;
+		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime);
 		this.dataEmQueFoiAdicionado = dataEmQueFoiAdicionado;
 	}
 
@@ -39,7 +37,7 @@ public class FilmePendente extends Filme {
 	}
 
 	public Duracao getRuntime() {
-		return runtime;
+		return super.getRuntime();
 	}
 	
 	public String getDataEmQueFoiAdicionado() {

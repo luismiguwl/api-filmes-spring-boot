@@ -8,16 +8,14 @@ public class FilmeVisto extends Filme {
 	private String dataEmQueFoiAssistido;
 	private Plataforma plataformaEmQueFoiAssistido;
 	private boolean assistidoLegendado;
-	private Duracao runtime;
 
 	public FilmeVisto(String titulo, int anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma,
 			Duracao runtime, String dataEmQueFoiAssistido, Plataforma plataformaEmQueFoiAssistido,
 			boolean assistidoLegendado) {
-		super(titulo, anoDeLancamento, diretores, generos, idioma);
+		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime);
 		this.dataEmQueFoiAssistido = dataEmQueFoiAssistido;
 		this.plataformaEmQueFoiAssistido = plataformaEmQueFoiAssistido;
 		this.assistidoLegendado = assistidoLegendado;
-		this.runtime = runtime;
 	}
 
 	public FilmeVisto() {
@@ -36,7 +34,7 @@ public class FilmeVisto extends Filme {
 	}
 	
 	public Duracao getRuntime() {
-		return runtime;
+		return super.getRuntime();
 	}
 
 	@Override
@@ -69,16 +67,4 @@ public class FilmeVisto extends Filme {
 		return super.mesclarTituloComDiretores();
 	}
 
-	@Override
-	public String toString() {
-		return "FilmeVisto [dataEmQueFoiAssistido=" + dataEmQueFoiAssistido + ", plataformaEmQueFoiAssistido="
-				+ plataformaEmQueFoiAssistido + ", assistidoLegendado=" + assistidoLegendado + ", runtime=" + runtime
-				+ ", getDataEmQueFoiAssistido()=" + getDataEmQueFoiAssistido() + ", getPlataformaEmQueFoiAssistido()="
-				+ getPlataformaEmQueFoiAssistido() + ", getAssistidoLegendado()=" + getAssistidoLegendado()
-				+ ", getRuntime()=" + getRuntime() + ", getTitulo()=" + getTitulo() + ", getAnoDeLancamento()="
-				+ getAnoDeLancamento() + ", getDiretores()=" + getDiretores() + ", getIdioma()=" + getIdioma()
-				+ ", getGeneros()=" + getGeneros() + ", mesclarTituloComDiretores()=" + mesclarTituloComDiretores()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
-	}
 }
