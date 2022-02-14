@@ -1,15 +1,12 @@
-package br.com.luis.apifilmes.utils;
+package br.com.luis.apifilmes.acessoadados;
 
 import static br.com.luis.apifilmes.models.enums.Coluna.*;
 import static br.com.luis.apifilmes.models.enums.Destino.*;
-import static br.com.luis.apifilmes.models.utils.MapeamentoUtils.*;
+import static br.com.luis.apifilmes.models.utils.AcessoADadosUtils.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import br.com.luis.apifilmes.models.utils.MapeamentoUtils;
 import br.com.luis.apifilmes.utils.definidores.*;
 
 import org.apache.commons.csv.CSVRecord;
@@ -75,45 +72,17 @@ public class AcessoADados implements AcoesComFilmePendente {
 		return destino.equals(PENDENTES);
 	}
 	
-	public String[] getDadosDaColuna(Destino destino, Coluna... colunas) {
+	public String[] getDadosDaColuna(Destino destino, Coluna coluna) {
 		Iterable<CSVRecord> records = leitor.lerArquivoCsv();
 		List<String> dadosDaColuna = new ArrayList<>();
 
 		for (CSVRecord record : records) {
-			String dado;
-			
-			if (colunas.length > 1) {
-				dado = obterLinhaContendoDadosDasColunasInserindoVirgulaEntreElesSeForMaisDeUmaColuna(record, colunas);
-			} else {
-				String coluna = colunas[0].get();
-				dado = record.get(coluna);
-			}
-			
+			String dado = record.get(coluna.get());
 			dadosDaColuna.add(dado);
 		}
 
-		String[] dados = MapeamentoUtils.converterListaDeStringParaArray(dadosDaColuna);
+		String[] dados = converterListaDeStringParaArray(dadosDaColuna);
 		return dados;
-	}
-	
-	private String obterLinhaContendoDadosDasColunasInserindoVirgulaEntreElesSeForMaisDeUmaColuna(CSVRecord record, Coluna[] colunas) {
-		String[] dados = new String[colunas.length];
-		
-		for (int i = 0; i < colunas.length; i++) {
-			String coluna = colunas[i].get();
-			dados[i] = record.get(coluna);
-		}
-
-		return aplicarVirgulaSeNecessario(dados);
-	}
-	
-	private String aplicarVirgulaSeNecessario(String[] dados) {
-		if (dados.length > 1) {
-			return Arrays.asList(dados).stream()
-					.collect(Collectors.joining(","));
-		}
-		
-		return dados[0];
 	}
 
 }

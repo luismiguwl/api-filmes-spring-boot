@@ -15,7 +15,7 @@ public class DiretorUtils {
 	}
 
 	public static List<Diretor> filtrarDiretoresComMaisFilmes(String[] nomeDosDiretores, int top) {
-		List<Diretor> diretores = MapeamentoUtils.obterListaDeObjetosBaseadoNaString(Diretor::new, nomeDosDiretores);
+		List<Diretor> diretores = AcessoADadosUtils.obterListaDeObjetosBaseadoNaString(Diretor::new, nomeDosDiretores);
 		diretores = getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(diretores);
 		List<Diretor> rankingDeDiretoresComMaisFilmes = new ArrayList<>();
 		

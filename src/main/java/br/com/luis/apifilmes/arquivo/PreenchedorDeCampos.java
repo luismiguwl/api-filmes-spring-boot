@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.luis.apifilmes.interfaces.AcoesComFilmePendente;
 import br.com.luis.apifilmes.models.*;
-import static br.com.luis.apifilmes.models.utils.MapeamentoUtils.*;
+import static br.com.luis.apifilmes.models.utils.AcessoADadosUtils.*;
 
 public class PreenchedorDeCampos implements AcoesComFilmePendente {
 	private Filme filme;

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class MapeamentoUtils {
+public class AcessoADadosUtils {
 	public static <T> List<T> obterListaDeObjetosBaseadoNaString(Function<String, T> fn, String ... linhas) {
 		List<String> nomes = new ArrayList<>();
 		
