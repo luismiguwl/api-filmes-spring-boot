@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import br.com.luis.apifilmes.models.enums.Plataforma;
 
 import br.com.luis.apifilmes.models.utils.MapeamentoUtils;
+import br.com.luis.apifilmes.utils.definidores.*;
+
 import org.apache.commons.csv.CSVRecord;
 
 import br.com.luis.apifilmes.arquivo.*;
@@ -34,19 +35,11 @@ public class AcessoADados implements AcoesComFilmePendente {
 		
 		for (CSVRecord record : records) {
 			String titulo = record.get(TITULO.get().trim());
-
-			String data = null;
-			if (!ehFilmePendente()) {
-				data = record.get(DATA_ASSISTIDO.get().trim());
-			}
-
-			int ano = Integer.parseInt(record.get(ANO_LANCAMENTO.get()).trim());
-			int runtimeTipoPrimitivo = Integer.parseInt(record.get(DURACAO.get()).trim());
+			String data = new DefinidorDeDataEmQueFoiAssistido(destino, record).definir();
 			
-			Duracao runtime = null;
-			if (runtimeTipoPrimitivo > 0) {
-				runtime = new Duracao(runtimeTipoPrimitivo);
-			}
+			int ano = Integer.parseInt(record.get(ANO_LANCAMENTO.get()));
+			
+			Duracao runtime = new DefinidorDeDuracao(record).definir();
 			
 			List<Diretor> diretores = obterListaDeObjetosBaseadoNaString(Diretor::new, record.get(DIRETOR.get()));
 			String[] nomeDosDiretores = getDadosDaColuna(destino, DIRETOR);
@@ -60,15 +53,9 @@ public class AcessoADados implements AcoesComFilmePendente {
 			
 			Idioma idioma = new Idioma(record.get(IDIOMA.get()));
 			
-			Plataforma plataforma = null;
-			boolean assistidoLegendado = false;
-			String dataEmQueFoiAdicionado = null;
-			if (!ehFilmePendente()) {
-				plataforma = definirPlataforma(record.get(PLATAFORMA.get()));
-				assistidoLegendado = record.get(ASSISTIDO_LEGENDADO.get()).equals("true");
-			} else {
-				dataEmQueFoiAdicionado = record.get("dataEmQueFoiAdicionado");
-			}
+			Plataforma plataforma = new DefinidorDePlataforma(destino, record).definir();
+			Boolean assistidoLegendado = new DefinidorDeAssistidoLegendado(record).definir();
+			String dataEmQueFoiAdicionado = new DefinidorDeDataDeAdicao(destino, record).definir();
 
 			Filme filme;
 			if (!ehFilmePendente()) {
@@ -127,10 +114,6 @@ public class AcessoADados implements AcoesComFilmePendente {
 		}
 		
 		return dados[0];
-	}
-
-	private Plataforma definirPlataforma(String texto) {
-		return Plataforma.valueOfPersonalizado(texto);
 	}
 
 }

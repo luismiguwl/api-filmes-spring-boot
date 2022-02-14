@@ -7,11 +7,11 @@ import br.com.luis.apifilmes.models.enums.Plataforma;
 public class FilmeVisto extends Filme {
 	private String dataEmQueFoiAssistido;
 	private Plataforma plataformaEmQueFoiAssistido;
-	private boolean assistidoLegendado;
+	private Boolean assistidoLegendado;
 
 	public FilmeVisto(String titulo, int anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma,
 			Duracao runtime, String dataEmQueFoiAssistido, Plataforma plataformaEmQueFoiAssistido,
-			boolean assistidoLegendado) {
+			Boolean assistidoLegendado) {
 		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime);
 		this.dataEmQueFoiAssistido = dataEmQueFoiAssistido;
 		this.plataformaEmQueFoiAssistido = plataformaEmQueFoiAssistido;
@@ -29,7 +29,7 @@ public class FilmeVisto extends Filme {
 		return plataformaEmQueFoiAssistido;
 	}
 
-	public boolean getAssistidoLegendado() {
+	public Boolean getAssistidoLegendado() {
 		return assistidoLegendado;
 	}
 	

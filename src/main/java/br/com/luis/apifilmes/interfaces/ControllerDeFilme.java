@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import br.com.luis.apifilmes.models.Filme;
+
 public interface ControllerDeFilme<T> {
 	 ResponseEntity<T> obterUltimoFilmeVisto();
 	 ResponseEntity<T> obterFilmeAleatorio();
