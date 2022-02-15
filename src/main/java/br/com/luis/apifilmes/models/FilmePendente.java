@@ -11,6 +11,9 @@ public class FilmePendente extends Filme {
 		this.dataEmQueFoiAdicionado = dataEmQueFoiAdicionado;
 	}
 
+	public FilmePendente() {
+	}
+	
 	@Override
 	public String getTitulo() {
 		return super.getTitulo();

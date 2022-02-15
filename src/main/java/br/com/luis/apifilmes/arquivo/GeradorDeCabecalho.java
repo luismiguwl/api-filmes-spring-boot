@@ -52,6 +52,7 @@ public class GeradorDeCabecalho implements AcoesComFilmePendente {
 		headers.add(DIRETOR.get());
 		headers.add(GENERO.get());
 		headers.add(DURACAO.get());
+		headers.add(DATA_DE_ADICAO.get());
 	}
 
 }

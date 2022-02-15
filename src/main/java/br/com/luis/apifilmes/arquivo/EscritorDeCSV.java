@@ -22,7 +22,7 @@ public class EscritorDeCSV {
 		String[] headers = gerador.gerar();
 		
 		PreenchedorDeCampos preenchedor = new PreenchedorDeCampos(filme);
-		List<Object> campos = preenchedor.prencher();
+		List<Object> campos = preenchedor.preencher();
 		
 		try {
 			FileWriter out = new FileWriter(destino.get(), true);

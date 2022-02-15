@@ -10,12 +10,13 @@ import static br.com.luis.apifilmes.models.utils.AcessoADadosUtils.*;
 public class PreenchedorDeCampos implements AcoesComFilmePendente {
 	private Filme filme;
 	private List<Object> campos = new ArrayList<>();
+	private Joiner joiner = new Joiner();
 
 	public PreenchedorDeCampos(Filme filme) {
 		this.filme = filme;
 	}
 
-	public List<Object> prencher() {
+	public List<Object> preencher() {
 		if (ehFilmePendente()) {
 			preencherParaFilmePendente();
 		} else {
@@ -36,14 +37,10 @@ public class PreenchedorDeCampos implements AcoesComFilmePendente {
 		campos.add(filme.getTitulo());
 		campos.add(Integer.toString(filme.getAnoDeLancamento()));
 		campos.add(filme.getIdioma().getNome());
-		String[] diretores = obterArrayDeStringContendoAtributoDeUmaClasse(Diretor::getNome, filme.getDiretores());
-		campos.add(diretores.length > 0 ? String.join(", ", diretores) : diretores[0].trim());
-		String[] generos = obterArrayDeStringContendoAtributoDeUmaClasse(Genero::getNome, filme.getGeneros());
-		campos.add(generos.length > 0 ? String.join(", ", generos) : generos[0].trim());
-		
-		if (filme.getRuntime() != null) {
-			campos.add(filme.getRuntime());
-		}
+		campos.add(joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getDiretores(), Diretor::getNome));
+		campos.add(joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getGeneros(), Genero::getNome));
+		campos.add(filme.getRuntime() != null ? filme.getRuntime().getDuracaoEmMinutos() : 0);
+		campos.add(filme.getDataEmQueFoiAdicionado() != null ? filme.getDataEmQueFoiAdicionado() : "");
 	}
 	
 	private void preencherParaFilmeVisto() {
@@ -53,12 +50,10 @@ public class PreenchedorDeCampos implements AcoesComFilmePendente {
 		campos.add(filme.getDataEmQueFoiAssistido());
 		campos.add(Integer.toString(filme.getAnoDeLancamento()));
 		campos.add(filme.getIdioma().getNome());
-		String[] diretores = obterArrayDeStringContendoAtributoDeUmaClasse(Diretor::getNome, filme.getDiretores());
-		campos.add(diretores.length > 0 ? String.join(", ", diretores) : diretores[0].trim());
-		String[] generos = obterArrayDeStringContendoAtributoDeUmaClasse(Genero::getNome, filme.getGeneros());
-		campos.add(generos.length > 0 ? String.join(", ", generos) : generos[0].trim());
+		campos.add(joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getDiretores(), Diretor::getNome));
+		campos.add(joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getGeneros(), Genero::getNome));
 		
-		campos.add(Integer.toString(filme.getRuntime().getDuracaoEmMinutos()));
+		campos.add(filme.getRuntime().getDuracaoEmMinutos());
 		campos.add(filme.getPlataformaEmQueFoiAssistido().getNome());
 		campos.add(filme.getAssistidoLegendado());
 	}
