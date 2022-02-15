@@ -145,8 +145,10 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 			throw new IllegalArgumentException(String.format("%d não é um ano válido. Informe um ano entre 2021 e %d", ano, anoAtual));
 		}
 
-		destino = destinoAtual.getDestino();
-		atualizarListaDeFilmes();
+		if (!destino.equals(destinoAtual.getDestino())) {
+			destino = destinoAtual.getDestino();
+			atualizarListaDeFilmes();
+		}
 	}
 
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
