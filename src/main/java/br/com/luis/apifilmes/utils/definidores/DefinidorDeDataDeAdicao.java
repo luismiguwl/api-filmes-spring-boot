@@ -17,7 +17,12 @@ public class DefinidorDeDataDeAdicao implements AcoesComFilmePendente {
 	}
 
 	public String definir() {
-		return ehFilmePendente() ? record.get(COLUNA.get()) : null;
+		if (ehFilmePendente()) {
+			String valor = record.get(COLUNA.get());
+			return valor.isBlank() ? null : valor;
+		}
+
+		return null;
 	}
 
 	@Override

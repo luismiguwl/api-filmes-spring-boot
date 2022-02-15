@@ -13,7 +13,7 @@ public class DefinidorDeAssistidoLegendado {
 	}
 	
 	public Boolean definir() {
-		boolean encontrouColuna = record.isMapped("assistidoLegendado");
+		boolean encontrouColuna = record.isMapped(COLUNA.get());
 		return encontrouColuna ? record.get(COLUNA.get()).equals("true") : null;
 	}
 }
