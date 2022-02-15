@@ -78,7 +78,16 @@ public class AcessoADados implements AcoesComFilmePendente {
 
 		for (CSVRecord record : records) {
 			String dado = record.get(coluna.get());
-			dadosDaColuna.add(dado);
+
+			if (dado.contains(",")) {
+				String[] valores = dado.split(",");
+
+				for (String valor : valores) {
+					dadosDaColuna.add(valor.trim());
+				}
+			} else {
+				dadosDaColuna.add(dado);
+			}
 		}
 
 		String[] dados = converterListaDeStringParaArray(dadosDaColuna);
