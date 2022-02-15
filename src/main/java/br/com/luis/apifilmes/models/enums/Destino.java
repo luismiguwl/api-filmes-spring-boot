@@ -1,7 +1,7 @@
 package br.com.luis.apifilmes.models.enums;
 
-import java.util.Arrays;
 import br.com.luis.apifilmes.models.AnoAtual;
+import br.com.luis.apifilmes.utils.VerificadorDeString;
 
 public enum Destino {
 	VISTOS_EM_2021("dados/Filmes assistidos em 2021.csv"),
@@ -30,9 +30,19 @@ public enum Destino {
 		throw new IllegalArgumentException(String.format("O enum %s não existe!",nome));
 	}
 
-	private static boolean enumExiste(String nome) {
-		return Arrays.stream(Destino.values())
-				.anyMatch(destino -> destino.name().equals(nome));
+	public static boolean enumExiste(String nome) {
+		return new VerificadorDeString().textoExisteNoArray(nome, getNomes());
+	}
+	
+	private static String[] getNomes() {
+		Destino[] destinos = Destino.values();
+		String[] nomes = new String[destinos.length];
+		
+		for (int i = 0; i < nomes.length; i++) {
+			nomes[i] = destinos[i].name();
+		}
+		
+		return nomes;
 	}
 
 	public static Destino obterDestinoBaseadoNoAnoAtual() {
