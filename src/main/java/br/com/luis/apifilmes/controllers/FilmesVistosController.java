@@ -58,21 +58,23 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 	@GetMapping("/lancamento")
 	public ResponseEntity<List<FilmeVisto>> buscarFilmePorAnoDeLancamento(@RequestParam int ano) {
 		List<FilmeVisto> filmesFiltradosPorAnoDeLancamento = filmes.stream()
-				.filter(filme -> FilmeUtils.buscarPorAnoDeLancamento(filme, ano)).collect(Collectors.toList());
+				.filter(filme -> filme.getAnoDeLancamento() == ano)
+				.collect(Collectors.toList());
 		return ResponseEntity.ok(filmesFiltradosPorAnoDeLancamento);
 	}
 
 	@GetMapping("/ano")
 	public ResponseEntity<List<FilmeVisto>> buscarFilmePorIntervaloDeAnos(@RequestParam int de, @RequestParam int ate) {
 		List<FilmeVisto> filmesFiltradosPorIntervaloDeAnos = filmes.stream()
-				.filter(filme -> FilmeUtils.buscarPorIntervaloDeAnos(filme, de, ate)).collect(Collectors.toList());
+				.filter(filme -> filme.anoDeLancamentoEstaEntre(de, ate))
+				.collect(Collectors.toList());
 		return ResponseEntity.ok(filmesFiltradosPorIntervaloDeAnos);
 	}
 
 	@GetMapping("/ranking/diretores")
 	public ResponseEntity<List<Diretor>> obterListaDeDiretoresComMaisFilmesVistos(@RequestParam int top) {
-		List<Diretor> diretoresComMaisFilmes = DiretorUtils
-				.filtrarDiretoresComMaisFilmes(acessoADados.getDadosDaColuna(destino, Coluna.DIRETOR), top);
+		String[] nomes = acessoADados.getDadosDaColuna(destino, Coluna.DIRETOR);
+		List<Diretor> diretoresComMaisFilmes = AcessoADadosUtils.converterStringParaObjeto(Diretor::new, nomes);
 		return ResponseEntity.ok(diretoresComMaisFilmes);
 	}
 

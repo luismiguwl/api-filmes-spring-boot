@@ -31,6 +31,10 @@ public abstract class Filme {
 	public String getTitulo() {
 		return titulo;
 	}
+	
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
 	public int getAnoDeLancamento() {
 		return anoDeLancamento;
@@ -38,6 +42,10 @@ public abstract class Filme {
 
 	public List<Diretor> getDiretores() {
 		return diretores;
+	}
+	
+	public void setDiretores(List<Diretor> diretores) {
+		this.diretores = diretores;
 	}
 
 	public Idioma getIdioma() {
@@ -55,4 +63,9 @@ public abstract class Filme {
 	public String mesclarTituloComDiretores() {
 		return getTitulo() + " " + DiretorUtils.mesclarTodosOsDiretores(diretores);
 	}
+	
+	public boolean anoDeLancamentoEstaEntre(int anoMinimo, int anoMaximo) {
+		return anoDeLancamento >= anoMinimo && anoDeLancamento <= anoMaximo;
+	}
+	
 }

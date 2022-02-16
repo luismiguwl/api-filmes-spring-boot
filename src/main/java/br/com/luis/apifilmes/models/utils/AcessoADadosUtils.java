@@ -6,16 +6,13 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class AcessoADadosUtils {
-	public static <T> List<T> obterListaDeObjetosBaseadoNaString(Function<String, T> fn, String ... linhas) {
+	public static <T> List<T> converterStringParaObjeto(Function<String, T> fn, String ... linhas) {
 		List<String> nomes = new ArrayList<>();
 		
 		for (String linha : linhas) {
 			if (linha.contains(",")) {
-				String[] elementosDaLinhaSeparadaPorVirgula = linha.split(",");
-
-				for (String nome : elementosDaLinhaSeparadaPorVirgula) {
-					nomes.add(nome.trim());
-				}
+				List<String> valores = List.of(linha.split(", "));
+				nomes.addAll(valores);
 			} else {
 				nomes.add(linha.trim());
 			}
@@ -26,7 +23,7 @@ public class AcessoADadosUtils {
 				.collect(Collectors.toList());
 	}
 
-	public static <T> String[] obterArrayDeStringContendoAtributoDeUmaClasse(Function<T, String> fn, List<T> lista) {
+	public static <T> String[] obterArrayContendoDadosDoAtributoDeUmaClasse(Function<T, String> fn, List<T> lista) {
 		List<String> strings = new ArrayList<>();
 
 		lista.stream()

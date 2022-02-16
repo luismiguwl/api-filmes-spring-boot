@@ -38,12 +38,12 @@ public class AcessoADados implements AcoesComFilmePendente {
 			
 			Duracao runtime = new DefinidorDeDuracao(record).definir();
 			
-			List<Diretor> diretores = obterListaDeObjetosBaseadoNaString(Diretor::new, record.get(DIRETOR.get()));
+			List<Diretor> diretores = converterStringParaObjeto(Diretor::new, record.get(DIRETOR.get()));
 			String[] nomeDosDiretores = getDadosDaColuna(destino, DIRETOR);
 			ContadorDeDiretor contadorDeDiretor = new ContadorDeDiretor();
 			diretores = contadorDeDiretor.definirOcorrencias(diretores, nomeDosDiretores);
 			
-			List<Genero> generos = obterListaDeObjetosBaseadoNaString(Genero::new, record.get(GENERO.get()));
+			List<Genero> generos = converterStringParaObjeto(Genero::new, record.get(GENERO.get()));
 			String[] nomeDosGeneros = getDadosDaColuna(destino, GENERO);
 			ContadorDeGenero contadorDeGenero = new ContadorDeGenero();
 			generos = contadorDeGenero.definirOcorrencias(generos, nomeDosGeneros);
@@ -79,15 +79,8 @@ public class AcessoADados implements AcoesComFilmePendente {
 		for (CSVRecord record : records) {
 			String dado = record.get(coluna.get());
 
-			if (dado.contains(",")) {
-				String[] valores = dado.split(",");
-
-				for (String valor : valores) {
-					dadosDaColuna.add(valor.trim());
-				}
-			} else {
-				dadosDaColuna.add(dado);
-			}
+			List<String> diretoresContidosNaLinha = converterStringParaObjeto(String::toString, dado.split(","));
+			dadosDaColuna.addAll(diretoresContidosNaLinha);
 		}
 
 		String[] dados = converterListaDeStringParaArray(dadosDaColuna);

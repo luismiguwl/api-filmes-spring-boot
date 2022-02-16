@@ -3,6 +3,7 @@ package br.com.luis.apifilmes.models.utils;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import br.com.luis.apifilmes.models.Diretor;
@@ -14,31 +15,31 @@ public class DiretorUtils {
 				.collect(Collectors.joining(" "));
 	}
 
-	public static List<Diretor> filtrarDiretoresComMaisFilmes(String[] nomeDosDiretores, int top) {
-		List<Diretor> diretores = AcessoADadosUtils.obterListaDeObjetosBaseadoNaString(Diretor::new, nomeDosDiretores);
-		diretores = getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(diretores);
-		List<Diretor> rankingDeDiretoresComMaisFilmes = new ArrayList<>();
-		
-		for (Diretor diretor : diretores) {
-			boolean onList = 
-					rankingDeDiretoresComMaisFilmes.stream()
-					.anyMatch(diretorRanking -> diretorRanking.getNome().equals(diretor.getNome()));
-			
-			if (!onList) {
-				rankingDeDiretoresComMaisFilmes.add(diretor);
-			}
+	public static List<Diretor> filtrarDiretoresComMaisFilmes(List<Diretor> diretores, int top) {
+		if (top < 1) {
+			return List.of();
 		}
 		
-		return rankingDeDiretoresComMaisFilmes.stream()
-				.limit(top)
-				.distinct()
-				.collect(Collectors.toList());
+		diretores = ordenarDecrescentePorQuantidadeDeFilmes(diretores);
+		
+		if (top > 1) {
+			return diretores.stream()
+					.limit(top)
+					.distinct()
+					.collect(Collectors.toList());
+		}
+		
+		return List.of(diretores.get(0));
 	}
 
-	public static List<Diretor> getListaDeDiretoresOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(
+	public static List<Diretor> ordenarDecrescentePorQuantidadeDeFilmes(
 			List<Diretor> diretores) {
+		Predicate<Diretor> quantidadeDeFilmesNaoNula = diretor -> {
+			return diretor.getQuantidadeDeFilmesVistos() != null;
+		};
+		
 		return diretores.stream()
-				.filter(diretor -> diretor.getQuantidadeDeFilmesVistos() != null)
+				.filter(quantidadeDeFilmesNaoNula)
 				.sorted(Comparator.comparing(Diretor::getQuantidadeDeFilmesVistos).reversed())
 				.collect(Collectors.toList());
 	}

@@ -51,7 +51,7 @@ public class FilmeVisto extends Filme {
 	public List<Diretor> getDiretores() {
 		return super.getDiretores();
 	}
-
+	
 	@Override
 	public Idioma getIdioma() {
 		return super.getIdioma();
