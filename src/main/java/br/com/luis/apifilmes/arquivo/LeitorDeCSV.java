@@ -16,7 +16,7 @@ public class LeitorDeCSV {
 		this.destino = destino;
 	}
 	
-	public Iterable<CSVRecord> lerArquivoCsv() {
+	public Iterable<CSVRecord> ler() {
 		try {
 			Reader in = new FileReader(destino.get());
 			Iterable<CSVRecord> records = CSVFormat

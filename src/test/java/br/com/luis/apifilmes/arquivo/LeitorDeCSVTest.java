@@ -22,13 +22,13 @@ public class LeitorDeCSVTest {
 	
 	@Test
 	public void deveRetornarUmIteravel() {
-		assertNotNull(leitor.lerArquivoCsv());
+		assertNotNull(leitor.ler());
 	}
 	
 	@Test
 	public void deveRetornarNuloSeDestinoForNulo() {
 		leitor = new LeitorDeCSV(null);
-		assertNull(leitor.lerArquivoCsv());
+		assertNull(leitor.ler());
 	}
 	
 	@Test
@@ -38,7 +38,7 @@ public class LeitorDeCSVTest {
 		
 		when(destino.get()).thenReturn("");
 		
-		assertNull(leitor.lerArquivoCsv());
+		assertNull(leitor.ler());
 	}
 }
 	

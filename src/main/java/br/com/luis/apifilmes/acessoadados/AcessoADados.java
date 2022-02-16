@@ -28,7 +28,7 @@ public class AcessoADados implements AcoesComFilmePendente {
 	}
 	
 	public List<Filme> getFilmes() {
-		Iterable<CSVRecord> records = leitor.lerArquivoCsv();
+		Iterable<CSVRecord> records = leitor.ler();
 		
 		for (CSVRecord record : records) {
 			String titulo = record.get(TITULO.get().trim());
@@ -39,12 +39,12 @@ public class AcessoADados implements AcoesComFilmePendente {
 			Duracao runtime = new DefinidorDeDuracao(record).definir();
 			
 			List<Diretor> diretores = converterStringParaObjeto(Diretor::new, record.get(DIRETOR.get()));
-			String[] nomeDosDiretores = getDadosDaColuna(destino, DIRETOR);
+			String[] nomeDosDiretores = getDadosDaColuna(DIRETOR);
 			ContadorDeDiretor contadorDeDiretor = new ContadorDeDiretor();
 			diretores = contadorDeDiretor.definirOcorrencias(diretores, nomeDosDiretores);
 			
 			List<Genero> generos = converterStringParaObjeto(Genero::new, record.get(GENERO.get()));
-			String[] nomeDosGeneros = getDadosDaColuna(destino, GENERO);
+			String[] nomeDosGeneros = getDadosDaColuna(GENERO);
 			ContadorDeGenero contadorDeGenero = new ContadorDeGenero();
 			generos = contadorDeGenero.definirOcorrencias(generos, nomeDosGeneros);
 			
@@ -72,8 +72,8 @@ public class AcessoADados implements AcoesComFilmePendente {
 		return destino.equals(PENDENTES);
 	}
 	
-	public String[] getDadosDaColuna(Destino destino, Coluna coluna) {
-		Iterable<CSVRecord> records = leitor.lerArquivoCsv();
+	public String[] getDadosDaColuna(Coluna coluna) {
+		Iterable<CSVRecord> records = leitor.ler();
 		List<String> dadosDaColuna = new ArrayList<>();
 
 		for (CSVRecord record : records) {
