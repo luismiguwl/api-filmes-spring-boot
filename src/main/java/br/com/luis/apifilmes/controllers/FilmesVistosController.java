@@ -28,6 +28,10 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 	private Destino destino = Destino.obterDestinoBaseadoNoAnoAtual();
 	public List<FilmeVisto> filmes;
 	private AcessoADados acessoADados;
+	
+	private FilmesVistosController() {
+		atualizarListaDeFilmes();
+	}
 
 	@GetMapping("/random")
 	public ResponseEntity<FilmeVisto> obterFilmeAleatorio() {

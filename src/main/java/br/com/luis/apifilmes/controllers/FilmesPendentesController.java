@@ -26,7 +26,7 @@ public class FilmesPendentesController implements ControllerDeFilme<FilmePendent
 	private final Destino destino = Destino.PENDENTES;
 	private List<FilmePendente> filmes;
 	
-	public FilmesPendentesController() {
+	private FilmesPendentesController() {
 		atualizarLista();
 	}
 	
