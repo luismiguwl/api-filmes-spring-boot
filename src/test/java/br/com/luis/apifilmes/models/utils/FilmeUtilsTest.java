@@ -21,8 +21,8 @@ public class FilmeUtilsTest {
 		
 		String chave = "Batman";
 		
-		List<FilmeVisto> listaRecebida = (List<FilmeVisto>) buscarFilmePorPalavra(filmes, chave);
-		List<FilmeVisto> listaEsperada = List.of(filme);
+		List<Filme> listaRecebida = buscarFilmePorPalavra(filmes, chave);
+		List<Filme> listaEsperada = List.of(filme);
 		
 		assertEquals(listaRecebida, listaEsperada);
 	}
@@ -31,16 +31,16 @@ public class FilmeUtilsTest {
 	public void deveBuscarFilmePorPalavraComListaVazia() {
 		String chave = "Batman";
 		
-		List<FilmeVisto> listaRecebida = (List<FilmeVisto>) buscarFilmePorPalavra(List.of(), chave);
-		List<FilmeVisto> listaEsperada = List.of();
+		List<Filme> listaRecebida = buscarFilmePorPalavra(List.of(), chave);
+		List<Filme> listaEsperada = List.of();
 		
 		assertEquals(listaRecebida, listaEsperada);
 	}
 	
 	@Test
 	public void deveBuscarFilmePorPalavraComChaveNula() {
-		List<FilmeVisto> listaRecebida = (List<FilmeVisto>) buscarFilmePorPalavra(List.of(), null);
-		List<FilmeVisto> listaEsperada = List.of();
+		List<Filme> listaRecebida = buscarFilmePorPalavra(List.of(), null);
+		List<Filme> listaEsperada = List.of();
 		
 		assertEquals(listaRecebida, listaEsperada);
 	}

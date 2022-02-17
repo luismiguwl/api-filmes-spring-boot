@@ -16,8 +16,9 @@ import br.com.luis.apifilmes.acessoadados.AcessoADados;
 import br.com.luis.apifilmes.interfaces.ControllerDeFilme;
 import br.com.luis.apifilmes.models.*;
 import br.com.luis.apifilmes.models.enums.Destino;
-import br.com.luis.apifilmes.models.utils.FilmeUtils;
 import br.com.luis.apifilmes.utils.*;
+
+import static br.com.luis.apifilmes.models.utils.FilmeUtils.*;
 
 @RestController
 @RequestMapping("/filmes/pendentes")
@@ -49,8 +50,9 @@ public class FilmesPendentesController implements ControllerDeFilme<FilmePendent
 
 	@GetMapping("/palavra")
 	public ResponseEntity<List<FilmePendente>> filtrarFilmePorPalavraChave(@RequestParam String palavra) {
-		List<FilmePendente> filmesEncontradosPorKeyword = (List<FilmePendente>) FilmeUtils.buscarFilmePorPalavra(filmes, palavra);
-		return ResponseEntity.ok(filmesEncontradosPorKeyword);
+		List<Filme> filmesEncontradosPorKeyword = buscarFilmePorPalavra(filmes, palavra);
+		converterFilmesGenericosParaFilmesEspecificos(filmesEncontradosPorKeyword);
+		return ResponseEntity.ok(filmes);
 	}
 
 	@GetMapping("/lancamento")

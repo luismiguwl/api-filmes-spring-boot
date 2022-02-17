@@ -22,6 +22,8 @@ import br.com.luis.apifilmes.models.enums.*;
 import br.com.luis.apifilmes.models.utils.*;
 import br.com.luis.apifilmes.utils.*;
 
+import static br.com.luis.apifilmes.models.utils.FilmeUtils.*;
+
 @RestController
 @RequestMapping("/**/filmes/vistos")
 public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
@@ -56,8 +58,9 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 
 	@GetMapping("/palavra")
 	public ResponseEntity<List<FilmeVisto>> filtrarFilmePorPalavraChave(@RequestParam String palavra) {
-		List<FilmeVisto> filmesEncontradosPorKeyword = (List<FilmeVisto>) FilmeUtils.buscarFilmePorPalavra(filmes, palavra);
-		return ResponseEntity.ok(filmesEncontradosPorKeyword);
+		List<Filme> filmesEncontradosPorKeyword = buscarFilmePorPalavra(filmes, palavra);
+		converterFilmesGenericosParaFilmesEspecificos(filmesEncontradosPorKeyword);
+		return ResponseEntity.ok(filmes);
 	}
 
 	@GetMapping("/lancamento")
