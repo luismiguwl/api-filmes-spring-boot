@@ -30,6 +30,7 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 	private AcessoADados acessoADados;
 	
 	private FilmesVistosController() {
+		filmes = new ArrayList<>();
 		atualizarListaDeFilmes();
 	}
 
@@ -165,13 +166,9 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 	}
 
 	public void converterFilmesGenericosParaFilmesEspecificos(List<Filme> filmesGenericos) {
-		filmes = new ArrayList<>();
-
-		for (Filme filme : filmesGenericos) {
-			if (filme instanceof FilmeVisto) {
-				filmes.add((FilmeVisto) filme);
-			}
-		}
+		filmes.clear();
+		filmesGenericos.stream()
+			.forEach(filme -> filmes.add((FilmeVisto) filme));
 	}
 
 }

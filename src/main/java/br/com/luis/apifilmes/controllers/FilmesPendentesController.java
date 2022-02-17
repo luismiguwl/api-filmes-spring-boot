@@ -27,6 +27,7 @@ public class FilmesPendentesController implements ControllerDeFilme<FilmePendent
 	private List<FilmePendente> filmes;
 	
 	private FilmesPendentesController() {
+		filmes = new ArrayList<>();
 		atualizarLista();
 	}
 	
@@ -76,12 +77,8 @@ public class FilmesPendentesController implements ControllerDeFilme<FilmePendent
 	}
 	
 	public void converterFilmesGenericosParaFilmesEspecificos(List<Filme> filmesGenericos) {
-		filmes = new ArrayList<>();
-		
-		for (Filme filme : filmesGenericos) {
-			if (filme instanceof FilmePendente) {
-				filmes.add((FilmePendente) filme);
-			}
-		}
+		filmes.clear();
+		filmesGenericos.stream()
+			.forEach(filme -> filmes.add((FilmePendente) filme));
 	}
 }
