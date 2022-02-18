@@ -1,3 +1,6 @@
+# Diagrama de classes
+![Class Diagram0](https://user-images.githubusercontent.com/68262792/154746037-392d81a8-dc5c-4141-9703-5ff9a86a4a8c.png)
+
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/luismiguwl/api-filmes-spring-boot/maven)
 # Sobre a API
 API Spring Boot desenvolvida para exercitar meus conhecimentos utilizando os dados dos filmes que estou assistindo durante o ano.
