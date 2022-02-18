@@ -1,8 +1,6 @@
 package br.com.luis.apifilmes.models.utils;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -23,9 +21,19 @@ public class DiretorUtils {
 		diretores = ordenarDecrescentePorQuantidadeDeFilmes(diretores);
 		
 		if (top > 1) {
-			return diretores.stream()
+			List<Diretor> diretoresFiltrados = new ArrayList<>();
+			
+			for (Diretor diretor : diretores) {
+				boolean encontrouDiretorNaLista = diretoresFiltrados.stream()
+						.anyMatch(diretorAlvo -> diretorAlvo.getNome().equals(diretor.getNome()));
+				
+				if (!encontrouDiretorNaLista) {
+					diretoresFiltrados.add(diretor);
+				}
+			}
+			
+			return diretoresFiltrados.stream()
 					.limit(top)
-					.distinct()
 					.collect(Collectors.toList());
 		}
 		

@@ -59,7 +59,7 @@ public class DiretorUtilsTest {
 		
 		List<Diretor> diretores = List.of(d1, d2, d3);
 		
-		assertEquals(filtrarDiretoresComMaisFilmes(diretores, top), List.of(d2, d3));
+		assertEquals(filtrarDiretoresComMaisFilmes(diretores, top), List.of(d2, d1));
 	}
 
 	@Test
@@ -73,11 +73,10 @@ public class DiretorUtilsTest {
 		Diretor d3 = new Diretor("Vince Gilligan");
 		d3.setQuantidadeDeFilmesVistos(4);
 		
-		int top = 3;
-		
 		List<Diretor> diretores = List.of(d1, d2, d3);
+		int top = diretores.size();
 		
-		assertEquals(filtrarDiretoresComMaisFilmes(diretores, top), List.of(d2, d3, d1));
+		assertEquals(filtrarDiretoresComMaisFilmes(diretores, top), List.of(d2, d1));
 	}
 
 	@Test
@@ -95,7 +94,7 @@ public class DiretorUtilsTest {
 		
 		List<Diretor> diretores = List.of(d1, d2, d3);
 		
-		assertEquals(filtrarDiretoresComMaisFilmes(diretores, top), List.of(d2, d3, d1));
+		assertEquals(filtrarDiretoresComMaisFilmes(diretores, top), List.of(d2, d1));
 	}
 	
 	@Test
@@ -106,10 +105,9 @@ public class DiretorUtilsTest {
 		Diretor d2 = new Diretor("Vince Gilligan");
 		d2.setQuantidadeDeFilmesVistos(4);
 		
-		int top = 2;
-		
 		List<Diretor> diretores = List.of(d1, d2);
-		
+		int top = diretores.size();
+
 		assertEquals(filtrarDiretoresComMaisFilmes(diretores, top), List.of(d2, d1));
 	}
 	

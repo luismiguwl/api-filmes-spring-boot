@@ -81,9 +81,18 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 
 	@GetMapping("/ranking/diretores")
 	public ResponseEntity<List<Diretor>> obterListaDeDiretoresComMaisFilmesVistos(@RequestParam int top) {
-		String[] nomes = new AcessoADados(destino).getDadosDaColuna(Coluna.DIRETOR);
-		List<Diretor> diretoresComMaisFilmes = AcessoADadosUtils.converterStringParaObjeto(Diretor::new, nomes);
-		return ResponseEntity.ok(diretoresComMaisFilmes);
+		List<Diretor> diretores = new ArrayList<>();
+
+		for (Filme filme : filmes) {
+			for (Diretor diretor : filme.getDiretores()) {
+				diretores.add(diretor);
+			}
+		}
+		
+		diretores = 
+				DiretorUtils.filtrarDiretoresComMaisFilmes(diretores, top);
+		
+		return ResponseEntity.ok(diretores);
 	}
 
 	@GetMapping("/idiomas")
