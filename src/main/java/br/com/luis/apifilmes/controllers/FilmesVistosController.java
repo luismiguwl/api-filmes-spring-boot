@@ -38,6 +38,10 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 
 	@GetMapping("/random")
 	public ResponseEntity<FilmeVisto> obterFilmeAleatorio() {
+		if (filmes.isEmpty()) {
+			return ResponseEntity.ok().build();
+		}
+
 		int posicaoAleatoria = GeradorDeNumeroAleatorio.gerar(filmes.size());
 		return ResponseEntity.ok(filmes.get(posicaoAleatoria));
 	}
@@ -53,13 +57,15 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 			return ResponseEntity.ok().build();
 		}
 
-		return ResponseEntity.ok(filmes.get(filmes.size() - 1));
+		FilmeVisto filme = filmes.get(filmes.size() - 1);
+		return ResponseEntity.ok(filme);
 	}
 
 	@GetMapping("/palavra")
 	public ResponseEntity<List<FilmeVisto>> filtrarFilmePorPalavraChave(@RequestParam String palavra) {
 		List<Filme> filmesEncontradosPorKeyword = buscarFilmePorPalavra(filmes, palavra);
 		converterFilmesGenericosParaFilmesEspecificos(filmesEncontradosPorKeyword);
+		
 		return ResponseEntity.ok(filmes);
 	}
 
@@ -68,6 +74,7 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		List<FilmeVisto> filmesFiltradosPorAnoDeLancamento = filmes.stream()
 				.filter(filme -> filme.getAnoDeLancamento() == ano)
 				.collect(Collectors.toList());
+		
 		return ResponseEntity.ok(filmesFiltradosPorAnoDeLancamento);
 	}
 
@@ -76,6 +83,7 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		List<FilmeVisto> filmesFiltradosPorIntervaloDeAnos = filmes.stream()
 				.filter(filme -> filme.anoDeLancamentoEstaEntre(de, ate))
 				.collect(Collectors.toList());
+				
 		return ResponseEntity.ok(filmesFiltradosPorIntervaloDeAnos);
 	}
 
@@ -99,7 +107,10 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 	public ResponseEntity<List<String>> obterListaDeIdiomas() {
 		List<String> idiomas = new ArrayList<>();
 
-		idiomas = filmes.stream().map(filme -> filme.getIdioma().getNome()).distinct().collect(Collectors.toList());
+		idiomas = filmes.stream()
+				.map(filme -> filme.getIdioma().getNome())
+				.distinct()
+				.collect(Collectors.toList());
 
 		return ResponseEntity.ok(idiomas);
 	}
@@ -114,7 +125,11 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 			}
 		}
 
-		nomeDosDiretores = nomeDosDiretores.stream().sorted().distinct().collect(Collectors.toList());
+		nomeDosDiretores = nomeDosDiretores.stream()
+				.sorted()
+				.distinct()
+				.collect(Collectors.toList());
+
 		return ResponseEntity.ok(nomeDosDiretores);
 	}
 
@@ -141,10 +156,16 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 
 		for (FilmeVisto filme : filmes) {
 			List<Genero> generos = filme.getGeneros();
-			generos.stream().map(genero -> genero.getNome()).distinct().forEach(genero -> todosOsGeneros.add(genero));
+			generos.stream()
+				.map(genero -> genero.getNome())
+				.distinct()
+				.forEach(genero -> todosOsGeneros.add(genero));
 		}
 
-		return todosOsGeneros.stream().distinct().sorted().collect(Collectors.toList());
+		return todosOsGeneros.stream()
+			.distinct()
+			.sorted()
+			.collect(Collectors.toList());
 	}
 
 	@PostMapping(value = "/inserir")
