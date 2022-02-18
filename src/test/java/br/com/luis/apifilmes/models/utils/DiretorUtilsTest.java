@@ -162,4 +162,20 @@ public class DiretorUtilsTest {
 		
 		assertEquals(ordenarDecrescentePorQuantidadeDeFilmes(List.of(d1, d2)), List.of(d2));
 	}
+
+	@Test
+	public void deveRetornarListaDeDiretoresOrdenadaPorQuantidadeDeFilmesDecrescenteComTodosOsFilmesComQuantidadeDeFilmesVistosNula() {
+		Diretor d1 = new Diretor("Christopher Nolan");
+		d1.setQuantidadeDeFilmesVistos(null);
+		
+		Diretor d2 = new Diretor("Vince Gilligan");
+		d2.setQuantidadeDeFilmesVistos(null);
+		
+		assertEquals(ordenarDecrescentePorQuantidadeDeFilmes(List.of(d1, d2)), List.of());
+	}
+
+	@Test
+	public void deveRetornarListaVaziaAoTentarOrdenarUmaListaVazia() {	
+		assertEquals(ordenarDecrescentePorQuantidadeDeFilmes(List.of()), List.of());
+	}
 }
