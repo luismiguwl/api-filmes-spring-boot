@@ -10,7 +10,7 @@ public class Duracao {
     	this.minutos = minutos;
     	
     	if (!validarNumeros()) {
-    		throw new IllegalArgumentException("Valor não pode ser negativos");
+    		throw new IllegalArgumentException("Valor não pode ser negativo");
 		}
     	
         definirHoraEMinuto(minutos);

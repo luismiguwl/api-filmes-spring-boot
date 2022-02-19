@@ -29,7 +29,7 @@ public class PlataformaTest {
 	@Test
 	public void deveLancarExcecaoCasoTextoNaoForIgualANenhumaPlataforma() {
 		String texto = "mock".repeat(5);
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(EnumConstantNotPresentException.class, () -> {
 			Plataforma.valueOfPersonalizado(texto);
 		});
 	}

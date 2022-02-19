@@ -27,7 +27,7 @@ public enum Destino {
 			return Destino.valueOf(nome);
 		}
 
-		throw new IllegalArgumentException(String.format("O enum %s não existe!",nome));
+		throw new EnumConstantNotPresentException(Destino.class, nome);
 	}
 
 	public static boolean enumExiste(String nome) {

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luis.apifilmes.acessoadados.AcessoADados;
 import br.com.luis.apifilmes.arquivo.EscritorDeCSV;
+import br.com.luis.apifilmes.exceptions.AnoDaRequisicaoInvalidoException;
 import br.com.luis.apifilmes.interfaces.ControllerDeFilme;
 import br.com.luis.apifilmes.models.*;
 import br.com.luis.apifilmes.models.enums.*;
@@ -182,7 +183,7 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		if (!destinoAtual.validarAnoDaRequisicaoAtual()) {
 			int ano = destinoAtual.obterAnoDaRequisicao();
 			int anoAtual = new AnoAtual().get();
-			throw new IllegalArgumentException(String.format("%d não é um ano válido. Informe um ano entre 2021 e %d", ano, anoAtual));
+			throw new AnoDaRequisicaoInvalidoException(String.format("%d não é um ano válido. Informe um ano entre 2021 e %d", ano, anoAtual));
 		}
 
 		if (!destino.equals(destinoAtual.getDestino())) {

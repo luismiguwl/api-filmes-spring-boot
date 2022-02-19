@@ -18,7 +18,7 @@ public class DestinoTest {
 	
 	@Test
 	public void deveLancarExcecaoCasoEnumNaoExista() {
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(EnumConstantNotPresentException.class, () -> {
 			Destino.obterDestinoBaseadoNoAno(2020);
 		});
 	}
