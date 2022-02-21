@@ -1,7 +1,6 @@
 package br.com.luis.apifilmes.acessoadados;
 
 import static br.com.luis.apifilmes.models.enums.Coluna.*;
-import static br.com.luis.apifilmes.models.enums.Destino.*;
 import static br.com.luis.apifilmes.models.utils.AcessoADadosUtils.*;
 
 import java.util.ArrayList;
@@ -12,11 +11,10 @@ import br.com.luis.apifilmes.utils.definidores.*;
 import org.apache.commons.csv.CSVRecord;
 
 import br.com.luis.apifilmes.arquivo.*;
-import br.com.luis.apifilmes.interfaces.AcoesComFilmePendente;
 import br.com.luis.apifilmes.models.*;
 import br.com.luis.apifilmes.models.enums.*;
 
-public class AcessoADados implements AcoesComFilmePendente {
+public class AcessoADados {
 	private Destino destino;
 	private LeitorDeCSV leitor;
 	private List<Filme> filmes;
@@ -55,7 +53,7 @@ public class AcessoADados implements AcoesComFilmePendente {
 			String dataEmQueFoiAdicionado = new DefinidorDeDataDeAdicao(destino, record).definir();
 
 			Filme filme;
-			if (!ehFilmePendente()) {
+			if (!destino.ehFilmePendente()) {
 				filme = new FilmeVisto(titulo, ano, diretores, generos, idioma, runtime, data, plataforma, assistidoLegendado);
 			} else {
 				filme = new FilmePendente(titulo, ano, diretores, generos, idioma, runtime, dataEmQueFoiAdicionado);
@@ -67,11 +65,6 @@ public class AcessoADados implements AcoesComFilmePendente {
 		return filmes;
 	}
 
-	@Override
-	public boolean ehFilmePendente() {
-		return destino.equals(PENDENTES);
-	}
-	
 	public String[] getDadosDaColuna(Coluna coluna) {
 		Iterable<CSVRecord> records = leitor.ler();
 		List<String> dadosDaColuna = new ArrayList<>();

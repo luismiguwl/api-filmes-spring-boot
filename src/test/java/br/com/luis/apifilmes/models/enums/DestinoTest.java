@@ -1,8 +1,6 @@
 package br.com.luis.apifilmes.models.enums;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,5 +30,15 @@ public class DestinoTest {
 	public void deveRetornarDestinoParaFilmesVistosNoAnoAtual() {
 		int anoAtual = new AnoAtual().get();
 		assertEquals(Destino.obterDestinoBaseadoNoAno(anoAtual), Destino.obterDestinoBaseadoNoAnoAtual());
+	}
+	
+	@Test
+	public void deveRetornarTrueSeDestinoForPendente() {
+		assertTrue(Destino.PENDENTES.ehFilmePendente());
+	}
+	
+	@Test
+	public void deveRetornarFalseSeDestinoNaoForPendente() {
+		assertFalse(Destino.VISTOS_EM_2022.ehFilmePendente());
 	}
 }

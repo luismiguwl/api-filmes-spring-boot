@@ -1,9 +1,10 @@
 package br.com.luis.apifilmes.models.enums;
 
+import br.com.luis.apifilmes.interfaces.AcoesComFilmePendente;
 import br.com.luis.apifilmes.models.AnoAtual;
 import br.com.luis.apifilmes.utils.VerificadorDeString;
 
-public enum Destino {
+public enum Destino implements AcoesComFilmePendente {
 	VISTOS_EM_2021("dados/Filmes assistidos em 2021.csv"),
 	VISTOS_EM_2022("dados/Filmes assistidos em 2022.csv"),
 	PENDENTES("dados/Filmes pendentes.csv"),
@@ -53,5 +54,10 @@ public enum Destino {
 
 	private static String obterModeloDeNomeParaFilmeVistoBaseadoNoAno(int ano) {
 		return String.format("%s%d", MODELO_PADRAO_DESTINO_PARA_FILME_VISTOS, ano);
+	}
+	
+	@Override
+	public boolean ehFilmePendente() {
+		return this.equals(PENDENTES);
 	}
 }

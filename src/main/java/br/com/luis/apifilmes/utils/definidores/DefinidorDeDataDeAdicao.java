@@ -2,11 +2,9 @@ package br.com.luis.apifilmes.utils.definidores;
 
 import org.apache.commons.csv.CSVRecord;
 
-import br.com.luis.apifilmes.interfaces.AcoesComFilmePendente;
-import br.com.luis.apifilmes.models.enums.Coluna;
-import br.com.luis.apifilmes.models.enums.Destino;
+import br.com.luis.apifilmes.models.enums.*;
 
-public class DefinidorDeDataDeAdicao implements AcoesComFilmePendente {
+public class DefinidorDeDataDeAdicao {
 	private Destino destino;
 	private CSVRecord record;
 	private final Coluna COLUNA = Coluna.DATA_DE_ADICAO;
@@ -17,7 +15,7 @@ public class DefinidorDeDataDeAdicao implements AcoesComFilmePendente {
 	}
 
 	public String definir() {
-		if (ehFilmePendente()) {
+		if (destino.ehFilmePendente()) {
 			String valor = record.get(COLUNA.get());
 			return valor.isBlank() ? null : valor;
 		}
@@ -25,8 +23,4 @@ public class DefinidorDeDataDeAdicao implements AcoesComFilmePendente {
 		return null;
 	}
 
-	@Override
-	public boolean ehFilmePendente() {
-		return destino.equals(Destino.PENDENTES);
-	}
 }

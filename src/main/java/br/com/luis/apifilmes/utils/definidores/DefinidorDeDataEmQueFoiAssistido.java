@@ -2,10 +2,9 @@ package br.com.luis.apifilmes.utils.definidores;
 
 import org.apache.commons.csv.CSVRecord;
 
-import br.com.luis.apifilmes.interfaces.*;
 import br.com.luis.apifilmes.models.enums.*;
 
-public class DefinidorDeDataEmQueFoiAssistido implements AcoesComFilmePendente {
+public class DefinidorDeDataEmQueFoiAssistido {
 	private Destino destino;
 	private CSVRecord record;
 	private final Coluna COLUNA = Coluna.DATA_ASSISTIDO;
@@ -16,11 +15,7 @@ public class DefinidorDeDataEmQueFoiAssistido implements AcoesComFilmePendente {
 	}
 	
 	public String definir() {
-		return ehFilmePendente() ? null : record.get(COLUNA.get()).trim();
+		return destino.ehFilmePendente() ? null : record.get(COLUNA.get()).trim();
 	}
 	
-	@Override
-	public boolean ehFilmePendente() {
-		return destino.equals(Destino.PENDENTES);
-	}
 }

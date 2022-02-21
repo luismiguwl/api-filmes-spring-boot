@@ -2,12 +2,9 @@ package br.com.luis.apifilmes.utils.definidores;
 
 import org.apache.commons.csv.CSVRecord;
 
-import br.com.luis.apifilmes.interfaces.AcoesComFilmePendente;
-import br.com.luis.apifilmes.models.enums.Coluna;
-import br.com.luis.apifilmes.models.enums.Destino;
-import br.com.luis.apifilmes.models.enums.Plataforma;
+import br.com.luis.apifilmes.models.enums.*;
 
-public class DefinidorDePlataforma implements AcoesComFilmePendente {
+public class DefinidorDePlataforma {
 	private Destino destino;
 	private CSVRecord record;
 	private final Coluna COLUNA = Coluna.PLATAFORMA;
@@ -18,15 +15,10 @@ public class DefinidorDePlataforma implements AcoesComFilmePendente {
 	}
 	
 	public Plataforma definir() {
-		if (ehFilmePendente()) {
+		if (destino.ehFilmePendente()) {
 			return null;
 		}
 		
 		return Plataforma.valueOfPersonalizado(record.get(COLUNA.get()));
-	}
-
-	@Override
-	public boolean ehFilmePendente() {
-		return destino.equals(Destino.PENDENTES);
 	}
 }
