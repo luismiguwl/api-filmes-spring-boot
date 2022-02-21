@@ -22,11 +22,4 @@ public class GeradorDeNumeroAleatorioTest {
 		});
 	}
 
-	@Test
-	public void deveLancarExcecaoSeNumeroForNegativo() {
-		assertThrows(IllegalArgumentException.class, () -> {
-			gerar(-1);
-		});
-	}
-
 }
