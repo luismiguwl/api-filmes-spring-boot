@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.luis.apifilmes.exceptions.AnoDaRequisicaoContendoLetraException;
 import br.com.luis.apifilmes.models.enums.Destino;
 
 public class DestinoAtualTest {
@@ -61,7 +62,7 @@ public class DestinoAtualTest {
 		
 		when(path.get()).thenReturn("/stringInvalida/filmes");
 		
-		assertThrows(NumberFormatException.class, () -> {
+		assertThrows(AnoDaRequisicaoContendoLetraException.class, () -> {
 			destino.getDestino();
 		});
 	}
