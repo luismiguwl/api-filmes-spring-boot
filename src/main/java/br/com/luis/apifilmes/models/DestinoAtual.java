@@ -1,5 +1,6 @@
 package br.com.luis.apifilmes.models;
 
+import br.com.luis.apifilmes.exceptions.AnoDaRequisicaoInvalidoException;
 import br.com.luis.apifilmes.interfaces.AcoesComFilmePendente;
 import br.com.luis.apifilmes.models.enums.Destino;
 
@@ -30,7 +31,7 @@ public class DestinoAtual implements AcoesComFilmePendente {
 		try {
 			return Integer.parseInt(pathAtual.get().split("/")[1]);
 		} catch (NumberFormatException e) {
-			throw new NumberFormatException("Informe um valor inteiro!");
+			throw new AnoDaRequisicaoInvalidoException("Informe um valor inteiro!");
 		}
 	}
 
