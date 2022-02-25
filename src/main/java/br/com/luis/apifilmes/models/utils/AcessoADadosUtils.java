@@ -1,6 +1,7 @@
 package br.com.luis.apifilmes.models.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -10,11 +11,8 @@ public class AcessoADadosUtils {
 		List<String> nomes = new ArrayList<>();
 		
 		for (String linha : linhas) {
-			if (linha.contains(",")) {
-				List<String> valores = List.of(linha.split(", "));
-				nomes.addAll(valores);
-			} else {
-				nomes.add(linha.trim());
+			for (String elemento : linha.split(",")) {
+				if (!elemento.trim().isEmpty()) nomes.add(elemento.trim());
 			}
 		}
 		

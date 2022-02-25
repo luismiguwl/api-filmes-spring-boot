@@ -33,10 +33,11 @@ public class AcessoADadosUtilsTest {
 		String[] nomes = {"Phil Lord", "Christopher Miller", "Michael Slovis, Vince Gilligan"};
 		List<Diretor> diretores = converterStringParaObjeto(Diretor::new, nomes);
 		
-		assertEquals(diretores.get(0).getNome(), nomes[0]);
-		assertEquals(diretores.get(1).getNome(), nomes[1]);
-		assertEquals(diretores.get(2).getNome(), nomes[2].split(",")[0].trim());
-		assertEquals(diretores.get(3).getNome(), nomes[2].split(",")[1].trim());
+		assertEquals(diretores.size(), 4);
+		assertEquals(diretores.get(0).getNome(), "Phil Lord");
+		assertEquals(diretores.get(1).getNome(), "Christopher Miller");
+		assertEquals(diretores.get(2).getNome(), "Michael Slovis");
+		assertEquals(diretores.get(3).getNome(), "Vince Gilligan");
 	}
 	
 	@Test
@@ -47,12 +48,19 @@ public class AcessoADadosUtilsTest {
 	}
 	
 	@Test
+	public void deveConverterStringParaObjetoComDadosNaoIntegros() {
+		String nome = "Michael Slovis,,,,,";
+		List<Diretor> diretores = converterStringParaObjeto(Diretor::new, nome);
+		
+		assertEquals(diretores.size(), 1);
+		assertEquals(diretores.get(0).getNome(), "Michael Slovis");
+	}
+	
+	@Test
 	public void deveObterArrayContendoAtributosDeUmaClasseComListaVazia() {
 		List<Diretor> diretores = List.of();
-
 		String[] arrayRecebido = obterArrayContendoDadosDoAtributoDeUmaClasse(Diretor::getNome, diretores);
-		
-		assertTrue(arrayRecebido.length == 0);
+		assertEquals(arrayRecebido.length, 0);
 	}
 	
 	@Test
@@ -82,6 +90,6 @@ public class AcessoADadosUtilsTest {
 		List<String> nomes = new ArrayList<>();
 		String[] arrayRecebido = converterListaDeStringParaArray(nomes);
 		
-		assertTrue(arrayRecebido.length == 0);
+		assertEquals(arrayRecebido.length, 0);
 	}
 }
