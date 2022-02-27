@@ -2,27 +2,34 @@ package br.com.luis.apifilmes.models.enums;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import static br.com.luis.apifilmes.models.enums.Plataforma.*;
+
 import org.junit.jupiter.api.Test;
 
 public class PlataformaTest {
 	
 	@Test
 	public void deveRetornarIndefinidoSeTextoNaoPossuirValor() {
-		Plataforma plataforma = Plataforma.valueOfPersonalizado("");
-		assertEquals(Plataforma.INDEFINIDO, plataforma);
+		assertEquals(valueOfPersonalizado(" "), INDEFINIDO);
+		assertEquals(valueOfPersonalizado(""), INDEFINIDO);
 	}
 	
 	@Test
 	public void deveRetornarTrueSeTextoForIgualAAlgumaPlataforma() {
-		String texto = Plataforma.DISNEY_PLUS.getNomes()[0];
-		assertEquals(Plataforma.valueOfPersonalizado(texto), Plataforma.DISNEY_PLUS);
+		assertEquals(valueOfPersonalizado("Disney+"), DISNEY_PLUS);
+		assertEquals(valueOfPersonalizado("Disney Plus"), DISNEY_PLUS);
+	}
+	
+	@Test
+	public void deveRetornarTrueSeTextoPossuirEspacos() {
+		assertEquals(valueOfPersonalizado(" netflix     "), NETFLIX);
+		assertEquals(valueOfPersonalizado("    NETFLIX    "), NETFLIX);
 	}
 	
 	@Test
 	public void deveLancarExcecaoCasoTextoNaoForIgualANenhumaPlataforma() {
-		String texto = "mock".repeat(5);
 		assertThrows(EnumConstantNotPresentException.class, () -> {
-			Plataforma.valueOfPersonalizado(texto);
+			valueOfPersonalizado("mock");
 		});
 	}
 }

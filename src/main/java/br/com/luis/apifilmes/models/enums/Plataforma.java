@@ -16,7 +16,9 @@ public enum Plataforma {
 	}
 
 	public static Plataforma valueOfPersonalizado(String texto) {
-		if (texto.trim().isEmpty()) {
+		texto = texto.trim().toLowerCase();
+		
+		if (texto.isEmpty()) {
 			return INDEFINIDO;
 		}
 
