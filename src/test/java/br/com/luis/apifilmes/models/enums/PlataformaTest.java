@@ -1,23 +1,15 @@
 package br.com.luis.apifilmes.models.enums;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
 public class PlataformaTest {
 	
 	@Test
-	public void deveRetornarOutrosSeTextoEstiverVazio() {
+	public void deveRetornarIndefinidoSeTextoNaoPossuirValor() {
 		Plataforma plataforma = Plataforma.valueOfPersonalizado("");
-		assertEquals(Plataforma.OUTROS, plataforma);
-	}
-	
-	@Test
-	public void deveRetornarOutrosSeTextoEstiverEmBranco() {
-		Plataforma plataforma = Plataforma.valueOfPersonalizado(" ".repeat(2));
-		assertEquals(Plataforma.OUTROS, plataforma);
+		assertEquals(Plataforma.INDEFINIDO, plataforma);
 	}
 	
 	@Test
