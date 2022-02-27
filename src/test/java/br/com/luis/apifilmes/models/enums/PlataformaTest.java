@@ -14,7 +14,7 @@ public class PlataformaTest {
 	
 	@Test
 	public void deveRetornarTrueSeTextoForIgualAAlgumaPlataforma() {
-		String texto = Plataforma.DISNEY_PLUS.getNome();
+		String texto = Plataforma.DISNEY_PLUS.getNomes()[0];
 		assertEquals(Plataforma.valueOfPersonalizado(texto), Plataforma.DISNEY_PLUS);
 	}
 	

@@ -187,7 +187,7 @@ public class PreenchedorDeCamposTest {
 					joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getDiretores(), Diretor::getNome),
 					joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getGeneros(), Genero::getNome),
 					filme.getRuntime().getDuracaoEmMinutos(),
-					filme.getPlataformaEmQueFoiAssistido().getNome(),
+					filme.getPlataformaEmQueFoiAssistido().getNomes()[0],
 					filme.getAssistidoLegendado()
 				);
 		

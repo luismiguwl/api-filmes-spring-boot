@@ -54,7 +54,7 @@ public class PreenchedorDeCampos implements AcoesComFilmePendente {
 		campos.add(joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getGeneros(), Genero::getNome));
 		
 		campos.add(filme.getRuntime().getDuracaoEmMinutos());
-		campos.add(filme.getPlataformaEmQueFoiAssistido().getNome());
+		campos.add(filme.getPlataformaEmQueFoiAssistido().getNomes()[0]);
 		campos.add(filme.getAssistidoLegendado());
 	}
 }

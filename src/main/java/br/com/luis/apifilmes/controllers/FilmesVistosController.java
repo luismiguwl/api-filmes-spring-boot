@@ -140,7 +140,7 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		Plataforma[] plataformas = Plataforma.values();
 
 		for (Plataforma plataforma : plataformas) {
-			plataformasString.add(plataforma.getNome());
+			plataformasString.add(plataforma.getNomes()[0]);
 		}
 
 		return ResponseEntity.ok(plataformasString);
