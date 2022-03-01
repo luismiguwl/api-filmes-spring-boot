@@ -5,10 +5,10 @@ import br.com.luis.apifilmes.models.AnoAtual;
 import br.com.luis.apifilmes.utils.VerificadorDeString;
 
 public enum Destino implements AcoesComFilmePendente {
-	VISTOS_EM_2021("dados/Filmes assistidos em 2021.csv"),
-	VISTOS_EM_2022("dados/Filmes assistidos em 2022.csv"),
-	PENDENTES("dados/Filmes pendentes.csv"),
-	ABREVIACOES("dados/Abreviacoes dos idiomas.csv");
+	VISTOS_EM_2021("dados/filmes-assistidos-em-2021.csv"),
+	VISTOS_EM_2022("dados/filmes-assistidos-em-2022.csv"),
+	PENDENTES("dados/filmes-pendentes.csv"),
+	ABREVIACOES("dados/abreviacoes-dos-idiomas.csv");
 
 	private static final String MODELO_PADRAO_DESTINO_PARA_FILME_VISTOS = "VISTOS_EM_";
 	private String destino;
