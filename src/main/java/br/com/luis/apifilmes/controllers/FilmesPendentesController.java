@@ -55,7 +55,7 @@ public class FilmesPendentesController implements ControllerDeFilme<FilmePendent
 		return ResponseEntity.ok(filmes);
 	}
 
-	@GetMapping("/lancamento")
+	@GetMapping(value = "/lancamento", params = "ano")
 	public ResponseEntity<List<FilmePendente>> buscarFilmePorAnoDeLancamento(@RequestParam int ano) {
 		List<FilmePendente> filmesFiltradosPorAnoDeLancamento = filmes.stream()
 				.filter(filme -> filme.getAnoDeLancamento() == ano)
@@ -63,8 +63,8 @@ public class FilmesPendentesController implements ControllerDeFilme<FilmePendent
 		return ResponseEntity.ok(filmesFiltradosPorAnoDeLancamento);
 	}
 
-	@GetMapping("/ano")
-	public ResponseEntity<List<FilmePendente>> buscarFilmePorIntervaloDeAnos(@RequestParam int de, @RequestParam int ate) {
+	@GetMapping(value = "/lancamento", params = {"de", "ate"})
+	public ResponseEntity<List<FilmePendente>> buscarFilmePorAnoDeLancamento(@RequestParam int de, @RequestParam int ate) {
 		List<FilmePendente> filmesFiltradosPorIntervaloDeAnos = filmes.stream()
 				.filter(filme -> filme.anoDeLancamentoEstaEntre(de, ate))
 				.collect(Collectors.toList());

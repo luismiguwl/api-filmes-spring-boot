@@ -12,6 +12,6 @@ public interface ControllerDeFilme<T> {
 	 ResponseEntity<List<T>> obterTodosOsFilmes();
 	 ResponseEntity<List<T>> filtrarFilmePorPalavraChave(String palavra);
 	 ResponseEntity<List<T>> buscarFilmePorAnoDeLancamento(int ano);
-	 ResponseEntity<List<T>> buscarFilmePorIntervaloDeAnos(int de, int ate);
+	 ResponseEntity<List<T>> buscarFilmePorAnoDeLancamento(int de, int ate);
 	 void converterFilmesGenericosParaFilmesEspecificos(List<Filme> filmesGenericos);
 }

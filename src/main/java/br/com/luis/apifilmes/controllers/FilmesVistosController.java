@@ -70,7 +70,7 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		return ResponseEntity.ok(filmes);
 	}
 
-	@GetMapping("/lancamento")
+	@GetMapping(value = "/lancamento", params = "ano")
 	public ResponseEntity<List<FilmeVisto>> buscarFilmePorAnoDeLancamento(@RequestParam int ano) {
 		List<FilmeVisto> filmesFiltradosPorAnoDeLancamento = filmes.stream()
 				.filter(filme -> filme.getAnoDeLancamento() == ano)
@@ -79,8 +79,8 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		return ResponseEntity.ok(filmesFiltradosPorAnoDeLancamento);
 	}
 
-	@GetMapping("/ano")
-	public ResponseEntity<List<FilmeVisto>> buscarFilmePorIntervaloDeAnos(@RequestParam int de, @RequestParam int ate) {
+	@GetMapping(value = "/lancamento", params = {"de", "ate"})
+	public ResponseEntity<List<FilmeVisto>> buscarFilmePorAnoDeLancamento(@RequestParam int de, @RequestParam int ate) {
 		List<FilmeVisto> filmesFiltradosPorIntervaloDeAnos = filmes.stream()
 				.filter(filme -> filme.anoDeLancamentoEstaEntre(de, ate))
 				.collect(Collectors.toList());
