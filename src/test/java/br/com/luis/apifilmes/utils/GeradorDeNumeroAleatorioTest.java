@@ -7,19 +7,21 @@ import org.junit.jupiter.api.Test;
 
 import static br.com.luis.apifilmes.utils.GeradorDeNumeroAleatorio.*;
 
-public class GeradorDeNumeroAleatorioTest {
+class GeradorDeNumeroAleatorioTest {
 
 	@Test
 	public void deveRetornarNumeroEntreZeroENove() {
-		int numero = gerar(10);
-		assertThat(numero).isBetween(0, 9);
+		assertThat(gerar(10)).isBetween(0, 9);
 	}
 
 	@Test
-	public void deveLancarExcecaoSeNumeroForZero() {
-		assertThrows(IllegalArgumentException.class, () -> {
-			gerar(0);
-		});
+	public void deveRetornarMenosUmQuandoNumeroForZero() {
+		assertEquals(gerar(0), -1);
+	}
+
+	@Test
+	public void deveRetornarMenosUmQuandoNumeroForNegativo() {
+		assertEquals(gerar(-50), -1);
 	}
 
 }
