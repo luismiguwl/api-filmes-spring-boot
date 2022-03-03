@@ -40,6 +40,10 @@ public abstract class Filme {
 		return anoDeLancamento;
 	}
 
+	public void setAnoDeLancamento(int ano) {
+		this.anoDeLancamento = ano;
+	}
+
 	public List<Diretor> getDiretores() {
 		return diretores;
 	}
@@ -65,7 +69,17 @@ public abstract class Filme {
 	}
 	
 	public boolean anoDeLancamentoEstaEntre(int anoMinimo, int anoMaximo) {
-		return anoDeLancamento >= anoMinimo && anoDeLancamento <= anoMaximo;
+		int anoMenor, anoMaior;
+
+		if (anoMinimo > anoMaximo) {
+			anoMenor = anoMaximo;
+			anoMaior = anoMinimo;
+		} else {
+			anoMenor = anoMinimo;
+			anoMaior = anoMaximo;
+		}
+
+		return anoDeLancamento >= anoMenor && anoDeLancamento <= anoMaior;
 	}
 	
 }
