@@ -1,31 +1,51 @@
 package br.com.luis.apifilmes.models.utils;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.Assert.*;
+import static br.com.luis.apifilmes.models.utils.GeneroUtils.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import org.junit.jupiter.api.*;
+import br.com.luis.apifilmes.models.*;
 
-import org.junit.jupiter.api.Test;
-
-import br.com.luis.apifilmes.models.Genero;
-
-public class GeneroUtilsTest {
+class GeneroUtilsTest {
 
 	@Test
-	public void deveRetornarListaDeGenerosEmOrdemCrescente() {
-		Genero g1 = new Genero("Drama");
-		g1.setQuantidadeDeFilmes(1);
+	void deveRetornarListaEmOrdemDecrescente() {
+		Genero g1 = new Genero("Drama", 1);
+		Genero g2 = new Genero("Aventura", 3);
+		Genero g3 = new Genero("Crime", 2);
 		
-		Genero g2 = new Genero("Aventura");
-		g2.setQuantidadeDeFilmes(3);
+		assertThat(ordenarPorQuantidadeDecrescenteDeFilmes(List.of(g1, g2, g3))).containsExactlyInAnyOrder(g2, g3, g1);
+	}
+
+	@Test
+	void deveRetornarListaNaMesmaOrdemQuandoQuantidadeDeFilmesDeTodosForemIguais() {
+		Genero g1 = new Genero("Drama", 0);
+		Genero g2 = new Genero("Aventura", 0);
+		Genero g3 = new Genero("Crime", 0);
 		
-		Genero g3 = new Genero("Crime");
-		g3.setQuantidadeDeFilmes(2);
+		assertThat(ordenarPorQuantidadeDecrescenteDeFilmes(List.of(g1, g2, g3))).containsExactlyInAnyOrder(g1, g2, g3);
+	}
+
+	@Test
+	void deveRetornarListaNaMesmaOrdemQuandoApenasPrimeiroObjetoPossuirQuantidadeMaiorQueZero() {
+		Genero g1 = new Genero("Drama", 1);
+		Genero g2 = new Genero("Aventura", 0);
+		Genero g3 = new Genero("Crime", 0);
 		
-		List<Genero> generos = List.of(g1, g2, g3);
-		List<Genero> listaRecebida = GeneroUtils.getListaDeGenerosOrdenadasPorQuantidadeDeFilmesDeFormaDecrescente(generos);
-		List<Genero> listaEsperada = List.of(g2, g3, g1);
-		
-		assertEquals(listaRecebida, listaEsperada);
+		assertThat(ordenarPorQuantidadeDecrescenteDeFilmes(List.of(g1, g2, g3))).containsExactlyInAnyOrder(g1, g2, g3);
+	}
+
+	@Test
+	void deveRetornarListaVazia() {
+		assertThat(ordenarPorQuantidadeDecrescenteDeFilmes(List.of())).isEmpty();
+	}
+
+	@Test
+	void deveLancarNullPointerQuandoListaForNula() {
+		assertThrows(NullPointerException.class, () -> {
+			ordenarPorQuantidadeDecrescenteDeFilmes(null);	
+		});
 	}
 }

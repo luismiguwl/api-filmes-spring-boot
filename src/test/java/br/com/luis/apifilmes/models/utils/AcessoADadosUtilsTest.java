@@ -3,37 +3,30 @@ package br.com.luis.apifilmes.models.utils;
 import static org.junit.jupiter.api.Assertions.*;
 import static br.com.luis.apifilmes.models.utils.AcessoADadosUtils.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-
-import br.com.luis.apifilmes.models.Diretor;
+import java.util.*;
+import org.junit.jupiter.api.*;
+import br.com.luis.apifilmes.models.*;
 
 class AcessoADadosUtilsTest {
 	
 	@Test
 	void deveRetornarListaVaziaAoTentarConverterUmArrayVazio() {
-		List<Diretor> diretores = converterStringParaObjeto(Diretor::new, new String[]{});
-		assertTrue(diretores.isEmpty());
+		assertTrue(converterStringParaObjeto(Diretor::new, new String[]{}).isEmpty());
 	}
 
 	@Test
 	void deveRetornarListaVaziaAoTentarConverterUmArrayComUmaStringVazia() {
-		List<Diretor> diretores = converterStringParaObjeto(Diretor::new, "");
-		assertTrue(diretores.isEmpty());
+		assertTrue(converterStringParaObjeto(Diretor::new, "").isEmpty());
 	}
 
 	@Test
 	void deveRetornarListaVaziaQuandoHouverApenasUmaStringQueContemVirgula() {
-		List<Diretor> diretores = converterStringParaObjeto(Diretor::new, ",");
-		assertTrue(diretores.isEmpty());
+		assertTrue(converterStringParaObjeto(Diretor::new, ",").isEmpty());
 	}
 
 	@Test
 	void deveRetornarListaVaziaQuandoHouverVariasStringQuePossuemApenasVirgula() {
-		List<Diretor> diretores = converterStringParaObjeto(Diretor::new, ",,,,,,,,");
-		assertTrue(diretores.isEmpty());
+		assertTrue(converterStringParaObjeto(Diretor::new, ",,,,,,,,").isEmpty());
 	}
 	
 	@Test
@@ -68,8 +61,7 @@ class AcessoADadosUtilsTest {
 	
 	@Test
 	void deveConverterStringParaObjeto() {
-		List<Diretor> diretores = converterStringParaObjeto(Diretor::new, "Michael Slovis");
-		assertEquals(diretores.get(0).getNome(), "Michael Slovis");
+		assertEquals(converterStringParaObjeto(Diretor::new, "Michael Slovis").get(0).getNome(), "Michael Slovis");
 	}
 	
 	@Test
@@ -90,8 +82,7 @@ class AcessoADadosUtilsTest {
 	
 	@Test
 	void deveObterArrayContendoAtributosDeUmaClasseComListaVazia() {
-		String[] arrayRecebido = obterArrayContendoDadosDoAtributoDeUmaClasse(Diretor::getNome, List.of());
-		assertEquals(arrayRecebido.length, 0);
+		assertEquals(obterArrayContendoDadosDoAtributoDeUmaClasse(Diretor::getNome, List.of()).length, 0);
 	}
 	
 	@Test
@@ -101,24 +92,20 @@ class AcessoADadosUtilsTest {
 				new Diretor("Vince Gilligan"));
 		
 		String[] arrayEsperado = {diretores.get(0).getNome(), diretores.get(1).getNome()};
-		String[] arrayRecebido = obterArrayContendoDadosDoAtributoDeUmaClasse(Diretor::getNome, diretores);
-		
-		assertArrayEquals(arrayRecebido, arrayEsperado);
+
+		assertArrayEquals(obterArrayContendoDadosDoAtributoDeUmaClasse(Diretor::getNome, diretores), arrayEsperado);
 	}
 	
 	@Test
 	void deveConverterListaDeStringParaArray() {
 		List<String> nomes = List.of("Time Flies", "Landed");
-
 		String[] arrayEsperado = {nomes.get(0), nomes.get(1)};
-		String[] arrayRecebido = converterListaDeStringParaArray(nomes);
 		
-		assertArrayEquals(arrayRecebido, arrayEsperado);
+		assertArrayEquals(converterListaDeStringParaArray(nomes), arrayEsperado);
 	}
 	
 	@Test
 	void deveConverterListaDeStringParaArrayRetornandoArrayVazio() {
-		String[] arrayRecebido = converterListaDeStringParaArray(List.of());
-		assertEquals(arrayRecebido.length, 0);
+		assertEquals(converterListaDeStringParaArray(List.of()).length, 0);
 	}
 }

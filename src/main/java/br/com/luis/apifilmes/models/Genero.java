@@ -16,6 +16,11 @@ public class Genero {
 	public Genero(String nome) {
 		this.nome = nome;
 	}
+
+	public Genero(String nome, int quantidadeDeFilmes) {
+		this.nome = nome;
+		this.quantidadeDeFilmes = quantidadeDeFilmes;
+	}
 	
 	public String getNome() {
 		return nome;

@@ -12,6 +12,11 @@ public class Diretor {
 		this.nome = nome;
 	}
 
+	public Diretor(String nome, Integer quantidadeDeFilmesVistos) {
+		this.nome = nome;
+		this.quantidadeDeFilmesVistos = quantidadeDeFilmesVistos;
+	}
+
 	public Diretor() {
 	}
 

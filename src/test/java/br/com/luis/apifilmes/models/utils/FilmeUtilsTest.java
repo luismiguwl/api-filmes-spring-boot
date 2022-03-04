@@ -2,46 +2,52 @@ package br.com.luis.apifilmes.models.utils;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-
+import java.util.*;
+import org.junit.jupiter.api.*;
 import br.com.luis.apifilmes.models.*;
 
 import static br.com.luis.apifilmes.models.utils.FilmeUtils.*;
 
-public class FilmeUtilsTest {
+class FilmeUtilsTest {
 	
+	Filme filme = new FilmeVisto();
+	String titulo = "Batman Begins";
+	String chave = "Batman";
+
+	@BeforeEach
+	void setUp() {
+		filme.setTitulo(titulo);
+	}
+
 	@Test
-	public void deveBuscarFilmePorPalavra() {
-		FilmeVisto filme = new FilmeVisto();
-		filme.setTitulo("Batman Begins");
-		filme.setDiretores(List.of(new Diretor("Chris")));
-		List<FilmeVisto> filmes = List.of(filme);
-		
-		String chave = "Batman";
-		
-		List<Filme> listaRecebida = buscarFilmePorPalavra(filmes, chave);
-		List<Filme> listaEsperada = List.of(filme);
-		
-		assertEquals(listaRecebida, listaEsperada);
+	void deveEncontrarFilme() {
+		assertEquals(buscarFilmePorPalavra(List.of(filme), chave), List.of(filme));
+	}
+
+	@Test
+	void deveEncontrarFilmeIndependenteDaCaixaDaChave() {
+		assertEquals(buscarFilmePorPalavra(List.of(filme), chave.toLowerCase()), List.of(filme));
+		assertEquals(buscarFilmePorPalavra(List.of(filme), chave.toUpperCase()), List.of(filme));
 	}
 	
 	@Test
-	public void deveBuscarFilmePorPalavraComListaVazia() {
-		String chave = "Batman";
-		
-		List<Filme> listaRecebida = buscarFilmePorPalavra(List.of(), chave);
-		List<Filme> listaEsperada = List.of();
-		
-		assertEquals(listaRecebida, listaEsperada);
+	void deveRetornarListaVazia() {
+		assertEquals(buscarFilmePorPalavra(List.of(), chave), List.of());
 	}
-	
+
 	@Test
-	public void deveBuscarFilmePorPalavraComChaveNula() {
-		List<Filme> listaRecebida = buscarFilmePorPalavra(List.of(), null);
-		List<Filme> listaEsperada = List.of();
-		
-		assertEquals(listaRecebida, listaEsperada);
+	void deveRetornarListaVaziaSeChaveConterEspacos() {
+		assertEquals(buscarFilmePorPalavra(List.of(filme), chave + " "), List.of(filme));
 	}
+
+	@Test
+	void deveRetornarListaVaziaSeChaveForVazia() {
+		assertEquals(buscarFilmePorPalavra(List.of(filme), ""), List.of());
+	}
+
+	@Test
+	void deveRetornarListaVaziaSeDadosDoFilmeNaoConterChave() {
+		assertEquals(buscarFilmePorPalavra(List.of(filme), "Vital"), List.of());
+	}
+
 }

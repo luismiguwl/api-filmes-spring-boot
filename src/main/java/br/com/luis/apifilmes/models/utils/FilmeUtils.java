@@ -8,9 +8,13 @@ import br.com.luis.apifilmes.models.Filme;
 
 public class FilmeUtils {
 	public static List<Filme> buscarFilmePorPalavra(List<? extends Filme> filmes, String chave) {
+		if (chave.trim().isEmpty()) {
+			return List.of();
+		}
+
 		Predicate<Filme> filmeContemChave = filme -> {
 			String dadosDoFilme = filme.mesclarTituloComDiretores();
-			return dadosDoFilme.toLowerCase().contains(chave.toLowerCase());
+			return dadosDoFilme.toLowerCase().contains(chave.toLowerCase().trim());
 		};
 		
 		return filmes.stream()
