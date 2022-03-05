@@ -3,14 +3,13 @@ package br.com.luis.apifilmes.utils.definidores;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import org.apache.commons.csv.CSVRecord;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.apache.commons.csv.*;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.*;
+import org.mockito.*;
+import org.mockito.junit.jupiter.*;
 
-import br.com.luis.apifilmes.models.enums.Coluna;
+import br.com.luis.apifilmes.models.enums.*;
 
 @ExtendWith(MockitoExtension.class)
 public class DefinidorDeAssistidoLegendadoTest {
@@ -24,13 +23,12 @@ public class DefinidorDeAssistidoLegendadoTest {
 	@BeforeEach
 	public void setUp() {
 		definidor = new DefinidorDeAssistidoLegendado(record);
+		when(record.isMapped(coluna))
+			.thenReturn(true);
 	}
 	
 	@Test
 	public void deveRetornarValorNaoNuloSeColunarExistir() {
-		when(record.isMapped(coluna))
-			.thenReturn(true);
-		
 		when(record.get(coluna))
 			.thenReturn("true");
 		
@@ -47,9 +45,6 @@ public class DefinidorDeAssistidoLegendadoTest {
 
 	@Test
 	public void deveRetornarTrueSeColunaForTrue() {
-		when(record.isMapped(coluna))
-			.thenReturn(true);
-		
 		when(record.get(coluna))
 			.thenReturn("true");
 		
@@ -58,9 +53,6 @@ public class DefinidorDeAssistidoLegendadoTest {
 
 	@Test
 	public void deveRetornarFalseSeColunaForFalse() {
-		when(record.isMapped(coluna))
-			.thenReturn(true);
-		
 		when(record.get(coluna))
 			.thenReturn("false");
 		
