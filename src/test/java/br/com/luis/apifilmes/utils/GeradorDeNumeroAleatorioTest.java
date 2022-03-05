@@ -17,10 +17,6 @@ class GeradorDeNumeroAleatorioTest {
 	@Test
 	public void deveRetornarMenosUmQuandoNumeroForZero() {
 		assertEquals(gerar(0), -1);
-	}
-
-	@Test
-	public void deveRetornarMenosUmQuandoNumeroForNegativo() {
 		assertEquals(gerar(-50), -1);
 	}
 
