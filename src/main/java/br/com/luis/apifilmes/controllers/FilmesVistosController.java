@@ -1,23 +1,17 @@
 package br.com.luis.apifilmes.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.*;
+import java.util.stream.*;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.*;
+import org.springframework.scheduling.annotation.*;
+import org.springframework.web.bind.annotation.*;
 
-import br.com.luis.apifilmes.acessoadados.AcessoADados;
-import br.com.luis.apifilmes.arquivo.EscritorDeCSV;
-import br.com.luis.apifilmes.exceptions.AnoDaRequisicaoInvalidoException;
-import br.com.luis.apifilmes.interfaces.ControllerDeFilme;
+import br.com.luis.apifilmes.acessoadados.*;
+import br.com.luis.apifilmes.arquivo.*;
+import br.com.luis.apifilmes.exceptions.*;
+import br.com.luis.apifilmes.interfaces.*;
 import br.com.luis.apifilmes.models.*;
 import br.com.luis.apifilmes.models.enums.*;
 import br.com.luis.apifilmes.models.utils.*;
@@ -26,7 +20,7 @@ import br.com.luis.apifilmes.utils.*;
 import static br.com.luis.apifilmes.models.utils.FilmeUtils.*;
 
 @RestController
-@RequestMapping("/**/filmes/vistos")
+@RequestMapping(value = "/**/filmes/vistos")
 public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 	private Destino destino = Destino.obterDestinoBaseadoNoAnoAtual();
 	public List<FilmeVisto> filmes;
@@ -37,7 +31,7 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		atualizarListaDeFilmes();
 	}
 
-	@GetMapping("/random")
+	@GetMapping(value = "/random")
 	public ResponseEntity<FilmeVisto> obterFilmeAleatorio() {
 		if (filmes.isEmpty()) {
 			return ResponseEntity.ok().build();
@@ -47,12 +41,12 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		return ResponseEntity.ok(filmes.get(posicaoAleatoria));
 	}
 
-	@GetMapping("/all")
+	@GetMapping(value = "/all")
 	public ResponseEntity<List<FilmeVisto>> obterTodosOsFilmes() {
 		return ResponseEntity.ok(filmes);
 	}
 
-	@GetMapping("/last")
+	@GetMapping(value = "/last")
 	public ResponseEntity<FilmeVisto> obterUltimoFilmeVisto() {
 		if (filmes.isEmpty()) {
 			return ResponseEntity.ok().build();
@@ -62,7 +56,7 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		return ResponseEntity.ok(filme);
 	}
 
-	@GetMapping("/palavra")
+	@GetMapping(value = "/palavra", params = "palavra")
 	public ResponseEntity<List<FilmeVisto>> filtrarFilmePorPalavraChave(@RequestParam String palavra) {
 		List<Filme> filmesEncontradosPorKeyword = buscarFilmePorPalavra(filmes, palavra);
 		converterFilmesGenericosParaFilmesEspecificos(filmesEncontradosPorKeyword);
@@ -88,7 +82,7 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		return ResponseEntity.ok(filmesFiltradosPorIntervaloDeAnos);
 	}
 
-	@GetMapping("/ranking/diretores")
+	@GetMapping(value = "/ranking/diretores", params = "top")
 	public ResponseEntity<List<Diretor>> obterListaDeDiretoresComMaisFilmesVistos(@RequestParam int top) {
 		List<Diretor> diretores = new ArrayList<>();
 
@@ -104,7 +98,7 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		return ResponseEntity.ok(diretores);
 	}
 
-	@GetMapping("/idiomas")
+	@GetMapping(value = "/idiomas")
 	public ResponseEntity<List<String>> obterListaDeIdiomas() {
 		List<String> idiomas = new ArrayList<>();
 
@@ -116,7 +110,7 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		return ResponseEntity.ok(idiomas);
 	}
 
-	@GetMapping("/diretores")
+	@GetMapping(value = "/diretores")
 	public ResponseEntity<List<String>> obterListaDeDiretoresDistintos() {
 		List<String> nomeDosDiretores = new ArrayList<>();
 
@@ -134,7 +128,7 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		return ResponseEntity.ok(nomeDosDiretores);
 	}
 
-	@GetMapping("/plataformas")
+	@GetMapping(value = "/plataformas")
 	public ResponseEntity<List<String>> obterListaDePlataformas() {
 		List<String> plataformasString = new ArrayList<>();
 		Plataforma[] plataformas = Plataforma.values();
@@ -146,7 +140,7 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 		return ResponseEntity.ok(plataformasString);
 	}
 
-	@GetMapping("/generos")
+	@GetMapping(value = "/generos")
 	public ResponseEntity<List<String>> obterListaDeGeneros() {
 		List<String> generos = obterListaDeGenerosDistintos();
 		return ResponseEntity.ok(generos);
