@@ -1,7 +1,6 @@
 package br.com.luis.apifilmes.controllers;
 
 import java.util.*;
-import java.util.*;
 import java.util.stream.*;
 
 import org.springframework.http.*;
@@ -22,12 +21,15 @@ import static br.com.luis.apifilmes.models.utils.FilmeUtils.*;
 @RestController
 @RequestMapping(value = "/**/filmes/vistos")
 public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
-	private Destino destino = Destino.obterDestinoBaseadoNoAnoAtual();
-	public List<FilmeVisto> filmes;
+	private Destino destino;
+	private List<FilmeVisto> filmes;
 	private AcessoADados acessoADados;
 	
 	private FilmesVistosController() {
 		filmes = new ArrayList<>();
+		acessoADados = new AcessoADados(destino);
+		destino = Destino.obterDestinoBaseadoNoAnoAtual();
+		
 		atualizarListaDeFilmes();
 	}
 
@@ -92,38 +94,29 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 			}
 		}
 		
-		diretores = 
-				DiretorUtils.filtrarDiretoresComMaisFilmes(diretores, top);
+		diretores = DiretorUtils.filtrarDiretoresComMaisFilmes(diretores, top);
 		
 		return ResponseEntity.ok(diretores);
 	}
 
 	@GetMapping(value = "/idiomas")
-	public ResponseEntity<List<String>> obterListaDeIdiomas() {
-		List<String> idiomas = new ArrayList<>();
+	public ResponseEntity<Set<String>> obterListaDeIdiomas() {
+		Set<String> idiomas = new TreeSet<>();
 
-		idiomas = filmes.stream()
-				.map(filme -> filme.getIdioma().getNome())
-				.distinct()
-				.collect(Collectors.toList());
-
+		filmes.forEach(filme -> idiomas.add(filme.getIdioma().getNome()));
+		
 		return ResponseEntity.ok(idiomas);
 	}
 
 	@GetMapping(value = "/diretores")
-	public ResponseEntity<List<String>> obterListaDeDiretoresDistintos() {
-		List<String> nomeDosDiretores = new ArrayList<>();
+	public ResponseEntity<Set<String>> obterListaDeDiretoresDistintos() {
+		Set<String> nomeDosDiretores = new TreeSet<>();
 
 		for (FilmeVisto filme : filmes) {
 			for (Diretor diretor : filme.getDiretores()) {
 				nomeDosDiretores.add(diretor.getNome());
 			}
 		}
-
-		nomeDosDiretores = nomeDosDiretores.stream()
-				.sorted()
-				.distinct()
-				.collect(Collectors.toList());
 
 		return ResponseEntity.ok(nomeDosDiretores);
 	}
@@ -141,26 +134,20 @@ public class FilmesVistosController implements ControllerDeFilme<FilmeVisto> {
 	}
 
 	@GetMapping(value = "/generos")
-	public ResponseEntity<List<String>> obterListaDeGeneros() {
-		List<String> generos = obterListaDeGenerosDistintos();
-		return ResponseEntity.ok(generos);
-	}
-
-	private List<String> obterListaDeGenerosDistintos() {
-		List<String> todosOsGeneros = new ArrayList<>();
-
-		for (FilmeVisto filme : filmes) {
-			List<Genero> generos = filme.getGeneros();
-			generos.stream()
-				.map(genero -> genero.getNome())
-				.distinct()
-				.forEach(genero -> todosOsGeneros.add(genero));
+	public ResponseEntity<Set<String>> obterListaDeGeneros() {
+		Set<String> generos = new TreeSet<>();
+		
+		for (Filme filme : filmes) {
+			String[] generosDoFilme = filme.getGeneros()
+					.stream()
+					.map(Genero::getNome)
+					.collect(Collectors.toList())
+					.toArray(new String[0]);
+			
+			generos.addAll(Arrays.asList(generosDoFilme));
 		}
-
-		return todosOsGeneros.stream()
-			.distinct()
-			.sorted()
-			.collect(Collectors.toList());
+		
+		return ResponseEntity.ok(generos);
 	}
 
 	@PostMapping(value = "/inserir")
