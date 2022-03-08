@@ -2,66 +2,46 @@ package br.com.luis.apifilmes.models;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 public class FormatadorDeDuracaoTest {
 
-	FormatadorDeDuracao formatador;
 	Duracao duracao;
+	FormatadorDeDuracao formatador = new FormatadorDeDuracao(duracao);
 
 	@Test
-	public void deveRetornarUmMinuto() {
-		duracao = new Duracao(1);
-		formatador = new FormatadorDeDuracao(duracao);
-		
-		assertEquals(formatador.get(), "1 minuto");
-	}
-	
-	@Test
-	public void deveRetornarValorDiferenteDeUmMinuto() {
-		duracao = new Duracao(2);
-		formatador = new FormatadorDeDuracao(duracao);
-		
-		assertNotEquals(formatador.get(), "1 minuto");
-	}
-	
-	@Test
 	public void deveRetornarDoisMinutos() {
-		duracao = new Duracao(2);
-		formatador = new FormatadorDeDuracao(duracao);
-		
+		formatador.setDuracao(new Duracao(2));
 		assertEquals(formatador.get(), "2 minutos");
 	}
 	
 	@Test
-	public void deveRetornarValorDiferenteDeDoisMinutos() {
-		duracao = new Duracao(60);
-		formatador = new FormatadorDeDuracao(duracao);
-		
-		assertNotEquals(formatador.get(), "2 minutos");
-	}
-	
-	@Test
 	public void deveRetornarHoraExata() {
-		duracao = new Duracao(60);
-		formatador = new FormatadorDeDuracao(duracao);
-		
+		formatador.setDuracao(new Duracao(60));
 		assertEquals(formatador.get(), "1h");
 	}
 	
 	@Test
-	public void deveRetornarValorDiferenteDeHoraExata() {
-		duracao = new Duracao(61);
-		formatador = new FormatadorDeDuracao(duracao);
-		
-		assertNotEquals(formatador.get(), "1h");
+	public void deveRetornarHoraComMinutos() {
+		formatador.setDuracao(new Duracao(61));
+		assertEquals(formatador.get(), "1h 1m");
+	}
+	
+	@Test
+	public void deveRetornarCinquentaENoveMinutos() {
+		formatador.setDuracao(new Duracao(59));
+		assertEquals(formatador.get(), "59 minutos");
 	}
 	
 	@Test
 	public void deveRetornarZeroMinutos() {
-		duracao = new Duracao(0);
-		formatador = new FormatadorDeDuracao(duracao);
-		
+		formatador.setDuracao(new Duracao(0));
+		assertEquals(formatador.get(), "0 minutos");
+	}
+	
+	@Test
+	public void test() {
+		formatador.setDuracao(new Duracao(1));
 		assertNotEquals(formatador.get(), "0 minutos");
 	}
 	

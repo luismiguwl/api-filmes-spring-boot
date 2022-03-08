@@ -8,16 +8,22 @@ public class FormatadorDeDuracao {
 	}
 
 	public String get() {
-		VerificadorDeHorario validador = new VerificadorDeHorario(duracao);
+		VerificadorDeHorario horario = new VerificadorDeHorario(duracao);
 
-		if (validador.possuiApenasUmMinuto()) {
+		if (horario.possuiZeroHorasEMinutos()) {
+			return "0 minutos";
+		} else if (horario.possuiApenasUmMinuto()) {
 			return "1 minuto";
-		} else if (validador.possuiMenosDeUmaHora()) {
+		} else if (horario.possuiMenosDeUmaHora()) {
 			return String.format("%d minutos", duracao.getMinutos());
-		} else if (validador.possuiHoraExata()) {
+		} else if (horario.possuiHoraExata()) {
 			return String.format("%dh", duracao.getHoras());
 		}
 
 		return String.format("%dh %dm", duracao.getHoras(), duracao.getMinutos());
+	}
+	
+	public void setDuracao(Duracao duracao) {
+		this.duracao = duracao;
 	}
 }
