@@ -2,47 +2,73 @@ package br.com.luis.apifilmes.models;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import org.junit.jupiter.api.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-public class ContadorDeDiretorTest {
+class ContadorDeDiretorTest {
 	
 	ContadorDeDiretor contador;
+	List<Diretor> diretores;
 	
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		contador = new ContadorDeDiretor();
+		diretores = new ArrayList<>();
 	}
 	
 	@Test
-	public void deveRetornarDoisFilmesVistos() {
-		List<Diretor> diretores = new ArrayList<>();
-		String[] nomes = {"Christopher Nolan", "Sam Liu", "Sam Liu"};
-		
-		for (String nome : nomes) {
-			diretores.add(new Diretor(nome));
-		}
-		
-		List<Diretor> diretoresRetornados = contador.definirOcorrencias(diretores, nomes);
-		Diretor diretor = diretoresRetornados.get(1);
-		assertEquals(diretor.getQuantidadeDeFilmesVistos(), 2);
+	void deveRetornarUmFilmeCasoHajaApenasUmDiretorNaListaEPossuaApenasUmFilme() {
+		preencherListaDeDiretores("Sam Liu");
+
+		List<Diretor> diretoresRetornados = contador.definirOcorrencias(diretores, "Sam Liu");
+		assertEquals(diretoresRetornados.get(0).getQuantidadeDeFilmesVistos(), 1);
 	}
-	
+
 	@Test
-	public void deveRetornarNulo() {
-		List<Diretor> diretores = new ArrayList<>();
-		String[] nomes = {"Christopher Nolan", "Sam Liu", "Sam Liu"};
-		
-		diretores.add(new Diretor("Vince Gilligan"));
-		for (String nome : nomes) {
-			diretores.add(new Diretor(nome));
-		}
-		
+	void deveRetornarDoisFilmesParaCadaDiretorQuandoHouverMaisDeUmDiretorNaListaEAmbosTiveremDoisFilmes() {
+		String[] nomes = {"Sam Liu", "Sam Liu", "Christopher Nolan", "Christopher Nolan"};
+		preencherListaDeDiretores(nomes);
+
 		List<Diretor> diretoresRetornados = contador.definirOcorrencias(diretores, nomes);
-		Diretor diretor = diretoresRetornados.get(0);
-		assertNull(diretor.getQuantidadeDeFilmesVistos());
+		assertEquals(diretoresRetornados.get(0).getQuantidadeDeFilmesVistos(), 2);
+		assertEquals(diretoresRetornados.get(1).getQuantidadeDeFilmesVistos(), 2);
+	}
+
+	@Test
+	void deveRetornarQuantidadeDeFilmesNula() {
+		preencherListaDeDiretores("Sam Liu");
+
+		List<Diretor> diretoresRetornados = contador.definirOcorrencias(diretores, "Fulano de tal");
+		assertNull(diretoresRetornados.get(0).getQuantidadeDeFilmesVistos());
+	}
+
+
+	@Test
+	void deveRetornarQuantidadeDeFilmesNaoNulaEUmaNula() {
+		preencherListaDeDiretores("Sam Liu");
+		diretores.add(new Diretor("Fulano de Tal"));
+
+		List<Diretor> diretoresRetornados = contador.definirOcorrencias(diretores, "Sam Liu");
+		assertEquals(diretoresRetornados.get(0).getQuantidadeDeFilmesVistos(), 1);
+		assertNull(diretoresRetornados.get(1).getQuantidadeDeFilmesVistos());
+	}
+
+	@Test
+	void deveRetornarListaVaziaSePassarListaVaziaComoArgumento() {
+		List<Diretor> diretoresRetornados = contador.definirOcorrencias(List.of());
+		assertEquals(diretoresRetornados, List.of());
+	}
+
+	@Test
+	void deveRetornarZeroFilmesVistosSeNomeNaoForExatamenteIgual() {
+		preencherListaDeDiretores("Sam Liu");
+
+		String[] nomesNaoExatos = {"sam liu", "SAM LIU", "sAm LiU", "SAM liu"};
+		List<Diretor> diretoresRetornados = contador.definirOcorrencias(diretores, nomesNaoExatos);
+		assertNull(diretoresRetornados.get(0).getQuantidadeDeFilmesVistos());
+	}
+
+	private void preencherListaDeDiretores(String... nomes) {
+		Arrays.stream(nomes).forEach(nome -> diretores.add(new Diretor(nome)));
 	}
 }
