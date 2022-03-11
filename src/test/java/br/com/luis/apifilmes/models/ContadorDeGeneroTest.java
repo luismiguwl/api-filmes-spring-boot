@@ -2,54 +2,47 @@ package br.com.luis.apifilmes.models;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import org.junit.jupiter.api.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-public class ContadorDeGeneroTest {
+class ContadorDeGeneroTest {
 
 	ContadorDeGenero contador;
+	List<Genero> generos;
+	final String[] dados = {"Animação", "Animação", "Aventura"};
 	
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		contador = new ContadorDeGenero();
+		generos = new ArrayList<>();
+		preencherListaDeGeneros(dados);
 	}
 	
 	@Test
-	public void deveRetornarDois() {
-		List<Genero> generosMock = new ArrayList<>();
-		String[] dados = {"Animação", "Animação", "Aventura"};
-		
-		for (String dado : dados) {
-			generosMock.add(new Genero(dado));
-		}
-		
-		List<Genero> generos = contador.definirOcorrencias(generosMock, dados);
-		assertEquals(generos.get(0).getQuantidadeDeFilmes(), 2);
+	void deveRetornarValoresInteirosEPositivos() {
+		List<Genero> generosRecebidos = contador.definirOcorrencias(generos, dados);
+		assertEquals(generosRecebidos.get(0).getQuantidadeDeFilmes(), 2);
+		assertEquals(generosRecebidos.get(2).getQuantidadeDeFilmes(), 1);
 	}
 	
 	@Test
-	public void deveRetornarNull() {
-		List<Genero> generosMock = new ArrayList<>();
-		String[] dados = {"Animação", "Animação", "Aventura"};
+	void deveRetornarNullCasoQuantidadeDeFilmesSejaIgualAZero() {
+		generos.add(new Genero("Ação"));
+		
+		List<Genero> generosRecebidos = contador.definirOcorrencias(generos, dados);
+		assertEquals(generosRecebidos.get(0).getQuantidadeDeFilmes(), 2);
+		assertEquals(generosRecebidos.get(2).getQuantidadeDeFilmes(), 1);
+		assertNull(generos.get(3).getQuantidadeDeFilmes());
+	}
+	
+	@Test
+	void deveRetornarMesmaListaQueFoiPassada() {
+		generos.clear();
+		List<Genero> generosRecebidos = contador.definirOcorrencias(generos, dados);
+		assertEquals(generos, generosRecebidos);
+	}
 
-		generosMock.add(new Genero("Ação"));
-		for (String dado : dados) {
-			generosMock.add(new Genero(dado));
-		}
-		
-		List<Genero> generos = contador.definirOcorrencias(generosMock, dados);
-		assertNull(generos.get(0).getQuantidadeDeFilmes());
-	}
-	
-	@Test
-	public void deveRetornarMesmaListaQueFoiPassada() {
-		List<Genero> generosMock = new ArrayList<>();
-		String[] dados = {};
-
-		List<Genero> generos = contador.definirOcorrencias(generosMock, dados);
-		assertTrue(generos.containsAll(generosMock));
+	private void preencherListaDeGeneros(String... nomes) {
+		Arrays.stream(nomes).forEach(genero -> generos.add(new Genero(genero)));
 	}
 }
