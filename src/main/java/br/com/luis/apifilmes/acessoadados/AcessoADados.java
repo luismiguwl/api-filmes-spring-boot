@@ -70,14 +70,11 @@ public class AcessoADados {
 		List<String> dadosDaColuna = new ArrayList<>();
 
 		for (CSVRecord record : records) {
-			String dado = record.get(coluna.get());
-
-			List<String> diretoresContidosNaLinha = converterStringParaObjeto(String::toString, dado.split(","));
-			dadosDaColuna.addAll(diretoresContidosNaLinha);
+			String linha = record.get(coluna.get());
+			dadosDaColuna.addAll(converterStringParaObjeto(String::toString, linha.split(",")));
 		}
 
-		String[] dados = converterListaDeStringParaArray(dadosDaColuna);
-		return dados;
+		return converterListaDeStringParaArray(dadosDaColuna);
 	}
 
 }
