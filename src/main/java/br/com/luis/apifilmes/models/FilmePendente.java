@@ -39,12 +39,17 @@ public class FilmePendente extends Filme {
 		return super.getGeneros();
 	}
 
+	@Override
 	public Duracao getRuntime() {
 		return super.getRuntime();
 	}
 	
 	public String getDataEmQueFoiAdicionado() {
 		return dataEmQueFoiAdicionado;
+	}
+
+	public void setDataEmQueFoiAdicionado(String dataEmQueFoiAdicionado) {
+		this.dataEmQueFoiAdicionado = dataEmQueFoiAdicionado;
 	}
 
 	@Override

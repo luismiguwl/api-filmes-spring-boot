@@ -1,12 +1,10 @@
 package br.com.luis.apifilmes.arquivo;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.luis.apifilmes.interfaces.AcoesComFilmePendente;
+import java.util.*;
+import br.com.luis.apifilmes.interfaces.*;
 import br.com.luis.apifilmes.models.*;
-import static br.com.luis.apifilmes.models.utils.AcessoADadosUtils.converterListaDeStringParaArray;
 
+import static br.com.luis.apifilmes.models.utils.AcessoADadosUtils.*;
 import static br.com.luis.apifilmes.models.enums.Coluna.*;
 
 public class GeradorDeCabecalho implements AcoesComFilmePendente {
@@ -17,8 +15,16 @@ public class GeradorDeCabecalho implements AcoesComFilmePendente {
 		this.filme = filme;
 		this.headers = new ArrayList<>();
 	}
+
+	public void setFilme(Filme filme) {
+		this.filme = filme;
+	}
 	
 	public String[] gerar() {
+		if (filme == null) {
+			throw new NullPointerException("Filme não pode ser nulo!");
+		}
+
 		if (ehFilmePendente()) {
 			gerarHeadersParaFilmePendente();
 		} else {

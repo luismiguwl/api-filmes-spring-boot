@@ -1,40 +1,31 @@
 package br.com.luis.apifilmes.arquivo;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.*;
 import br.com.luis.apifilmes.models.*;
 
-public class GeradorDeCabecalhoTest {
+class GeradorDeCabecalhoTest {
 	
 	private final String[] CABECALHO_FILME_PENDENTE = "titulo,anoDeLancamento,idioma,diretor,genero,duracao,dataEmQueFoiAdicionado".split(",");
 	private final String[] CABECALHO_FILME_VISTO = "titulo,dataAssistido,anoDeLancamento,idioma,diretor,genero,duracao,plataforma,assistidoLegendado".split(",");
 	
-	Filme filme;
-	GeradorDeCabecalho gerador;
+	GeradorDeCabecalho gerador = new GeradorDeCabecalho(new FilmeVisto());
 	
-	@BeforeEach
-	public void setUp() {
-		gerador = new GeradorDeCabecalho(filme);
+	@Test
+	void deveGerarCabecalhoParaFilmePendente() {
+		gerador.setFilme(new FilmePendente());
+		assertArrayEquals(gerador.gerar(), CABECALHO_FILME_PENDENTE);
+	}
+
+	@Test
+	void deveLancarNullPointerExceptionSeFilmeForNulo() {
+		gerador.setFilme(null);
+		assertThrows(NullPointerException.class, () -> gerador.gerar());
 	}
 	
 	@Test
-	public void deveGerarCabecalhoParaFilmePendente() {
-		filme = new FilmePendente();
-		gerador = new GeradorDeCabecalho(filme);
-		
-		String[] cabecalhoGerado = gerador.gerar();
-		assertArrayEquals(cabecalhoGerado, CABECALHO_FILME_PENDENTE);
-	}
-	
-	@Test
-	public void deveGerarCabecalhoParaFilmeVisto() {
-		filme = new FilmeVisto();
-		gerador = new GeradorDeCabecalho(filme);
-		
-		String[] cabecalhoGerado = gerador.gerar();
-		assertArrayEquals(cabecalhoGerado, CABECALHO_FILME_VISTO);
+	void deveGerarCabecalhoParaFilmeVisto() {
+		assertArrayEquals(gerador.gerar(), CABECALHO_FILME_VISTO);
 	}
 }

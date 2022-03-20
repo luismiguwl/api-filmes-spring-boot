@@ -1,212 +1,157 @@
 package br.com.luis.apifilmes.arquivo;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-
+import java.util.*;
+import java.util.stream.*;
+import org.junit.jupiter.api.*;
 import br.com.luis.apifilmes.models.*;
-import br.com.luis.apifilmes.models.enums.Plataforma;
+import br.com.luis.apifilmes.models.enums.*;
 
-public class PreenchedorDeCamposTest {
+class PreenchedorDeCamposTest {
 
 	PreenchedorDeCampos preenchedor;
 	Joiner joiner = new Joiner();
 	
 	@Test
-	public void deveRetornarListaContendoParaEscritaDadosDeUmFilmePendenteComUmDiretorEUmGenero() {
-		FilmePendente filme = mock(FilmePendente.class);
+	void deveRetornarListaContendoParaEscritaDadosDeUmFilmePendenteComUmDiretorEUmGenero() {
+		FilmeVisto filme = new FilmeVisto();
 		preenchedor = new PreenchedorDeCampos(filme);
 		
-		String titulo = "Tenet";
-		Integer ano = 2020;
-		Idioma idioma = new Idioma("Inglês");
-		List<Diretor> diretores = List.of(new Diretor("Christopher Nolan"));
-		List<Genero> generos = List.of(new Genero("Ação"));
-		Duracao runtime = new Duracao(150);
-		
-		when(filme.getTitulo()).thenReturn(titulo);
-		when(filme.getAnoDeLancamento()).thenReturn(ano);
-		when(filme.getIdioma()).thenReturn(idioma);
-		when(filme.getDiretores()).thenReturn(diretores);
-		when(filme.getGeneros()).thenReturn(generos);
-		when(filme.getRuntime()).thenReturn(runtime);
-		when(filme.getDataEmQueFoiAdicionado()).thenReturn(null);
+		filme.setTitulo("Tenet");
+		filme.setAnoDeLancamento(2020);
+		filme.setIdioma(new Idioma("Inglês"));
+		filme.setDiretores(List.of(new Diretor("Christopher Nolan")));
+		filme.setGeneros(List.of(new Genero("Ação")));
+		filme.setRuntime(new Duracao(150));
+		filme.setAssistidoLegendado(true);
+		filme.setPlataformaEmQueFoiAssistido(Plataforma.NETFLIX);
+		filme.setDataEmQueFoiAssistido("20/03/2022");
 		
 		List<Object> listaRecebida = preenchedor.preencher();
 		List<Object> listaEsperada = List.of(
-					filme.getTitulo(),
-					Integer.toString(filme.getAnoDeLancamento()),
-					filme.getIdioma().getNome(),
-					joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getDiretores(), Diretor::getNome),
-					joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getGeneros(), Genero::getNome),
-					filme.getRuntime().getDuracaoEmMinutos(),
-					filme.getDataEmQueFoiAdicionado() != null ? filme.getDataEmQueFoiAdicionado() : "" 
+					"Tenet",
+					2020,
+					"Inglês",
+					"Christopher Nolan",
+					"Ação",
+					150,
+					true,
+					"Netflix",
+					"20/03/2022"
 				);
-		
-		assertEquals(listaEsperada, listaRecebida);
+
+		for (Object elemento : listaRecebida) {
+			assertTrue(listaEsperada.stream()
+				.map(e -> e.toString())
+				.collect(Collectors.toList())
+				.contains(elemento.toString()));
+		}
 	}
 	
 	@Test
-	public void deveRetornarListaContendoDadosParaEscritaDeUmFilmePendenteComMaisDeUmDiretorEVariosGeneros() {
-		FilmePendente filme = mock(FilmePendente.class);
+	void deveRetornarListaContendoDadosParaEscritaDeUmFilmePendenteComMaisDeUmDiretorEVariosGeneros() {
+		Filme filme = new FilmePendente();
 		preenchedor = new PreenchedorDeCampos(filme);
 		
-		String titulo = "Shrek";
-		Integer ano = 2020;
-		Idioma idioma = new Idioma("Inglês");
-		List<Diretor> diretores = List.of(new Diretor("Andrew Adamson"), new Diretor("Vicky Jenson"));
-		List<Genero> generos = List.of(new Genero("Ação"), new Genero("Ficção científica"), new Genero("Thriller"));
-		Duracao runtime = new Duracao(150);
-		
-		when(filme.getTitulo()).thenReturn(titulo);
-		when(filme.getAnoDeLancamento()).thenReturn(ano);
-		when(filme.getIdioma()).thenReturn(idioma);
-		when(filme.getDiretores()).thenReturn(diretores);
-		when(filme.getGeneros()).thenReturn(generos);
-		when(filme.getRuntime()).thenReturn(runtime);
-		when(filme.getDataEmQueFoiAdicionado()).thenReturn(null);
+		filme.setTitulo("Tenet");
+		filme.setAnoDeLancamento(2020);
+		filme.setIdioma(new Idioma("Inglês"));
+		filme.setDiretores(List.of(new Diretor("Andrew Adamson"), new Diretor("Vicky Jenson")));
+		filme.setGeneros(List.of(new Genero("Ação"), new Genero("Ficção científica"), new Genero("Thriller")));
+		filme.setRuntime(new Duracao(150));
 		
 		List<Object> listaRecebida = preenchedor.preencher();
 		List<Object> listaEsperada = List.of(
-					filme.getTitulo(),
-					Integer.toString(filme.getAnoDeLancamento()),
-					filme.getIdioma().getNome(),
-					joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getDiretores(), Diretor::getNome),
-					joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getGeneros(), Genero::getNome),
-					filme.getRuntime().getDuracaoEmMinutos(),
-					filme.getDataEmQueFoiAdicionado() != null ? filme.getDataEmQueFoiAdicionado() : "" 
+					"Tenet",
+					2020,
+					"Inglês",
+					"Andrew Adamson, Vicky Jenson",
+					"Ação, Ficção científica, Thriller",
+					150,
+					"" 
 				);
-		
-		assertEquals(listaEsperada, listaRecebida);
+
+		for (Object elemento : listaRecebida) {
+			assertTrue(listaEsperada.stream()
+				.map(e -> e.toString())
+				.collect(Collectors.toList())
+				.contains(elemento.toString()));
+		}
 	}
 	
 	@Test
-	public void deveRetornarListaContendoDadosParaEscritaDeUmFilmePendenteComDataDeAdicaoPossuindoValor() {
-		FilmePendente filme = mock(FilmePendente.class);
+	void deveRetornarListaContendoDadosParaEscritaDeUmFilmePendenteComDataDeAdicaoPossuindoValor() {
+		FilmePendente filme = new FilmePendente();
 		preenchedor = new PreenchedorDeCampos(filme);
+
+		filme.setTitulo("Tenet");
+		filme.setAnoDeLancamento(2020);
+		filme.setIdioma(new Idioma("Inglês"));
+		filme.setDiretores(List.of(new Diretor("Andrew Adamson"), new Diretor("Vicky Jenson")));
+		filme.setGeneros(List.of(new Genero("Ação"), new Genero("Ficção científica"), new Genero("Thriller")));
+		filme.setRuntime(new Duracao(150));
+		filme.setDataEmQueFoiAdicionado("15/02/2022");
+
+		List<Object> listaRecebida = preenchedor.preencher();
+		List<Object> listaEsperada = List.of(
+					"Tenet",
+					2020,
+					"Inglês",
+					"Andrew Adamson, Vicky Jenson",
+					"Ação, Ficção científica, Thriller",
+					150,
+					"15/02/2022"
+				);
 		
-		String titulo = "Shrek";
-		Integer ano = 2020;
-		Idioma idioma = new Idioma("Inglês");
-		List<Diretor> diretores = List.of(new Diretor("Andrew Adamson"), new Diretor("Vicky Jenson"));
-		List<Genero> generos = List.of(new Genero("Ação"), new Genero("Ficção científica"), new Genero("Thriller"));
-		Duracao runtime = new Duracao(150);
-		String data = "15/02/2022";
-		
-		when(filme.getTitulo()).thenReturn(titulo);
-		when(filme.getAnoDeLancamento()).thenReturn(ano);
-		when(filme.getIdioma()).thenReturn(idioma);
-		when(filme.getDiretores()).thenReturn(diretores);
-		when(filme.getGeneros()).thenReturn(generos);
-		when(filme.getRuntime()).thenReturn(runtime);
-		when(filme.getDataEmQueFoiAdicionado()).thenReturn(data);
+		for (Object elemento : listaRecebida) {
+			assertTrue(listaEsperada.stream()
+				.map(e -> e.toString())
+				.collect(Collectors.toList())
+				.contains(elemento.toString()));
+		}
+	}
+	
+	@Test
+	void deveRetornarListaContendoDadosParaEscritaDeUmFilmePendenteComRuntimeNulo() {
+		FilmePendente filme = new FilmePendente();
+		preenchedor = new PreenchedorDeCampos(filme);
+
+		filme.setTitulo("Tenet");
+		filme.setAnoDeLancamento(2020);
+		filme.setIdioma(new Idioma("Inglês"));
+		filme.setDiretores(List.of(new Diretor("Andrew Adamson"), new Diretor("Vicky Jenson")));
+		filme.setGeneros(List.of(new Genero("Ação"), new Genero("Ficção científica"), new Genero("Thriller")));
+		filme.setRuntime(null);
+		filme.setDataEmQueFoiAdicionado("15/02/2022");
 		
 		List<Object> listaRecebida = preenchedor.preencher();
 		List<Object> listaEsperada = List.of(
-					filme.getTitulo(),
-					Integer.toString(filme.getAnoDeLancamento()),
-					filme.getIdioma().getNome(),
-					joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getDiretores(), Diretor::getNome),
-					joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getGeneros(), Genero::getNome),
-					filme.getRuntime().getDuracaoEmMinutos(),
-					filme.getDataEmQueFoiAdicionado() != null ? filme.getDataEmQueFoiAdicionado() : "" 
+					"Tenet",
+					2020,
+					"Inglês",
+					"Andrew Adamson, Vicky Jenson",
+					"Ação, Ficção científica, Thriller",
+					0,
+					"15/02/2022"
 				);
 		
-		assertEquals(listaEsperada, listaRecebida);
+		for (Object elemento : listaRecebida) {
+			assertTrue(listaEsperada.stream()
+				.map(e -> e.toString())
+				.collect(Collectors.toList())
+				.contains(elemento.toString()));
+		}
 	}
 	
 	@Test
-	public void deveRetornarListaContendoDadosParaEscritaDeUmFilmePendenteComRuntimeNulo() {
-		FilmePendente filme = mock(FilmePendente.class);
-		preenchedor = new PreenchedorDeCampos(filme);
-		
-		String titulo = "Shrek";
-		Integer ano = 2020;
-		Idioma idioma = new Idioma("Inglês");
-		List<Diretor> diretores = List.of(new Diretor("Andrew Adamson"), new Diretor("Vicky Jenson"));
-		List<Genero> generos = List.of(new Genero("Ação"), new Genero("Ficção científica"), new Genero("Thriller"));
-		Duracao runtime = null;
-		String data = "15/02/2022";
-		
-		when(filme.getTitulo()).thenReturn(titulo);
-		when(filme.getAnoDeLancamento()).thenReturn(ano);
-		when(filme.getIdioma()).thenReturn(idioma);
-		when(filme.getDiretores()).thenReturn(diretores);
-		when(filme.getGeneros()).thenReturn(generos);
-		when(filme.getRuntime()).thenReturn(runtime);
-		when(filme.getDataEmQueFoiAdicionado()).thenReturn(data);
-		
-		List<Object> listaRecebida = preenchedor.preencher();
-		List<Object> listaEsperada = List.of(
-					filme.getTitulo(),
-					Integer.toString(filme.getAnoDeLancamento()),
-					filme.getIdioma().getNome(),
-					joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getDiretores(), Diretor::getNome),
-					joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getGeneros(), Genero::getNome),
-					filme.getRuntime() != null ? filme.getRuntime().getDuracaoEmMinutos() : 0,
-					filme.getDataEmQueFoiAdicionado() != null ? filme.getDataEmQueFoiAdicionado() : "" 
-				);
-		
-		assertEquals(listaEsperada, listaRecebida);
+	void deveRetornarTrueSeForFilmePendente() {
+		assertTrue(new PreenchedorDeCampos(new FilmePendente()).ehFilmePendente());
 	}
 	
 	@Test
-	public void deveRetornarListaContendoDadosParaEscritaDeUmFilmeVisto() {
-		FilmeVisto filme = mock(FilmeVisto.class);
-		preenchedor = new PreenchedorDeCampos(filme);
-		
-		String titulo = "Tenet";
-		Integer ano = 2020;
-		Idioma idioma = new Idioma("Inglês");
-		List<Diretor> diretores = List.of(new Diretor("Christopher Nolan"));
-		List<Genero> generos = List.of(new Genero("Ação"), new Genero("Ficção científica"), new Genero("Thriller"));
-		Duracao runtime = new Duracao(150);
-		Plataforma plataforma = Plataforma.HBO_MAX;
-		boolean assistidoLegendado = true;
-		String data = "15/02/2022";
-		
-		when(filme.getTitulo()).thenReturn(titulo);
-		when(filme.getAnoDeLancamento()).thenReturn(ano);
-		when(filme.getIdioma()).thenReturn(idioma);
-		when(filme.getDiretores()).thenReturn(diretores);
-		when(filme.getGeneros()).thenReturn(generos);
-		when(filme.getRuntime()).thenReturn(runtime);
-		when(filme.getAssistidoLegendado()).thenReturn(assistidoLegendado);
-		when(filme.getPlataformaEmQueFoiAssistido()).thenReturn(plataforma);
-		when(filme.getDataEmQueFoiAssistido()).thenReturn(data);
-		
-		List<Object> listaRecebida = preenchedor.preencher();
-		List<Object> listaEsperada = List.of(
-					filme.getTitulo(),
-					filme.getDataEmQueFoiAssistido(),
-					Integer.toString(filme.getAnoDeLancamento()),
-					filme.getIdioma().getNome(),
-					joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getDiretores(), Diretor::getNome),
-					joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getGeneros(), Genero::getNome),
-					filme.getRuntime().getDuracaoEmMinutos(),
-					filme.getPlataformaEmQueFoiAssistido().getNomes()[0],
-					filme.getAssistidoLegendado()
-				);
-		
-		assertEquals(listaRecebida, listaEsperada);
+	void deveRetornarFalseSeForFilmeVisto() {
+		assertFalse(new PreenchedorDeCampos(new FilmeVisto()).ehFilmePendente());
 	}
-	
-	@Test
-	public void deveRetornarTrueSeForFilmePendente() {
-		FilmePendente filme = mock(FilmePendente.class);
-		preenchedor = new PreenchedorDeCampos(filme);
-		assertTrue(preenchedor.ehFilmePendente());
-	}
-	
-	@Test
-	public void deveRetornarFalseSeForFilmeVisto() {
-		FilmeVisto filme = mock(FilmeVisto.class);
-		preenchedor = new PreenchedorDeCampos(filme);
-		assertFalse(preenchedor.ehFilmePendente());
-	}
-	
+
 }
- 

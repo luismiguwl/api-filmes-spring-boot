@@ -1,11 +1,9 @@
 package br.com.luis.apifilmes.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.luis.apifilmes.models.utils.DiretorUtils;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.*;
+import br.com.luis.apifilmes.models.utils.*;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.*;
 
 @JsonInclude(Include.NON_EMPTY)
 public abstract class Filme {
@@ -56,12 +54,24 @@ public abstract class Filme {
 		return idioma;
 	}
 
+	public void setIdioma(Idioma idioma) {
+		this.idioma = idioma;
+	}
+
 	public List<Genero> getGeneros() {
 		return generos;
 	}
 
+	public void setGeneros(List<Genero> generos) {
+		this.generos = generos;
+	}
+
 	public Duracao getRuntime() {
 		return runtime;
+	}
+
+	public void setRuntime(Duracao runtime) {
+		this.runtime = runtime;
 	}
 	
 	public String mesclarTituloComDiretores() {

@@ -25,14 +25,27 @@ public class FilmeVisto extends Filme {
 		return dataEmQueFoiAssistido;
 	}
 
+	public void setDataEmQueFoiAssistido(String dataEmQueFoiAssistido) {
+		this.dataEmQueFoiAssistido = dataEmQueFoiAssistido;
+	}
+
 	public Plataforma getPlataformaEmQueFoiAssistido() {
 		return plataformaEmQueFoiAssistido;
+	}
+
+	public void setPlataformaEmQueFoiAssistido(Plataforma plataformaEmQueFoiAssistido) {
+		this.plataformaEmQueFoiAssistido = plataformaEmQueFoiAssistido;
 	}
 
 	public Boolean getAssistidoLegendado() {
 		return assistidoLegendado;
 	}
+
+	public void setAssistidoLegendado(Boolean assistidoLegendado) {
+		this.assistidoLegendado = assistidoLegendado;
+	}
 	
+	@Override
 	public Duracao getRuntime() {
 		return super.getRuntime();
 	}
