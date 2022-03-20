@@ -1,13 +1,8 @@
 package br.com.luis.apifilmes.arquivo;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
-
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
-
-import br.com.luis.apifilmes.models.enums.Destino;
+import java.io.*;
+import org.apache.commons.csv.*;
+import br.com.luis.apifilmes.models.enums.*;
 
 public class LeitorDeCSV {
 	private Destino destino;
@@ -16,6 +11,10 @@ public class LeitorDeCSV {
 		this.destino = destino;
 	}
 	
+	public void setDestino(Destino destino) {
+		this.destino = destino;
+	}
+
 	public Iterable<CSVRecord> ler() {
 		try {
 			Reader in = new FileReader(destino.get());
