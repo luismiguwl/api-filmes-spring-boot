@@ -1,6 +1,6 @@
 package br.com.luis.apifilmes.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 
 public class Duracao {
     private int horas;
@@ -11,9 +11,12 @@ public class Duracao {
     	
     	if (!validarNumeros()) {
     		throw new IllegalArgumentException("Valor não pode ser negativo");
-		}
+	}
     	
         definirHoraEMinuto(minutos);
+    }
+
+    public Duracao() {
     }
     
     private void definirHoraEMinuto(int minutos) {
