@@ -1,22 +1,18 @@
 package br.com.luis.apifilmes.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.stream.*;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.*;
+import org.springframework.scheduling.annotation.*;
+import org.springframework.web.bind.annotation.*;
 
-import br.com.luis.apifilmes.acessoadados.AcessoADados;
-import br.com.luis.apifilmes.interfaces.ControllerDeFilme;
+import br.com.luis.apifilmes.acessoadados.*;
+import br.com.luis.apifilmes.interfaces.*;
 import br.com.luis.apifilmes.models.*;
-import br.com.luis.apifilmes.models.enums.Destino;
+import br.com.luis.apifilmes.models.enums.*;
 import br.com.luis.apifilmes.utils.*;
+import br.com.luis.apifilmes.arquivo.*;
 
 import static br.com.luis.apifilmes.models.utils.FilmeUtils.*;
 
@@ -68,7 +64,13 @@ public class FilmesPendentesController implements ControllerDeFilme<FilmePendent
 		List<FilmePendente> filmesFiltradosPorIntervaloDeAnos = filmes.stream()
 				.filter(filme -> filme.anoDeLancamentoEstaEntre(de, ate))
 				.collect(Collectors.toList());
-        return ResponseEntity.ok(filmesFiltradosPorIntervaloDeAnos);
+        	return ResponseEntity.ok(filmesFiltradosPorIntervaloDeAnos);
+	}
+
+	@PostMapping(value = "/inserir")
+	public void inserirFilme(@RequestBody FilmePendente filme) {
+		EscritorDeCSV escritor = new EscritorDeCSV(destino);
+		escritor.escreverFilmeNoArquivoCSV(filme);
 	}
 
 	@Scheduled(cron = "0 0/1 * 1/1 * ?")
@@ -77,7 +79,7 @@ public class FilmesPendentesController implements ControllerDeFilme<FilmePendent
 		List<Filme> filmesNaoConvertidos = acessoADados.getFilmes();
 		converterFilmesGenericosParaFilmesEspecificos(filmesNaoConvertidos);
 	}
-	
+
 	public void converterFilmesGenericosParaFilmesEspecificos(List<Filme> filmesGenericos) {
 		filmes.clear();
 		filmesGenericos.stream()
