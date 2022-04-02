@@ -2,7 +2,7 @@ package br.com.luis.apifilmes.models;
 
 import java.util.*;
 import br.com.luis.apifilmes.models.utils.*;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude.*;
 import com.fasterxml.jackson.annotation.*;
 
 @JsonInclude(Include.NON_EMPTY)
@@ -34,6 +34,7 @@ public abstract class Filme {
 		this.titulo = titulo;
 	}
 
+	@JsonProperty(value = "lancadoEm")
 	public int getAnoDeLancamento() {
 		return anoDeLancamento;
 	}

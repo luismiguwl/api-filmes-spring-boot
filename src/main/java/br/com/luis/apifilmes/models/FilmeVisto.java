@@ -2,6 +2,8 @@ package br.com.luis.apifilmes.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.*;
+
 import br.com.luis.apifilmes.models.enums.Plataforma;
 
 public class FilmeVisto extends Filme {
@@ -21,6 +23,7 @@ public class FilmeVisto extends Filme {
 	public FilmeVisto() {
 	}
 
+	@JsonProperty(value = "assistidoEm")
 	public String getDataEmQueFoiAssistido() {
 		return dataEmQueFoiAssistido;
 	}

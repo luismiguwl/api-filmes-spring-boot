@@ -12,14 +12,14 @@ public class DiretorTest {
 	@Test
 	public void deveRetornarFilmesVistosNuloSeForIgualAZero() {
 		diretor = new Diretor("Christopher Nolan");
-		assertNull(diretor.getQuantidadeDeFilmesVistos());
+		assertNull(diretor.getTotalDeFilmesVistos());
 	}
 	
 	@Test
 	public void deveRetornarObjetoNaoNuloSeFilmesVistosForMaiorQueZero() {
 		diretor = new Diretor("Christopher Nolan");
 		diretor.setQuantidadeDeFilmesVistos(1);
-		assertNotNull(diretor.getQuantidadeDeFilmesVistos());
+		assertNotNull(diretor.getTotalDeFilmesVistos());
 	}
 	
 	@Test
@@ -31,6 +31,6 @@ public class DiretorTest {
 	@Test
 	public void deveRetornarNomeNulo2() {
 		diretor = new Diretor();
-		assertNull(diretor.getQuantidadeDeFilmesVistos());
+		assertNull(diretor.getTotalDeFilmesVistos());
 	}
 }

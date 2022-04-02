@@ -43,12 +43,12 @@ public class DiretorUtils {
 	public static List<Diretor> ordenarDecrescentePorQuantidadeDeFilmes(
 			List<Diretor> diretores) {
 		Predicate<Diretor> quantidadeDeFilmesNaoNula = diretor -> {
-			return diretor.getQuantidadeDeFilmesVistos() != null;
+			return diretor.getTotalDeFilmesVistos() != null;
 		};
 		
 		return diretores.stream()
 				.filter(quantidadeDeFilmesNaoNula)
-				.sorted(Comparator.comparing(Diretor::getQuantidadeDeFilmesVistos).reversed())
+				.sorted(Comparator.comparing(Diretor::getTotalDeFilmesVistos).reversed())
 				.collect(Collectors.toList());
 	}
 

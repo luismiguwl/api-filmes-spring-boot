@@ -21,8 +21,8 @@ class ContadorDeDiretorTest {
 		preencherListaDeDiretores("Sam Liu");
 
 		List<Diretor> diretoresRetornados = contador.definirOcorrencias(diretores, new String[]{"Sam Liu"}, new String[]{});
-		assertEquals(diretoresRetornados.get(0).getQuantidadeDeFilmesVistos(), 1);
-		assertNull(diretoresRetornados.get(0).getQuantidadeDeFilmesPendentes());
+		assertEquals(diretoresRetornados.get(0).getTotalDeFilmesVistos(), 1);
+		assertNull(diretoresRetornados.get(0).getTotalDeFilmesPendentes());
 	}
 
 	@Test
@@ -31,10 +31,10 @@ class ContadorDeDiretorTest {
 		preencherListaDeDiretores(nomes);
 
 		List<Diretor> diretoresRetornados = contador.definirOcorrencias(diretores, nomes, "Christopher Nolan");
-		assertEquals(diretoresRetornados.get(0).getQuantidadeDeFilmesVistos(), 2);
-		assertNull(diretoresRetornados.get(0).getQuantidadeDeFilmesPendentes());
-		assertEquals(diretoresRetornados.get(2).getQuantidadeDeFilmesVistos(), 2);
-		assertEquals(diretoresRetornados.get(2).getQuantidadeDeFilmesPendentes(), 1);
+		assertEquals(diretoresRetornados.get(0).getTotalDeFilmesVistos(), 2);
+		assertNull(diretoresRetornados.get(0).getTotalDeFilmesPendentes());
+		assertEquals(diretoresRetornados.get(2).getTotalDeFilmesVistos(), 2);
+		assertEquals(diretoresRetornados.get(2).getTotalDeFilmesPendentes(), 1);
 	}
 
 	@Test
@@ -42,8 +42,8 @@ class ContadorDeDiretorTest {
 		preencherListaDeDiretores("Sam Liu");
 
 		List<Diretor> diretoresRetornados = contador.definirOcorrencias(diretores, new String[]{"Fulano de tal"});
-		assertNull(diretoresRetornados.get(0).getQuantidadeDeFilmesVistos());
-		assertNull(diretoresRetornados.get(0).getQuantidadeDeFilmesPendentes());
+		assertNull(diretoresRetornados.get(0).getTotalDeFilmesVistos());
+		assertNull(diretoresRetornados.get(0).getTotalDeFilmesPendentes());
 	}
 
 	@Test
@@ -52,10 +52,10 @@ class ContadorDeDiretorTest {
 		diretores.add(new Diretor("Fulano de Tal"));
 
 		List<Diretor> diretoresRetornados = contador.definirOcorrencias(diretores, new String[]{"Sam Liu"}, new String[]{});
-		assertEquals(diretoresRetornados.get(0).getQuantidadeDeFilmesVistos(), 1);
-		assertNull(diretoresRetornados.get(0).getQuantidadeDeFilmesPendentes());
-		assertNull(diretoresRetornados.get(1).getQuantidadeDeFilmesVistos());
-		assertNull(diretoresRetornados.get(1).getQuantidadeDeFilmesPendentes());
+		assertEquals(diretoresRetornados.get(0).getTotalDeFilmesVistos(), 1);
+		assertNull(diretoresRetornados.get(0).getTotalDeFilmesPendentes());
+		assertNull(diretoresRetornados.get(1).getTotalDeFilmesVistos());
+		assertNull(diretoresRetornados.get(1).getTotalDeFilmesPendentes());
 	}
 	
 	@Test
@@ -64,8 +64,8 @@ class ContadorDeDiretorTest {
 
 		String[] nomesNaoExatos = {"sam liu", "SAM LIU", "sAm LiU", "SAM liu"};
 		List<Diretor> diretoresRetornados = contador.definirOcorrencias(diretores, nomesNaoExatos);
-		assertNull(diretoresRetornados.get(0).getQuantidadeDeFilmesVistos());
-		assertNull(diretoresRetornados.get(0).getQuantidadeDeFilmesPendentes());
+		assertNull(diretoresRetornados.get(0).getTotalDeFilmesVistos());
+		assertNull(diretoresRetornados.get(0).getTotalDeFilmesPendentes());
 	}
 	
 	private void preencherListaDeDiretores(String... nomes) {
