@@ -1,25 +1,28 @@
 package br.com.luis.apifilmes.models;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-import br.com.luis.apifilmes.interfaces.Contador;
-
-public class ContadorDeDiretor implements Contador<Diretor> {
-	@Override
-	public List<Diretor> definirOcorrencias(List<Diretor> diretores, String... dados) {
+public class ContadorDeDiretor {
+	public List<Diretor> definirOcorrencias(List<Diretor> diretores, String[] nomeDosDiretoresDeFilmesVistos, String... nomeDosDiretoresDeFilmesPendentes) {
 		for (Diretor diretor : diretores) {
-			int quantidade = (int) Arrays.stream(dados)
-					.filter(nome -> nome.equals(diretor.getNome()))
-					.count();
+			int filmesVistos = obterQuantidadeDeFilmesDoDiretor(diretor.getNome(), nomeDosDiretoresDeFilmesVistos);
+			if (filmesVistos > 0) {
+				diretor.setQuantidadeDeFilmesVistos(filmesVistos);
+			}
 			
-			if (quantidade > 0) {
-				diretor.setQuantidadeDeFilmesVistos(quantidade);
+			int filmesPendentes = obterQuantidadeDeFilmesDoDiretor(diretor.getNome(), nomeDosDiretoresDeFilmesPendentes);
+			if (filmesPendentes > 0) {
+				diretor.setQuantidadeDeFilmesPendentes(filmesPendentes);
 			}
 		}
 		
 		return diretores;
 	}
 
+	private int obterQuantidadeDeFilmesDoDiretor(String nomeDoDiretor, String[] nomes) {
+		return (int) Arrays.stream(nomes)
+				.filter(nome -> nome.equals(nomeDoDiretor))
+				.count();
+	}
 	
 }
