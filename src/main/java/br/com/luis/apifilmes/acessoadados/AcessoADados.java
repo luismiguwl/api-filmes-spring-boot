@@ -4,11 +4,11 @@ import static br.com.luis.apifilmes.models.enums.Coluna.*;
 import static br.com.luis.apifilmes.models.utils.AcessoADadosUtils.*;
 
 import java.util.*;
-import br.com.luis.apifilmes.utils.definidores.*;
-import org.apache.commons.csv.CSVRecord;
-import br.com.luis.apifilmes.arquivo.*;
+import org.apache.commons.csv.*;
 import br.com.luis.apifilmes.models.*;
+import br.com.luis.apifilmes.arquivo.*;
 import br.com.luis.apifilmes.models.enums.*;
+import br.com.luis.apifilmes.utils.definidores.*;
 
 public class AcessoADados {
 	private Destino destino;
@@ -20,6 +20,10 @@ public class AcessoADados {
 		leitor = new LeitorDeCSV(destino);
 		filmes = new ArrayList<>();
 	}
+
+	public AcessoADados() {
+		filmes = new ArrayList<>();
+	}
 	
 	public List<Filme> getFilmes() {
 		Iterable<CSVRecord> records = leitor.ler();
@@ -29,26 +33,19 @@ public class AcessoADados {
 			String data = new DefinidorDeDataEmQueFoiAssistido(destino, record).definir();
 			
 			int ano = Integer.parseInt(record.get(ANO_LANCAMENTO.get()));
-			
+
 			Duracao runtime = new DefinidorDeDuracao(record).definir();
-			
-			List<Diretor> diretores = converterStringParaObjeto(Diretor::new, record.get(DIRETOR.get()));
-			List<String> nomeDosDiretoresDeFilmesVistos = new ArrayList<>();
-			nomeDosDiretoresDeFilmesVistos.addAll(Arrays.asList(getDadosDaColuna(DIRETOR, Destino.VISTOS_EM_2021)));
-			nomeDosDiretoresDeFilmesVistos.addAll(Arrays.asList(getDadosDaColuna(DIRETOR, Destino.VISTOS_EM_2022)));
-			String[] nomeDosDiretoresDeFilmesPendentes = getDadosDaColuna(DIRETOR, Destino.PENDENTES);
-			ContadorDeDiretor contadorDeDiretor = new ContadorDeDiretor();
-			diretores = contadorDeDiretor.definirOcorrencias(diretores, nomeDosDiretoresDeFilmesVistos.toArray(new String[0]), nomeDosDiretoresDeFilmesPendentes);
-			
+
+			List<Diretor> diretores = new DefinidorDeListaDeDiretores(record).definir();
+
 			List<Genero> generos = converterStringParaObjeto(Genero::new, record.get(GENERO.get()));
-			String[] nomeDosGeneros = getDadosDaColuna(GENERO);
-			ContadorDeGenero contadorDeGenero = new ContadorDeGenero();
-			generos = contadorDeGenero.definirOcorrencias(generos, nomeDosGeneros);
 			
 			Idioma idioma = new Idioma(record.get(IDIOMA.get()));
 			
 			Plataforma plataforma = new DefinidorDePlataforma(destino, record).definir();
+
 			Boolean assistidoLegendado = new DefinidorDeAssistidoLegendado(record).definir();
+
 			String dataEmQueFoiAdicionado = new DefinidorDeDataDeAdicao(destino, record).definir();
 
 			Filme filme;
