@@ -14,7 +14,7 @@ public class DefinidorDeDuracao {
 	}
 	
 	public Duracao definir() {
-		int duracao = Integer.parseInt(record.get(COLUNA.get()).trim());
-		return duracao > 0 ? new Duracao(duracao) : null;
+		String supostaDuracao = record.get(COLUNA.get()).trim();
+		return (supostaDuracao.isEmpty() || Integer.parseInt(supostaDuracao) == 0) ? null : new Duracao(Integer.parseInt(supostaDuracao));
 	}
 }

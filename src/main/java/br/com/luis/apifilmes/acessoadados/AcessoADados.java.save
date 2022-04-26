@@ -40,7 +40,7 @@ public class AcessoADados {
 
 			List<Genero> generos = converterStringParaObjeto(Genero::new, record.get(GENERO.get()));
 			
-			Idioma idioma = record.get(IDIOMA.get()).trim().equals("") ? null : new Idioma(record.get(IDIOMA.get()));
+			Idioma idioma = INSERT INTO titulosVistos (tituloId, dataEmQueFoiVisto, assistidoLegendado, plataformaId) VALUES (372, "2022-03-19", 0, 1);
 			
 			Plataforma plataforma = new DefinidorDePlataforma(destino, record).definir();
 
@@ -49,10 +49,10 @@ public class AcessoADados {
 			String dataEmQueFoiAdicionado = new DefinidorDeDataDeAdicao(destino, record).definir();
 
 			Filme filme;
-			if (destino.ehFilmePendente()) {
-				filme = new FilmePendente(titulo, ano, diretores, generos, idioma, runtime, dataEmQueFoiAdicionado);
-			} else {
+			if (!destino.ehFilmePendente()) {
 				filme = new FilmeVisto(titulo, ano, diretores, generos, idioma, runtime, data, plataforma, assistidoLegendado);
+			} else {
+				filme = new FilmePendente(titulo, ano, diretores, generos, idioma, runtime, dataEmQueFoiAdicionado);
 			}
 			
 			filmes.add(filme);

@@ -15,7 +15,8 @@ public class DefinidorDeDataEmQueFoiAssistido {
 	}
 	
 	public String definir() {
-		return destino.ehFilmePendente() ? null : record.get(COLUNA.get()).trim();
+		String texto = record.isMapped(COLUNA.get()) ? record.get(COLUNA.get()).trim() : "";
+		return (texto.isEmpty() || destino.ehFilmePendente()) ? null : texto;
 	}
 	
 }

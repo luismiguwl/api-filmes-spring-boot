@@ -5,7 +5,7 @@ import java.util.List;
 public class FilmePendente extends Filme {
 	private String dataEmQueFoiAdicionado;
 
-	public FilmePendente(String titulo, int anoDeLancamento, List<Diretor> diretores, List<Genero> generos,
+	public FilmePendente(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos,
 			Idioma idioma, Duracao runtime, String dataEmQueFoiAdicionado) {
 		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime);
 		this.dataEmQueFoiAdicionado = dataEmQueFoiAdicionado;
@@ -20,7 +20,7 @@ public class FilmePendente extends Filme {
 	}
 
 	@Override
-	public int getAnoDeLancamento() {
+	public Integer getAnoDeLancamento() {
 		return super.getAnoDeLancamento();
 	}
 

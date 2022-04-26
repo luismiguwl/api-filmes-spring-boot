@@ -3,19 +3,18 @@ package br.com.luis.apifilmes.utils.definidores;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
-import org.apache.commons.csv.CSVRecord;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.apache.commons.csv.*;
+import org.junit.jupiter.api.extension.*;
+import org.mockito.*;
+import org.mockito.junit.jupiter.*;
 
-import br.com.luis.apifilmes.models.Duracao;
-import br.com.luis.apifilmes.models.enums.Coluna;
+import br.com.luis.apifilmes.models.*;
+import br.com.luis.apifilmes.models.enums.*;
 
 @ExtendWith(MockitoExtension.class)
-public class DefinidorDeDuracaoTest {
+class DefinidorDeDuracaoTest {
 	
 	@Mock
 	CSVRecord record;
@@ -24,18 +23,24 @@ public class DefinidorDeDuracaoTest {
 	String coluna = Coluna.DURACAO.get();
 
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		definidor = new DefinidorDeDuracao(record);
 	}
 
 	@Test
-	public void deveRetornarNullSeDuracaoForMenorOuIgualAZero() {
+	void deveRetornarNullSeDuracaoForMenorOuIgualAZero() {
 		when(record.get(coluna)).thenReturn("0");
 		assertNull(definidor.definir());
 	}
 
 	@Test
-	public void deveRetornarUmaInstanciaDeDuracaoSeDuracaoForMaiorQueZero() {
+	void deveRetornarNullSeDuracaoEstiverVazia() {
+		when(record.get(coluna)).thenReturn("");
+		assertNull(definidor.definir());
+	}
+
+	@Test
+	void deveRetornarUmaInstanciaDeDuracaoSeDuracaoForMaiorQueZero() {
 		String runtimeString = "222";
 		int runtime = Integer.parseInt(runtimeString);
 		

@@ -8,13 +8,13 @@ import com.fasterxml.jackson.annotation.*;
 @JsonInclude(Include.NON_EMPTY)
 public abstract class Filme {
 	private String titulo;
-	private int anoDeLancamento;
+	private Integer anoDeLancamento;
 	private List<Diretor> diretores = new ArrayList<>();
 	private List<Genero> generos = new ArrayList<>();
 	private Idioma idioma;
 	private Duracao runtime;
 
-	public Filme(String titulo, int anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma, Duracao runtime) {
+	public Filme(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma, Duracao runtime) {
 		this.titulo = titulo;
 		this.anoDeLancamento = anoDeLancamento;
 		this.diretores = diretores;
@@ -35,11 +35,11 @@ public abstract class Filme {
 	}
 
 	@JsonProperty(value = "lancadoEm")
-	public int getAnoDeLancamento() {
+	public Integer getAnoDeLancamento() {
 		return anoDeLancamento;
 	}
 
-	public void setAnoDeLancamento(int ano) {
+	public void setAnoDeLancamento(Integer ano) {
 		this.anoDeLancamento = ano;
 	}
 

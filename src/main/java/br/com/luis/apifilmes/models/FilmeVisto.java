@@ -11,7 +11,7 @@ public class FilmeVisto extends Filme {
 	private Plataforma plataformaEmQueFoiAssistido;
 	private Boolean assistidoLegendado;
 
-	public FilmeVisto(String titulo, int anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma,
+	public FilmeVisto(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma,
 			Duracao runtime, String dataEmQueFoiAssistido, Plataforma plataformaEmQueFoiAssistido,
 			Boolean assistidoLegendado) {
 		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime);
@@ -59,7 +59,7 @@ public class FilmeVisto extends Filme {
 	}
 
 	@Override
-	public int getAnoDeLancamento() {
+	public Integer getAnoDeLancamento() {
 		return super.getAnoDeLancamento();
 	}
 
