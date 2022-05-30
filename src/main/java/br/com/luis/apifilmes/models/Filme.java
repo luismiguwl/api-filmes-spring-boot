@@ -13,14 +13,16 @@ public abstract class Filme {
 	private List<Genero> generos = new ArrayList<>();
 	private Idioma idioma;
 	private Duracao runtime;
+	private String linkIMDB;
 
-	public Filme(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma, Duracao runtime) {
+	public Filme(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma, Duracao runtime, String linkIMDB) {
 		this.titulo = titulo;
 		this.anoDeLancamento = anoDeLancamento;
 		this.diretores = diretores;
 		this.generos = generos;
 		this.idioma = idioma;
 		this.runtime = runtime;
+		this.linkIMDB = linkIMDB;
 	}
 
 	public Filme() {
@@ -73,6 +75,10 @@ public abstract class Filme {
 
 	public void setRuntime(Duracao runtime) {
 		this.runtime = runtime;
+	}
+	
+	public String getLinkIMDB() {
+		return linkIMDB;
 	}
 	
 	public String mesclarTituloComDiretores() {

@@ -1,11 +1,11 @@
-titulo,dataAssistido,anoDeLancamento,idioma,diretor,genero,duracao,plataforma,assistidoLegendado
-13 Going on 30,01/01/2022,2004,Inglês,Gary Winick,"Comédia, Fantasia, Romance",98,Netflix,true
-Venom: Let There Be Carnage,02/01/2022,2021,Inglês,Andy Serkis,"Ação, Aventura, Ficção científica",97,Outros,true
-Reign of the Supermen,05/01/2022,2019,Inglês,Sam Liu,"Animação, Ação, Aventura",87,Outros,true
-Batman: Gotham by Gaslight,09/01/2022,2018,Inglês,Sam Liu,"Animação, Ação, Aventura",78,Outros,true
-Iron Man 2,18/01/2022,2010,Inglês,Jon Favreau,"Ação, Aventura, Ficção científica",124,Disney+,true
-O Vendedor de Passados,27/01/2022,2015,Português (Brasileiro),Lula Buarque de Hollanda,Drama,100,Netflix,false
-Black Widow,12/02/2022,2021,Inglês,Cate Shortland,"Ação, Aventura, Ficção científica",134,Disney+,false
-Liar Liar,19/02/2022,1997,Inglês,Tom Shadyac,"Comédia, Fantasia",86,Netflix,true
-Steve Jobs,06/03/2022,2015,Inglês,Danny Boyle,"Biografia, Drama",122,Netflix,true
-Operações Especiais,19/03/2022,,,,,,Netflix,false
+titulo,dataAssistido,anoDeLancamento,idioma,diretor,genero,duracao,plataforma,assistidoLegendado,linkIMDB
+13 Going on 30,01/01/2022,2004,Inglês,Gary Winick,"Comédia, Fantasia, Romance",98,Netflix,true,https://www.imdb.com/title/tt0337563
+Venom: Let There Be Carnage,02/01/2022,2021,Inglês,Andy Serkis,"Ação, Aventura, Ficção científica",97,Outros,true,https://www.imdb.com/title/tt7097896
+Reign of the Supermen,05/01/2022,2019,Inglês,Sam Liu,"Animação, Ação, Aventura",87,Outros,true,https://www.imdb.com/title/tt7167686
+Batman: Gotham by Gaslight,09/01/2022,2018,Inglês,Sam Liu,"Animação, Ação, Aventura",78,Outros,true,https://www.imdb.com/title/tt7167630
+Iron Man 2,18/01/2022,2010,Inglês,Jon Favreau,"Ação, Aventura, Ficção científica",124,Disney+,true,https://www.imdb.com/title/tt1228705
+O Vendedor de Passados,27/01/2022,2015,Português (Brasileiro),Lula Buarque de Hollanda,Drama,100,Netflix,false,https://www.imdb.com/title/tt2078693
+Black Widow,12/02/2022,2021,Inglês,Cate Shortland,"Ação, Aventura, Ficção científica",134,Disney+,false,https://www.imdb.com/title/tt3480822
+Liar Liar,19/02/2022,1997,Inglês,Tom Shadyac,"Comédia, Fantasia",86,Netflix,true,https://www.imdb.com/title/tt0119528
+Steve Jobs,06/03/2022,2015,Inglês,Danny Boyle,"Biografia, Drama",122,Netflix,true,https://www.imdb.com/title/tt2080374
+Operações Especiais,19/03/2022,2015,Português (Brasileiro),Tomas Portella,"Ação, Crime",99,Netflix,false,https://www.imdb.com/title/tt4058210

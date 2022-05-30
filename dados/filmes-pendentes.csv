@@ -1,163 +1,153 @@
-titulo,anoDeLancamento,idioma,diretor,genero,duracao,dataEmQueFoiAdicionado
-Madagascar,2005,Inglês,"Eric Darnell, Tom McGrath","Animação, Aventura, Comédia",86,
-Tom and Jerry: The Movie,1992,Inglês,Phil Roman,"Animação, Aventura, Comédia",84,
-The Two Popes,2019,Inglês,Fernando Meirelles,"Biografia, Comédia, Drama",125,
-American Gangster,2007,Inglês,Ridley Scott,"Biografia, Crime, Drama",157,
-"Roman J. Israel, Esq.",2017,Inglês,Dan Gilroy,"Crime, Drama, Thriller",122,
-Get Rich or Die Tryin',2005,Inglês,Jim Sheridan,"Biografia, Crime, Drama",117,
-The Aviator,2004,Inglês,Martin Scorsese,"Biografia, Drama",170,
-El hombre de las mil caras,2016,Espanhol,Alberto Rodríguez,"Biografia, Thriller",123,
-Unbroken,2014,Inglês,Angelina Jolie,"Ação, Biografia, Drama",137,
-Marshall,2017,Inglês,Reginald Hudlin,"Biografia, Crime, Drama",118,
-Um Namorado Para Minha Mulher,2016,Português (Brasileiro),Júlia Rezende,"Comédia, Romance",100,
-Vestido para Casar,2014,Português (Brasileiro),"Gerson Sanginitto, Paulo Aragão Neto",Comédia,101,
-Sergio,2020,Inglês,Greg Barker,"Biografia, Drama, História",118,
-Chappie,2015,Inglês,Neill Blomkamp,"Ação, Crime, Drama",120,
-2 Guns,2013,Inglês,Baltasar Kormákur,"Ação, Crime, Thriller",109,
-El fotógrafo de Mauthausen,2018,Espanhol,Mar Targarona,"Biografia, Drama, História",110,
-The Hungover Games,2014,Inglês,Josh Stolberg,Comédia,85,
-Blade Runner 2049,2017,Inglês,Denis Villeneuve,"Ação, Drama, Mistério",164,
-Wasp Network,2019,Inglês,Olivier Assayas,"Crime, Drama, Thriller",127,
-The Flintstones,1994,Inglês,Brian Levant,"Comédia, Família, Fantasia",91,
-White Girl,2016,Inglês,Elizabeth Wood,"Crime, Drama",88,
-Murder on the Orient Express,2017,Inglês,Kenneth Branagh,"Crime, Drama, Mistério",114,
-Zack Snyder's Justice League,2021,Inglês,Zack Snyder,"Ação, Aventura, Fantasia",242,
-A Esperança é a Última que Morre,2015,Português (Brasileiro),Calvito Leal,Comédia,90,
-The Hustle,2019,Inglês,Chris Addison,"Comédia, Crime",93,
-Tenet,2020,Inglês,Christopher Nolan,"Ação, Ficção científica, Thriller",150,
-Masameer the Movie,2020,Árabe,Malik Nejer,Animação,110,
-The Willoughbys,2020,Inglês,Kris Pearn,"Animação, Aventura, Comédia",90,
-Corpse Bride,2005,Inglês,"Tim Burton, Mike Johnson","Animação, Drama, Família",77,
-Le Petit Prince,2015,Inglês,Mark Osborne,"Animação, Aventura, Drama",108,
-Next Gen,2018,Inglês,"Kevin R. Adams, Joe Ksander","Animação, Ação, Aventura",106,
-Shutter Island,2010,Inglês,Martin Scorsese,"Mistério, Thriller",138,
-Flushed Away,2006,Inglês,"David Bowers, Sam Fell","Animação, Aventura, Comédia",85,
-Klaus,2019,Inglês,Sergio Pablos,"Animação, Aventura, Comédia",96,
-Matilda,1996,Inglês,Danny DeVito,"Comédia, Família, Fantasia",102,
-The House with a Clock in Its Walls,2018,Inglês,Eli Roth,"Comédia, Família, Fantasia",105,
-Animal Crackers,2017,Inglês,"Scott Christian Sava, Tony Bancroft","Animação, Aventura, Comédia",105,
-Pets United,2019,Inglês,Reinhard Klooss,"Animação, Aventura, Comédia",89,
-White Chicks,2004,Inglês,Keenen Ivory Wayans,"Comédia, Crime",109,
-Teenage Mutant Ninja Turtles,2014,Inglês,Jonathan Liebesman,"Ação, Aventura, Comédia",101,
-Concrete Cowboy,2020,Inglês,Ricky Staub,Drama,111,
-Arctic Justice,2019,Inglês,Aaron Woodley,"Animação, Aventura, Comédia",92,
-How the Grinch Stole Christmas,2000,Inglês,Ron Howard,"Comédia, Família, Fantasia",104,
-Croc-Blanc,2018,Francês,Alexandre Espigares,"Animação, Aventura",85,
-Zipi y Zape y la isla del capitán,2016,Espanhol,Oskar Santos,"Aventura, Comédia, Família",105,
-Alleycats,2016,Inglês,Ian Bonhôte,"Ação, Thriller",101,
-The Outsider,2018,Japonês,Martin Zandvliet,"Ação, Crime, Drama",120,
-The Fisherman's Diary,2020,Crioulo camaronês,Enah Johnscott,Drama,143,
-Brazil,1985,Inglês,Terry Gilliam,"Drama, Ficção científica",132,
-Open Season,2006,Inglês,"Roger Allers, Jill Culton, Anthony Stacchi","Animação, Aventura, Comédia",86,
-Monster House,2006,Inglês,Gil Kenan,"Animação, Comédia, Família",91,
-Ponyo,2008,Japonês,Hayao Miyazaki,"Animação, Aventura, Comédia",101,
-Hop,2011,Inglês,Tim Hill,"Animação, Aventura, Comédia",95,
-The Incredible Hulk,2008,Inglês,Louis Leterrier,"Ação, Aventura, Ficção científica",112,
-Thor,2011,Inglês,Kenneth Branagh,"Ação, Aventura, Fantasia",115,
-The Avengers,2012,Inglês,Joss Whedon,"Ação, Aventura, Ficção científica",143,
-Iron Man 3,2013,Inglês,Shane Black,"Ação, Aventura, Ficção científica",130,
-Thor: The Dark World,2013,Inglês,Alan Taylor,"Ação, Aventura, Fantasia",112,
-Captain America: The Winter Soldier,2014,Inglês,"Anthony Russo, Joe Russo","Ação, Aventura, Ficção científica",136,
-Avengers: Age of Ultron,2015,Inglês,Joss Whedon,"Ação, Aventura, Ficção científica",141,
-Guardians of the Galaxy,2014,Inglês,James Gunn,"Ação, Aventura, Comédia",121,
-Guardians of the Galaxy Vol. 2,2017,Inglês,James Gunn,"Ação, Aventura, Comédia",136,
-Ant-Man,2015,Inglês,Peyton Reed,"Ação, Aventura, Comédia",117,
-Captain America: Civil War,2016,Inglês,"Anthony Russo, Joe Russo","Ação, Aventura, Ficção científica",147,
-Black Panther,2018,Inglês,Ryan Coogler,"Ação, Aventura, Ficção científica",134,
-Doctor Strange,2016,Inglês,Scott Derrickson,"Ação, Aventura, Fantasia",115,
-Thor: Ragnarok,2017,Inglês,Taika Waititi,"Ação, Aventura, Comédia",130,
-Ant-Man and the Wasp,2018,Inglês,Peyton Reed,"Ação, Aventura, Comédia",118,
-Avengers: Infinity War,2018,Inglês,"Anthony Russo, Joe Russo","Ação, Aventura, Ficção científica",149,
-Avengers: Endgame,2019,Inglês,"Anthony Russo, Joe Russo","Ação, Aventura, Drama",181,
-Dune,2021,Inglês,Denis Villeneuve,"Ação, Aventura, Drama",155,
-Justice League vs. Teen Titans,2016,Inglês,Sam Liu,"Animação, Ação, Aventura",78,
-Wreck-It Ralph,2012,Inglês,Rich Moore,"Animação, Aventura, Comédia",101,
-A Million Ways to Die in the West,2014,Inglês,Seth MacFarlane,"Comédia, Faroeste",116,
-Star Trek: The Motion Picture,1979,Inglês,Robert Wise,"Aventura, Mistério, Ficção científica",132,
-Star Trek II: The Wrath of Khan,1982,Inglês,Nicholas Meyer,"Ação, Aventura, Ficção científica",113,
-Star Trek III: The Search for Spock,1984,Inglês,Leonard Nimoy,"Ação, Aventura, Ficção científica",105,
-Star Trek IV: The Voyage Home,1986,Inglês,Leonard Nimoy,"Ação, Aventura, Comédia",119,
-Star Trek V: The Final Frontier,1989,Inglês,William Shatner,"Ação, Aventura, Fantasia",107,
-Star Trek VI: The Undiscovered Country,1991,Inglês,Nicholas Meyer,"Ação, Aventura, Ficção científica",110,
-Star Trek: Generations,1994,Inglês,David Carson,"Ação, Aventura, Mistério",118,
-Star Trek: First Contact,1996,Inglês,Jonathan Frakes,"Ação, Aventura, Drama",111,
-Star Trek: Insurrection,1998,Inglês,Jonathan Frakes,"Ação, Aventura, Ficção científica",103,
-Star Trek: Nemesis,2002,Inglês,Stuart Baird,"Ação, Aventura, Ficção científica",116,
-Star Trek,2009,Inglês,J.J. Abrams,"Ação, Aventura, Ficção científica",127,
-Star Trek Into Darkness,2013,Inglês,J.J. Abrams,"Ação, Aventura, Ficção científica",132,
-Star Trek Beyond,2016,Inglês,Justin Lin,"Ação, Aventura, Ficção científica",122,
-Big Hero 6,2014,Inglês,"Don Hall, Chris Williams","Animação, Ação, Aventura",102,
-Star Wars: Episode I - The Phantom Menace,1999,Inglês,George Lucas,"Ação, Aventura, Fantasia",136,
-Star Wars: Episode II - Attack of the Clones,2002,Inglês,George Lucas,"Ação, Aventura, Fantasia",242,
-Star Wars: Episode III - Revenge of the Sith,2005,Inglês,George Lucas,"Ação, Aventura, Fantasia",140,
-Solo: A Star Wars Story,2018,Inglês,Ron Howard,"Ação, Aventura, Ficção científica",135,
-Rogue One: A Star Wars Story,2016,Inglês,Gareth Edwards,"Ação, Aventura, Ficção científica",133,
-Star Wars: Episodpe IV - A New Hope,1977,Inglês,George Lucas,"Ação, Aventura, Fantasia",121,
-Star Wars: Episode V - The Empire Strikes Back,1980,Inglês,Irvin Kershner,"Ação, Aventura, Fantasia",124,
-Star Wars: Episode VI - Return of the Jedi,1983,Inglês,Richard Marquand,"Ação, Aventura, Fantasia",131,
-Star Wars: Episode VII - The Force Awakens,2015,Inglês,J.J. Abrams,"Ação, Aventura, Ficção científica",138,
-Star Wars: Episode VIII - The Last Jedi,2017,Inglês,Rian Johnson,"Ação, Aventura, Fantasia",152,
-Star Wars: Episode IX - The Rise of Skywalker,2019,Inglês,J.J. Abrams,"Ação, Aventura, Fantasia",141,
-The Iron Giant,1999,Inglês,Brad Bird,"Animação, Ação, Aventura",86,
-Ron's Gone Wrong,2021,Inglês,"Sarah Smith, Jean-Philippe Vine","Animação, Aventura, Comédia",106,
-Akira,1988,Japonês,Katsuhiro Ôtomo,"Animação, Ação, Drama",124,
-Killer Bean Forever,2009,Inglês,Jeff Lew,"Animação, Ação, Aventura",85,
-Luca,2021,Inglês,Enrico Casarosa,"Animação, Aventura, Comédia",95,
-Antz,1998,Inglês,"Eric Darnell, Tim Johnson","Animação, Aventura, Comédia",83,
-The Prince of Egypt,1998,Inglês,"Brenda Chapman, Steve Hickner, Simon Wells","Animação, Aventura, Drama",99,
-The Road to El Dorado,2000,Inglês,"Bibo Bergeron, Don Paul, Jeffrey Katzenberg","Animação, Aventura, Comédia",89,
-Chicken Run,2000,Inglês,"Peter Lord, Nick Park","Animação, Aventura, Comédia",84,
-From Dusk Till Dawn,1996,Inglês,Robert Rodriguez,"Ação, Crime, Horror",108,
-From Dusk Till Dawn 2: Texas Blood Money,1999,Inglês,Scott Spiegel,"Crime, Horror, Thriller",99,
-From Dust Till Dawn 3: The Hangman's Daughter,1999,Inglês,P.J. Pesce,"Horror, Faroeste",94,
-Batman Forever,1995,Inglês,Joel Schumacher,"Ação, Aventura",121,
-Batman & Robin,1997,Inglês,Joel Schumacher,"Ação, Ficção científica",125,
-Wish Dragon,2021,Inglês,Chris Appelhans,"Animação, Aventura, Comédia",98,
-Exam,2009,Inglês,Stuart Hazeldine,"Mistério, Thriller",101,
-Marighella,2019,Inglês,Wagner Moura,"Ação, Drama, História",155,
-Dallas Buyers Club,2013,Inglês,Jean-Marc Vallée,"Biografia, Drama",117,
-Birdman or (The Unexpected Virtue of Ignorance),2014,Inglês,Alejandro G. Iñárritu,"Comédia, Drama",119,
-La La Land,2016,Inglês,Damien Chazelle,"Comédia, Drama, Música",128,
-The Revenant,2015,Inglês,Alejandro G. Iñárritu,"Ação, Aventura, Drama",156,
-Moonlight,2016,Inglês,Barry Jenkins,Drama,111,
-The Shape of Water,2017,Inglês,Guilherme del Toro,"Aventura, Drama, Fantasia",123,
-Nightcrawler,2014,Inglês,Dan Gilroy,"Crime, Drama, Thriller",117,
-Black Swan,2010,Inglês,Darren Aronofsky,"Drama, Thriller",108,
-Ford v Ferrari,2019,Inglês,James Mangold,"Ação, Biografia, Drama",152,
-Rush,2013,Inglês,Ron Howard,"Ação, Biografia, Drama",123,
-Inglourious Basterds,2009,Inglês,Quentin Tarantino,"Aventura, Drama, Guerra",153,
-American Hustle,2013,Inglês,David O. Russell,"Crime, Drama",138,
-Elysium,2013,Inglês,Neill Blomkamp,"Ação, Drama, Ficção científica",109,
-Pulp Fiction,1994,Inglês,Quentin Tarantino,"Crime, Drama",154,
-House of Gucci,2021,Inglês,Ridley Scott,"Crime, Drama, Thriller",157,
-The Curse of the Were-Rabbit,2005,Inglês,"Steve Box, Nick Park","Animação, Aventura, Comédia",85,
-Robots,2005,Inglês,"Chris Wedge, Carlos Saldanha","Animação, Aventura, Comédia",91,
-Bolt,2008,Inglês,"Byron Howard, Chris Williams","Animação, Aventura, Comédia",96,
-Raya and the Last Dragon,2021,Inglês,Don Hall. Carlos López Estrada,"Animação, Ação, Aventura",107,
-Argo,2012,Inglês,Ben Affleck,"Biografia, Drama, Thriller",120,
-The Batman,2022,Inglês,Matt Reeves,"Ação, Crime, Drama",0,
-Sing,2016,Inglês,"Garth Jennings, Christophe Lourdelet","Animação, Comédia, Família",108,
-Sing 2,2021,Inglês,Garth Jennings,"Animação, Aventura, Comédia",112,
-Ghost in the Shell,2017,Inglês,Rupert Sanders,"Ação, Crime, Drama",107,
-The Breakfast Club,1985,Inglês,John Hughes,"Comédia, Drama",97,
-Vixen,2017,Inglês,"Curt Geda, James Tucker","Animação, Fantasia, Ficção científica",75,
-El Camino: A Breaking Bad Movie,2019,Inglês,Vince Gilligan,"Ação, Crime, Drama",122,14/02/2022
-Man on the Moon,1999,Inglês,Milos Forman,"Biografia, Comédia, Drama",118,28/02/2022
-Bruce Almighty,2003,Inglês,Tom Shadyac,"Comédia, Fantasia",101,28/02/2022
-The Mask,1994,Inglês,Chuck Russell,"Ação, Comédia, Crime",101,28/02/2022
-Uncharted,2022,Inglês,Ruben Fleischer,"Ação, Aventura",116,28/02/2022
-Watchmen,2009,Inglês,Zack Snyder,"Ação, Drama, Mistério",162,04/03/2022
-Avatar,2009,Inglês,James Cameron,"Aventura, Ação, Fantasia",162,04/03/2022
-Pirates of the Caribbean: The Curse of the Black Pearl,2003,Inglês,Gore Verbinski,"Aventura, Ação, Fantasia",143,04/03/2022
-Pirates of the Caribbean: Dead Man's Chest,2006,Inglês,Gore Verbinski,"Aventura, Ação, Fantasia",151,04/03/2022
-Pirates of the Caribbean: At World's End,2007,Inglês,Gore Verbinski,"Aventura, Ação, Fantasia",169,04/03/2022
-Pirates of the Caribbean: On Stranger Tides,2011,Inglês,Rob Marshall,"Aventura, Ação, Fantasia",136,04/03/2022
-Pirates of the Caribbean: Dead Men Tell No Tales,2017,Inglês,"Espen Sandberg, Joachim Rønning","Aventura, Ação, Fantasia",129,04/03/2022
-Shame,2011,Inglês,Steve McQueen,Drama,101,04/03/2022
-12 Years a Slave,2013,Inglês,Steve McQueen,"Biografia, Drama, História",134,04/03/2022
-Macbeth,2015,Inglês,Justin Kurzel,"Drama, Guerra, História",113,04/03/2022
-Slow West,2015,Inglês,John Maclean,"Animação, Ação, Drama",84,04/03/2022
-Jobs,2013,Inglês,Joshua Michael Stern,"Biografia, Drama",128,04/03/2022
-Morbius,2022,Inglês,Daniel Espinosa,"Aventura, Ação, Drama",108,05/03/2022
-Trading Places,1983,Inglês,John Landis,Comédia,114,25/03/2022
-Spotlight,2015,Inglês,Tom McCarthy,"Biografia, Crime, Drama",129,26/03/2022
+titulo,anoDeLancamento,idioma,diretor,genero,duracao,dataEmQueFoiAdicionado,linkIMDB
+Madagascar,2005,Inglês,"Eric Darnell, Tom McGrath","Animação, Aventura, Comédia",86,,https://www.imdb.com/title/tt0351283
+Tom and Jerry: The Movie,1992,Inglês,Phil Roman,"Animação, Aventura, Comédia",84,,https://www.imdb.com/title/tt0105616
+The Two Popes,2019,Inglês,Fernando Meirelles,"Biografia, Comédia, Drama",125,,https://www.imdb.com/title/tt8404614
+American Gangster,2007,Inglês,Ridley Scott,"Biografia, Crime, Drama",157,,https://www.imdb.com/title/tt0765429
+"Roman J. Israel, Esq.",2017,Inglês,Dan Gilroy,"Crime, Drama, Thriller",122,,https://www.imdb.com/title/tt6000478
+Get Rich or Die Tryin',2005,Inglês,Jim Sheridan,"Biografia, Crime, Drama",117,,https://www.imdb.com/title/tt0430308
+The Aviator,2004,Inglês,Martin Scorsese,"Biografia, Drama",170,,https://www.imdb.com/title/tt0338751
+El hombre de las mil caras,2016,Espanhol,Alberto Rodríguez,"Biografia, Thriller",123,,https://www.imdb.com/title/tt1713440
+Unbroken,2014,Inglês,Angelina Jolie,"Ação, Biografia, Drama",137,,https://www.imdb.com/title/tt1809398
+Marshall,2017,Inglês,Reginald Hudlin,"Biografia, Crime, Drama",118,,https://www.imdb.com/title/tt5301662
+Sergio,2020,Inglês,Greg Barker,"Biografia, Drama, História",118,,https://www.imdb.com/title/tt8750570
+Chappie,2015,Inglês,Neill Blomkamp,"Ação, Crime, Drama",120,,https://www.imdb.com/title/tt1823672
+2 Guns,2013,Inglês,Baltasar Kormákur,"Ação, Crime, Thriller",109,,https://www.imdb.com/title/tt1272878
+El fotógrafo de Mauthausen,2018,Espanhol,Mar Targarona,"Biografia, Drama, História",110,,https://www.imdb.com/title/tt6704776
+The Hungover Games,2014,Inglês,Josh Stolberg,Comédia,85,,https://www.imdb.com/title/tt3138104
+Blade Runner 2049,2017,Inglês,Denis Villeneuve,"Ação, Drama, Mistério",164,,https://www.imdb.com/title/tt1856101
+Wasp Network,2019,Inglês,Olivier Assayas,"Crime, Drama, Thriller",127,,https://www.imdb.com/title/tt6760876
+The Flintstones,1994,Inglês,Brian Levant,"Comédia, Família, Fantasia",91,,https://www.imdb.com/title/tt0109813
+White Girl,2016,Inglês,Elizabeth Wood,"Crime, Drama",88,,https://www.imdb.com/title/tt4129870
+Murder on the Orient Express,2017,Inglês,Kenneth Branagh,"Crime, Drama, Mistério",114,,https://www.imdb.com/title/tt3402236
+Zack Snyder's Justice League,2021,Inglês,Zack Snyder,"Ação, Aventura, Fantasia",242,,https://www.imdb.com/title/tt12361974
+A Esperança é a Última que Morre,2015,Português (Brasileiro),Calvito Leal,Comédia,90,,https://www.imdb.com/title/tt3447830
+The Hustle,2019,Inglês,Chris Addison,"Comédia, Crime",93,,https://www.imdb.com/title/tt1298644
+Tenet,2020,Inglês,Christopher Nolan,"Ação, Ficção científica, Thriller",150,,https://www.imdb.com/title/tt6723592
+The Willoughbys,2020,Inglês,Kris Pearn,"Animação, Aventura, Comédia",90,,https://www.imdb.com/title/tt5206260
+Corpse Bride,2005,Inglês,"Tim Burton, Mike Johnson","Animação, Drama, Família",77,,https://www.imdb.com/title/tt0121164
+Le Petit Prince,2015,Inglês,Mark Osborne,"Animação, Aventura, Drama",108,,https://www.imdb.com/title/tt1754656
+Next Gen,2018,Inglês,"Kevin R. Adams, Joe Ksander","Animação, Ação, Aventura",106,,https://www.imdb.com/title/tt7133686
+Shutter Island,2010,Inglês,Martin Scorsese,"Mistério, Thriller",138,,https://www.imdb.com/title/tt1130884
+Flushed Away,2006,Inglês,"David Bowers, Sam Fell","Animação, Aventura, Comédia",85,,https://www.imdb.com/title/tt0424095
+Klaus,2019,Inglês,Sergio Pablos,"Animação, Aventura, Comédia",96,,https://www.imdb.com/title/tt4729430
+Matilda,1996,Inglês,Danny DeVito,"Comédia, Família, Fantasia",102,,https://www.imdb.com/title/tt0117008
+The House with a Clock in Its Walls,2018,Inglês,Eli Roth,"Comédia, Família, Fantasia",105,,https://www.imdb.com/title/tt2119543
+Animal Crackers,2017,Inglês,"Scott Christian Sava, Tony Bancroft","Animação, Aventura, Comédia",105,,https://www.imdb.com/title/tt4155534
+Pets United,2019,Inglês,Reinhard Klooss,"Animação, Aventura, Comédia",89,,https://www.imdb.com/title/tt11276598
+White Chicks,2004,Inglês,Keenen Ivory Wayans,"Comédia, Crime",109,,https://www.imdb.com/title/tt0381707
+Teenage Mutant Ninja Turtles,2014,Inglês,Jonathan Liebesman,"Ação, Aventura, Comédia",101,,https://www.imdb.com/title/tt1291150
+Concrete Cowboy,2020,Inglês,Ricky Staub,Drama,111,,https://www.imdb.com/title/tt8846176
+Arctic Justice,2019,Inglês,Aaron Woodley,"Animação, Aventura, Comédia",92,,https://www.imdb.com/title/tt4426464
+How the Grinch Stole Christmas,2000,Inglês,Ron Howard,"Comédia, Família, Fantasia",104,,https://www.imdb.com/title/tt0170016
+Croc-Blanc,2018,Francês,Alexandre Espigares,"Animação, Aventura",85,,https://www.imdb.com/title/tt5222768
+Alleycats,2016,Inglês,Ian Bonhôte,"Ação, Thriller",101,,https://www.imdb.com/title/tt3917318
+The Outsider,2018,Japonês,Martin Zandvliet,"Ação, Crime, Drama",120,,https://www.imdb.com/title/tt10289896
+The Fisherman's Diary,2020,Crioulo camaronês,Enah Johnscott,Drama,143,,https://www.imdb.com/title/tt13297136
+Brazil,1985,Inglês,Terry Gilliam,"Drama, Ficção científica",132,,https://www.imdb.com/title/tt0088846
+Open Season,2006,Inglês,"Roger Allers, Jill Culton, Anthony Stacchi","Animação, Aventura, Comédia",86,,https://www.imdb.com/title/tt0400717
+Monster House,2006,Inglês,Gil Kenan,"Animação, Comédia, Família",91,,https://www.imdb.com/title/tt0385880
+Ponyo,2008,Japonês,Hayao Miyazaki,"Animação, Aventura, Comédia",101,,https://www.imdb.com/title/tt0876563
+Hop,2011,Inglês,Tim Hill,"Animação, Aventura, Comédia",95,,https://www.imdb.com/title/tt1411704
+The Incredible Hulk,2008,Inglês,Louis Leterrier,"Ação, Aventura, Ficção científica",112,,https://www.imdb.com/title/tt0800080
+Thor,2011,Inglês,Kenneth Branagh,"Ação, Aventura, Fantasia",115,,https://www.imdb.com/title/tt0800369
+The Avengers,2012,Inglês,Joss Whedon,"Ação, Aventura, Ficção científica",143,,https://www.imdb.com/title/tt0848228
+Iron Man 3,2013,Inglês,Shane Black,"Ação, Aventura, Ficção científica",130,,https://www.imdb.com/title/tt1300854
+Thor: The Dark World,2013,Inglês,Alan Taylor,"Ação, Aventura, Fantasia",112,,https://www.imdb.com/title/tt1981115
+Captain America: The Winter Soldier,2014,Inglês,"Anthony Russo, Joe Russo","Ação, Aventura, Ficção científica",136,,https://www.imdb.com/title/tt1843866
+Avengers: Age of Ultron,2015,Inglês,Joss Whedon,"Ação, Aventura, Ficção científica",141,,https://www.imdb.com/title/tt2395427
+Guardians of the Galaxy,2014,Inglês,James Gunn,"Ação, Aventura, Comédia",121,,https://www.imdb.com/title/tt2015381
+Guardians of the Galaxy Vol. 2,2017,Inglês,James Gunn,"Ação, Aventura, Comédia",136,,https://www.imdb.com/title/tt3896198
+Ant-Man,2015,Inglês,Peyton Reed,"Ação, Aventura, Comédia",117,,https://www.imdb.com/title/tt0478970
+Captain America: Civil War,2016,Inglês,"Anthony Russo, Joe Russo","Ação, Aventura, Ficção científica",147,,https://www.imdb.com/title/tt3498820
+Black Panther,2018,Inglês,Ryan Coogler,"Ação, Aventura, Ficção científica",134,,https://www.imdb.com/title/tt1825683
+Doctor Strange,2016,Inglês,Scott Derrickson,"Ação, Aventura, Fantasia",115,,https://www.imdb.com/title/tt1211837
+Thor: Ragnarok,2017,Inglês,Taika Waititi,"Ação, Aventura, Comédia",130,,https://www.imdb.com/title/tt3501632
+Ant-Man and the Wasp,2018,Inglês,Peyton Reed,"Ação, Aventura, Comédia",118,,https://www.imdb.com/title/tt5095030
+Avengers: Infinity War,2018,Inglês,"Anthony Russo, Joe Russo","Ação, Aventura, Ficção científica",149,,https://www.imdb.com/title/tt4154756
+Avengers: Endgame,2019,Inglês,"Anthony Russo, Joe Russo","Ação, Aventura, Drama",181,,https://www.imdb.com/title/tt4154796
+Dune,2021,Inglês,Denis Villeneuve,"Ação, Aventura, Drama",155,,https://www.imdb.com/title/tt1160419
+Wreck-It Ralph,2012,Inglês,Rich Moore,"Animação, Aventura, Comédia",101,,https://www.imdb.com/title/tt1772341
+A Million Ways to Die in the West,2014,Inglês,Seth MacFarlane,"Comédia, Faroeste",116,,https://www.imdb.com/title/tt2557490
+Star Trek: The Motion Picture,1979,Inglês,Robert Wise,"Aventura, Mistério, Ficção científica",132,,https://www.imdb.com/title/tt0079945
+Star Trek II: The Wrath of Khan,1982,Inglês,Nicholas Meyer,"Ação, Aventura, Ficção científica",113,,https://www.imdb.com/title/tt0084726
+Star Trek III: The Search for Spock,1984,Inglês,Leonard Nimoy,"Ação, Aventura, Ficção científica",105,,https://www.imdb.com/title/tt0088170
+Star Trek IV: The Voyage Home,1986,Inglês,Leonard Nimoy,"Ação, Aventura, Comédia",119,,https://www.imdb.com/title/tt0092007
+Star Trek V: The Final Frontier,1989,Inglês,William Shatner,"Ação, Aventura, Fantasia",107,,https://www.imdb.com/title/tt0098382
+Star Trek VI: The Undiscovered Country,1991,Inglês,Nicholas Meyer,"Ação, Aventura, Ficção científica",110,,https://www.imdb.com/title/tt0102975
+Star Trek: Generations,1994,Inglês,David Carson,"Ação, Aventura, Mistério",118,,https://www.imdb.com/title/tt0111280
+Star Trek: First Contact,1996,Inglês,Jonathan Frakes,"Ação, Aventura, Drama",111,,https://www.imdb.com/title/tt0117731
+Star Trek: Insurrection,1998,Inglês,Jonathan Frakes,"Ação, Aventura, Ficção científica",103,,https://www.imdb.com/title/tt0120844
+Star Trek: Nemesis,2002,Inglês,Stuart Baird,"Ação, Aventura, Ficção científica",116,,https://www.imdb.com/title/tt0253754
+Star Trek,2009,Inglês,J.J. Abrams,"Ação, Aventura, Ficção científica",127,,https://www.imdb.com/title/tt0796366
+Star Trek Into Darkness,2013,Inglês,J.J. Abrams,"Ação, Aventura, Ficção científica",132,,https://www.imdb.com/title/tt1408101
+Star Trek Beyond,2016,Inglês,Justin Lin,"Ação, Aventura, Ficção científica",122,,https://www.imdb.com/title/tt2660888
+Big Hero 6,2014,Inglês,"Don Hall, Chris Williams","Animação, Ação, Aventura",102,,https://www.imdb.com/title/tt2245084
+Star Wars: Episode I - The Phantom Menace,1999,Inglês,George Lucas,"Ação, Aventura, Fantasia",136,,https://www.imdb.com/title/tt0120915
+Star Wars: Episode II - Attack of the Clones,2002,Inglês,George Lucas,"Ação, Aventura, Fantasia",242,,https://www.imdb.com/title/tt0121765
+Star Wars: Episode III - Revenge of the Sith,2005,Inglês,George Lucas,"Ação, Aventura, Fantasia",140,,https://www.imdb.com/title/tt0121766
+Solo: A Star Wars Story,2018,Inglês,Ron Howard,"Ação, Aventura, Ficção científica",135,,https://www.imdb.com/title/tt3778644
+Rogue One: A Star Wars Story,2016,Inglês,Gareth Edwards,"Ação, Aventura, Ficção científica",133,,https://www.imdb.com/title/tt3748528
+Star Wars,1977,Inglês,George Lucas,"Ação, Aventura, Fantasia",121,,https://www.imdb.com/title/tt0076759/
+Star Wars: Episode V - The Empire Strikes Back,1980,Inglês,Irvin Kershner,"Ação, Aventura, Fantasia",124,,https://www.imdb.com/title/tt0080684
+Star Wars: Episode VI - Return of the Jedi,1983,Inglês,Richard Marquand,"Ação, Aventura, Fantasia",131,,https://www.imdb.com/title/tt0086190
+Star Wars: Episode VII - The Force Awakens,2015,Inglês,J.J. Abrams,"Ação, Aventura, Ficção científica",138,,https://www.imdb.com/title/tt2488496
+Star Wars: Episode VIII - The Last Jedi,2017,Inglês,Rian Johnson,"Ação, Aventura, Fantasia",152,,https://www.imdb.com/title/tt2527336
+Star Wars: Episode IX - The Rise of Skywalker,2019,Inglês,J.J. Abrams,"Ação, Aventura, Fantasia",141,,https://www.imdb.com/title/tt2527338
+The Iron Giant,1999,Inglês,Brad Bird,"Animação, Ação, Aventura",86,,https://www.imdb.com/title/tt0129167
+Ron's Gone Wrong,2021,Inglês,"Sarah Smith, Jean-Philippe Vine","Animação, Aventura, Comédia",106,,https://www.imdb.com/title/tt7504818
+Akira,1988,Japonês,Katsuhiro Ôtomo,"Animação, Ação, Drama",124,,https://www.imdb.com/title/tt0094625
+Luca,2021,Inglês,Enrico Casarosa,"Animação, Aventura, Comédia",95,,https://www.imdb.com/title/tt12801262
+Antz,1998,Inglês,"Eric Darnell, Tim Johnson","Animação, Aventura, Comédia",83,,https://www.imdb.com/title/tt0120587
+The Prince of Egypt,1998,Inglês,"Brenda Chapman, Steve Hickner, Simon Wells","Animação, Aventura, Drama",99,,https://www.imdb.com/title/tt0120794
+The Road to El Dorado,2000,Inglês,"Bibo Bergeron, Don Paul, Jeffrey Katzenberg","Animação, Aventura, Comédia",89,,https://www.imdb.com/title/tt0138749
+Chicken Run,2000,Inglês,"Peter Lord, Nick Park","Animação, Aventura, Comédia",84,,https://www.imdb.com/title/tt0120630
+Batman Forever,1995,Inglês,Joel Schumacher,"Ação, Aventura",121,,https://www.imdb.com/title/tt0112462
+Batman & Robin,1997,Inglês,Joel Schumacher,"Ação, Ficção científica",125,,https://www.imdb.com/title/tt0118688
+Wish Dragon,2021,Inglês,Chris Appelhans,"Animação, Aventura, Comédia",98,,https://www.imdb.com/title/tt5562070
+Exam,2009,Inglês,Stuart Hazeldine,"Mistério, Thriller",101,,https://www.imdb.com/title/tt1258197
+Marighella,2019,Inglês,Wagner Moura,"Ação, Drama, História",155,,https://www.imdb.com/title/tt7825208
+Dallas Buyers Club,2013,Inglês,Jean-Marc Vallée,"Biografia, Drama",117,,https://www.imdb.com/title/tt0790636
+Birdman or (The Unexpected Virtue of Ignorance),2014,Inglês,Alejandro G. Iñárritu,"Comédia, Drama",119,,https://www.imdb.com/title/tt2562232
+La La Land,2016,Inglês,Damien Chazelle,"Comédia, Drama, Música",128,,https://www.imdb.com/title/tt3783958
+The Revenant,2015,Inglês,Alejandro G. Iñárritu,"Ação, Aventura, Drama",156,,https://www.imdb.com/title/tt1663202
+Moonlight,2016,Inglês,Barry Jenkins,Drama,111,,https://www.imdb.com/title/tt4975722
+The Shape of Water,2017,Inglês,Guilherme del Toro,"Aventura, Drama, Fantasia",123,,https://www.imdb.com/title/tt5580390
+Nightcrawler,2014,Inglês,Dan Gilroy,"Crime, Drama, Thriller",117,,https://www.imdb.com/title/tt2872718
+Black Swan,2010,Inglês,Darren Aronofsky,"Drama, Thriller",108,,https://www.imdb.com/title/tt0947798
+Ford v Ferrari,2019,Inglês,James Mangold,"Ação, Biografia, Drama",152,,https://www.imdb.com/title/tt1950186
+Rush,2013,Inglês,Ron Howard,"Ação, Biografia, Drama",123,,https://www.imdb.com/title/tt1979320
+Inglourious Basterds,2009,Inglês,Quentin Tarantino,"Aventura, Drama, Guerra",153,,https://www.imdb.com/title/tt0361748
+American Hustle,2013,Inglês,David O. Russell,"Crime, Drama",138,,https://www.imdb.com/title/tt1800241
+Elysium,2013,Inglês,Neill Blomkamp,"Ação, Drama, Ficção científica",109,,https://www.imdb.com/title/tt1535108
+Pulp Fiction,1994,Inglês,Quentin Tarantino,"Crime, Drama",154,,https://www.imdb.com/title/tt0110912
+House of Gucci,2021,Inglês,Ridley Scott,"Crime, Drama, Thriller",157,,https://www.imdb.com/title/tt11214590
+The Curse of the Were-Rabbit,2005,Inglês,"Steve Box, Nick Park","Animação, Aventura, Comédia",85,,https://www.imdb.com/title/tt0312004
+Robots,2005,Inglês,"Chris Wedge, Carlos Saldanha","Animação, Aventura, Comédia",91,,https://www.imdb.com/title/tt0358082
+Bolt,2008,Inglês,"Byron Howard, Chris Williams","Animação, Aventura, Comédia",96,,https://www.imdb.com/title/tt0397892
+Raya and the Last Dragon,2021,Inglês,Don Hall. Carlos López Estrada,"Animação, Ação, Aventura",107,,https://www.imdb.com/title/tt5109280
+Argo,2012,Inglês,Ben Affleck,"Biografia, Drama, Thriller",120,,https://www.imdb.com/title/tt1024648
+The Batman,2022,Inglês,Matt Reeves,"Ação, Crime, Drama",0,,https://www.imdb.com/title/tt1877830
+Sing,2016,Inglês,"Garth Jennings, Christophe Lourdelet","Animação, Comédia, Família",108,,https://www.imdb.com/title/tt3470600
+Sing 2,2021,Inglês,Garth Jennings,"Animação, Aventura, Comédia",112,,https://www.imdb.com/title/tt6467266
+Ghost in the Shell,2017,Inglês,Rupert Sanders,"Ação, Crime, Drama",107,,https://www.imdb.com/title/tt1219827
+The Breakfast Club,1985,Inglês,John Hughes,"Comédia, Drama",97,,https://www.imdb.com/title/tt0088847
+El Camino: A Breaking Bad Movie,2019,Inglês,Vince Gilligan,"Ação, Crime, Drama",122,14/02/2022,https://www.imdb.com/title/tt9243946
+Man on the Moon,1999,Inglês,Milos Forman,"Biografia, Comédia, Drama",118,28/02/2022,https://www.imdb.com/title/tt0125664
+Bruce Almighty,2003,Inglês,Tom Shadyac,"Comédia, Fantasia",101,28/02/2022,https://www.imdb.com/title/tt0315327
+The Mask,1994,Inglês,Chuck Russell,"Ação, Comédia, Crime",101,28/02/2022,https://www.imdb.com/title/tt0110475
+Uncharted,2022,Inglês,Ruben Fleischer,"Ação, Aventura",116,28/02/2022,https://www.imdb.com/title/tt1464335
+Watchmen,2009,Inglês,Zack Snyder,"Ação, Drama, Mistério",162,04/03/2022,https://www.imdb.com/title/tt0409459
+Avatar,2009,Inglês,James Cameron,"Aventura, Ação, Fantasia",162,04/03/2022,https://www.imdb.com/title/tt0499549
+Pirates of the Caribbean: The Curse of the Black Pearl,2003,Inglês,Gore Verbinski,"Aventura, Ação, Fantasia",143,04/03/2022,https://www.imdb.com/title/tt0325980
+Pirates of the Caribbean: Dead Man's Chest,2006,Inglês,Gore Verbinski,"Aventura, Ação, Fantasia",151,04/03/2022,https://www.imdb.com/title/tt0383574
+Pirates of the Caribbean: At World's End,2007,Inglês,Gore Verbinski,"Aventura, Ação, Fantasia",169,04/03/2022,https://www.imdb.com/title/tt0449088
+Pirates of the Caribbean: On Stranger Tides,2011,Inglês,Rob Marshall,"Aventura, Ação, Fantasia",136,04/03/2022,https://www.imdb.com/title/tt1298650
+Pirates of the Caribbean: Dead Men Tell No Tales,2017,Inglês,"Espen Sandberg, Joachim Rønning","Aventura, Ação, Fantasia",129,04/03/2022,https://www.imdb.com/title/tt1790809
+Shame,2011,Inglês,Steve McQueen,Drama,101,04/03/2022,https://www.imdb.com/title/tt1723811
+12 Years a Slave,2013,Inglês,Steve McQueen,"Biografia, Drama, História",134,04/03/2022,https://www.imdb.com/title/tt2024544
+Macbeth,2015,Inglês,Justin Kurzel,"Drama, Guerra, História",113,04/03/2022,https://www.imdb.com/title/tt12291542
+Slow West,2015,Inglês,John Maclean,"Animação, Ação, Drama",84,04/03/2022,https://www.imdb.com/title/tt3205376
+Jobs,2013,Inglês,Joshua Michael Stern,"Biografia, Drama",128,04/03/2022,https://www.imdb.com/title/tt2357129
+Morbius,2022,Inglês,Daniel Espinosa,"Aventura, Ação, Drama",108,05/03/2022,https://www.imdb.com/title/tt5108870
+Trading Places,1983,Inglês,John Landis,Comédia,114,25/03/2022,https://www.imdb.com/title/tt0086465
+Spotlight,2015,Inglês,Tom McCarthy,"Biografia, Crime, Drama",129,26/03/2022,https://www.imdb.com/title/tt1895587
