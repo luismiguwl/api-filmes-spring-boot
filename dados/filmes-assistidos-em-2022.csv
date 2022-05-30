@@ -1,11 +1,11 @@
-titulo,dataAssistido,anoDeLancamento,idioma,diretor,genero,duracao,plataforma,assistidoLegendado,linkIMDB
-13 Going on 30,01/01/2022,2004,Inglês,Gary Winick,"Comédia, Fantasia, Romance",98,Netflix,true,https://www.imdb.com/title/tt0337563
-Venom: Let There Be Carnage,02/01/2022,2021,Inglês,Andy Serkis,"Ação, Aventura, Ficção científica",97,Outros,true,https://www.imdb.com/title/tt7097896
-Reign of the Supermen,05/01/2022,2019,Inglês,Sam Liu,"Animação, Ação, Aventura",87,Outros,true,https://www.imdb.com/title/tt7167686
-Batman: Gotham by Gaslight,09/01/2022,2018,Inglês,Sam Liu,"Animação, Ação, Aventura",78,Outros,true,https://www.imdb.com/title/tt7167630
-Iron Man 2,18/01/2022,2010,Inglês,Jon Favreau,"Ação, Aventura, Ficção científica",124,Disney+,true,https://www.imdb.com/title/tt1228705
-O Vendedor de Passados,27/01/2022,2015,Português (Brasileiro),Lula Buarque de Hollanda,Drama,100,Netflix,false,https://www.imdb.com/title/tt2078693
-Black Widow,12/02/2022,2021,Inglês,Cate Shortland,"Ação, Aventura, Ficção científica",134,Disney+,false,https://www.imdb.com/title/tt3480822
-Liar Liar,19/02/2022,1997,Inglês,Tom Shadyac,"Comédia, Fantasia",86,Netflix,true,https://www.imdb.com/title/tt0119528
-Steve Jobs,06/03/2022,2015,Inglês,Danny Boyle,"Biografia, Drama",122,Netflix,true,https://www.imdb.com/title/tt2080374
-Operações Especiais,19/03/2022,2015,Português (Brasileiro),Tomas Portella,"Ação, Crime",99,Netflix,false,https://www.imdb.com/title/tt4058210
+titulo,dataAssistido,anoDeLancamento,idioma,diretor,genero,duracao,plataforma,assistidoLegendado,linkIMDB,linkImagem
+13 Going on 30,01/01/2022,2004,Inglês,Gary Winick,"Comédia, Fantasia, Romance",98,Netflix,true,https://www.imdb.com/title/tt0337563,https://m.media-amazon.com/images/M/MV5BZmQyNDFjMmUtODhjYy00Mzg4LTliOGEtZjZjY2FhNThiNzAyXkEyXkFqcGdeQXVyMTAyOTE2ODg0._V1_.jpg
+Venom: Let There Be Carnage,02/01/2022,2021,Inglês,Andy Serkis,"Ação, Aventura, Ficção científica",97,Outros,true,https://www.imdb.com/title/tt7097896,https://m.media-amazon.com/images/M/MV5BNzA4MjEzMTktZWMxYS00YWQ1LWJhMWItZTUyMGFmZjFmMjE4XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg
+Reign of the Supermen,05/01/2022,2019,Inglês,Sam Liu,"Animação, Ação, Aventura",87,Outros,true,https://www.imdb.com/title/tt7167686,https://m.media-amazon.com/images/M/MV5BZmZhOWNhM2ItM2YzYS00OTg0LTkzM2MtYTc3ZmQzNWYyN2VjXkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg
+Batman: Gotham by Gaslight,09/01/2022,2018,Inglês,Sam Liu,"Animação, Ação, Aventura",78,Outros,true,https://www.imdb.com/title/tt7167630,https://m.media-amazon.com/images/M/MV5BYTJhNjYyMGItODdhOC00ZTZmLTk1MTMtZDRhMmZkYTRiOGJkXkEyXkFqcGdeQXVyMTg2NjYzOA@@._V1_.jpg
+Iron Man 2,18/01/2022,2010,Inglês,Jon Favreau,"Ação, Aventura, Ficção científica",124,Disney+,true,https://www.imdb.com/title/tt1228705,https://m.media-amazon.com/images/M/MV5BMTM0MDgwNjMyMl5BMl5BanBnXkFtZTcwNTg3NzAzMw@@._V1_.jpg
+O Vendedor de Passados,27/01/2022,2015,Português (Brasileiro),Lula Buarque de Hollanda,Drama,100,Netflix,false,https://www.imdb.com/title/tt2078693,https://m.media-amazon.com/images/M/MV5BZDg5ZTczZDYtZmY4NC00MDI3LWIxYjUtZWRlMmMxOTQwYWI4XkEyXkFqcGdeQXVyNDA4NzUyMzg@._V1_.jpg
+Black Widow,12/02/2022,2021,Inglês,Cate Shortland,"Ação, Aventura, Ficção científica",134,Disney+,false,https://www.imdb.com/title/tt3480822,https://m.media-amazon.com/images/M/MV5BOGUwNzIyMDEtODZhYi00ZjYyLWFiNmYtMDQyYmM1OWI1MDM0XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg
+Liar Liar,19/02/2022,1997,Inglês,Tom Shadyac,"Comédia, Fantasia",86,Netflix,true,https://www.imdb.com/title/tt0119528,https://m.media-amazon.com/images/M/MV5BODY5NTUzNjYtN2M4YS00MTc4LTlkZTEtZGIzMTNiOGJlYzNhXkEyXkFqcGdeQXVyMTAyOTE2ODg0._V1_.jpg
+Steve Jobs,06/03/2022,2015,Inglês,Danny Boyle,"Biografia, Drama",122,Netflix,true,https://www.imdb.com/title/tt2080374,https://m.media-amazon.com/images/M/MV5BMjE0NTA2MTEwOV5BMl5BanBnXkFtZTgwNzg4NzU2NjE@._V1_.jpg
+Operações Especiais,19/03/2022,2015,Português (Brasileiro),Tomas Portella,"Ação, Crime",99,Netflix,false,https://www.imdb.com/title/tt4058210,https://m.media-amazon.com/images/M/MV5BOGZkNmI1ZWEtZGVlNS00NGE1LWJlMjQtNjg0MDQwNjVjNDgwXkEyXkFqcGdeQXVyNTM5NjcwMjM@._V1_.jpg

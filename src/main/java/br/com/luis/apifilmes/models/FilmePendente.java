@@ -6,8 +6,8 @@ public class FilmePendente extends Filme {
 	private String dataEmQueFoiAdicionado;
 
 	public FilmePendente(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos,
-			Idioma idioma, Duracao runtime, String linkIMDB, String dataEmQueFoiAdicionado) {
-		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime, linkIMDB);
+			Idioma idioma, Duracao runtime, String linkIMDB, String linkImagem, String dataEmQueFoiAdicionado) {
+		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime, linkIMDB, linkImagem);
 		this.dataEmQueFoiAdicionado = dataEmQueFoiAdicionado;
 	}
 
@@ -47,6 +47,11 @@ public class FilmePendente extends Filme {
 	@Override
 	public String getLinkIMDB() {
 		return super.getLinkIMDB();
+	}
+	
+	@Override
+	public String getLinkImagem() {
+		return super.getLinkImagem();
 	}
 	
 	public String getDataEmQueFoiAdicionado() {
