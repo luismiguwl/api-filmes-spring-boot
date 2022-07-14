@@ -40,7 +40,6 @@ public class PreenchedorDeCampos implements AcoesComFilmePendente {
 		campos.add(joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getDiretores(), Diretor::getNome));
 		campos.add(joiner.getDadosSeparadosPorVirgulaSeNecessario(filme.getGeneros(), Genero::getNome));
 		campos.add(filme.getRuntime() != null ? filme.getRuntime().getDuracaoEmMinutos() : 0);
-		campos.add(filme.getDataEmQueFoiAdicionado() != null ? filme.getDataEmQueFoiAdicionado() : "");
 	}
 	
 	private void preencherParaFilmeVisto() {
