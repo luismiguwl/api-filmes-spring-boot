@@ -48,12 +48,14 @@ public class AcessoADados {
 
 			String linkIMDB = record.get(LINK_IMDB.get());
 			String linkImagem = record.get(LINK_IMAGEM.get());
+			
+			String descricao = record.get(DESCRICAO.get());
 
 			Filme filme;
 			if (destino.ehFilmePendente()) {
-				filme = new FilmePendente(titulo, ano, diretores, generos, idioma, runtime, linkIMDB, linkImagem);
+				filme = new FilmePendente(titulo, ano, diretores, generos, idioma, runtime, linkIMDB, linkImagem, descricao);
 			} else {
-				filme = new FilmeVisto(titulo, ano, diretores, generos, idioma, runtime, linkIMDB, linkImagem, data, plataforma, assistidoLegendado);
+				filme = new FilmeVisto(titulo, ano, diretores, generos, idioma, runtime, linkIMDB, linkImagem, data, plataforma, assistidoLegendado, descricao);
 			}
 			
 			filmes.add(filme);

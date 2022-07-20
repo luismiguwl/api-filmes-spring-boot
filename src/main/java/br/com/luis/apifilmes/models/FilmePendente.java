@@ -3,11 +3,9 @@ package br.com.luis.apifilmes.models;
 import java.util.List;
 
 public class FilmePendente extends Filme {
-	private String dataEmQueFoiAdicionado;
-
 	public FilmePendente(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos,
-			Idioma idioma, Duracao runtime, String linkIMDB, String linkImagem) {
-		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime, linkIMDB, linkImagem);
+			Idioma idioma, Duracao runtime, String linkIMDB, String linkImagem, String descricao) {
+		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime, linkIMDB, linkImagem, descricao);
 	}
 
 	public FilmePendente() {
@@ -51,6 +49,16 @@ public class FilmePendente extends Filme {
 	@Override
 	public String getLinkImagem() {
 		return super.getLinkImagem();
+	}
+
+	@Override
+	public String getDescricao() {
+		return super.getDescricao();
+	}
+
+	@Override
+	public void setDescricao(String descricao) {
+		super.setDescricao(descricao);
 	}
 
 	@Override
