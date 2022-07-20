@@ -15,8 +15,9 @@ public abstract class Filme {
 	private Duracao runtime;
 	private String linkIMDB;
 	private String linkImagem;
+	private String descricao;
 
-	public Filme(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma, Duracao runtime, String linkIMDB, String linkImagem) {
+	public Filme(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma, Duracao runtime, String linkIMDB, String linkImagem, String descricao) {
 		this.titulo = titulo;
 		this.anoDeLancamento = anoDeLancamento;
 		this.diretores = diretores;
@@ -25,6 +26,7 @@ public abstract class Filme {
 		this.runtime = runtime;
 		this.linkIMDB = linkIMDB;
 		this.linkImagem = linkImagem;
+		this.descricao = descricao;
 	}
 
 	public Filme() {
@@ -85,6 +87,14 @@ public abstract class Filme {
 	
 	public String getLinkImagem() {
 		return linkImagem;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 	public String mesclarTituloComDiretores() {

@@ -13,8 +13,8 @@ public class FilmeVisto extends Filme {
 
 	public FilmeVisto(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma,
 			Duracao runtime, String linkIMDB, String linkImagem, String dataEmQueFoiAssistido, Plataforma plataformaEmQueFoiAssistido,
-			Boolean assistidoLegendado) {
-		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime, linkIMDB, linkImagem);
+			Boolean assistidoLegendado, String descricao) {
+		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime, linkIMDB, linkImagem, descricao);
 		this.dataEmQueFoiAssistido = dataEmQueFoiAssistido;
 		this.plataformaEmQueFoiAssistido = plataformaEmQueFoiAssistido;
 		this.assistidoLegendado = assistidoLegendado;
@@ -86,6 +86,16 @@ public class FilmeVisto extends Filme {
 	@Override
 	public String getLinkImagem() {
 		return super.getLinkImagem();
+	}
+
+	@Override
+	public String getDescricao() {
+		return super.getDescricao();
+	}
+
+	@Override
+	public void setDescricao(String descricao) {
+		super.setDescricao(descricao);
 	}
 
 	@Override
