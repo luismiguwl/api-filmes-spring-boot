@@ -16,8 +16,9 @@ public abstract class Filme {
 	private String linkIMDB;
 	private String linkImagem;
 	private String descricao;
+	private Integer orcamento;
 
-	public Filme(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma, Duracao runtime, String linkIMDB, String linkImagem, String descricao) {
+	public Filme(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma, Duracao runtime, String linkIMDB, String linkImagem, String descricao, Integer orcamento) {
 		this.titulo = titulo;
 		this.anoDeLancamento = anoDeLancamento;
 		this.diretores = diretores;
@@ -27,6 +28,7 @@ public abstract class Filme {
 		this.linkIMDB = linkIMDB;
 		this.linkImagem = linkImagem;
 		this.descricao = descricao;
+		this.orcamento = orcamento;
 	}
 
 	public Filme() {
@@ -97,6 +99,14 @@ public abstract class Filme {
 		this.descricao = descricao;
 	}
 	
+	public Integer getOrcamento() {
+		return orcamento;
+	}
+
+	public void setOrcamento(Integer orcamento) {
+		this.orcamento = orcamento;
+	}
+
 	public String mesclarTituloComDiretores() {
 		return getTitulo() + " " + DiretorUtils.mesclarTodosOsDiretores(diretores);
 	}
