@@ -4,8 +4,8 @@ import java.util.List;
 
 public class FilmePendente extends Filme {
 	public FilmePendente(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos,
-			Idioma idioma, Duracao runtime, String linkIMDB, String linkImagem, String descricao, Integer orcamento) {
-		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime, linkIMDB, linkImagem, descricao, orcamento);
+			Idioma idioma, Duracao runtime, String linkIMDB, String linkImagem, String descricao, Integer orcamento, List<Ator> atores) {
+		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime, linkIMDB, linkImagem, descricao, orcamento, atores);
 	}
 
 	public FilmePendente() {
@@ -69,6 +69,16 @@ public class FilmePendente extends Filme {
 	@Override
 	public void setOrcamento(Integer orcamento) {
 		super.setOrcamento(orcamento);
+	}
+
+	@Override
+	public List<Ator> getAtores() {
+		return super.getAtores();
+	}
+
+	@Override
+	public void setAtores(List<Ator> atores) {
+		super.setAtores(atores);
 	}
 
 	@Override

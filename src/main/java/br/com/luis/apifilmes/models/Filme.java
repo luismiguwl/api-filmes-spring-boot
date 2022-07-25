@@ -11,6 +11,7 @@ public abstract class Filme {
 	private Integer anoDeLancamento;
 	private List<Diretor> diretores = new ArrayList<>();
 	private List<Genero> generos = new ArrayList<>();
+	private List<Ator> atores = new ArrayList<>();
 	private Idioma idioma;
 	private Duracao runtime;
 	private String linkIMDB;
@@ -18,7 +19,7 @@ public abstract class Filme {
 	private String descricao;
 	private Integer orcamento;
 
-	public Filme(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma, Duracao runtime, String linkIMDB, String linkImagem, String descricao, Integer orcamento) {
+	public Filme(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma, Duracao runtime, String linkIMDB, String linkImagem, String descricao, Integer orcamento, List<Ator> atores) {
 		this.titulo = titulo;
 		this.anoDeLancamento = anoDeLancamento;
 		this.diretores = diretores;
@@ -29,6 +30,7 @@ public abstract class Filme {
 		this.linkImagem = linkImagem;
 		this.descricao = descricao;
 		this.orcamento = orcamento;
+		this.atores = atores;
 	}
 
 	public Filme() {
@@ -105,6 +107,14 @@ public abstract class Filme {
 
 	public void setOrcamento(Integer orcamento) {
 		this.orcamento = orcamento;
+	}
+
+	public List<Ator> getAtores() {
+		return atores;
+	}
+
+	public void setAtores(List<Ator> atores) {
+		this.atores = atores;
 	}
 
 	public String mesclarTituloComDiretores() {
