@@ -12,8 +12,8 @@ public class DefinidorDeAssistidoLegendado {
 		this.record = record;
 	}
 	
-	public Boolean definir() {
+	public Integer definir() {
 		boolean encontrouColuna = record.isMapped(COLUNA.get());
-		return encontrouColuna ? record.get(COLUNA.get()).equals("true") : null;
+		return encontrouColuna ? Integer.parseInt(record.get(COLUNA.get())) : null;
 	}
 }

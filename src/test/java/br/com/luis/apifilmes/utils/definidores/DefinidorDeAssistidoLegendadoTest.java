@@ -30,7 +30,7 @@ public class DefinidorDeAssistidoLegendadoTest {
 	@Test
 	public void deveRetornarValorNaoNuloSeColunarExistir() {
 		when(record.get(coluna))
-			.thenReturn("true");
+			.thenReturn("1");
 		
 		assertNotNull(definidor.definir());
 	}
@@ -46,16 +46,16 @@ public class DefinidorDeAssistidoLegendadoTest {
 	@Test
 	public void deveRetornarTrueSeColunaForTrue() {
 		when(record.get(coluna))
-			.thenReturn("true");
+		.thenReturn("1");
 		
-		assertTrue(definidor.definir());
+		assertEquals(definidor.definir(), Integer.valueOf(1));
 	}
 
 	@Test
 	public void deveRetornarFalseSeColunaForFalse() {
 		when(record.get(coluna))
-			.thenReturn("false");
+		.thenReturn("0");
 		
-		assertFalse(definidor.definir());
+		assertEquals(definidor.definir(), Integer.valueOf(0));
 	}
 }
