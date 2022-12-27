@@ -61,7 +61,6 @@ public class AcessoADados {
 			}
 			
 			filmes.add(filme);
-			System.out.println(filme);
 		}
 
 		return filmes;
