@@ -44,7 +44,7 @@ public class AcessoADados {
 			
 			Plataforma plataforma = new DefinidorDePlataforma(destino, record).definir();
 
-			int assistidoLegendado = new DefinidorDeAssistidoLegendado(record).definir();
+			Integer assistidoLegendado = new DefinidorDeAssistidoLegendado(record).definir();
 
 			String linkIMDB = record.get(LINK_IMDB.get());
 			String linkImagem = record.get(LINK_IMAGEM.get());
@@ -61,6 +61,7 @@ public class AcessoADados {
 			}
 			
 			filmes.add(filme);
+			System.out.println(filme);
 		}
 
 		return filmes;
