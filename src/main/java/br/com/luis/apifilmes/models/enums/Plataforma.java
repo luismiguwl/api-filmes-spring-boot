@@ -3,7 +3,7 @@ package br.com.luis.apifilmes.models.enums;
 import br.com.luis.apifilmes.utils.VerificadorDeString;
 
 public enum Plataforma {
-	NETFLIX("Netflix"), DISNEY_PLUS("Disney+", "Disney Plus"), HBO_MAX("HBO Max"), CINEMA("Cinema"), OUTROS("Outros"), INDEFINIDO("Indefinido");
+	NETFLIX("Netflix"), DISNEY_PLUS("Disney+", "Disney Plus"), HBO_MAX("HBO Max"), CINEMA("Cinema"), OUTROS("Outros"), YOUTUBE("YouTube");
 
 	private String[] nomesPossiveis;
 	
@@ -19,7 +19,7 @@ public enum Plataforma {
 		texto = texto.trim().toLowerCase();
 		
 		if (texto.isEmpty()) {
-			return INDEFINIDO;
+			return OUTROS;
 		}
 
 		Plataforma[] plataformas = Plataforma.values();

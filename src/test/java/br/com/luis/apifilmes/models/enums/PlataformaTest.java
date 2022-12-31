@@ -10,8 +10,8 @@ public class PlataformaTest {
 	
 	@Test
 	public void deveRetornarIndefinidoSeTextoNaoPossuirValor() {
-		assertEquals(valueOfPersonalizado(" "), INDEFINIDO);
-		assertEquals(valueOfPersonalizado(""), INDEFINIDO);
+		assertEquals(valueOfPersonalizado(" "), OUTROS);
+		assertEquals(valueOfPersonalizado(""), OUTROS);
 	}
 	
 	@Test
