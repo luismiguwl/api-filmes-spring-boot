@@ -58,4 +58,12 @@ public class DefinidorDeAssistidoLegendadoTest {
 		
 		assertEquals(definidor.definir(), Integer.valueOf(0));
 	}
+
+	@Test
+	public void deveRetornarNullSeValorForUmaStringVazia() {
+		when(record.get(coluna))
+		.thenReturn("");
+		
+		assertNull(definidor.definir());
+	}
 }

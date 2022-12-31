@@ -14,6 +14,11 @@ public class DefinidorDeAssistidoLegendado {
 	
 	public Integer definir() {
 		boolean encontrouColuna = record.isMapped(COLUNA.get());
-		return encontrouColuna ? Integer.parseInt(record.get(COLUNA.get())) : null;
+
+		if (!encontrouColuna) {
+			return null;
+		}
+
+		return record.get(COLUNA.get()).isEmpty() ? null : Integer.parseInt(record.get(COLUNA.get()));
 	}
 }
