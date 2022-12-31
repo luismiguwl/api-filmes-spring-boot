@@ -5,7 +5,7 @@ public enum Coluna {
 	DIRETOR("diretor"), GENERO("genero"), DURACAO("duracao"), PLATAFORMA("plataforma"),
 	ASSISTIDO_LEGENDADO("assistidoLegendado"),	DATA_DE_ADICAO("dataEmQueFoiAdicionado"),
 	LINK_IMDB("linkIMDB"), LINK_IMAGEM("linkImagem"), DESCRICAO("descricao"),
-	ORCAMENTO("orcamento"), PRINCIPAIS_ATORES("principaisAtores");
+	ORCAMENTO("orcamento"), PRINCIPAIS_ATORES("principaisAtores"), CLASSIFICACAO("classificacao");
 
 	private String coluna;
 	

@@ -13,8 +13,8 @@ public class FilmeVisto extends Filme {
 
 	public FilmeVisto(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma,
 			Duracao runtime, String linkIMDB, String linkImagem, String dataEmQueFoiAssistido, Plataforma plataformaEmQueFoiAssistido,
-			Integer assistidoLegendado, String descricao, Integer orcamento, List<Ator> atores) {
-		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime, linkIMDB, linkImagem, descricao, orcamento, atores);
+			Integer assistidoLegendado, String descricao, Integer orcamento, List<Ator> atores, String classificacao) {
+		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime, linkIMDB, linkImagem, descricao, orcamento, atores, classificacao);
 		this.dataEmQueFoiAssistido = dataEmQueFoiAssistido;
 		this.plataformaEmQueFoiAssistido = plataformaEmQueFoiAssistido;
 		this.assistidoLegendado = assistidoLegendado;
@@ -116,6 +116,16 @@ public class FilmeVisto extends Filme {
 	@Override
 	public void setAtores(List<Ator> atores) {
 		super.setAtores(atores);
+	}
+
+	@Override
+	public String getClassificacao() {
+		return super.getClassificacao();
+	}
+
+	@Override
+	public void setClassificacao(String classificacao) {
+		super.setClassificacao(classificacao);
 	}
 
 	@Override
