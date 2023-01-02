@@ -7,6 +7,7 @@ import br.com.luis.apifilmes.utils.VerificadorDeString;
 public enum Destino implements AcoesComFilmePendente {
 	VISTOS_EM_2021("dados/filmes-assistidos-em-2021.csv"),
 	VISTOS_EM_2022("dados/filmes-assistidos-em-2022.csv"),
+	VISTOS_EM_2023("dados/filmes-assistidos-em-2023.csv"),
 	PENDENTES("dados/filmes-pendentes.csv"),
 	ABREVIACOES("dados/abreviacoes-dos-idiomas.csv");
 
