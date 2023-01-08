@@ -52,12 +52,13 @@ public class AcessoADados {
 			String descricao = record.get(DESCRICAO.get());
 			Integer orcamento = new DefinidorDeOrcamento(record).definir();
 			List<Ator> atores = new DefinidorDeListaDeAtores(record).definir();
+			String classificacao = record.get(CLASSIFICACAO.get());
 
 			Filme filme;
 			if (destino.ehFilmePendente()) {
-				filme = new FilmePendente(titulo, ano, diretores, generos, idioma, runtime, linkIMDB, linkImagem, descricao, orcamento, atores);
+				filme = new FilmePendente(titulo, ano, diretores, generos, idioma, runtime, linkIMDB, linkImagem, descricao, orcamento, atores, classificacao);
 			} else {
-				filme = new FilmeVisto(titulo, ano, diretores, generos, idioma, runtime, linkIMDB, linkImagem, data, plataforma, assistidoLegendado, descricao, orcamento, atores);
+				filme = new FilmeVisto(titulo, ano, diretores, generos, idioma, runtime, linkIMDB, linkImagem, data, plataforma, assistidoLegendado, descricao, orcamento, atores, classificacao);
 			}
 			
 			filmes.add(filme);
