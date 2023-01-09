@@ -12,6 +12,7 @@ public abstract class Filme {
 	private List<Diretor> diretores = new ArrayList<>();
 	private List<Genero> generos = new ArrayList<>();
 	private List<Ator> atores = new ArrayList<>();
+	private List<PaisDeOrigem> paisesDeOrigem = new ArrayList<>();
 	private Idioma idioma;
 	private Duracao runtime;
 	private String linkIMDB;
@@ -20,7 +21,7 @@ public abstract class Filme {
 	private Integer orcamento;
 	private String classificacao;
 
-	public Filme(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma, Duracao runtime, String linkIMDB, String linkImagem, String descricao, Integer orcamento, List<Ator> atores, String classificacao) {
+	public Filme(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma, Duracao runtime, String linkIMDB, String linkImagem, String descricao, Integer orcamento, List<Ator> atores, String classificacao, List<PaisDeOrigem> paisesDeOrigem) {
 		this.titulo = titulo;
 		this.anoDeLancamento = anoDeLancamento;
 		this.diretores = diretores;
@@ -33,6 +34,7 @@ public abstract class Filme {
 		this.orcamento = orcamento;
 		this.atores = atores;
 		this.classificacao = classificacao;
+		this.paisesDeOrigem = paisesDeOrigem;
 	}
 
 	public Filme() {
@@ -125,6 +127,14 @@ public abstract class Filme {
 
 	public void setClassificacao(String classificacao) {
 		this.classificacao = classificacao;
+	}
+
+	public List<PaisDeOrigem> getPaisesDeOrigem() {
+		return paisesDeOrigem;
+	}
+
+	public void setPaisesDeOrigem(List<PaisDeOrigem> paisesDeOrigem) {
+		this.paisesDeOrigem = paisesDeOrigem;
 	}
 
 	public String mesclarTituloComDiretores() {
