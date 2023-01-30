@@ -13,8 +13,8 @@ public class FilmeVisto extends Filme {
 
 	public FilmeVisto(String titulo, Integer anoDeLancamento, List<Diretor> diretores, List<Genero> generos, Idioma idioma,
 			Duracao runtime, String linkIMDB, String linkImagem, String dataEmQueFoiAssistido, Plataforma plataformaEmQueFoiAssistido,
-			Integer assistidoLegendado, String descricao, Integer orcamento, List<Ator> atores, String classificacao, List<PaisDeOrigem> paisesDeOrigem) {
-		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime, linkIMDB, linkImagem, descricao, orcamento, atores, classificacao, paisesDeOrigem);
+			Integer assistidoLegendado, String descricao, Integer orcamento, List<Ator> atores, String classificacao, List<PaisDeOrigem> paisesDeOrigem, List<Produtora> produtoras) {
+		super(titulo, anoDeLancamento, diretores, generos, idioma, runtime, linkIMDB, linkImagem, descricao, orcamento, atores, classificacao, paisesDeOrigem, produtoras);
 		this.dataEmQueFoiAssistido = dataEmQueFoiAssistido;
 		this.plataformaEmQueFoiAssistido = plataformaEmQueFoiAssistido;
 		this.assistidoLegendado = assistidoLegendado;
@@ -136,6 +136,16 @@ public class FilmeVisto extends Filme {
 	@Override
 	public void setPaisesDeOrigem(List<PaisDeOrigem> paisesDeOrigem) {
 		super.setPaisesDeOrigem(paisesDeOrigem);
+	}
+
+	@Override
+	public List<Produtora> getProdutoras() {
+		return super.getProdutoras();
+	}
+
+	@Override
+	public void setProdutoras(List<Produtora> produtoras) {
+		super.setProdutoras(produtoras);
 	}
 
 	@Override
