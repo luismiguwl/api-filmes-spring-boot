@@ -54,12 +54,13 @@ public class AcessoADados {
 			List<Ator> atores = new DefinidorDeListaDeAtores(record).definir();
 			String classificacao = record.get(CLASSIFICACAO.get());
 			List<PaisDeOrigem> paisesDeOrigem = new DefinidorDePaisesDeOrigem(record).definir();
+			List<Produtora> produtoras = new DefinidorDeProdutoras(record).definir();
 
 			Filme filme;
 			if (destino.ehFilmePendente()) {
-				filme = new FilmePendente(titulo, ano, diretores, generos, idioma, runtime, linkIMDB, linkImagem, descricao, orcamento, atores, classificacao, paisesDeOrigem);
+				filme = new FilmePendente(titulo, ano, diretores, generos, idioma, runtime, linkIMDB, linkImagem, descricao, orcamento, atores, classificacao, paisesDeOrigem, produtoras);
 			} else {
-				filme = new FilmeVisto(titulo, ano, diretores, generos, idioma, runtime, linkIMDB, linkImagem, data, plataforma, assistidoLegendado, descricao, orcamento, atores, classificacao, paisesDeOrigem);
+				filme = new FilmeVisto(titulo, ano, diretores, generos, idioma, runtime, linkIMDB, linkImagem, data, plataforma, assistidoLegendado, descricao, orcamento, atores, classificacao, paisesDeOrigem, produtoras);
 			}
 			
 			filmes.add(filme);

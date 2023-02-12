@@ -6,7 +6,7 @@ public enum Coluna {
 	ASSISTIDO_LEGENDADO("assistidoLegendado"),	DATA_DE_ADICAO("dataEmQueFoiAdicionado"),
 	LINK_IMDB("linkIMDB"), LINK_IMAGEM("linkImagem"), DESCRICAO("descricao"),
 	ORCAMENTO("orcamento"), PRINCIPAIS_ATORES("principaisAtores"), CLASSIFICACAO("classificacao"),
-	PAISES_DE_ORIGEM("paisDeOrigem");
+	PAISES_DE_ORIGEM("paisDeOrigem"), PRODUTORA("produtora");
 
 	private String coluna;
 	
